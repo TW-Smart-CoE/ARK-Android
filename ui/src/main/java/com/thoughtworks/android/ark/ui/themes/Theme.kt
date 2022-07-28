@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.theme
+package com.thoughtworks.android.ark.ui.themes
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

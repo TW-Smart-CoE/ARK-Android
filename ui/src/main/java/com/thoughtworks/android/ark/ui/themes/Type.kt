@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.theme
+package com.thoughtworks.android.ark.ui.themes
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
