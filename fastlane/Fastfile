@@ -1,0 +1,70 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Build an app for dev env"
+  lane :build_dev do
+    gradle(task: "clean assembleDebug")
+    notification_options = {
+      :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
+    }
+    notify_message(notification_options)
+  end
+
+  desc "Build an app for uat env"
+  lane :build_uat do
+    # change the task to uat later
+    gradle(task: "clean assembleRelease")
+  end
+
+  desc "Runs all the unit tests"
+  lane :unit_test do
+    gradle(task: "testDebugUnitTest")
+  end
+
+  desc "Notify message to user"
+  private_lane :notify_message do |options|
+    if is_ci
+      notification_slack(options)
+    else
+      notification_mac(options)
+    end
+  end
+
+  private_lane :notification_mac do |options|
+    notification(subtitle: "Finished Building", message: options[:message])
+  end
+
+  private_lane :notification_slack do |options|
+    slack_url = ENV["SLACK_URL"]
+    slack(
+      slack_url: slack_url,
+      message: options[:message],
+      success: true,
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Built by" => "Jenkins",
+      },
+      default_payloads: [:git_branch, :git_author]
+    )
+  end
+
+  before_all do |lane|
+    sh "export LC_ALL=en_US.UTF-8"
+    sh "export LANG=en_US.UTF-8"
+  end
+end
