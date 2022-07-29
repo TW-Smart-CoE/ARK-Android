@@ -50,6 +50,8 @@ platform :android do
   end
 
   private_lane :notification_slack do |options|
+    # For security, we put this value to env.
+    # You can find this value in ".env.default" file
     slack_url = ENV["SLACK_URL"]
     slack(
       slack_url: slack_url,
