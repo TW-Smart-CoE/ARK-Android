@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.themes
+package com.thoughtworks.android.ark.ui.themes.colors
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -21,11 +21,13 @@ val Teal700 = Color(0xFF00796B)
 val Red900 = Color(0xFFB00020)
 
 /**
- * The function colors definition
+ * The theme color.
+ * Please define the common color on here.
+ * if you want to add a special color, please move to [ComposeColors].
  */
 
 @Immutable
-data class ARKColors(
+data class ARKThemeColors(
     val primary: Color = Color.Unspecified,
     val primaryVariant: Color = Color.Unspecified,
     val secondary: Color = Color.Unspecified,
@@ -40,23 +42,8 @@ data class ARKColors(
     val onError: Color = Color.Unspecified
 )
 
-val lightColors = ARKColors(
+val lightColors = ARKThemeColors(
     primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200,
-    secondaryVariant = Teal700,
-    background = Color.Black,
-    surface = Color.White,
-    error = Red900,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    onError = Color.White
-)
-
-val darkColors = ARKColors(
-    primary = Purple200,
     primaryVariant = Purple700,
     secondary = Teal200,
     secondaryVariant = Teal700,
@@ -70,6 +57,21 @@ val darkColors = ARKColors(
     onError = Color.White
 )
 
+val darkColors = ARKThemeColors(
+    primary = Purple200,
+    primaryVariant = Purple700,
+    secondary = Teal200,
+    secondaryVariant = Teal700,
+    background = Color.Black,
+    surface = Color.White,
+    error = Red900,
+    onPrimary = Color.White,
+    onSecondary = Color.Black,
+    onBackground = Color.Black,
+    onSurface = Color.Black,
+    onError = Color.White
+)
+
 val LocaleARKColors = staticCompositionLocalOf {
-    ARKColors()
+    ARKThemeColors()
 }
