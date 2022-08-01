@@ -2,7 +2,7 @@
 
 ## System Requirements
 * Ruby 2.6.5
-* Bundler 2.1.4
+* Bundler 2.3.19
 
 ## Setup(Mac)
 - Install ruby & bundler
