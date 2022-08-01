@@ -8,7 +8,6 @@ import com.thoughtworks.android.ark.ui.themes.colors.LocaleARKColors
 import com.thoughtworks.android.ark.ui.themes.colors.darkColors
 import com.thoughtworks.android.ark.ui.themes.colors.lightColors
 
-
 @Composable
 fun AndroidARKTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {

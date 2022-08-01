@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.sample.colorsystem
+package com.thoughtworks.android.ark.uisample.colorsystem
 
 import android.view.LayoutInflater
 import android.widget.TextView
@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.thoughtworks.android.ark.ui.themes.AndroidARKTheme
-import com.thoughtworks.android.ark.UI.R
+import com.thoughtworks.android.ark.uisample.R
 import com.thoughtworks.android.ark.ui.themes.colors.ComposeColors
 
 @Composable

@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.sample
+package com.thoughtworks.android.ark.uisample
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

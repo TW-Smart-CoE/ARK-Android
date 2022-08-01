@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Android-ARK"
 include ':app'
+include ':ui-sample'
 include ':ui'

@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.sample
+package com.thoughtworks.android.ark.uisample
 
 import android.content.Intent
 import android.os.Bundle
