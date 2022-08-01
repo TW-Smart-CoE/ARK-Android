@@ -20,7 +20,6 @@
 [WIKI](https://github.com/TW-Smart-CoE/ARK-WIKI)
 
 ## LICENSE
-=======
 
     Copyright 2022 Thoughtworks, Inc.
 
