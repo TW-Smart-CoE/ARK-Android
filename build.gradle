@@ -9,9 +9,18 @@ task clean(type: Delete) {
 }
 
 ext {
+    // Sdk and tools
+    sdk_min_version = 26
+    sdk_target_version = 32
+    sdk_compile_version = 32
+
+    // Build dependency
     kotlin_version = '1.6.10'
-    arch_lifecycle_version = '2.5.0-rc01'
+    arch_lifecycle_version = '2.5.0'
     activity_compose_version = '1.5.0'
     compose_version = '1.1.1'
-    nav_version = '2.5.0'
+    nav_version = '2.5.1'
+
+    // Test dependency
+    junit_version = '4.13.2'
 }
