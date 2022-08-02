@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id 'com.google.dagger.hilt.android' version '2.43.1' apply false
 }
 
 task clean(type: Delete) {
@@ -16,10 +17,11 @@ ext {
 
     // Build dependency
     kotlin_version = '1.6.10'
-    arch_lifecycle_version = '2.5.0'
+    arch_lifecycle_version = '2.5.1'
     activity_compose_version = '1.5.0'
     compose_version = '1.1.1'
     nav_version = '2.5.1'
+    hilt_version = '2.42'
 
     // Test dependency
     junit_version = '4.13.2'
