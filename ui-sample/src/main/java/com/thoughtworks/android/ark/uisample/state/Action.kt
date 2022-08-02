@@ -1,3 +1,3 @@
-package com.thoughtworks.android.ark.ui.sample.state
+package com.thoughtworks.android.ark.uisample.state
 
 interface Action

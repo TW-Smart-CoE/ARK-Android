@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
-import com.thoughtworks.android.ark.ui.sample.state.Action
-import com.thoughtworks.android.ark.ui.sample.state.NavigateActivityAction
+import com.thoughtworks.android.ark.uisample.state.Action
+import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
 import com.thoughtworks.android.ark.ui.themes.AndroidARKTheme
 
 class SampleUIActivity : AppCompatActivity() {

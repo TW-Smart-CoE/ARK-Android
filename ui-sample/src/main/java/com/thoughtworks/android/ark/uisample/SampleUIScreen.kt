@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.thoughtworks.android.ark.ui.sample.colorsystem.ColorSystemActivity
-import com.thoughtworks.android.ark.ui.sample.state.Action
-import com.thoughtworks.android.ark.ui.sample.state.NavigateActivityAction
+import com.thoughtworks.android.ark.uisample.colorsystem.ColorSystemActivity
+import com.thoughtworks.android.ark.uisample.state.Action
+import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
 import com.thoughtworks.android.ark.ui.themes.colors.ComposeColors
 
 
