@@ -7,14 +7,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import com.thoughtworks.android.ark.ui.themes.AndroidARKTheme
 import com.thoughtworks.android.ark.uisample.R
 
-class ColorSystemActivity : AppCompatActivity() {
+class XmlColorSystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            AndroidARKTheme(isSystemInDarkTheme()) {
-                ColorSampleScreen()
-                R.layout.xml_color_test
-            }
-        }
+        setContentView(R.layout.xml_color_system)
     }
 }

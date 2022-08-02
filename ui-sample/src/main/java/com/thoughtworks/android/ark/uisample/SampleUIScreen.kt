@@ -1,5 +1,6 @@
 package com.thoughtworks.android.ark.uisample
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
@@ -9,10 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.thoughtworks.android.ark.uisample.colorsystem.ColorSystemActivity
+import com.thoughtworks.android.ark.uisample.colorsystem.ComposeColorSystemActivity
 import com.thoughtworks.android.ark.uisample.state.Action
 import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
 import com.thoughtworks.android.ark.ui.themes.colors.ComposeColors
+import com.thoughtworks.android.ark.uisample.colorsystem.XmlColorSystemActivity
 
 
 @Composable
@@ -25,9 +27,12 @@ fun SampleUIScreen(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         item {
+            // compose color system
             Spacer(modifier = Modifier.height(20.dp))
-            // color system
-            Item(sendAction, ColorSystemActivity::class.java, "color system")
+            Item(sendAction, ComposeColorSystemActivity::class.java, "compose color system")
+            // xml color system
+            Spacer(modifier = Modifier.height(20.dp))
+            Item(sendAction, XmlColorSystemActivity::class.java, "xml color system")
         }
     }
 }
@@ -35,7 +40,7 @@ fun SampleUIScreen(
 @Composable
 private fun Item(
     sendAction: (Action) -> Unit,
-    destination: Class<ColorSystemActivity>,
+    destination: Class<out AppCompatActivity>,
     title: String
 ) {
     Button(
