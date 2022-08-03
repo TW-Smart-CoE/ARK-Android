@@ -58,7 +58,7 @@ val lightColors = ARKThemeColors(
 )
 
 val darkColors = ARKThemeColors(
-    primary = Purple200,
+    primary = Teal200,
     primaryVariant = Purple700,
     secondary = Teal200,
     secondaryVariant = Teal700,

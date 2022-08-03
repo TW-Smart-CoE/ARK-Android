@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -23,12 +24,16 @@ fun ColorSampleScreen() {
     ) {
         val context = LocalContext.current
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "compose color", color = AndroidARKTheme.colors.primary)
+        Text(
+            text = LocalContext.current.getString(R.string.theme_color_test_for_compose),
+            color = AndroidARKTheme.colors.primary
+        )
         Spacer(modifier = Modifier.height(30.dp))
+        val colors = AndroidARKTheme.colors
         AndroidView(factory = { ctx ->
             LayoutInflater.from(ctx).inflate(R.layout.xml_color_test, null)
         }) {
-            (it as TextView).setTextColor(ComposeColors.Dynamic.ButtonContent.colorInt(context))
+            (it as TextView).setTextColor(colors.primary.toArgb())
         }
     }
 }

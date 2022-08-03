@@ -13,7 +13,6 @@ class ComposeColorSystemActivity : AppCompatActivity() {
         setContent {
             AndroidARKTheme(isSystemInDarkTheme()) {
                 ColorSampleScreen()
-                R.layout.xml_color_test
             }
         }
     }

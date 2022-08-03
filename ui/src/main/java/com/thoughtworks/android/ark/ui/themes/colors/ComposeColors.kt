@@ -35,7 +35,6 @@ sealed class ComposeColors(
         return if (isSystemInDarkTheme()) darkColor else lightColor
     }
 
-
     override fun colorInt(context: Context): Int =
         if (isNightMode(context)) darkColor.toArgb() else lightColor.toArgb()
 

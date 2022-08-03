@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Function Color -->
+    <color name="button_background">@color/teal_200</color>
+    <color name="button_content">@color/white</color>
+</resources>
