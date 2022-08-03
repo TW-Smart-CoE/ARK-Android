@@ -26,7 +26,6 @@ fun obtainThemeAttrColorToColor(
     Color.WHITE
 )
 
-
 /**
  *   get the attr color from the theme and transform to color state list
  */

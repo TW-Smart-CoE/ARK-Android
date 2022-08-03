@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import com.google.android.material.color.MaterialColors
 import com.thoughtworks.android.ark.ui.themes.colors.XmlColors
 import com.thoughtworks.android.ark.ui.themes.colors.obtainThemeAttrColorToColor
 import com.thoughtworks.android.ark.uisample.R

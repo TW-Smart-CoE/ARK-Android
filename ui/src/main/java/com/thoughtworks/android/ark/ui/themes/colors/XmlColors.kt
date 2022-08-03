@@ -37,7 +37,8 @@ sealed class XmlColors(
         context.getColor(colorRes)
 
 
-    override fun hex(context: Context) = colorInt(context).let {
-        Integer.toHexString(it).uppercase(Locale.ROOT)
-    }
+    override fun hex(context: Context) =
+        colorInt(context).let {
+            String.format("%08X", (0XFFFFFFFF and it.toLong()))
+        }
 }

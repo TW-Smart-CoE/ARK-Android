@@ -5,7 +5,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import java.util.*
 
 sealed class ComposeColors(
     private val lightColor: Color = Color.Unspecified,
@@ -20,7 +19,6 @@ sealed class ComposeColors(
 
         object ButtonBackground : Dynamic(Purple200, Teal200)
         object ButtonContent : Dynamic(Color.Black, Color.White)
-
     }
 
     /**
@@ -52,6 +50,6 @@ sealed class ComposeColors(
 
     override fun hex(context: Context) =
         colorInt(context).let {
-            Integer.toHexString(it).uppercase(Locale.ROOT)
+            String.format("%08X", (0XFFFFFFFF and it.toLong()))
         }
 }

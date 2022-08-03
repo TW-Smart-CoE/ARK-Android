@@ -40,5 +40,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/compose_color_02" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
