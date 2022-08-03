@@ -40,7 +40,7 @@ dependencies {
     //Kotlin协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
     //okhttp log拦截器
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
@@ -48,4 +48,8 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha01"
+
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.1.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 }
