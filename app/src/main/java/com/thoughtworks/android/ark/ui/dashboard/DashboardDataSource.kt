@@ -31,13 +31,13 @@ interface DashboardDataSource {
     suspend fun getData(): String
 }
 
-class LocalDashboardDataSource @Inject constructor() : DashboardDataSource {
+class LocalDashboardDataSource : DashboardDataSource {
     override suspend fun getData(): String {
         return "Local Data"
     }
 }
 
-class RemoteDashboardDataSource @Inject constructor() : DashboardDataSource {
+class RemoteDashboardDataSource : DashboardDataSource {
     override suspend fun getData(): String {
         return "Remote Data"
     }
