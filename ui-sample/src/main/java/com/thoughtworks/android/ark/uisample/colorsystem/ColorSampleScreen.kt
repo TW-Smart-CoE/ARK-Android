@@ -14,6 +14,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.thoughtworks.android.ark.ui.themes.AndroidARKTheme
 import com.thoughtworks.android.ark.uisample.R
 import com.thoughtworks.android.ark.ui.themes.colors.ComposeColors
+import com.thoughtworks.android.ark.ui.themes.colors.LocaleARKColors
 
 @Composable
 fun ColorSampleScreen() {
@@ -22,18 +23,38 @@ fun ColorSampleScreen() {
             .fillMaxSize()
             .background(color = AndroidARKTheme.colors.background)
     ) {
+        // The theme color test for compose
         val context = LocalContext.current
         Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = LocalContext.current.getString(R.string.theme_color_test_for_compose),
-            color = AndroidARKTheme.colors.primary
+            color = LocaleARKColors.current.primary
         )
+
+        // The theme color test for xml
         Spacer(modifier = Modifier.height(30.dp))
         val colors = AndroidARKTheme.colors
         AndroidView(factory = { ctx ->
             LayoutInflater.from(ctx).inflate(R.layout.xml_color_test, null)
         }) {
             (it as TextView).setTextColor(colors.primary.toArgb())
+        }
+
+        // The special color test for compose
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            text = LocalContext.current.getString(R.string.special_color_test_for_compose),
+            color = ComposeColors.Dynamic.ButtonBackground.colorValue()
+        )
+
+        // The special color test for xml
+        Spacer(modifier = Modifier.height(30.dp))
+        AndroidView(factory = { ctx ->
+            LayoutInflater.from(ctx).inflate(R.layout.xml_color_test, null)
+        }) {
+            (it as TextView).setText(R.string.special_color_test_for_xml)
+            val textColor = ComposeColors.Dynamic.ButtonBackground.colorInt(context)
+            (it as TextView).setTextColor(textColor)
         }
     }
 }
