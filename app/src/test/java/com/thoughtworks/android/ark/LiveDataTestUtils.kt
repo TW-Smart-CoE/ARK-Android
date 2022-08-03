@@ -2,30 +2,9 @@ package com.thoughtworks.android.ark
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.*
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
-
-@OptIn(ExperimentalCoroutinesApi::class)
-class MainCoroutineRule(
-    val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
-) : TestWatcher() {
-
-    override fun starting(description: Description) {
-        super.starting(description)
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    override fun finished(description: Description) {
-        super.finished(description)
-        Dispatchers.resetMain()
-    }
-}
 
 fun <T> LiveData<T>.captureValues(block: LiveDataValueCapture<T>.() -> Unit) {
     val capture = LiveDataValueCapture<T>()
@@ -70,12 +49,15 @@ fun <T> LiveData<T>.getOrAwaitValue(
     }
     this.observeForever(observer)
 
-    afterObserve.invoke()
-
-    // Don't wait indefinitely if the LiveData is not set.
-    if (!latch.await(time, timeUnit)) {
+    try {
+        afterObserve.invoke()
+        // Don't wait indefinitely if the LiveData is not set.
+        if (!latch.await(time, timeUnit)) {
+            this.removeObserver(observer)
+            throw TimeoutException("LiveData value was never set.")
+        }
+    } finally {
         this.removeObserver(observer)
-        throw TimeoutException("LiveData value was never set.")
     }
 
     @Suppress("UNCHECKED_CAST")

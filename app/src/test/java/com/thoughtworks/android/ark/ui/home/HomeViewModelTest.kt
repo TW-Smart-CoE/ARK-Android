@@ -21,13 +21,14 @@ class HomeViewModelTest {
     val mainCoroutineRule = MainCoroutineRule()
 
     @Test
-    fun whenHomeViewModelCreated_thenLoadData() = runTest {
+    fun shouldLoadDataWhenHomeViewModelCreated() = runTest {
+        //given
         val repository = mockk<HomeRepository>()
         coEvery { repository.loadData() } returns "TestData"
-
         val homeViewModel = HomeViewModel(repository)
-        val result = homeViewModel.text.getOrAwaitValue()
 
+        //then
+        val result = homeViewModel.text.getOrAwaitValue()
         assertThat(result).isEqualTo("TestData")
     }
 }
