@@ -22,5 +22,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/compose_color_01" />
 
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_color_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30.dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/xml_color_01" />
+
+    <TextView
+        android:id="@+id/xml_color_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30.dp"
+        android:text="@string/special_color_test_for_xml"
+        android:textColor="@color/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/compose_color_02" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
