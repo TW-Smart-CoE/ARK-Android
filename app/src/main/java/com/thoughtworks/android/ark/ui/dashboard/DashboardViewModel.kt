@@ -1,11 +1,12 @@
 package com.thoughtworks.android.ark.ui.dashboard
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,14 +14,7 @@ class DashboardViewModel @Inject constructor(
     private val repository: DashboardRepository
 ) : ViewModel() {
 
-    private val _text = MutableLiveData<String>()
+    @OptIn(FlowPreview::class)
+    private val _text = flowOf(1).flatMapConcat { repository.loadData() }.asLiveData()
     val text: LiveData<String> = _text
-
-    init {
-        viewModelScope.launch {
-            repository.loadData().collect {
-                _text.value = it
-            }
-        }
-    }
 }
