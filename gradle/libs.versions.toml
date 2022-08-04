@@ -21,6 +21,7 @@ kotlinx_coroutines = "1.6.3"
 material = "1.6.1"
 retrofit = "2.6.0"
 okhttp_logging = "3.11.0"
+systemuicontroller = "0.17.0"
 
 # test
 arch_test = "2.1.0"
@@ -46,6 +47,7 @@ appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat"
 constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraint_layout" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "core_ktx" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "systemuicontroller"}
 
 # lifecycle
 lifecycle-liveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "arch_lifecycle" }
@@ -108,7 +110,7 @@ compose = [
 kotlin = ["kotlin-stdlib", "kotlin-coroutines"]
 android = [
     "appcompat", "constraintLayout", "coreKtx", "material",
-    "lifecycle-liveDataKtx", "lifecycle-runtimeKtx", "lifecycle-viewModelKtx"
+    "lifecycle-liveDataKtx", "lifecycle-runtimeKtx", "lifecycle-viewModelKtx", "systemuicontroller"
 ]
 navigation = ["navigation-compose", "navigation-fragmentKtx", "navigation-uiKtx"]
 unitTest = ["junit4", "kotlin-coroutinesTest", "mockk", "mockk-agent", "truth"]

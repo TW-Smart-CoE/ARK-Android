@@ -12,6 +12,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="theme_color_test_for_compose">theme color test for compose</string>
     <string name="theme_color_test_for_xml">theme color test for xml</string>
-    <string name="special_color_test_for_compose">special color test for compose</string>
-    <string name="special_color_test_for_xml">special color test for xml</string>
+    <string name="extended_color_test_for_compose">extended color test for compose</string>
+    <string name="extended_color_test_for_xml">extended color test for xml</string>
 </resources>

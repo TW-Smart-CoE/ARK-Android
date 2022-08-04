@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Color-->
+    <!-- Purple -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+
+    <!-- Teal -->
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Red -->
+    <color name="red_700">#FFB00020</color>
+    <color name="red_900">#FFFF0020</color>
+
+    <!-- Light Green -->
+    <color name="light_green_200">#C5E1A5</color>
+    <color name="light_green_700">#689F38</color>
+
+    <!-- Light Blue -->
+    <color name="light_blue_50">#E1F5FE</color>
+    <color name="light_blue_300">#4FC3F7</color>
+
+    <!-- White -->
+    <color name="black">#FF000000</color>
+
+    <!--Black-->
+    <color name="white">#FFFFFFFF</color>
+
+
+</resources>
+

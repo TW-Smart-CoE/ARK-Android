@@ -3,12 +3,12 @@ package com.thoughtworks.android.ark.ui.themes.colors
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Color
 import android.view.ContextThemeWrapper
 import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
+import androidx.annotation.StyleRes
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import com.google.android.material.color.MaterialColors
-import com.thoughtworks.android.ark.ui.R
 
 fun isNightMode(context: Context) =
     context.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
@@ -16,20 +16,31 @@ fun isNightMode(context: Context) =
 /**
  *  get the attr color from the theme
  */
-@ColorInt
 fun obtainThemeAttrColorToColor(
     context: Context,
+    @StyleRes themeId: Int,
+    @AttrRes attrResId: Int
+) = Color(obtainThemeAttrColorToColorInt(context, themeId, attrResId))
+
+
+/**
+ *  get the attr color Int from the theme
+ */
+fun obtainThemeAttrColorToColorInt(
+    context: Context,
+    @StyleRes themeId: Int,
     @AttrRes attrResId: Int
 ) = MaterialColors.getColor(
-    ContextThemeWrapper(context, R.style.Theme_AndroidARK),
-    attrResId,
-    Color.WHITE
+    ContextThemeWrapper(context, themeId),
+    attrResId, Color.White.toArgb()
 )
+
 
 /**
  *   get the attr color from the theme and transform to color state list
  */
 fun obtainThemeAttrColorToStateList(
     context: Context,
+    @StyleRes themeId: Int,
     @AttrRes attrResId: Int
-) = ColorStateList.valueOf(obtainThemeAttrColorToColor(context, attrResId))
+) = ColorStateList.valueOf(obtainThemeAttrColorToColorInt(context, themeId, attrResId))

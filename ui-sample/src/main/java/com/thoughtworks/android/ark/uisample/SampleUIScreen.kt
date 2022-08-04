@@ -10,11 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.thoughtworks.android.ark.ui.themes.colors.ARKExtendedColors
 import com.thoughtworks.android.ark.uisample.colorsystem.ComposeColorSystemActivity
+import com.thoughtworks.android.ark.uisample.colorsystem.XmlColorSystemActivity
 import com.thoughtworks.android.ark.uisample.state.Action
 import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
-import com.thoughtworks.android.ark.ui.themes.colors.ComposeColors
-import com.thoughtworks.android.ark.uisample.colorsystem.XmlColorSystemActivity
 
 
 @Composable
@@ -29,10 +29,10 @@ fun SampleUIScreen(
         item {
             // compose color system
             Spacer(modifier = Modifier.height(20.dp))
-            Item(sendAction, ComposeColorSystemActivity::class.java, "compose color system")
+            Item(sendAction, ComposeColorSystemActivity::class.java, "color system test in compose")
             // xml color system
             Spacer(modifier = Modifier.height(20.dp))
-            Item(sendAction, XmlColorSystemActivity::class.java, "xml color system")
+            Item(sendAction, XmlColorSystemActivity::class.java, "color system test in xml")
         }
     }
 }
@@ -51,8 +51,8 @@ private fun Item(
             sendAction.invoke(NavigateActivityAction(destination))
         },
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = ComposeColors.Dynamic.ButtonBackground.colorValue(),
-            contentColor = ComposeColors.Dynamic.ButtonContent.colorValue()
+            backgroundColor = ARKExtendedColors.ButtonBackground.colorValue(),
+            contentColor = ARKExtendedColors.ButtonContent.colorValue()
         )
     ) {
         Text(title, modifier = Modifier.align(Alignment.CenterVertically))

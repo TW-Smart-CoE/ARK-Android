@@ -4,12 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
-import com.google.android.material.color.MaterialColors
-import com.thoughtworks.android.ark.ui.themes.colors.XmlColors
-import com.thoughtworks.android.ark.ui.themes.colors.obtainThemeAttrColorToColor
+import androidx.compose.ui.res.stringResource
+import com.thoughtworks.android.ark.ui.themes.ARKTheme
+import com.thoughtworks.android.ark.ui.themes.colors.ARKExtendedColors
+import com.thoughtworks.android.ark.ui.themes.colors.LocalARKThemeColors
 import com.thoughtworks.android.ark.uisample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {
@@ -30,21 +29,19 @@ class XmlColorSystemActivity : AppCompatActivity() {
 
     @Composable
     private fun ThemeColorTestContent() {
-        val colorInt = obtainThemeAttrColorToColor(
-            context = LocalContext.current,
-            attrResId = com.google.android.material.R.attr.colorPrimary
-        )
-        Text(
-            text = LocalContext.current.getString(R.string.theme_color_test_for_compose),
-            color = Color(colorInt)
-        )
+        ARKTheme {
+            Text(
+                text = stringResource(id = R.string.theme_color_test_for_compose),
+                color = LocalARKThemeColors.current.primary
+            )
+        }
     }
 
     @Composable
     private fun SpecialColorTestContent() {
         Text(
-            text = LocalContext.current.getString(R.string.special_color_test_for_compose),
-            color = XmlColors.ButtonBackground.colorValue()
+            text = stringResource(R.string.extended_color_test_for_compose),
+            color = ARKExtendedColors.ButtonBackground.colorValue()
         )
     }
 }

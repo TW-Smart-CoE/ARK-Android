@@ -4,16 +4,27 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.thoughtworks.android.ark.ui.themes.ARKTheme
+import com.thoughtworks.android.ark.ui.themes.colors.LocalARKThemeColors
 import com.thoughtworks.android.ark.uisample.state.Action
 import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
-import com.thoughtworks.android.ark.ui.themes.AndroidARKTheme
 
 class SampleUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AndroidARKTheme(isSystemInDarkTheme()) {
+            ARKTheme {
+                val systemUiController = rememberSystemUiController()
+                val statusBarColor = LocalARKThemeColors.current.statusBarColor
+
+                LaunchedEffect(statusBarColor) {
+                    systemUiController.setStatusBarColor(statusBarColor)
+                    systemUiController.setNavigationBarColor(statusBarColor)
+                }
+
                 SampleUIScreen {
                     handAction(it)
                 }

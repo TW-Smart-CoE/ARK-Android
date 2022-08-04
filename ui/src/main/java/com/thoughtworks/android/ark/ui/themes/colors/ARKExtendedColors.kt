@@ -7,37 +7,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import com.thoughtworks.android.ark.ui.R
-import java.util.*
 
-sealed class XmlColors(
-    @ColorRes private val colorRes: Int
-) : ARKColor {
+sealed class ARKExtendedColors(
+    @ColorRes val colorRes: Int
+) {
 
-    object ButtonBackground : XmlColors(R.color.button_background)
-    object ButtonContent : XmlColors(R.color.button_content)
-    object ErrorOutLineColor : XmlColors(R.color.error_out_line)
+    object ButtonBackground : ARKExtendedColors(R.color.button_background)
+    object ButtonContent : ARKExtendedColors(R.color.button_content)
+    object ErrorOutLineColor : ARKExtendedColors(R.color.error_out_line)
 
     @Composable
-    override fun colorValue() =
+    fun colorValue() =
         Color(LocalContext.current.getColor(colorRes))
 
     @Composable
-    override fun alphaColor(alphaValue: Float) =
+    fun alphaColor(alphaValue: Float) =
         colorValue().let {
             it.copy(alphaValue * it.alpha)
         }
 
-    override fun alphaColorInt(context: Context, alphaValue: Float): Int {
+    fun alphaColorInt(context: Context, alphaValue: Float): Int {
         return Color(colorInt(context)).let {
             it.copy(alphaValue * it.alpha)
         }.toArgb()
     }
 
-    override fun colorInt(context: Context) =
+    fun colorInt(context: Context) =
         context.getColor(colorRes)
 
 
-    override fun hex(context: Context) =
+    fun hex(context: Context) =
         colorInt(context).let {
             String.format("%08X", (0XFFFFFFFF and it.toLong()))
         }
