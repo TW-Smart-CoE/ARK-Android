@@ -19,7 +19,6 @@ include ':app'
 include ':ui'
 // Common Module/Utils/Extensions for cross feature
 include ':core'
-include ':core:network'
-include ':core:nework'
+include ':network'
 
 include ':ui-sample'
