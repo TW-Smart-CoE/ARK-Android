@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.thoughtworks.android.ark">
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:name=".ArkApplication"
         android:allowBackup="true"

@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+        homeViewModel
         return root
     }
 

@@ -1,56 +1,45 @@
 package com.thoughtworks.network.client
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.thoughtworks.network.api.ApiService
+import com.thoughtworks.network.client.http.BaseHttpClient
+import com.thoughtworks.network.client.http.DefaultHttpClient
+import com.thoughtworks.network.client.retrofit.BaseRetrofit
+import com.thoughtworks.network.client.retrofit.DefaultRetrofit
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
-    private lateinit var retrofit:Retrofit
-    private lateinit var okHttpClient: OkHttpClient
+    private lateinit var httpClient: BaseHttpClient
+    private lateinit var retrofitClient: BaseRetrofit
+    private val retrofitMap:MutableMap<String,Retrofit> = hashMapOf()
     init {
-        initRetrofit(
-            initOkHttpClient = {
-                addLoggingInterceptor(it,true)
-            }
-        )
+        initRetrofit()
     }
 
-    private fun initRetrofit(
-        initOkHttpClient: (OkHttpClient.Builder)-> Unit = {},
-        initRetrofit: (Retrofit.Builder) -> Unit = {}
-    ) {
-        okHttpClient = OkHttpClient.Builder().apply {
-            callTimeout(TIME_OUT, TimeUnit.MICROSECONDS)
-            connectTimeout(TIME_OUT, TimeUnit.MICROSECONDS)
-            readTimeout(TIME_OUT, TimeUnit.MICROSECONDS)
-            writeTimeout(TIME_OUT, TimeUnit.MICROSECONDS)
-            initOkHttpClient(this)
-        }.build()
-
-        retrofit = Retrofit.Builder().apply {
-            baseUrl(HOST_URL)
-            addConverterFactory(GsonConverterFactory.create())
-            client(okHttpClient)
-            initRetrofit(this)
-        }.build()
+    private fun initRetrofit(baseUrl:String = HOST_URL) {
+        httpClient = DefaultHttpClient()
+        retrofitClient = DefaultRetrofit()
+        val retrofit = retrofitClient.createRetrofit(baseUrl, httpClient.okHttpClient)
+        retrofitMap[baseUrl] = retrofit;
     }
 
-    private fun addLoggingInterceptor(builder:OkHttpClient.Builder, isDebug:Boolean = true) {
-        if(isDebug) {
-            builder.addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                }
-            )
+    fun <T> createService(clazz:Class<T>, baseUrl:String):T {
+        if(retrofitMap[baseUrl] == null) {
+            initRetrofit(baseUrl)
         }
+        return retrofitMap[baseUrl]!!.create(clazz)
     }
 
-    fun <T> createService(clazz:Class<T>):T = retrofit.create(clazz)
+    fun <T:BaseHttpClient> setupCustomHttpClient(httpClient: T) {
+        this.httpClient = httpClient
+        retrofitMap.clear()
+    }
+
+    fun <T:BaseRetrofit> setupCustomRetrofit(retrofitClient: T) {
+        this.retrofitClient = retrofitClient
+        retrofitMap.clear()
+    }
 
     companion object {
-        const val HOST_URL = "www.example.com"
-        const val TIME_OUT = 5000L
+        const val HOST_URL = "http://www.baidu.com"
     }
 }
