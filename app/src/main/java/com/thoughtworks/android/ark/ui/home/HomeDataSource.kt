@@ -10,7 +10,11 @@ class HomeDataSource @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
     suspend fun getData() = withContext(ioDispatcher) {
-        delay(1000)
+        delay(DELAY_TIMES)
         "Test data"
+    }
+
+    companion object {
+        const val DELAY_TIMES: Long = 1000
     }
 }

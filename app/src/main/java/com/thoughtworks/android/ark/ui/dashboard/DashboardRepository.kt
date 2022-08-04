@@ -13,8 +13,12 @@ class DashboardRepository @Inject constructor(
     suspend fun loadData() = flow {
         emit(localDataSource.getData())
 
-        delay(2000)
+        delay(DELAY_TIMES)
 
         emit(remoteDataSource.getData())
+    }
+
+    companion object {
+        const val DELAY_TIMES: Long = 2000
     }
 }

@@ -2,5 +2,6 @@
 set -euo pipefail
 
 echo "=====unit test start====="
+bundle exec fastlane check
 bundle exec fastlane unit_test
 echo "=====unit test end====="
