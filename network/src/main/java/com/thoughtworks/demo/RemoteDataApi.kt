@@ -1,31 +1,18 @@
 package com.thoughtworks.demo
 
-import com.thoughtworks.network.callback.RetrofitCallback
 import com.thoughtworks.network.client.RetrofitClient
+import com.thoughtworks.network.entity.NetworkNotConnectException
 import com.thoughtworks.network.entity.RetrofitResponse
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import com.thoughtworks.network.util.performRequest
 
 class RemoteDataApi(retrofitClient: RetrofitClient) {
-    private var apiService:DemoApiService
-    init {
-        apiService = retrofitClient.createService(DemoApiService::class.java,"http://www.baidu.com")
-    }
-
+    private val apiService = retrofitClient.createService(DemoApiService::class.java,"www.baidu.com")
     suspend fun getData() : RetrofitResponse {
-        val call = apiService.getAllData()
-        return suspendCancellableCoroutine {
-            call.enqueue(
-                object : RetrofitCallback<DataEntity>() {
-                    override fun onSuccess(data: DataEntity) {
-                        it.resume(RetrofitResponse.Success(data))
-                    }
-
-                    override fun onFailed(msg: String) {
-                        it.resume(RetrofitResponse.Error(Exception(msg)))
-                    }
-                }
-            )
+        val result = try {
+            apiService.getAllData()
+        } catch (e:NetworkNotConnectException) {
+            return RetrofitResponse.Error(Exception("network is not connect"))
         }
+        return performRequest(result)
     }
 }

@@ -1,13 +1,16 @@
 package com.thoughtworks.network.client
 
-import com.thoughtworks.network.api.ApiService
+import android.content.Context
+import com.thoughtworks.demo.DataEntity
+import com.thoughtworks.network.callback.BaseCallModel
+import com.thoughtworks.network.callback.RetrofitCallback
 import com.thoughtworks.network.client.http.BaseHttpClient
 import com.thoughtworks.network.client.http.DefaultHttpClient
 import com.thoughtworks.network.client.retrofit.BaseRetrofit
 import com.thoughtworks.network.client.retrofit.DefaultRetrofit
 import retrofit2.Retrofit
 
-class RetrofitClient {
+class RetrofitClient(val context: Context) {
     private lateinit var httpClient: BaseHttpClient
     private lateinit var retrofitClient: BaseRetrofit
     private val retrofitMap:MutableMap<String,Retrofit> = hashMapOf()
@@ -16,7 +19,7 @@ class RetrofitClient {
     }
 
     private fun initRetrofit(baseUrl:String = HOST_URL) {
-        httpClient = DefaultHttpClient()
+        httpClient = DefaultHttpClient(context)
         retrofitClient = DefaultRetrofit()
         val retrofit = retrofitClient.createRetrofit(baseUrl, httpClient.okHttpClient)
         retrofitMap[baseUrl] = retrofit;

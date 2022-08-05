@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.thoughtworks.android.ark.ArkApplication
 import com.thoughtworks.demo.RemoteDataApi
 import com.thoughtworks.demo.UserRepository
 import com.thoughtworks.network.client.RetrofitClient
@@ -32,7 +33,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getData() {
         viewModelScope.launch {
-            UserRepository(RemoteDataApi(RetrofitClient())).getData().collect {
+            UserRepository(RemoteDataApi(RetrofitClient(ArkApplication.instance()))).getData().collect {
                 val result = when(it) {
                     is RetrofitResponse.Loading -> "Loading"
                     is RetrofitResponse.Success<*> -> "Success"
