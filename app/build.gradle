@@ -76,6 +76,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+
     testImplementation "junit:junit:$junit_version"
     testImplementation "com.google.truth:truth:$truth_version"
     testImplementation "androidx.arch.core:core-testing:$arch_test_version"

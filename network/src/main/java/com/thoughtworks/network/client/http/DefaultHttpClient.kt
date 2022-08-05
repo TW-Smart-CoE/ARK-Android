@@ -1,15 +1,25 @@
 package com.thoughtworks.network.client.http
 
 import android.content.Context
-import android.util.Log
 import com.thoughtworks.network.BuildConfig
-import com.thoughtworks.network.entity.NetworkNotConnectException
-import com.thoughtworks.network.util.hasNetworkConnect
+import com.thoughtworks.network.interceptor.NetConnectInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
-class DefaultHttpClient(val context: Context) : BaseHttpClient() {
-    override fun initHttpClient(builder: OkHttpClient.Builder) {
+open class DefaultHttpClient(private val context: Context) {
+    var okHttpClient:OkHttpClient
+
+    init {
+        okHttpClient = OkHttpClient.Builder().apply {
+            connectTimeout(TIME_OUT * 3, TimeUnit.SECONDS)
+            readTimeout(TIME_OUT, TimeUnit.SECONDS)
+            writeTimeout(TIME_OUT, TimeUnit.SECONDS)
+            initHttpClient(this)
+        }.build()
+    }
+
+    fun initHttpClient(builder: OkHttpClient.Builder) {
         if (BuildConfig.DEBUG) {
             addLoggingInterceptor(builder)
         }
@@ -20,13 +30,10 @@ class DefaultHttpClient(val context: Context) : BaseHttpClient() {
             HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
-        ).addInterceptor{ chain ->
-            if(hasNetworkConnect(context)) {
-                return@addInterceptor chain.proceed(chain.request())
-            } else {
-                Log.e("tag","network is not connect")
-                throw NetworkNotConnectException();
-            }
-        }
+        ).addInterceptor(NetConnectInterceptor(context))
+    }
+
+    companion object {
+        const val TIME_OUT = 5L
     }
 }
