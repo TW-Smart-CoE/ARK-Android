@@ -1,6 +1,5 @@
 package com.thoughtworks.android.ark.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.thoughtworks.android.ark.databinding.FragmentHomeBinding
-import com.thoughtworks.android.ark.ui.assistdemo.AssistDemoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,14 +34,6 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
         return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.btnHiltAssistDemo.setOnClickListener {
-            startActivity(Intent(requireContext(), AssistDemoActivity::class.java))
-        }
     }
 
     override fun onDestroyView() {

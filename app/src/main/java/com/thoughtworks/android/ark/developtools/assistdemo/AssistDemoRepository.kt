@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.assistdemo
+package com.thoughtworks.android.ark.developtools.assistdemo
 
 import javax.inject.Inject
 

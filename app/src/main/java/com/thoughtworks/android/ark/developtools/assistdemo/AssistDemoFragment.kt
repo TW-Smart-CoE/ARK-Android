@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.assistdemo
+package com.thoughtworks.android.ark.developtools.assistdemo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,7 +34,7 @@ class AssistDemoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        configManager.saveSomeConfig("test")
+        configManager.saveString("test")
     }
 
     override fun onCreateView(
@@ -55,7 +55,7 @@ class AssistDemoFragment : Fragment() {
     fun AssistDemoContent() {
         Column {
             val text by assistDemoViewModel.text.observeAsState("")
-            Text(text = configManager.getSomeConfig())
+            Text(text = configManager.getString())
             Text(text = text)
         }
     }
