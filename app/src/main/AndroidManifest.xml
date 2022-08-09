@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".developtools.assistdemo.AssistDemoActivity" />
         <activity android:name=".developtools.DevelopToolsActivity" />
     </application>
 
