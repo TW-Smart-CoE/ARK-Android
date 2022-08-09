@@ -6,9 +6,8 @@ import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
-import com.thoughtworks.android.ark.BuildConfig
 import com.thoughtworks.android.ark.R
-
+import com.thoughtworks.android.ark.utils.isDevEnvironment
 
 class DevelopToolsInitializer {
     companion object {
@@ -17,7 +16,7 @@ class DevelopToolsInitializer {
     }
 
     fun init(context: Context) {
-        if (BuildConfig.BUILD_TYPE == "debug") {
+        if (isDevEnvironment()) {
             createShortcuts(context)
         }
     }
