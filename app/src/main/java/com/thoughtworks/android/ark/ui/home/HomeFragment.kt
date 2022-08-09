@@ -33,7 +33,9 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        homeViewModel
+        homeViewModel.state.observe(viewLifecycleOwner) {
+            binding.textNetwork.text = it
+        }
         return root
     }
 
