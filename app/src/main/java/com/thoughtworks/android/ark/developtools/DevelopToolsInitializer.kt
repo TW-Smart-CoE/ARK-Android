@@ -10,11 +10,6 @@ import com.thoughtworks.android.ark.R
 import com.thoughtworks.android.ark.utils.isDevEnvironment
 
 class DevelopToolsInitializer {
-    companion object {
-        const val ID_DEVELOP_TOOLS = "develop_tools"
-        const val LABEL_DEVELOP_TOOLS = "Develop Tools"
-    }
-
     fun init(context: Context) {
         if (isDevEnvironment()) {
             createShortcuts(context)
@@ -36,10 +31,17 @@ class DevelopToolsInitializer {
             .setShortLabel(LABEL_DEVELOP_TOOLS)
             .setLongLabel(LABEL_DEVELOP_TOOLS)
             .setIcon(Icon.createWithResource(context, R.mipmap.ic_launcher_round))
-            .setIntent(Intent().apply {
-                action = Intent.ACTION_VIEW
-                component = ComponentName(context, DevelopToolsActivity::class.java)
-            })
+            .setIntent(
+                Intent().apply {
+                    action = Intent.ACTION_VIEW
+                    component = ComponentName(context, DevelopToolsActivity::class.java)
+                }
+            )
             .build()
+    }
+
+    companion object {
+        const val ID_DEVELOP_TOOLS = "develop_tools"
+        const val LABEL_DEVELOP_TOOLS = "Develop Tools"
     }
 }
