@@ -1,0 +1,92 @@
+[versions]
+# android
+minSdkVersion = "26"
+targetSdkVersion = "32"
+compileSdkVersion = "32"
+
+composeVersion = "1.2.0"
+jvmTargetVersion = "1.8"
+
+# gradle
+gradlePluginVersion = "7.2.1"
+kotlinPluginVersion = "1.7.0"
+hiltPluginVersion = "2.43.1"
+detektPluginVersion = "1.21.0"
+kspPluginVersion = "1.7.0-1.0.6"
+
+# dependencies
+activity_compose = "1.5.1"
+appcompat = "1.4.2"
+arch_lifecycle = "2.5.1"
+compose = '1.2.0'
+constraint_layout = "2.1.4"
+core_ktx = "1.8.0"
+navigation = "2.5.1"
+hilt = "2.42"
+kotlin = "1.7.0"
+kotlinx_coroutines = "1.6.3"
+
+# test
+arch_test = '2.1.0'
+junit = "4.13.2"
+mockk = '1.12.5'
+truth = '1.1.2'
+
+[libraries]
+# kotlin
+kotlinStdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinxCoroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx_coroutines" }
+
+# core
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+constraintLayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraint_layout" }
+coreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "core_ktx" }
+material = { group = "com.google.android.material", name = "material", version = "1.6.1" }
+
+# compose
+activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity_compose" }
+composeMaterial = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
+composeRuntime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+composeRuntimeLivedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose" }
+composeUi = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+composeUiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
+composeUiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
+viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "arch_lifecycle" }
+
+# androidx lifecycle ktx
+lifecycleLiveDataKtx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "arch_lifecycle" }
+lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "arch_lifecycle" }
+lifecycleViewModelKtx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "arch_lifecycle" }
+
+# navigation
+navigationCompose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+navigationFragmentKtx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigationUiKtx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+# hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+# test
+archCoreTesting = { group = "androidx.arch.core", name = "core-testing", version.ref = "arch_test" }
+composeUiTest = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinxCoroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx_coroutines" }
+
+hiltAndroidTesting = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockkAgent = { group = "io.mockk", name = "mockk-agent-jvm", version.ref = "mockk" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+[bundles]
+compose = ["activityCompose", "composeMaterial", "composeRuntime", "composeRuntimeLivedata", "composeUi", "composeUiTooling", "composeUiToolingPreview", "viewModelCompose"]
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "gradlePluginVersion" }
+androidLibrary = { id = "com.android.library", version.ref = "gradlePluginVersion" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPluginVersion" }
+kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinPluginVersion" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPluginVersion" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektPluginVersion" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPluginVersion" }
