@@ -1,60 +1,28 @@
+import com.thoughtworks.android.ark.buildlogic.plugin.androidApplication
+import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.application)
+    alias(libs.plugins.kotlin)
 }
 
-android {
-    namespace = "com.thoughtworks.android.ark.uisample"
-    compileSdk = libs.versions.compileSdkVersion.get().toInt()
-
+androidApplication {
     defaultConfig {
         applicationId = "com.thoughtworks.android.ark.uisample"
-        minSdk = libs.versions.minSdkVersion.get().toInt()
-        targetSdk = libs.versions.targetSdkVersion.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTargetVersion.get()
-    }
-    buildFeatures {
-        viewBinding = true
-    }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeVersion.get()
-    }
 }
+
+configCompose()
 
 dependencies {
     implementation(project(":ui"))
-    implementation(libs.material)
-    implementation(libs.bundles.compose)
-    implementation(libs.coreKtx)
-    implementation(libs.appcompat)
-    implementation(libs.constraintLayout)
-    implementation(libs.navigationFragmentKtx)
-    implementation(libs.navigationUiKtx)
+    implementation(libs.bundles.android)
+    implementation(libs.bundles.navigation)
 
     testImplementation(libs.junit4)
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("buildlogic")
     repositories {
         gradlePluginPortal()
         google()
@@ -12,6 +13,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Android-ARK"
 // Main App Module
 include(":app")
