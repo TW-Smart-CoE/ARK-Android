@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 abstract class BaseRetrofit {
 
-    fun createRetrofit(baseUrl: String, httpClient: OkHttpClient):Retrofit =
+    fun createRetrofit(baseUrl: String, httpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().apply {
             baseUrl(baseUrl)
             addConverterFactory(GsonConverterFactory.create())

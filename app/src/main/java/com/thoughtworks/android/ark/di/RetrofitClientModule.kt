@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.ui.network.di
+package com.thoughtworks.android.ark.di
 
 import android.content.Context
 import com.thoughtworks.android.core.network.client.RetrofitClient
@@ -13,12 +13,12 @@ import javax.inject.Qualifier
 @Qualifier
 annotation class HttpClient
 
-
 @InstallIn(SingletonComponent::class)
 @Module
 object RetrofitClientModule {
 
     @HttpClient
     @Provides
-    fun provideHttpClient(@ApplicationContext context: Context): RetrofitClient = RetrofitClient(context)
+    fun provideHttpClient(@ApplicationContext context: Context): RetrofitClient =
+        RetrofitClient(context)
 }

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.thoughtworks.android.ark.databinding.FragmentHomeBinding
+import com.thoughtworks.android.ark.ui.home.feeds.FeedScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,8 +34,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        homeViewModel.state.observe(viewLifecycleOwner) {
-            binding.textNetwork.text = it
+
+        binding.homeCompose.apply {
+            setContent {
+                FeedScreen()
+            }
         }
         return root
     }

@@ -1,12 +1,12 @@
-package com.thoughtworks.android.ark.ui.network
+package com.thoughtworks.android.ark.ui.home.feeds.data.repository.entity
 
-data class FriendListResponse(
+data class FriendListEntity(
     var errorCode: Int,
     var errorMsg: String?,
-    var data: List<Data>?
+    var data: List<FriendEntity>?
 )
 
-data class Data(
+data class FriendEntity(
     var id: Int,
     var name: String,
     var link: String,

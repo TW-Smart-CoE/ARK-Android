@@ -8,34 +8,30 @@ import retrofit2.Retrofit
 
 class RetrofitClient(private val context: Context) {
     private lateinit var httpClient: DefaultHttpClient
-    private lateinit var retrofitClient: BaseRetrofit
-    private val retrofitMap:MutableMap<String,Retrofit> = hashMapOf()
+    private lateinit var baseRetrofit: BaseRetrofit
+    private val retrofitMap: HashMap<String, Retrofit> = hashMapOf()
 
-    private fun initRetrofit(baseUrl:String = HOST_URL) {
+    private fun initRetrofit(baseUrl: String) {
         httpClient = DefaultHttpClient(context)
-        retrofitClient = DefaultRetrofit()
-        val retrofit = retrofitClient.createRetrofit(baseUrl, httpClient.okHttpClient)
+        baseRetrofit = DefaultRetrofit()
+        val retrofit = baseRetrofit.createRetrofit(baseUrl, httpClient.okHttpClient)
         retrofitMap[baseUrl] = retrofit
     }
 
-    fun <T> createService(clazz:Class<T>, baseUrl:String):T {
-        if(retrofitMap[baseUrl] == null) {
+    fun <T> createService(clazz: Class<T>, baseUrl: String): T {
+        if (retrofitMap[baseUrl] == null) {
             initRetrofit(baseUrl)
         }
         return retrofitMap[baseUrl]!!.create(clazz)
     }
 
-    fun <T:DefaultHttpClient> setupCustomHttpClient(httpClient: T) {
+    fun <T : DefaultHttpClient> setupCustomHttpClient(httpClient: T) {
         this.httpClient = httpClient
         retrofitMap.clear()
     }
 
-    fun <T:BaseRetrofit> setupCustomRetrofit(retrofitClient: T) {
-        this.retrofitClient = retrofitClient
+    fun <T : BaseRetrofit> setupCustomRetrofit(retrofitClient: T) {
+        this.baseRetrofit = retrofitClient
         retrofitMap.clear()
-    }
-
-    companion object {
-        const val HOST_URL = "http://www.baidu.com"
     }
 }
