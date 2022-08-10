@@ -22,12 +22,12 @@ class DashboardViewModelTest {
 
     @Test
     fun shouldLoadDataWhenDashboardViewModelCreated() = runTest {
-        //given
+        // given
         val repository = mockk<DashboardRepository>()
         coEvery { repository.loadData() } returns flowOf("TestData1", "TestData2")
         val viewModel = DashboardViewModel(repository)
 
-        //then
+        // then
         viewModel.text.captureValues {
             assertThat(values).isEqualTo(listOf("TestData1", "TestData2"))
         }

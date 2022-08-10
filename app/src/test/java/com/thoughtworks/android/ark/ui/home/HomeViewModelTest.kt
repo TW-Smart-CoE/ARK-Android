@@ -22,12 +22,12 @@ class HomeViewModelTest {
 
     @Test
     fun shouldLoadDataWhenHomeViewModelCreated() = runTest {
-        //given
+        // given
         val repository = mockk<HomeRepository>()
         coEvery { repository.loadData() } returns "TestData"
         val homeViewModel = HomeViewModel(repository)
 
-        //then
+        // then
         val result = homeViewModel.text.getOrAwaitValue()
         assertThat(result).isEqualTo("TestData")
     }
