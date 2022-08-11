@@ -41,10 +41,14 @@ internal val Project.android: BaseExtension
     get() = extensions.findByName("android") as? BaseExtension
         ?: error("Project '$name' is not an Android module")
 
-
 internal fun BaseExtension.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
     (this as ExtensionAware).extensions.configure("kotlinOptions", block)
 }
 
 internal fun DependencyHandler.implementation(dependencyNotation: Any): Dependency? =
     add("implementation", dependencyNotation)
+
+@Suppress("UNCHECKED_CAST")
+internal fun <T> Any.applyAs(block: T.() -> Unit) {
+    (this as T).block()
+}

@@ -11,16 +11,21 @@ import org.gradle.kotlin.dsl.dependencies
 
 fun Project.androidApplication(block: BaseAppModuleExtension.() -> Unit = {}) {
     configBuildTypes()
-    val extension = androidCommon() as BaseAppModuleExtension
-    extension.block()
+    configFlavors()
+    configBase().applyAs<BaseAppModuleExtension> {
+        block()
+    }
 }
 
 fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
-    val extension = androidCommon() as LibraryExtension
-    extension.block()
+    configBuildTypes()
+    configFlavors()
+    configBase().applyAs<LibraryExtension> {
+        block()
+    }
 }
 
-private fun Project.androidCommon(): BaseExtension {
+private fun Project.configBase(): BaseExtension {
     return android.apply {
         val libs = getLibs()
         setCompileSdkVersion(libs.getVersion("compileSdkVersion"))
