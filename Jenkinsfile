@@ -3,6 +3,7 @@ pipeline {
     environment {
         // Setup Ruby to PATH
         PATH = "/usr/local/Cellar/ruby/3.1.2/bin:$PATH"
+        SLACK_URL = credentials('ark-slack-webhook-url')
     }
     options {
         // Stop the build early in case of compile or test failures
@@ -28,10 +29,6 @@ pipeline {
             steps {
                 script {
                     sh ('bundle exec fastlane check')
-                }
-            }
-            steps {
-                script {
                     sh ('bundle exec fastlane unit_test')
                 }
             }
