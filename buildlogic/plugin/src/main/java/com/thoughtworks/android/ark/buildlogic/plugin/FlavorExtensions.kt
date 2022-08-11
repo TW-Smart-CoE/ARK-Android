@@ -19,13 +19,17 @@ enum class ArkFlavor(
 }
 
 fun Project.configFlavors() {
+    val srcPath = "$projectDir/src"
+
     android.apply {
         flavorDimensions(ArkFlavorDimension.ContentType.name)
 
         productFlavors {
             ArkFlavor.values().forEach {
-                create(it.name.toLowerCase(ROOT)) {
+                val flavorName = it.name.toLowerCase(ROOT)
+                create(flavorName) {
                     dimension = it.dimension.name
+                    proguardFile("$srcPath/$flavorName/proguard-rules.pro")
                 }
             }
         }
