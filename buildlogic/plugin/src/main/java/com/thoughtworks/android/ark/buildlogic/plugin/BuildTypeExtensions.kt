@@ -5,7 +5,7 @@ import org.gradle.api.Project
 fun Project.configBuildTypes() {
     android.apply {
         signingConfigs {
-            create("release") {
+            create("ark") {
                 storeFile = file("${rootDir.path}/ark.keystore")
                 storePassword = "ark123"
                 keyAlias = "ark"
@@ -20,13 +20,13 @@ fun Project.configBuildTypes() {
                 isDebuggable = true
                 isMinifyEnabled = false
                 isShrinkResources = false
-                signingConfig = signingConfigs.findByName("release")
+                signingConfig = signingConfigs.findByName("ark")
             }
             getByName("release") {
                 isDebuggable = false
                 isMinifyEnabled = true
                 isShrinkResources = true
-                signingConfig = signingConfigs.findByName("release")
+                signingConfig = signingConfigs.findByName("ark")
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"

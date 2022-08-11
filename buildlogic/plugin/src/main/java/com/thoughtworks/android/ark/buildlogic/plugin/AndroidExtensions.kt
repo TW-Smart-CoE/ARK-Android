@@ -18,7 +18,6 @@ fun Project.androidApplication(block: BaseAppModuleExtension.() -> Unit = {}) {
 }
 
 fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
-    configBuildTypes()
     configFlavors()
     configBase().applyAs<LibraryExtension> {
         block()
