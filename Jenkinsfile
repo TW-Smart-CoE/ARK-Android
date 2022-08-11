@@ -1,17 +1,38 @@
 pipeline {
     agent any
+    environment {
+        // Setup Ruby to PATH
+        PATH = "/usr/local/Cellar/ruby/3.1.2/bin:$PATH"
+    }
+    options {
+        // Stop the build early in case of compile or test failures
+        skipStagesAfterUnstable()
+    }
     stages{
+        stage('Setup') {
+            steps {
+                script {
+                    sh ("gem install bundler")
+                    sh ('bundle install')
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
-                    sh ('echo build')
+                    sh ('bundle exec fastlane build_dev')
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sh ('echo unit test')
+                    sh ('bundle exec fastlane check')
+                }
+            }
+            steps {
+                script {
+                    sh ('bundle exec fastlane unit_test')
                 }
             }
         }
