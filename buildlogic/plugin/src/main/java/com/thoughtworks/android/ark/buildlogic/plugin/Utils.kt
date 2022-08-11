@@ -9,7 +9,9 @@ import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 
@@ -35,6 +37,10 @@ fun VersionCatalog.getVersionStr(name: String): String {
 
 fun VersionCatalog.getBundle(name: String): Any {
     return findBundle(name).get()
+}
+
+fun VersionCatalog.getPlugin(name: String): String {
+    return (findPlugin(name).get() as Provider<PluginDependency>).get().pluginId
 }
 
 internal val Project.android: BaseExtension

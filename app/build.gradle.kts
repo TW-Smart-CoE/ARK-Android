@@ -1,14 +1,8 @@
 import com.thoughtworks.android.ark.buildlogic.plugin.androidApplication
 import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
 
-@Suppress("DSL_SCOPE_VIOLATION")
-
 plugins {
-    alias(libs.plugins.application)
-    alias(libs.plugins.kotlin)
-    alias(libs.plugins.kapt)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.detekt)
+    id("ark.app")
 }
 
 androidApplication {

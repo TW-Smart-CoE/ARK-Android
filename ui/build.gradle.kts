@@ -1,10 +1,8 @@
 import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
 import com.thoughtworks.android.ark.buildlogic.plugin.androidLibrary
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.library)
-    alias(libs.plugins.kotlin)
+    id("ark.library")
 }
 
 androidLibrary()

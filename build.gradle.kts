@@ -1,13 +1,13 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 
 plugins {
+    id("ark") apply false
     alias(libs.plugins.application) apply false
     alias(libs.plugins.library) apply false
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.kapt) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.detekt) apply false
-    id("ark") apply false
 }
 
 
