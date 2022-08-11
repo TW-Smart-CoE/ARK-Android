@@ -1,8 +1,8 @@
 package com.thoughtworks.android.core.network.client.http
 
 import android.content.Context
-import com.thoughtworks.android.core.BuildConfig
-import com.thoughtworks.android.core.network.interceptor.NetConnectInterceptor
+import com.thoughtworks.android.core.network.interceptor.NetworkConnectionInterceptor
+import com.thoughtworks.android.core.utils.isDevEnvironment
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
@@ -20,17 +20,20 @@ open class DefaultHttpClient(private val context: Context) {
     }
 
     private fun initHttpClient(builder: OkHttpClient.Builder) {
-        if (BuildConfig.DEBUG) {
-            addLoggingInterceptor(builder)
-        }
+        addLoggingInterceptor(builder)
+        addInterceptors(builder)
     }
 
     private fun addLoggingInterceptor(builder: OkHttpClient.Builder) {
-        builder.addInterceptor(
+        builder.takeIf { isDevEnvironment() }?.addInterceptor(
             HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
-        ).addInterceptor(NetConnectInterceptor(context))
+        )
+    }
+
+    private fun addInterceptors(builder: OkHttpClient.Builder) {
+        builder.addInterceptor(NetworkConnectionInterceptor(context))
     }
 
     companion object {

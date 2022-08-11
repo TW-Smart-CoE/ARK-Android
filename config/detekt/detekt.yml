@@ -326,7 +326,6 @@ naming:
     excludeClassPattern: '$^'
     ignoreAnnotated: ['Composable']
     ignoreOverridden: true
-    ignoreAnnotated: ['Composable']
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'

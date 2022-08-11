@@ -5,8 +5,15 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.core.net.ParseException
 import com.google.gson.JsonParseException
-import com.thoughtworks.android.core.network.entity.NetworkConnectException
+import com.thoughtworks.android.core.network.entity.NetworkConnectionException
 import com.thoughtworks.android.core.network.entity.RetrofitResponse
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_CONNECTION_TIMEOUT
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_HTTPS_HANDSHAKE_FAILED
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_IO_EXCEPTION
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_JSON_EXCEPTION
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_NETWORK_CONNECTION
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_STATUS_EXCEPTION
+import com.thoughtworks.android.core.network.entity.RetrofitResponse.Companion.ERROR_CODE_UNKNOWN
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.json.JSONException
@@ -32,38 +39,38 @@ private suspend fun <T> getResponse(apiCall: suspend () -> Response<T>): Retrofi
         if (response.isSuccessful) {
             RetrofitResponse.Success(response.body()!!)
         } else {
-            RetrofitResponse.Error(0, "result is error.")
+            RetrofitResponse.Error()
         }
     } catch (throwable: Throwable) {
-        RetrofitResponse.Error(
-            when (throwable) {
-                is HttpException -> STATUS_EXCEPTION
-                is SocketTimeoutException -> CONNECTION_TIMEOUT
-                is SSLHandshakeException -> HTTPS_HANDSHAKE_FAILED
-                is JSONException, is JsonParseException, is ParseException -> JSON_EXCEPTION
-                is UnknownHostException, is ConnectException, is SocketException, is NetworkConnectException -> NO_CONNECTION
-                is IOException -> IO_EXCEPTION
-                else -> UNKNOWN
-            }
-        )
+        parseError(throwable)
     }
+}
+
+private fun <T> parseError(throwable: Throwable): RetrofitResponse.Error<T> {
+    return RetrofitResponse.Error(
+        when (throwable) {
+            is HttpException -> ERROR_CODE_STATUS_EXCEPTION
+            is SocketTimeoutException -> ERROR_CODE_CONNECTION_TIMEOUT
+            is SSLHandshakeException -> ERROR_CODE_HTTPS_HANDSHAKE_FAILED
+            is JSONException,
+            is JsonParseException,
+            is ParseException -> ERROR_CODE_JSON_EXCEPTION
+            is UnknownHostException,
+            is ConnectException,
+            is SocketException,
+            is NetworkConnectionException -> ERROR_CODE_NETWORK_CONNECTION
+            is IOException -> ERROR_CODE_IO_EXCEPTION
+            else -> ERROR_CODE_UNKNOWN
+        }
+    )
 }
 
 fun hasNetworkConnect(context: Context): Boolean {
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.let {
+    return connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.let {
         return it.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
                 it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                 it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
-    }
-    return false
+    } ?: false
 }
-
-const val STATUS_EXCEPTION = 1
-const val CONNECTION_TIMEOUT = 2
-const val HTTPS_HANDSHAKE_FAILED = 3
-const val JSON_EXCEPTION = 4
-const val NO_CONNECTION = 5
-const val UNKNOWN = 6
-const val IO_EXCEPTION = 7

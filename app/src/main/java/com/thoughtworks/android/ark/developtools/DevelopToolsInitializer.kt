@@ -7,7 +7,7 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import com.thoughtworks.android.ark.R
-import com.thoughtworks.android.ark.utils.isDevEnvironment
+import com.thoughtworks.android.core.utils.isDevEnvironment
 
 class DevelopToolsInitializer {
     fun init(context: Context) {
