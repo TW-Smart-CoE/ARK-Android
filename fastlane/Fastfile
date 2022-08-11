@@ -18,7 +18,7 @@ default_platform(:android)
 platform :android do
   desc "Build an app for dev env"
   lane :build_dev do
-    gradle(task: "clean assembleDebug")
+    gradle(task: "clean assembleDevDebug")
     notification_options = {
       :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
     }
@@ -27,8 +27,17 @@ platform :android do
 
   desc "Build an app for uat env"
   lane :build_uat do
-    # change the task to uat later
-    gradle(task: "clean assembleRelease")
+    gradle(task: "clean assembleUatRelease")
+  end
+
+  desc "Build an app for staging env"
+  lane :build_staging do
+    gradle(task: "clean assembleStagingRelease")
+  end
+
+  desc "Build an app for prod env"
+  lane :build_prod do
+    gradle(task: "clean assembleProdRelease")
   end
 
   desc "Runs all the static check"
