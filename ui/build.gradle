@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
-
+apply from: '../config/jacoco/modules.gradle'
 android {
     namespace 'com.thoughtworks.android.ark.ui'
     compileSdk rootProject.sdk_compile_version

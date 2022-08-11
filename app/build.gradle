@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'io.gitlab.arturbosch.detekt'
 }
+apply from: '../config/jacoco/modules.gradle'
 
 android {
     compileSdk rootProject.sdk_compile_version

@@ -5,7 +5,7 @@ plugins {
     id 'com.google.dagger.hilt.android' version '2.43.1' apply false
     id 'io.gitlab.arturbosch.detekt' version '1.21.0' apply false
 }
-
+apply from: 'config/jacoco/project.gradle'
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
