@@ -3,7 +3,6 @@ pipeline {
     environment {
         // Setup Ruby to PATH
         PATH = "/usr/local/Cellar/ruby/3.1.2/bin:$PATH"
-        SLACK_URL = credentials('ark-slack-webhook-url')
     }
     options {
         // Stop the build early in case of compile or test failures
@@ -15,6 +14,9 @@ pipeline {
                 script {
                     sh ("gem install bundler")
                     sh ('bundle install')
+                    withCredentials([file(credentialsId: 'env-default', variable: 'env-file')]) {
+                        sh 'cp $env-file .env.default'
+                    }
                 }
             }
         }
