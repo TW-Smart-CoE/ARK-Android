@@ -47,7 +47,7 @@ platform :android do
 
   desc "Runs all the unit tests"
   lane :unit_test do
-    gradle(task: "debugCoverage")
+    gradle(task: "devDebugCoverage")
   end
 
   desc "Notify message to user"
@@ -84,3 +84,4 @@ platform :android do
     sh "export LANG=en_US.UTF-8"
   end
 end
+d
