@@ -5,6 +5,9 @@ pipeline {
         RUBY_HOME = "/usr/local/opt/ruby"
         PATH = "$RUBY_HOME/bin:$PATH"
     }
+    parameters {
+        string(name: 'APP_BUILD_FOLDER', defaultValue: 'app/build', description: 'Application build output folder')
+    }
     options {
         // Stop the build early in case of compile or test failures
         skipStagesAfterUnstable()
@@ -49,6 +52,16 @@ pipeline {
                     sh 'echo deploy'
                 }
             }
+        }
+    }
+    post {
+        always {
+            echo 'Archiving APKs...'
+            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/*.apk"
+            echo 'Archiving Mappings...'
+            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/mapping.txt"
+            echo 'Archiving Reporters...'
+            archiveArtifacts artifacts: '${params.APP_BUILD_FOLDER}/reports/**'
         }
     }
 }
