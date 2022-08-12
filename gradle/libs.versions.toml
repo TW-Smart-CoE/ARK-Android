@@ -16,6 +16,7 @@ detekt = "1.21.0"
 activity_compose = "1.5.1"
 appcompat = "1.4.2"
 arch_lifecycle = "2.5.1"
+arch_lifecycle_extension = '2.2.0'
 compose = '1.2.0'
 constraint_layout = "2.1.4"
 core_ktx = "1.8.0"
@@ -23,6 +24,8 @@ navigation = "2.5.1"
 hilt = "2.42"
 kotlinx_coroutines = "1.6.3"
 material = "1.6.1"
+retrofit = "2.6.0"
+okhttp_logging = '3.11.0'
 
 # test
 arch_test = '2.1.0'
@@ -53,6 +56,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 lifecycle-liveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "arch_lifecycle" }
 lifecycle-runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "arch_lifecycle" }
 lifecycle-viewModelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "arch_lifecycle" }
+lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "arch_lifecycle_extension" }
 
 # compose
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity_compose" }
@@ -72,6 +76,10 @@ navigation-uiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.r
 # hilt
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp_logging" }
 
 # test
 junit4 = { module = "junit:junit", version.ref = "junit" }

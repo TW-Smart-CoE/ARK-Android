@@ -16,5 +16,6 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
+        <activity android:name=".developtools.DevelopToolsActivity" />
     </application>
 </manifest>
