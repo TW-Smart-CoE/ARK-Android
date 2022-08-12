@@ -1,0 +1,16 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutDisabledMessage="@string/develop_tools_disable_hint"
+        android:shortcutId="develop_tools"
+        android:shortcutLongLabel="@string/develop_tools_label"
+        android:shortcutShortLabel="@string/develop_tools_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.thoughtworks.android.ark.developtools.DevelopToolsActivity"
+            android:targetPackage="com.thoughtworks.android.ark" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+    </shortcut>
+</shortcuts>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ARK-dev</string>
+    <string name="develop_tools_label">Develop Tools</string>
+    <string name="develop_tools_disable_hint">Develop Tools has disabled!</string>
 </resources>
