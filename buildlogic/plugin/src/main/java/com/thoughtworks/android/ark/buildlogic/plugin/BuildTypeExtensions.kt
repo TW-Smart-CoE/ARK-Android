@@ -7,9 +7,9 @@ fun Project.configBuildTypes() {
         signingConfigs {
             create("ark") {
                 storeFile = file("${rootDir.path}/ark.keystore")
-                storePassword = "ark123"
-                keyAlias = "ark"
-                keyPassword = "ark123"
+                storePassword = System.getenv("SIGN_CONFIG_STORE_PASSWD")
+                keyAlias = System.getenv("SIGN_CONFIG_KEY_ALIAS")
+                keyPassword = System.getenv("SIGN_CONFIG_KEY_PASSWD")
                 enableV3Signing = true
                 enableV4Signing = true
             }

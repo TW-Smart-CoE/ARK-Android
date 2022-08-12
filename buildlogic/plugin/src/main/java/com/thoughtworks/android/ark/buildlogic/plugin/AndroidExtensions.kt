@@ -43,8 +43,6 @@ private fun Project.configBase(): BaseExtension {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
 
-        buildFeatures.viewBinding = true
-
         packagingOptions {
             resources {
                 excludes.add("/META-INF/{AL2.0,LGPL2.1}")

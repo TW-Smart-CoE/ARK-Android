@@ -19,6 +19,8 @@ androidApplication {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures.viewBinding = true
+
     enableCompose()
 }
 
