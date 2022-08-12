@@ -59,7 +59,7 @@ pipeline {
             echo 'Archiving APKs...'
             archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/*.apk"
             echo 'Archiving Mappings...'
-            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/mapping.txt"
+            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/mapping.txt", allowEmptyArchive: true
             echo 'Archiving Reporters...'
             archiveArtifacts artifacts: '${params.APP_BUILD_FOLDER}/reports/**'
         }
