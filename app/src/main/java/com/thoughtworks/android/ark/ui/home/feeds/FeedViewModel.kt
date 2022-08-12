@@ -3,7 +3,8 @@ package com.thoughtworks.android.ark.ui.home.feeds
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.android.ark.ui.home.feeds.data.UserRepository
-import com.thoughtworks.android.core.network.entity.RetrofitResponse
+import com.thoughtworks.android.core.network.entity.NetworkConnectionException
+import com.thoughtworks.android.core.network.entity.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -39,14 +40,18 @@ class FeedViewModel @Inject constructor(
 
     private fun getFriendList() {
         viewModelScope.launch {
-            homeUiState.update { it.copy(dataText = "Loading") }
+            homeUiState.update { it.copy(dataText = LOADING) }
             userRepo.getFriendList().collect { res ->
                 homeUiState.update {
                     val result = when (res) {
-                        is RetrofitResponse.Loading -> "Loading"
-                        is RetrofitResponse.Success -> res.data.data?.get(0).toString()
-                        is RetrofitResponse.Error -> "error code ${res.code}"
-                        else -> "unknown"
+                        is Result.Loading -> LOADING
+                        is Result.Success -> res.data?.data?.get(0).toString()
+                        is Result.Error -> {
+                            when (res.exception) {
+                                is NetworkConnectionException -> res.exception.message
+                                else -> ERROR
+                            }
+                        }
                     }
                     it.copy(dataText = result)
                 }
@@ -59,5 +64,10 @@ class FeedViewModel @Inject constructor(
             FeedUiAction.FriendListAction -> getFriendList()
             FeedUiAction.OtherAction -> {}
         }
+    }
+
+    companion object {
+        const val LOADING = "Loading"
+        const val ERROR = "Error"
     }
 }
