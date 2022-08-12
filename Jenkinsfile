@@ -66,7 +66,7 @@ pipeline {
         }
     }
     post {
-        always {
+        success {
             dir("${params.APP_BUILD_FOLDER}") {
                 echo 'Archiving APKs...'
                 archiveArtifacts artifacts: "**/*.apk"
