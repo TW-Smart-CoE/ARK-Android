@@ -1,4 +1,4 @@
-apply from: "${rootDir}/config/jacoco/jacocoConfig.gradle"
+apply from: "${rootDir}/config/jacoco/jacocoConfig.kts"
 
 project.afterEvaluate {
     def variants = ["debug"]

@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
-apply from: '../config/jacoco/modules.gradle'
+apply from: '../config/jacoco/modules.kts'
 android {
     compileSdk rootProject.sdk_compile_version
 
