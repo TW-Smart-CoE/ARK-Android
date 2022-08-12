@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.kotlin)
 }
 
+apply(from = "../config/jacoco/modules.kts")
+
 androidLibrary()
 
 dependencies {

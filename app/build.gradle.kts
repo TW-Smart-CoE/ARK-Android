@@ -10,6 +10,8 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
+apply(from = "../config/jacoco/modules.kts")
+
 androidApplication {
     defaultConfig {
         applicationId = "com.thoughtworks.android.ark"
