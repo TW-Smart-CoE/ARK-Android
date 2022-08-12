@@ -7,7 +7,6 @@ import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 fun Project.androidApplication(block: BaseAppModuleExtension.() -> Unit = {}) {
     configBuildTypes()
@@ -54,8 +53,7 @@ private fun Project.configBase(): BaseExtension {
     }
 }
 
-
-fun Project.configCompose() {
+fun Project.enableCompose() {
     val libs = getLibs()
 
     android.apply {
@@ -64,10 +62,6 @@ fun Project.configCompose() {
         composeOptions {
             kotlinCompilerExtensionVersion = libs.getVersionStr("composeVersion")
         }
-    }
-
-    dependencies {
-        implementation(libs.getBundle("compose"))
     }
 }
 

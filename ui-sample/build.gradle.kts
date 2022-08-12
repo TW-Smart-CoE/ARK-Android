@@ -1,5 +1,5 @@
 import com.thoughtworks.android.ark.buildlogic.plugin.androidApplication
-import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
+import com.thoughtworks.android.ark.buildlogic.plugin.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -15,14 +15,15 @@ androidApplication {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-}
 
-configCompose()
+    enableCompose()
+}
 
 dependencies {
     implementation(project(":ui"))
     implementation(libs.bundles.android)
     implementation(libs.bundles.navigation)
+    implementation(libs.bundles.compose)
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.junit)

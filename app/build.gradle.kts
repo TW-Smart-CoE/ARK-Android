@@ -1,8 +1,13 @@
 import com.thoughtworks.android.ark.buildlogic.plugin.androidApplication
-import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
+import com.thoughtworks.android.ark.buildlogic.plugin.enableCompose
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("ark.app")
+    alias(libs.plugins.application)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.detekt)
 }
 
 androidApplication {
@@ -13,17 +18,18 @@ androidApplication {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-}
 
-configCompose()
+    enableCompose()
+}
 
 dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
-    // kotlin
+
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
     implementation(libs.bundles.navigation)
+    implementation(libs.bundles.compose)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

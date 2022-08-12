@@ -1,17 +1,20 @@
-import com.thoughtworks.android.ark.buildlogic.plugin.configCompose
+import com.thoughtworks.android.ark.buildlogic.plugin.enableCompose
 import com.thoughtworks.android.ark.buildlogic.plugin.androidLibrary
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("ark.library")
+    alias(libs.plugins.library)
+    alias(libs.plugins.kotlin)
 }
 
-androidLibrary()
-configCompose()
+androidLibrary {
+    enableCompose()
+}
 
 dependencies {
     implementation(libs.coreKtx)
     implementation(libs.material)
-
+    implementation(libs.bundles.compose)
     testImplementation(libs.junit4)
 
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

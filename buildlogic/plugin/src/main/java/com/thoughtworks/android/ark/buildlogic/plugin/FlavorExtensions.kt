@@ -35,11 +35,12 @@ fun Project.configFlavors() {
         }
     }
 
-    findComponentExtension().beforeVariants {
-        val disableDebugNames =
-            ArkFlavor.values().filter { it.disableDebug }.map { it.name.toLowerCase(ROOT) }
-        if (disableDebugNames.contains(it.flavorName) && it.buildType == "debug") {
-            it.enable = false
+    findComponentExtension().beforeVariants { variant ->
+        val disabled = ArkFlavor.values()
+            .filter { it.disableDebug }
+            .map { it.name.toLowerCase(ROOT) }
+        if (disabled.contains(variant.flavorName) && variant.buildType == "debug") {
+            variant.enable = false
         }
     }
 }
