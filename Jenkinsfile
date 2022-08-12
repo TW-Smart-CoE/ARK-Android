@@ -56,12 +56,14 @@ pipeline {
     }
     post {
         always {
-            echo 'Archiving APKs...'
-            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/*.apk"
-            echo 'Archiving Mappings...'
-            archiveArtifacts artifacts: "${params.APP_BUILD_FOLDER}/**/mapping.txt", allowEmptyArchive: true
-            echo 'Archiving Reporters...'
-            archiveArtifacts artifacts: '${params.APP_BUILD_FOLDER}/reports/**/*.*'
+            dir("${params.APP_BUILD_FOLDER}") {
+                echo 'Archiving APKs...'
+                archiveArtifacts artifacts: "**/*.apk"
+                echo 'Archiving Mappings...'
+                archiveArtifacts artifacts: "**/mapping.txt", allowEmptyArchive: true
+                echo 'Archiving Reporters...'
+                archiveArtifacts artifacts: 'reports/**'
+            }
         }
     }
 }
