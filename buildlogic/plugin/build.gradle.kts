@@ -15,8 +15,8 @@ dependencies {
 }
 
 gradlePlugin {
-    plugins.register("arkPlugin") {
-        id = "ark"
-        implementationClass = "com.thoughtworks.android.ark.buildlogic.plugin.ArkPlugin"
+    plugins.register("buildLogicPlugin") {
+        id = "build.logic"
+        implementationClass = "com.thoughtworks.android.ark.buildlogic.plugin.BuildLogicPlugin"
     }
 }

@@ -20,7 +20,6 @@ fun Project.configBuildTypes() {
                 isDebuggable = true
                 isMinifyEnabled = false
                 isShrinkResources = false
-                signingConfig = signingConfigs.findByName("ark")
             }
             getByName("release") {
                 isDebuggable = false
