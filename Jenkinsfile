@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         // Setup Ruby to PATH
-        PATH = "/usr/local/Cellar/ruby/3.1.2/bin:$PATH"
+        RUBY_HOME = "/usr/local/opt/ruby"
+        PATH = "$RUBY_HOME/bin:$PATH"
     }
     options {
         // Stop the build early in case of compile or test failures
@@ -12,8 +13,9 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh ("gem install bundler")
-                    sh ('bundle install')
+                    sh 'gem install bundler'
+                    sh 'bundle install'
+                    // Copy node env file to export environment variables
                     withCredentials([file(credentialsId: 'env-default', variable: 'env')]) {
                         sh 'rm -f .env.default'
                         sh 'cp $env .env.default'
@@ -24,15 +26,15 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh ('bundle exec fastlane build_dev')
+                    sh 'bundle exec fastlane build_dev'
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sh ('bundle exec fastlane check')
-                    sh ('bundle exec fastlane unit_test')
+                    sh 'bundle exec fastlane check'
+                    sh 'bundle exec fastlane unit_test'
                 }
             }
         }
@@ -44,7 +46,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh ('echo deploy')
+                    sh 'echo deploy'
                 }
             }
         }
