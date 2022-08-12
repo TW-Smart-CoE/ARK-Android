@@ -15,7 +15,7 @@ pipeline {
                     sh ("gem install bundler")
                     sh ('bundle install')
                     withCredentials([file(credentialsId: 'env-default', variable: 'env')]) {
-                        sh 'rm .env.default'
+                        sh 'rm -f .env.default'
                         sh 'cp $env .env.default'
                     }
                 }
