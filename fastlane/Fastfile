@@ -38,7 +38,7 @@ platform :android do
 
   desc "Runs all the unit tests"
   lane :unit_test do
-    gradle(task: "testDebugUnitTest")
+    gradle(task: "debugCoverage")
   end
 
   desc "Notify message to user"

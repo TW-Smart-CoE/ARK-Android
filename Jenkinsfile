@@ -33,11 +33,22 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                script {
-                    sh 'bundle exec fastlane check'
-                    sh 'bundle exec fastlane unit_test'
+        stage('Parallel Stage') {
+            failFast true
+            parallel {
+                stage('Test') {
+                    steps {
+                        script {
+                            sh 'bundle exec fastlane unit_test'
+                        }
+                    }
+                }
+                stage('Check') {
+                    steps {
+                        script {
+                            sh 'bundle exec fastlane check'
+                        }
+                    }
                 }
             }
         }
