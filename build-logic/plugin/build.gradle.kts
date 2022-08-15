@@ -2,7 +2,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.thoughtworks.android.ark.buildlogic.plugin"
+group = "com.thoughtworks.android.ark.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
