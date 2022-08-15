@@ -17,6 +17,6 @@ dependencies {
 gradlePlugin {
     plugins.register("buildLogicPlugin") {
         id = "build.logic"
-        implementationClass = "com.thoughtworks.android.ark.buildlogic.plugin.BuildLogicPlugin"
+        implementationClass = "BuildLogicPlugin"
     }
 }

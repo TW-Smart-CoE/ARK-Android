@@ -1,5 +1,3 @@
-package com.thoughtworks.android.ark.buildlogic.plugin
-
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

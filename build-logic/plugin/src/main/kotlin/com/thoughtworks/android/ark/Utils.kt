@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.buildlogic.plugin
+package com.thoughtworks.android.ark
 
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension

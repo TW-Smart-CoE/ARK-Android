@@ -1,5 +1,5 @@
-import com.thoughtworks.android.ark.buildlogic.plugin.androidApplication
-import com.thoughtworks.android.ark.buildlogic.plugin.enableCompose
+import com.thoughtworks.android.ark.androidApplication
+import com.thoughtworks.android.ark.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {

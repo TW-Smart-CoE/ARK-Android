@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.buildlogic.plugin
+package com.thoughtworks.android.ark
 
 import org.gradle.api.Project
 

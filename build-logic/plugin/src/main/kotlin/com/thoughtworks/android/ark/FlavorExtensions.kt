@@ -1,4 +1,4 @@
-package com.thoughtworks.android.ark.buildlogic.plugin
+package com.thoughtworks.android.ark
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
@@ -7,12 +7,12 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 import java.util.Locale.ROOT
 
-enum class ArkFlavorDimension {
+enum class FlavorDimension {
     ContentType
 }
 
-enum class ArkFlavor(
-    val dimension: ArkFlavorDimension = ArkFlavorDimension.ContentType,
+enum class Flavor(
+    val dimension: FlavorDimension = FlavorDimension.ContentType,
     val disableDebug: Boolean = false
 ) {
     Dev, Uat(disableDebug = true), Staging(disableDebug = true), Prod(disableDebug = true)
@@ -22,10 +22,10 @@ fun Project.configFlavors() {
     val srcPath = "$projectDir/src"
 
     android.apply {
-        flavorDimensions(ArkFlavorDimension.ContentType.name)
+        flavorDimensions(FlavorDimension.ContentType.name)
 
         productFlavors {
-            ArkFlavor.values().forEach {
+            Flavor.values().forEach {
                 val flavorName = it.name.toLowerCase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
@@ -36,7 +36,7 @@ fun Project.configFlavors() {
     }
 
     findComponentExtension().beforeVariants { variant ->
-        val disabled = ArkFlavor.values()
+        val disabled = Flavor.values()
             .filter { it.disableDebug }
             .map { it.name.toLowerCase(ROOT) }
         if (disabled.contains(variant.flavorName) && variant.buildType == "debug") {
