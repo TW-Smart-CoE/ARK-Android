@@ -26,11 +26,11 @@ fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
 private fun Project.configBase(): BaseExtension {
     return android.apply {
         val libs = getLibs()
-        setCompileSdkVersion(libs.getVersion("compileSdkVersion"))
+        setCompileSdkVersion(libs.getVersion("sdk_compile_version"))
 
         defaultConfig {
-            minSdk = libs.getVersion("minSdkVersion")
-            targetSdk = libs.getVersion("targetSdkVersion")
+            minSdk = libs.getVersion("sdk_min_version")
+            targetSdk = libs.getVersion("sdk_target_version")
             vectorDrawables { useSupportLibrary = true }
         }
 
@@ -58,7 +58,7 @@ fun Project.enableCompose() {
         buildFeatures.compose = true
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.getVersionStr("composeVersion")
+            kotlinCompilerExtensionVersion = libs.getVersionStr("compose")
         }
     }
 }
