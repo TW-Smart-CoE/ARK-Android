@@ -1,14 +1,13 @@
 # Android-ARK
 
 ## System Requirements
-* Ruby 2.6.5
-* Bundler 2.3.19
+* Ruby 2.6.5+
+* Bundler 2.3.19+
 
 ## Setup(Mac)
 - Install ruby & bundler
   ```sh
   brew install ruby
-  bundle install
   ```
 - Setup project
   go to project root dir, run this command in your terminal.
