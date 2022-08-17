@@ -5,10 +5,9 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.thoughtworks.android.ark.ui.themes.ARKTheme
-import com.thoughtworks.android.ark.ui.themes.colors.LocalARKThemeColors
+import com.thoughtworks.android.ark.ui.themes.APPTheme
+import com.thoughtworks.android.ark.ui.themes.colors.LocalAPPThemeColors
 import com.thoughtworks.android.ark.uisample.state.Action
 import com.thoughtworks.android.ark.uisample.state.NavigateActivityAction
 
@@ -16,9 +15,9 @@ class SampleUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ARKTheme {
+            APPTheme {
                 val systemUiController = rememberSystemUiController()
-                val statusBarColor = LocalARKThemeColors.current.statusBarColor
+                val statusBarColor = LocalAPPThemeColors.current.statusBarColor
 
                 LaunchedEffect(statusBarColor) {
                     systemUiController.setStatusBarColor(statusBarColor)

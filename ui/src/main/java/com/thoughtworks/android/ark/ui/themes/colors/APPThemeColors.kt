@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.thoughtworks.android.ark.ui.R
 
 @Immutable
-data class ARKThemeColors(
+data class APPThemeColors(
     val primary: Color = Color.Unspecified,
     val primaryVariant: Color = Color.Unspecified,
     val secondary: Color = Color.Unspecified,
@@ -27,10 +27,10 @@ data class ARKThemeColors(
 )
 
 @Composable
-fun ARKThemeAttrColors.toARKColors() =
-    R.style.Theme_AndroidARK.let { themeId ->
+fun APPThemeAttrColors.toARKColors() =
+    R.style.Theme_APP.let { themeId ->
         val context = LocalContext.current
-        ARKThemeColors(
+        APPThemeColors(
             primary = obtainThemeAttrColorToColor(context, themeId, this.primary),
             primaryVariant = obtainThemeAttrColorToColor(context, themeId, this.primaryVariant),
             secondary = obtainThemeAttrColorToColor(context, themeId, this.secondary),
@@ -49,6 +49,6 @@ fun ARKThemeAttrColors.toARKColors() =
         )
     }
 
-val LocalARKThemeColors = staticCompositionLocalOf<ARKThemeColors> {
-    error("No ARKThemColors provided")
+val LocalAPPThemeColors = staticCompositionLocalOf<APPThemeColors> {
+    error("No APPThemColors provided")
 }

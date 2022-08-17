@@ -15,8 +15,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.thoughtworks.android.ark.ui.themes.ARKTheme
-import com.thoughtworks.android.ark.ui.themes.colors.ARKExtendedColors
+import com.thoughtworks.android.ark.ui.themes.APPTheme
+import com.thoughtworks.android.ark.ui.themes.colors.APPExtendedColors
 import com.thoughtworks.android.ark.uisample.R
 
 @Composable
@@ -24,19 +24,19 @@ fun ColorSampleScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = ARKTheme.colors.background)
+            .background(color = APPTheme.colors.background)
     ) {
         // The theme color test for compose
         val context = LocalContext.current
         Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = stringResource(R.string.theme_color_test_for_compose),
-            color = ARKTheme.colors.primary
+            color = APPTheme.colors.primary
         )
 
         // The theme color test for xml
         Spacer(modifier = Modifier.height(30.dp))
-        val colors = ARKTheme.colors
+        val colors = APPTheme.colors
         AndroidView(factory = { ctx ->
             LayoutInflater.from(ctx).inflate(R.layout.xml_color_test, null)
         }) {
@@ -47,7 +47,7 @@ fun ColorSampleScreen() {
         Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = stringResource(R.string.extended_color_test_for_compose),
-            color = ARKExtendedColors.ButtonBackground.colorValue()
+            color = APPExtendedColors.ButtonBackground.colorValue()
         )
 
         // The special color test for xml
@@ -59,7 +59,7 @@ fun ColorSampleScreen() {
             )
         }) {
             (it as TextView).setText(R.string.extended_color_test_for_xml)
-            val textColor = ARKExtendedColors.ButtonBackground.colorInt(context)
+            val textColor = APPExtendedColors.ButtonBackground.colorInt(context)
             it.setTextColor(textColor)
         }
     }

@@ -8,13 +8,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import com.thoughtworks.android.ark.ui.R
 
-sealed class ARKExtendedColors(
+sealed class APPExtendedColors(
     @ColorRes val colorRes: Int
 ) {
 
-    object ButtonBackground : ARKExtendedColors(R.color.button_background)
-    object ButtonContent : ARKExtendedColors(R.color.button_content)
-    object ErrorOutLineColor : ARKExtendedColors(R.color.error_out_line)
+    object ButtonBackground : APPExtendedColors(R.color.button_background)
+    object ButtonContent : APPExtendedColors(R.color.button_content)
+    object ErrorOutLineColor : APPExtendedColors(R.color.error_out_line)
 
     @Composable
     fun colorValue() =

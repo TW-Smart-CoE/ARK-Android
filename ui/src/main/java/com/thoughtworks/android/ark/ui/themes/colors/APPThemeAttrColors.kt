@@ -3,7 +3,7 @@ package com.thoughtworks.android.ark.ui.themes.colors
 import androidx.annotation.AttrRes
 import com.thoughtworks.android.ark.ui.R
 
-data class ARKThemeAttrColors(
+data class APPThemeAttrColors(
     // Material attributes
     @AttrRes val primary: Int = com.google.android.material.R.attr.colorPrimary,
     @AttrRes val primaryVariant: Int = com.google.android.material.R.attr.colorPrimaryVariant,
@@ -19,8 +19,6 @@ data class ARKThemeAttrColors(
     @AttrRes val onError: Int = com.google.android.material.R.attr.colorOnError,
     @AttrRes val statusBarColor: Int = com.google.android.material.R.attr.statusBarBackground,
     // Customize attributes
-    @AttrRes val backgroundBlue: Int = R.attr.ARKColor_BackgroundBlue,
-    @AttrRes val backgroundGreen: Int = R.attr.ARKColor_BackgroundGreen
+    @AttrRes val backgroundBlue: Int = R.attr.APPColor_BackgroundBlue,
+    @AttrRes val backgroundGreen: Int = R.attr.APPColor_BackgroundGreen
 )
-
-

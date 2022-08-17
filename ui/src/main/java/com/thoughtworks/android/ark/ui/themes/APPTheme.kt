@@ -5,18 +5,18 @@ import androidx.compose.runtime.CompositionLocalProvider
 import com.thoughtworks.android.ark.ui.themes.colors.*
 
 @Composable
-fun ARKTheme(content: @Composable () -> Unit) {
-    val arkThemeColors = ARKThemeAttrColors().toARKColors()
+fun APPTheme(content: @Composable () -> Unit) {
+    val appThemeColors = APPThemeAttrColors().toARKColors()
 
     CompositionLocalProvider(
-        LocalARKThemeColors provides arkThemeColors,
+        LocalAPPThemeColors provides appThemeColors,
         content = content
     )
 }
 
-object ARKTheme {
-    val colors: ARKThemeColors
+object APPTheme {
+    val colors: APPThemeColors
         @Composable
-        get() = LocalARKThemeColors.current
+        get() = LocalAPPThemeColors.current
 }
 

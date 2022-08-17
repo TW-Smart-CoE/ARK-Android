@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AndroidARK" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.APP" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -27,8 +27,8 @@
         <item name="statusBarBackground">?attr/colorPrimaryVariant</item>
 
         <!-- Customize your theme here. -->
-        <item name="ARKColor.BackgroundBlue">@color/light_blue_300</item>
-        <item name="ARKColor.BackgroundGreen">@color/light_green_700</item>
+        <item name="APPColor.BackgroundBlue">@color/light_blue_300</item>
+        <item name="APPColor.BackgroundGreen">@color/light_green_700</item>
 
     </style>
 </resources>

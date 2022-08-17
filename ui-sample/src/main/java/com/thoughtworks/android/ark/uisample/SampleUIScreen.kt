@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.thoughtworks.android.ark.ui.themes.colors.ARKExtendedColors
+import com.thoughtworks.android.ark.ui.themes.colors.APPExtendedColors
 import com.thoughtworks.android.ark.uisample.colorsystem.ComposeColorSystemActivity
 import com.thoughtworks.android.ark.uisample.colorsystem.XmlColorSystemActivity
 import com.thoughtworks.android.ark.uisample.state.Action
@@ -51,8 +51,8 @@ private fun Item(
             sendAction.invoke(NavigateActivityAction(destination))
         },
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = ARKExtendedColors.ButtonBackground.colorValue(),
-            contentColor = ARKExtendedColors.ButtonContent.colorValue()
+            backgroundColor = APPExtendedColors.ButtonBackground.colorValue(),
+            contentColor = APPExtendedColors.ButtonContent.colorValue()
         )
     ) {
         Text(title, modifier = Modifier.align(Alignment.CenterVertically))

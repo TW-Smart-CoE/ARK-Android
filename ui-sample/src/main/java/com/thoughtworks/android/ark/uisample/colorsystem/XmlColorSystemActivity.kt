@@ -6,9 +6,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
-import com.thoughtworks.android.ark.ui.themes.ARKTheme
-import com.thoughtworks.android.ark.ui.themes.colors.ARKExtendedColors
-import com.thoughtworks.android.ark.ui.themes.colors.LocalARKThemeColors
+import com.thoughtworks.android.ark.ui.themes.APPTheme
+import com.thoughtworks.android.ark.ui.themes.colors.APPExtendedColors
+import com.thoughtworks.android.ark.ui.themes.colors.LocalAPPThemeColors
 import com.thoughtworks.android.ark.uisample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {
@@ -29,10 +29,10 @@ class XmlColorSystemActivity : AppCompatActivity() {
 
     @Composable
     private fun ThemeColorTestContent() {
-        ARKTheme {
+        APPTheme {
             Text(
                 text = stringResource(id = R.string.theme_color_test_for_compose),
-                color = LocalARKThemeColors.current.primary
+                color = LocalAPPThemeColors.current.primary
             )
         }
     }
@@ -41,7 +41,7 @@ class XmlColorSystemActivity : AppCompatActivity() {
     private fun SpecialColorTestContent() {
         Text(
             text = stringResource(R.string.extended_color_test_for_compose),
-            color = ARKExtendedColors.ButtonBackground.colorValue()
+            color = APPExtendedColors.ButtonBackground.colorValue()
         )
     }
 }
