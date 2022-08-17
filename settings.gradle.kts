@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android-ARK"
+rootProject.name = "ARK-Android"
 // Main App Module
 include(":app")
 // UI Module for cross feature UI components

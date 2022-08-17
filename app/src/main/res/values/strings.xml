@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-ARK</string>
+    <string name="app_name">ARK-Android</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
