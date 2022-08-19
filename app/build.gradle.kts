@@ -1,5 +1,5 @@
-import com.thoughtworks.android.ark.androidApplication
-import com.thoughtworks.android.ark.enableCompose
+import com.thoughtworks.ark.androidApplication
+import com.thoughtworks.ark.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -14,7 +14,7 @@ apply(from = "../config/jacoco/modules.kts")
 
 androidApplication {
     defaultConfig {
-        applicationId = "com.thoughtworks.android.ark"
+        applicationId = "com.thoughtworks.ark"
         versionCode = 1
         versionName = "1.0.0"
 

@@ -1,5 +1,5 @@
-import com.thoughtworks.android.ark.androidApplication
-import com.thoughtworks.android.ark.enableCompose
+import com.thoughtworks.ark.androidApplication
+import com.thoughtworks.ark.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -9,7 +9,7 @@ plugins {
 
 androidApplication {
     defaultConfig {
-        applicationId = "com.thoughtworks.android.ark.uisample"
+        applicationId = "com.thoughtworks.ark.uisample"
         versionCode = 1
         versionName = "1.0.0"
 

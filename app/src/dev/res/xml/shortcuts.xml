@@ -8,8 +8,8 @@
         android:shortcutShortLabel="@string/develop_tools_label">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.thoughtworks.android.ark.developtools.DevelopToolsActivity"
-            android:targetPackage="com.thoughtworks.android.ark" />
+            android:targetClass="com.thoughtworks.ark.developtools.DevelopToolsActivity"
+            android:targetPackage="com.thoughtworks.ark" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>

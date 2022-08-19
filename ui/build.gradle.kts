@@ -1,5 +1,5 @@
-import com.thoughtworks.android.ark.enableCompose
-import com.thoughtworks.android.ark.androidLibrary
+import com.thoughtworks.ark.enableCompose
+import com.thoughtworks.ark.androidLibrary
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
