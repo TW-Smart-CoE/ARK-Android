@@ -30,5 +30,21 @@
         <item name="APPColor.BackgroundBlue">@color/light_blue_300</item>
         <item name="APPColor.BackgroundGreen">@color/light_green_700</item>
 
+
+        <!--  TYPOGRAPHY -->
+        <item name="APPTypography.H1">@style/Headline1</item>
+        <item name="APPTypography.H2">@style/Headline2</item>
+        <item name="APPTypography.H3">@style/Headline3</item>
+        <item name="APPTypography.H4">@style/Headline4</item>
+        <item name="APPTypography.45">@style/Headline5</item>
+        <item name="APPTypography.H6">@style/Headline6</item>
+        <item name="APPTypography.Subtitle01">@style/Subtitle01</item>
+        <item name="APPTypography.Subtitle02">@style/Subtitle02</item>
+        <item name="APPTypography.Body01">@style/Body01</item>
+        <item name="APPTypography.Body02">@style/Body02</item>
+        <item name="APPTypography.Button">@style/Button</item>
+        <item name="APPTypography.Caption">@style/Caption</item>
+        <item name="APPTypography.Overline">@style/Overline</item>
+
     </style>
 </resources>

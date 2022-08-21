@@ -2,4 +2,19 @@
 <resources>
     <attr format="reference|color" name="APPColor.BackgroundGreen"/>
     <attr format="reference|color" name="APPColor.BackgroundBlue"/>
+
+    <!-- Typography -->
+    <attr name="APPTypography.H1" format="reference" />
+    <attr name="APPTypography.H2" format="reference" />
+    <attr name="APPTypography.H3" format="reference" />
+    <attr name="APPTypography.H4" format="reference" />
+    <attr name="APPTypography.45" format="reference" />
+    <attr name="APPTypography.H6" format="reference" />
+    <attr name="APPTypography.Subtitle01" format="reference" />
+    <attr name="APPTypography.Subtitle02" format="reference" />
+    <attr name="APPTypography.Body01" format="reference" />
+    <attr name="APPTypography.Body02" format="reference" />
+    <attr name="APPTypography.Button" format="reference" />
+    <attr name="APPTypography.Caption" format="reference" />
+    <attr name="APPTypography.Overline" format="reference" />
 </resources>

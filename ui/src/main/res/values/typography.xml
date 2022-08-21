@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Headline1">
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">94sp</item>
+        <item name="android:letterSpacing">-0.015625</item>
+    </style>
+
+    <style name="Headline2">
+        <item name="fontFamily">@font/open_sans_light</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">59sp</item>
+        <item name="android:letterSpacing">-0.00833333333</item>
+    </style>
+
+    <style name="Headline3">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">47sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="Headline4">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">33sp</item>
+        <item name="android:letterSpacing">0.00735294118</item>
+    </style>
+
+    <style name="Headline5">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="Headline6">
+        <item name="fontFamily">@font/open_sans_medium</item>
+        <item name="android:fontFamily">@font/open_sans_medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+
+    <style name="Subtitle01">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.009375</item>
+    </style>
+
+    <style name="Subtitle02">
+        <item name="fontFamily">@font/open_sans_medium</item>
+        <item name="android:fontFamily">@font/open_sans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.00714285714</item>
+    </style>
+
+    <style name="Body01">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.03125</item>
+    </style>
+
+    <style name="Body02">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.0178571429</item>
+    </style>
+
+    <style name="Button">
+        <item name="fontFamily">@font/open_sans_medium</item>
+        <item name="android:fontFamily">@font/open_sans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.0892857143</item>
+    </style>
+
+    <style name="Caption">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.0333333333</item>
+    </style>
+
+    <style name="Overline">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.166666667</item>
+    </style>
+</resources>
