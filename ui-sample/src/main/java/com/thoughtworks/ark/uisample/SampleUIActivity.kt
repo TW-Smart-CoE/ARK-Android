@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.thoughtworks.ark.ui.themes.APPTheme
 import com.thoughtworks.ark.ui.themes.colors.LocalAPPThemeColors
+import com.thoughtworks.ark.uisample.state.Action
 import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 
 class SampleUIActivity : AppCompatActivity() {
