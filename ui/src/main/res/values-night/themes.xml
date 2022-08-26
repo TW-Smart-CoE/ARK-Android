@@ -23,7 +23,7 @@
         <item name="colorOnSurface">@color/black</item>
 
         <!-- Status bar color. -->
-        <item name="statusBarBackground" >?attr/colorPrimaryVariant</item>
+        <item name="statusBarBackground" >?attr/backgroundColor</item>
 
         <!-- Customize your theme here. -->
         <item name="APPColor.BackgroundBlue">@color/light_blue_50</item>

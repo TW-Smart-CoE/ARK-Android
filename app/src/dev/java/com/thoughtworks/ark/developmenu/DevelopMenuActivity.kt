@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -18,10 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.thoughtworks.ark.R
 import com.thoughtworks.ark.ui.themes.APPTheme
-import com.thoughtworks.ark.ui.themes.colors.LocalAPPThemeColors
 
 class DevelopMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,13 +27,6 @@ class DevelopMenuActivity : AppCompatActivity() {
 
         setContent {
             APPTheme {
-                val systemUiController = rememberSystemUiController()
-                val statusBarColor = LocalAPPThemeColors.current.statusBarColor
-
-                LaunchedEffect(statusBarColor) {
-                    systemUiController.setStatusBarColor(statusBarColor)
-                    systemUiController.setNavigationBarColor(statusBarColor)
-                }
                 DevelopMenuScreen()
             }
         }
