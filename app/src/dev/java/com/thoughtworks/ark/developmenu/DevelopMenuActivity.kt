@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.developtools
+package com.thoughtworks.ark.developmenu
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -12,19 +12,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import com.thoughtworks.ark.R
 
-class DevelopToolsActivity : AppCompatActivity() {
+class DevelopMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupWindow()
 
         setContent {
             MaterialTheme {
-                DevelopToolsScreen()
+                DevelopMenuScreen()
             }
         }
     }
@@ -38,13 +40,14 @@ class DevelopToolsActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun DevelopToolsScreen() {
+    fun DevelopMenuScreen() {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
+            val context = LocalContext.current
             Text(
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp),
-                text = "DevelopTools",
+                text = context.getString(R.string.develop_menu_label),
                 color = Color.Black,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold

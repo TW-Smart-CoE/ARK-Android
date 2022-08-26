@@ -2,13 +2,13 @@
     <shortcut
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
-        android:shortcutDisabledMessage="@string/develop_tools_disable_hint"
-        android:shortcutId="develop_tools"
-        android:shortcutLongLabel="@string/develop_tools_label"
-        android:shortcutShortLabel="@string/develop_tools_label">
+        android:shortcutDisabledMessage="@string/develop_menu_disable_hint"
+        android:shortcutId="develop_menu"
+        android:shortcutLongLabel="@string/develop_menu_label"
+        android:shortcutShortLabel="@string/develop_menu_label">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.thoughtworks.ark.developtools.DevelopToolsActivity"
+            android:targetClass="com.thoughtworks.ark.developmenu.DevelopMenuActivity"
             android:targetPackage="com.thoughtworks.ark" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
