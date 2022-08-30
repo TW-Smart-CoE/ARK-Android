@@ -33,8 +33,8 @@ def defaultFileFilter =  [
 
 
 def moduleFilter = [
-        'com/thoughtworks/android/core/*',
-        'com/thoughtworks/android/ark/ui/*'
+        'com/thoughtworks/ark/core/*',
+        'com/thoughtworks/ark/ui/*'
 ]
 
 defaultFileFilter.addAll(moduleFilter)
