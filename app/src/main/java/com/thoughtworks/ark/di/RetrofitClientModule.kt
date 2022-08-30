@@ -1,7 +1,7 @@
 package com.thoughtworks.ark.di
 
 import android.content.Context
-import com.thoughtworks.android.core.network.client.RetrofitClient
+import com.thoughtworks.ark.core.network.client.RetrofitClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

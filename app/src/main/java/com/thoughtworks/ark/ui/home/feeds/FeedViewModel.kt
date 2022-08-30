@@ -2,8 +2,8 @@ package com.thoughtworks.ark.ui.home.feeds
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.android.core.network.entity.NetworkConnectionException
-import com.thoughtworks.android.core.network.entity.Result
+import com.thoughtworks.ark.core.network.entity.NetworkConnectionException
+import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.ui.home.feeds.data.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,9 +1,9 @@
 package com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote
 
-import com.thoughtworks.android.core.network.api.RootApiService
-import com.thoughtworks.android.core.network.client.RetrofitClient
-import com.thoughtworks.android.core.network.entity.ApiException
-import com.thoughtworks.android.core.network.entity.Result
+import com.thoughtworks.ark.core.network.api.RootApiService
+import com.thoughtworks.ark.core.network.client.RetrofitClient
+import com.thoughtworks.ark.core.network.entity.ApiException
+import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.di.HttpClient
 import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FriendListEntity
 import kotlinx.coroutines.flow.Flow
