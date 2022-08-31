@@ -65,6 +65,19 @@ pipeline {
                 }
             }
         }
+        stage('Production') {
+            steps {
+                script {
+                    // Copy release keystore to workspace
+                    withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
+                        sh 'rm -rf config/keystore'
+                        sh 'mkdir -p config/keystore'
+                        sh 'cp $keystore config/keystore/'
+                    }
+                    sh 'bundle exec fastlane build_prod'
+                }
+            }
+        }
     }
     post {
         success {
@@ -76,6 +89,9 @@ pipeline {
                 echo 'Archiving Reporters...'
                 archiveArtifacts artifacts: 'reports/**'
             }
+        }
+        cleanup {
+            cleanWs()
         }
     }
 }
