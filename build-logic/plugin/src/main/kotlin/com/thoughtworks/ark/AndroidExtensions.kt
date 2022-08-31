@@ -10,14 +10,14 @@ import org.gradle.api.Project
 
 fun Project.androidApplication(block: BaseAppModuleExtension.() -> Unit = {}) {
     configBuildTypes()
-    configFlavors()
+    configFlavorsApplication()
     configBase().applyAs<BaseAppModuleExtension> {
         block()
     }
 }
 
 fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
-    configFlavors()
+    configFlavorsLibrary()
     configBase().applyAs<LibraryExtension> {
         block()
     }

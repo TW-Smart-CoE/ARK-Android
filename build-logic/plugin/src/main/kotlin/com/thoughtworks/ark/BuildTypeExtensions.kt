@@ -5,8 +5,8 @@ import org.gradle.api.Project
 fun Project.configBuildTypes() {
     android.apply {
         signingConfigs {
-            create("ark") {
-                storeFile = file("${rootDir.path}/ark.keystore")
+            create("app") {
+                storeFile = file("${rootDir.path}/config/keystore/release.keystore")
                 storePassword = System.getenv("SIGN_CONFIG_STORE_PASSWD")
                 keyAlias = System.getenv("SIGN_CONFIG_KEY_ALIAS")
                 keyPassword = System.getenv("SIGN_CONFIG_KEY_PASSWD")
@@ -25,7 +25,7 @@ fun Project.configBuildTypes() {
                 isDebuggable = false
                 isMinifyEnabled = true
                 isShrinkResources = true
-                signingConfig = signingConfigs.findByName("ark")
+                signingConfig = signingConfigs.findByName("app")
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"

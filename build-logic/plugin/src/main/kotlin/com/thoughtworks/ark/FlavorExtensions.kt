@@ -13,12 +13,16 @@ enum class FlavorDimension {
 
 enum class Flavor(
     val dimension: FlavorDimension = FlavorDimension.ContentType,
-    val disableDebug: Boolean = false
+    val disableDebug: Boolean = false,
+    val applicationIdSuffix: String = ""
 ) {
-    Dev, Uat(disableDebug = true), Staging(disableDebug = true), Prod(disableDebug = true)
+    Dev(applicationIdSuffix = ".dev"),
+    Uat(disableDebug = true, applicationIdSuffix = ".uat"),
+    Staging(disableDebug = true, applicationIdSuffix = ".staging"),
+    Prod(disableDebug = true)
 }
 
-fun Project.configFlavors() {
+fun Project.configFlavorsLibrary() {
     val srcPath = "$projectDir/src"
 
     android.apply {
@@ -34,7 +38,30 @@ fun Project.configFlavors() {
             }
         }
     }
+    filterFlavors()
+}
 
+fun Project.configFlavorsApplication() {
+    val srcPath = "$projectDir/src"
+
+    android.apply {
+        flavorDimensions(FlavorDimension.ContentType.name)
+
+        productFlavors {
+            Flavor.values().forEach {
+                val flavorName = it.name.toLowerCase(ROOT)
+                create(flavorName) {
+                    dimension = it.dimension.name
+                    applicationIdSuffix = it.applicationIdSuffix
+                    proguardFile("$srcPath/$flavorName/proguard-rules.pro")
+                }
+            }
+        }
+    }
+    filterFlavors()
+}
+
+private fun Project.filterFlavors() {
     findComponentExtension().beforeVariants { variant ->
         val disabled = Flavor.values()
             .filter { it.disableDebug }

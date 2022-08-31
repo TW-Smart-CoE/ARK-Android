@@ -4,6 +4,7 @@ pipeline {
         // Setup Ruby to PATH
         RUBY_HOME = "/usr/local/opt/ruby"
         PATH = "$RUBY_HOME/bin:$PATH"
+        LANG = "en_US.UTF-8"
     }
     parameters {
         string(name: 'APP_BUILD_FOLDER', defaultValue: 'app/build', description: 'Application build output folder')
