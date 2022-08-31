@@ -27,7 +27,7 @@ platform :android do
 
   desc "Build an app for uat env"
   lane :build_uat do
-    gradle(task: "clean assembleUatRelease")
+    gradle(task: "assembleUatRelease")
     notification_options = {
       :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
     }
@@ -36,7 +36,7 @@ platform :android do
 
   desc "Build an app for staging env"
   lane :build_staging do
-    gradle(task: "clean assembleStagingRelease")
+    gradle(task: "assembleStagingRelease")
     notification_options = {
       :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
     }
@@ -45,7 +45,7 @@ platform :android do
 
   desc "Build an app for prod env"
   lane :build_prod do
-    gradle(task: "clean assembleProdRelease")
+    gradle(task: "assembleProdRelease")
     notification_options = {
       :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
     }
