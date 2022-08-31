@@ -66,6 +66,7 @@ pipeline {
             }
         }
         stage('Production') {
+            when { branch pattern: "release(-v.+)?", comparator: "REGEXP"}
             steps {
                 script {
                     // Copy release keystore to workspace
