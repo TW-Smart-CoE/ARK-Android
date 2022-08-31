@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,10 +47,9 @@ class DevelopMenuActivity : AppCompatActivity() {
                 .fillMaxSize()
                 .background(color = APPTheme.colors.background)
         ) {
-            val context = LocalContext.current
             Text(
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp),
-                text = context.getString(R.string.develop_menu_label),
+                text = stringResource(id = R.string.develop_menu_label),
                 color = APPTheme.colors.primary,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold
