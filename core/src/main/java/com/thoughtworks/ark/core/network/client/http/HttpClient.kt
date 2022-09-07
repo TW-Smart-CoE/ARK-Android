@@ -1,13 +1,13 @@
 package com.thoughtworks.ark.core.network.client.http
 
 import android.content.Context
-import com.thoughtworks.ark.core.network.interceptor.NetworkConnectionInterceptor
+import com.thoughtworks.ark.core.network.interceptor.NetworkReachableInterceptor
 import com.thoughtworks.ark.core.utils.isDevEnvironment
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 
-open class DefaultHttpClient(private val context: Context) {
+open class HttpClient(private val context: Context) {
     var okHttpClient: OkHttpClient
 
     init {
@@ -33,7 +33,7 @@ open class DefaultHttpClient(private val context: Context) {
     }
 
     private fun addInterceptors(builder: OkHttpClient.Builder) {
-        builder.addInterceptor(NetworkConnectionInterceptor(context))
+        builder.addInterceptor(NetworkReachableInterceptor(context))
     }
 
     companion object {

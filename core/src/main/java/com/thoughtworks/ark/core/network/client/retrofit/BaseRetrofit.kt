@@ -5,12 +5,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 abstract class BaseRetrofit {
-
-    fun createRetrofit(baseUrl: String, httpClient: OkHttpClient): Retrofit =
+    fun createRetrofit(baseUrl: String, client: OkHttpClient): Retrofit =
         Retrofit.Builder().apply {
             baseUrl(baseUrl)
             addConverterFactory(GsonConverterFactory.create())
-            client(httpClient)
+            client(client)
             initRetrofit(this)
         }.build()
 

@@ -1,24 +1,23 @@
 package com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote
 
-import com.thoughtworks.ark.core.network.api.RootApiService
-import com.thoughtworks.ark.core.network.client.RetrofitClient
+import com.thoughtworks.ark.core.network.api.ApiService
+import com.thoughtworks.ark.core.network.client.ApiEndPoints
 import com.thoughtworks.ark.core.network.entity.ApiException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.di.HttpClient
 import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FriendListEntity
 import kotlinx.coroutines.flow.Flow
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
-class RemoteDataApi @Inject constructor(@HttpClient retrofitClient: RetrofitClient) :
-    RootApiService() {
-    private val apiService = retrofitClient.createService(
+class RemoteDataApi @Inject constructor(apiEndPoints: ApiEndPoints) :
+    ApiService() {
+    private val apiService = apiEndPoints.createService(
         FriendApiService::class.java,
         "https://www.wanandroid.com"
     )
 
     suspend fun getFriendList(): Flow<Result<FriendListEntity>> {
-        return performFlowRequest { apiService.getFriendList() }
+        return performRequest { apiService.getFriendList() }
     }
 
     override fun mapNetworkThrowable(throwable: Throwable): ApiException {

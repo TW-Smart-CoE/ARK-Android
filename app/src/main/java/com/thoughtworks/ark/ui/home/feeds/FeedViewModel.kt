@@ -2,7 +2,7 @@ package com.thoughtworks.ark.ui.home.feeds
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.ark.core.network.entity.NetworkConnectionException
+import com.thoughtworks.ark.core.network.entity.NetworkReachableException
 import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.ui.home.feeds.data.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +48,7 @@ class FeedViewModel @Inject constructor(
                         is Result.Success -> res.data?.data?.get(0).toString()
                         is Result.Error -> {
                             when (res.exception) {
-                                is NetworkConnectionException -> res.exception.message
+                                is NetworkReachableException -> res.exception.message
                                 else -> ERROR
                             }
                         }
