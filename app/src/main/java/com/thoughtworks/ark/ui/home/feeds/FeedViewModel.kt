@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.network.entity.NetworkReachableException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.ui.home.feeds.data.UserRepository
+import com.thoughtworks.ark.ui.home.feeds.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

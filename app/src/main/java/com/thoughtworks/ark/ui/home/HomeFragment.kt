@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.thoughtworks.ark.databinding.FragmentHomeBinding
-import com.thoughtworks.ark.ui.home.feeds.FeedScreen
+import com.thoughtworks.ark.ui.home.feeds.ui.FeedScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -15,9 +15,8 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.bundles.kotlin)
-    api(libs.retrofit)
-    implementation(libs.retrofit.converter)
-    implementation(libs.okhttp.logging)
+    api(libs.retrofit.core)
+    implementation(libs.bundles.retrofit)
     implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewModelKtx)
 

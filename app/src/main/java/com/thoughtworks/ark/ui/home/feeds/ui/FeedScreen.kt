@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.feeds
+package com.thoughtworks.ark.ui.home.feeds.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
+import com.thoughtworks.ark.ui.home.feeds.FeedUiState
+import com.thoughtworks.ark.ui.home.feeds.FeedViewModel
 
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = viewModel()) {
