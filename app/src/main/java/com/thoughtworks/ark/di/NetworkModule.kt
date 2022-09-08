@@ -9,6 +9,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -18,6 +20,12 @@ object NetworkModule {
         RetrofitFriendApiDataSource(apiEndPoints)
 
     @Provides
-    fun provideApiService(@ApplicationContext context: Context): ApiEndPoints =
-        ApiEndPoints(context)
+    fun provideApiService(@ApplicationContext context: Context, json: Json): ApiEndPoints =
+        ApiEndPoints(context, json)
+
+    @Provides
+    @Singleton
+    fun providesNetworkJson(): Json = Json {
+        ignoreUnknownKeys = true
+    }
 }

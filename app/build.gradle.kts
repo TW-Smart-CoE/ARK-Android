@@ -5,6 +5,7 @@ import com.thoughtworks.ark.enableCompose
 plugins {
     alias(libs.plugins.application)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
     alias(libs.plugins.detekt)

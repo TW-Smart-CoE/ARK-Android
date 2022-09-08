@@ -1,16 +1,21 @@
 package com.thoughtworks.ark.ui.home.feeds.data.repository.entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class FriendListEntity(
-    var errorCode: Int,
-    var errorMsg: String?,
-    var data: List<FriendEntity>?
+    val errorCode: Int,
+    val errorMsg: String?,
+    val data: List<FriendEntity>?,
 )
 
+@Serializable
 data class FriendEntity(
-    var id: Int,
-    var name: String,
-    var link: String,
-    var visible: Int,
-    var order: Int,
-    var icon: Any
+    val id: Int,
+    val name: String,
+    val link: String,
+    val visible: Int,
+    val order: Int,
+    val icon: String,
+    val category: String,
 )

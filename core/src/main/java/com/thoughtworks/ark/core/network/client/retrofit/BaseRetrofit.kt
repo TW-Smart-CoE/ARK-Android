@@ -1,14 +1,16 @@
 package com.thoughtworks.ark.core.network.client.retrofit
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-abstract class BaseRetrofit {
+abstract class BaseRetrofit constructor(private val networkJson: Json) {
     fun createRetrofit(baseUrl: String, client: OkHttpClient): Retrofit =
         Retrofit.Builder().apply {
             baseUrl(baseUrl)
-            addConverterFactory(GsonConverterFactory.create())
+            addConverterFactory(networkJson.asConverterFactory("application/json".toMediaType()))
             client(client)
             initRetrofit(this)
         }.build()
