@@ -23,8 +23,6 @@ enum class Flavor(
 }
 
 fun Project.configFlavorsLibrary() {
-    val srcPath = "$projectDir/src"
-
     android.apply {
         flavorDimensions(FlavorDimension.ContentType.name)
 
@@ -33,7 +31,7 @@ fun Project.configFlavorsLibrary() {
                 val flavorName = it.name.toLowerCase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
-                    proguardFile("$srcPath/$flavorName/proguard-rules.pro")
+                    proguardFile("$projectDir/proguard-rules.pro")
                 }
             }
         }
@@ -42,8 +40,6 @@ fun Project.configFlavorsLibrary() {
 }
 
 fun Project.configFlavorsApplication() {
-    val srcPath = "$projectDir/src"
-
     android.apply {
         flavorDimensions(FlavorDimension.ContentType.name)
 
@@ -53,7 +49,7 @@ fun Project.configFlavorsApplication() {
                 create(flavorName) {
                     dimension = it.dimension.name
                     applicationIdSuffix = it.applicationIdSuffix
-                    proguardFile("$srcPath/$flavorName/proguard-rules.pro")
+                    proguardFile("$projectDir/proguard-rules.pro")
                 }
             }
         }
