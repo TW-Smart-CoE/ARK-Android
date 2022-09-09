@@ -16,10 +16,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
+    @Singleton
     fun providerFeedApiDataSource(apiEndPoints: ApiEndPoints): FeedApiDataSource =
         RetrofitFeedApiDataSource(apiEndPoints)
 
     @Provides
+    @Singleton
     fun provideApiService(@ApplicationContext context: Context, json: Json): ApiEndPoints =
         ApiEndPoints(context, json)
 

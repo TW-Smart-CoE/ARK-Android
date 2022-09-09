@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class FeedListEntity(
     val errorCode: Int,
     val errorMsg: String?,
-    val data: List<FeedEntity>?,
+    val data: List<FeedEntity> = emptyList(),
 )
 
 @Serializable
