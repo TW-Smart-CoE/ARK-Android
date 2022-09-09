@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.core.network.client.http
+package com.thoughtworks.ark.core.network.client
 
 import android.content.Context
 import com.thoughtworks.ark.core.network.interceptor.NetworkReachableInterceptor

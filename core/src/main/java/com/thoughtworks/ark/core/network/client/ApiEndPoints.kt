@@ -1,22 +1,35 @@
 package com.thoughtworks.ark.core.network.client
 
 import android.content.Context
-import com.thoughtworks.ark.core.network.client.http.HttpClient
-import com.thoughtworks.ark.core.network.client.retrofit.BaseRetrofit
-import com.thoughtworks.ark.core.network.client.retrofit.DefaultRetrofit
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 
 class ApiEndPoints(private val context: Context, private val networkJson: Json) {
     fun <S> createService(clazz: Class<S>, baseUrl: String): S =
-        createService(clazz, baseUrl, HttpClient(context), DefaultRetrofit(networkJson))
+        createService(clazz, baseUrl, HttpClient(context))
 
-    fun <T : HttpClient, R : BaseRetrofit, S> createService(
+    fun <T : HttpClient, S> createService(
         clazz: Class<S>,
         baseUrl: String,
         httpClient: T,
-        baseRetrofit: R,
     ): S {
-        val retrofit = baseRetrofit.createRetrofit(baseUrl, httpClient.okHttpClient)
+        val retrofit = createRetrofit(baseUrl, httpClient.okHttpClient)
         return retrofit.create(clazz)
+    }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    private fun createRetrofit(baseUrl: String, client: OkHttpClient) =
+        Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(networkJson.asConverterFactory(jsonContentType))
+            .client(client)
+            .build()
+
+    companion object {
+        private val jsonContentType = "application/json".toMediaType()
     }
 }

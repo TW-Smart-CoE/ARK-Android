@@ -9,6 +9,5 @@ import javax.inject.Inject
 class FeedRepository @Inject constructor(
     private val remote: FeedApiDataSource,
 ) {
-    suspend fun getFeedList(): Flow<Result<FeedListEntity>> =
-        remote.getFeedList()
+    suspend fun getFeedList(): Flow<Result<FeedListEntity>> = remote.getFeedList()
 }
