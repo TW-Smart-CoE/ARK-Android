@@ -2,8 +2,8 @@ package com.thoughtworks.ark.di
 
 import android.content.Context
 import com.thoughtworks.ark.core.network.client.ApiEndPoints
-import com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote.FriendApiDataSource
-import com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote.RetrofitFriendApiDataSource
+import com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote.FeedApiDataSource
+import com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote.RetrofitFeedApiDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +16,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
-    fun providerFriendApiDataSource(apiEndPoints: ApiEndPoints): FriendApiDataSource =
-        RetrofitFriendApiDataSource(apiEndPoints)
+    fun providerFeedApiDataSource(apiEndPoints: ApiEndPoints): FeedApiDataSource =
+        RetrofitFeedApiDataSource(apiEndPoints)
 
     @Provides
     fun provideApiService(@ApplicationContext context: Context, json: Json): ApiEndPoints =

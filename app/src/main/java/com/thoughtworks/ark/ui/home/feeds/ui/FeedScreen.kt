@@ -39,7 +39,7 @@ fun FeedScreenContent(
         Spacer(modifier = Modifier.height(12.dp))
         Button(
             onClick = {
-                dispatcherAction(FeedUiAction.FriendListAction)
+                dispatcherAction(FeedUiAction.FeedListAction)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,7 +48,7 @@ fun FeedScreenContent(
                 .background(Color.Blue)
         ) {
             Text(
-                text = "GetFriendList",
+                text = "GetFeedList",
                 fontSize = 15.sp,
                 color = Color.White
             )

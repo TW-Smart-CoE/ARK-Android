@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.network.entity.NetworkReachableException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.ui.home.feeds.data.repository.UserRepository
+import com.thoughtworks.ark.ui.home.feeds.data.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -20,13 +20,13 @@ data class FeedUiState(
 )
 
 sealed class FeedUiAction {
-    object FriendListAction : FeedUiAction()
+    object FeedListAction : FeedUiAction()
     object OtherAction : FeedUiAction()
 }
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(
-    private val userRepo: UserRepository
+    private val userRepo: FeedRepository
 ) : ViewModel() {
 
     private val homeUiState = MutableStateFlow(FeedUiState())
@@ -38,10 +38,10 @@ class FeedViewModel @Inject constructor(
             homeUiState.value
         )
 
-    private fun getFriendList() {
+    private fun getFeedList() {
         viewModelScope.launch {
             homeUiState.update { it.copy(dataText = LOADING) }
-            userRepo.getFriendList().collect { res ->
+            userRepo.getFeedList().collect { res ->
                 homeUiState.update {
                     val result = when (res) {
                         is Result.Loading -> LOADING
@@ -61,7 +61,7 @@ class FeedViewModel @Inject constructor(
 
     fun dispatchAction(action: FeedUiAction) {
         when (action) {
-            FeedUiAction.FriendListAction -> getFriendList()
+            FeedUiAction.FeedListAction -> getFeedList()
             FeedUiAction.OtherAction -> {}
         }
     }
