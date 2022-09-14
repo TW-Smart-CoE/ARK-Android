@@ -39,6 +39,12 @@ pipeline {
         stage('Build Uat') {
             when { expression { params.APP_BUILD_ENV == 'uat'} }
             steps {
+                // Copy release keystore to workspace
+                withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
+                    sh 'rm -rf config/keystore'
+                    sh 'mkdir -p config/keystore'
+                    sh 'cp $keystore config/keystore/'
+                }
                 script {
                     sh 'bundle exec fastlane build_uat'
                 }
@@ -47,6 +53,12 @@ pipeline {
         stage('Build Staging') {
             when { expression { params.APP_BUILD_ENV == 'staging'} }
             steps {
+                // Copy release keystore to workspace
+                withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
+                    sh 'rm -rf config/keystore'
+                    sh 'mkdir -p config/keystore'
+                    sh 'cp $keystore config/keystore/'
+                }
                 script {
                     sh 'bundle exec fastlane build_staging'
                 }
