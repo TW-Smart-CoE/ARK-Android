@@ -29,7 +29,7 @@ pipeline {
             }
         }
         stage('Build Dev') {
-            when { expression { $params.APP_BUILD_ENV == 'dev'} }
+            when { expression { params.APP_BUILD_ENV == 'dev'} }
             steps {
                 script {
                     sh 'bundle exec fastlane build_dev'
@@ -37,7 +37,7 @@ pipeline {
             }
         }
         stage('Build Uat') {
-            when { expression { $params.APP_BUILD_ENV == 'uat'} }
+            when { expression { params.APP_BUILD_ENV == 'uat'} }
             steps {
                 script {
                     sh 'bundle exec fastlane build_uat'
@@ -45,7 +45,7 @@ pipeline {
             }
         }
         stage('Build Staging') {
-            when { expression { $params.APP_BUILD_ENV == 'staging'} }
+            when { expression { params.APP_BUILD_ENV == 'staging'} }
             steps {
                 script {
                     sh 'bundle exec fastlane build_staging'
