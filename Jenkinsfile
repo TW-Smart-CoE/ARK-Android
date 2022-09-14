@@ -8,6 +8,7 @@ pipeline {
     }
     parameters {
         string(name: 'APP_BUILD_FOLDER', defaultValue: 'app/build', description: 'Application build output folder')
+        choice(name: 'APP_BUILD_ENV', choices: ['dev', 'uat', 'staging'], description: 'build env: dev/uat/staging/prod')
     }
     options {
         // Stop the build early in case of compile or test failures
@@ -27,10 +28,27 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Build Dev') {
+            when { expression { $params.APP_BUILD_ENV == 'dev'} }
             steps {
                 script {
                     sh 'bundle exec fastlane build_dev'
+                }
+            }
+        }
+        stage('Build Uat') {
+            when { expression { $params.APP_BUILD_ENV == 'uat'} }
+            steps {
+                script {
+                    sh 'bundle exec fastlane build_uat'
+                }
+            }
+        }
+        stage('Build Staging') {
+            when { expression { $params.APP_BUILD_ENV == 'staging'} }
+            steps {
+                script {
+                    sh 'bundle exec fastlane build_staging'
                 }
             }
         }
@@ -54,11 +72,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
+            when { expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' } }
             steps {
                 script {
                     sh 'echo deploy'
