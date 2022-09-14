@@ -8,7 +8,7 @@ pipeline {
     }
     parameters {
         string(name: 'APP_BUILD_FOLDER', defaultValue: 'app/build', description: 'Application build output folder')
-        choice(name: 'APP_BUILD_ENV', choices: ['dev', 'uat', 'staging'], description: 'build env: dev/uat/staging/prod')
+        choice(name: 'APP_BUILD_ENV', choices: ['dev', 'uat', 'staging'], description: 'Pipeline build env: dev/uat/staging, default is dev')
     }
     options {
         // Stop the build early in case of compile or test failures
