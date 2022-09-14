@@ -1,7 +1,7 @@
-package com.thoughtworks.ark.ui.themes.icon
+package com.thoughtworks.ark.ui.themes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.dimensionResource
 
 @Composable
-fun getDimen(dimensId: Int) = dimensionResource(id = dimensId)
+fun getDimension(dimensId: Int) = dimensionResource(id = dimensId)

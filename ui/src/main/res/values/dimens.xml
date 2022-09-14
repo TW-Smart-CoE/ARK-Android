@@ -1,5 +1,4 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimension_1">1dp</dimen>
     <dimen name="dimension_4">4dp</dimen>
     <dimen name="dimension_8">8dp</dimen>

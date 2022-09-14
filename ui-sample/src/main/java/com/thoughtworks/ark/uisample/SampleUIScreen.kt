@@ -18,9 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.thoughtworks.ark.ui.themes.colors.APPExtendedColors
 import com.thoughtworks.ark.ui.themes.icon.AppIcon
 import com.thoughtworks.ark.ui.themes.icon.Icons
-import com.thoughtworks.ark.ui.themes.colors.APPExtendedColors
 import com.thoughtworks.ark.uisample.colorsystem.ComposeColorSystemActivity
 import com.thoughtworks.ark.uisample.colorsystem.XmlColorSystemActivity
 import com.thoughtworks.ark.uisample.state.Action
@@ -29,7 +29,7 @@ import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 
 @Composable
 fun SampleUIScreen(
-    sendAction: (Action) -> Unit
+    sendAction: (Action) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -37,14 +37,32 @@ fun SampleUIScreen(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         item {
-            // compose color system
-            Spacer(modifier = Modifier.height(20.dp))
-            Item(sendAction, ComposeColorSystemActivity::class.java, "color system test in compose")
-            // xml color system
-            Spacer(modifier = Modifier.height(20.dp))
-            Item(sendAction, XmlColorSystemActivity::class.java, "color system test in xml")
-            IconSample()
+            ComposeColorSystem(sendAction)
+            XMLColorSystem(sendAction)
+            IconSamples()
         }
+    }
+}
+
+@Composable
+private fun ComposeColorSystem(sendAction: (Action) -> Unit) {
+    Spacer(modifier = Modifier.height(20.dp))
+    Item(sendAction, ComposeColorSystemActivity::class.java, "color system test in compose")
+}
+
+@Composable
+private fun XMLColorSystem(sendAction: (Action) -> Unit) {
+    Spacer(modifier = Modifier.height(20.dp))
+    Item(sendAction, XmlColorSystemActivity::class.java, "color system test in xml")
+}
+
+@Composable
+private fun IconSamples() {
+    Spacer(modifier = Modifier.height(20.dp))
+    Row {
+        IconSample(Color.Green, Color.Black)
+        Spacer(modifier = Modifier.width(20.dp))
+        IconSample(Color.Black, Color.White)
     }
 }
 
@@ -52,7 +70,7 @@ fun SampleUIScreen(
 private fun Item(
     sendAction: (Action) -> Unit,
     destination: Class<out AppCompatActivity>,
-    title: String
+    title: String,
 ) {
     Button(
         modifier = Modifier
@@ -71,116 +89,67 @@ private fun Item(
 }
 
 @Composable
-private fun IconSample() {
-    Row {
-        Column {
-            Row {
-                Icons(
-                    icon = AppIcon.ArrowBack,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-                Icons(
-                    icon = AppIcon.More,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.Home,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-                Icons(
-                    icon = AppIcon.Menu,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.ArrowForward,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-                Icons(
-                    icon = AppIcon.Cancel,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.Delete,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-                Icons(
-                    icon = AppIcon.Search,
-                    tint = Color.Green,
-                    modifier = Modifier.background(Color.Black)
-                )
-            }
+private fun IconSample(tintColor: Color, backgroundColor: Color) {
+    Column {
+        Row {
+            Icons(
+                icon = AppIcon.ArrowBack,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+            Icons(
+                icon = AppIcon.ArrowForward,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
         }
-
-        Spacer(modifier = Modifier.width(20.dp))
-
-        Column {
-            Row {
-                Icons(
-                    icon = AppIcon.ArrowBack,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-                Icons(
-                    icon = AppIcon.More,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.Home,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-                Icons(
-                    icon = AppIcon.Menu,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.ArrowForward,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-                Icons(
-                    icon = AppIcon.Cancel,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-            }
-
-            Row {
-                Icons(
-                    icon = AppIcon.Delete,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-                Icons(
-                    icon = AppIcon.Search,
-                    tint = Color.Black,
-                    modifier = Modifier.background(Color.White)
-                )
-            }
+        Row {
+            Icons(
+                icon = AppIcon.Home,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+            Icons(
+                icon = AppIcon.Menu,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+        }
+        Row {
+            Icons(
+                icon = AppIcon.Close,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+            Icons(
+                icon = AppIcon.Cancel,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+        }
+        Row {
+            Icons(
+                icon = AppIcon.Delete,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+            Icons(
+                icon = AppIcon.Search,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+        }
+        Row {
+            Icons(
+                icon = AppIcon.More,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
+            Icons(
+                icon = AppIcon.Favorite,
+                tint = tintColor,
+                modifier = Modifier.background(backgroundColor)
+            )
         }
     }
 }
