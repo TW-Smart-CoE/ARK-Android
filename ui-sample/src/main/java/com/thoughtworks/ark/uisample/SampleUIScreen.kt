@@ -65,17 +65,17 @@ fun SampleUIScreen(
 @Composable
 private fun ComposeColorSystem(sendAction: (Action) -> Unit) {
     Item(modifier = Modifier.padding(top = Dimensions.standardSpacing),
-        sendAction = sendAction,
+        title = "color system test in compose",
         destination = ComposeColorSystemActivity::class.java,
-        title = "color system test in compose")
+        sendAction = sendAction)
 }
 
 @Composable
 private fun XMLColorSystem(sendAction: (Action) -> Unit) {
     Item(modifier = Modifier.padding(top = Dimensions.standardSpacing),
-        sendAction = sendAction,
+        title = "color system test in xml",
         destination = XmlColorSystemActivity::class.java,
-        title = "color system test in xml")
+        sendAction = sendAction)
 }
 
 @Composable
@@ -90,9 +90,9 @@ private fun IconSamples() {
 @Composable
 private fun Item(
     modifier: Modifier = Modifier,
-    sendAction: (Action) -> Unit,
-    destination: Class<out AppCompatActivity>,
     title: String,
+    destination: Class<out AppCompatActivity>,
+    sendAction: (Action) -> Unit,
 ) {
     Button(
         modifier = modifier

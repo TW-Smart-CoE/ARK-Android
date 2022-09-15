@@ -9,10 +9,10 @@ import com.thoughtworks.ark.ui.themes.colors.toColors
 
 @Composable
 fun Theme(content: @Composable () -> Unit) {
-    val appThemeColors = AttrColors().toColors()
+    val colors = AttrColors().toColors()
 
     CompositionLocalProvider(
-        LocalColors provides appThemeColors,
+        LocalColors provides colors,
         content = content
     )
 }
