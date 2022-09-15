@@ -23,11 +23,15 @@
     <color name="light_blue_300">#4FC3F7</color>
 
     <!-- White -->
-    <color name="black">#FF000000</color>
-
-    <!--Black-->
     <color name="white">#FFFFFFFF</color>
 
+    <!--Black-->
+    <color name="black">#FF000000</color>
+
+    <!-- Grey-->
+    <color name="grey100">#FFF5F5F5</color>
+    <color name="grey200">#FFEEEEEE</color>
+    <color name="grey700">#FF616161</color>
 
 </resources>
 

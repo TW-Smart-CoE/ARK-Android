@@ -2,7 +2,6 @@ package com.thoughtworks.ark.ui.home.feeds.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,12 +13,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
 import com.thoughtworks.ark.ui.home.feeds.FeedUiState
 import com.thoughtworks.ark.ui.home.feeds.FeedViewModel
+import com.thoughtworks.ark.ui.themes.Dimensions
+import com.thoughtworks.ark.ui.themes.Theme
 
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = viewModel()) {
@@ -33,24 +33,26 @@ fun FeedScreen(viewModel: FeedViewModel = viewModel()) {
 @Composable
 fun FeedScreenContent(
     uiState: FeedUiState,
-    dispatcherAction: (FeedUiAction) -> Unit
+    dispatcherAction: (FeedUiAction) -> Unit,
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        Spacer(modifier = Modifier.height(12.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Theme.colors.background)
+    ) {
         Button(
             onClick = {
                 dispatcherAction(FeedUiAction.FeedListAction)
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-                .padding(start = 4.dp, end = 4.dp)
-                .background(Color.Blue)
+                .height(Dimensions.dimension48)
+                .padding(horizontal = Dimensions.standardPadding)
         ) {
             Text(
                 text = "GetFeedList",
                 fontSize = 15.sp,
-                color = Color.White
+                color = Theme.colors.onPrimary
             )
         }
 
@@ -58,7 +60,7 @@ fun FeedScreenContent(
             text = uiState.dataText ?: "has null data",
             fontSize = 15.sp,
             color = Color.Black,
-            modifier = Modifier.padding(4.dp)
+            modifier = Modifier.padding(Dimensions.standardPadding)
         )
     }
 }

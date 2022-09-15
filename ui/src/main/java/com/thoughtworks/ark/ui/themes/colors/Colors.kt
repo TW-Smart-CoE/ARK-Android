@@ -28,7 +28,7 @@ data class Colors(
 
 @Composable
 fun AttrColors.toColors() =
-    R.style.Theme_APP.let { themeId ->
+    R.style.Theme_App.let { themeId ->
         val context = LocalContext.current
         Colors(
             primary = obtainAttrColorToColor(context, themeId, this.primary),
