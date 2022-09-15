@@ -9,7 +9,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetClass="com.thoughtworks.ark.developmenu.DevelopMenuActivity"
-            android:targetPackage="com.thoughtworks.ark" />
+            android:targetPackage="com.thoughtworks.ark.dev" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>
