@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Basic Color-->
     <!-- Purple -->
     <color name="purple_200">#FFBB86FC</color>
@@ -11,6 +11,7 @@
     <color name="teal_700">#FF018786</color>
 
     <!-- Red -->
+    <color name="red_250">#FFCF6679</color>
     <color name="red_700">#FFB00020</color>
     <color name="red_900">#FFFF0020</color>
 
@@ -27,11 +28,19 @@
 
     <!--Black-->
     <color name="black">#FF000000</color>
+    <color name="black50">#FF121212</color>
 
     <!-- Grey-->
+    <color name="grey50" tools:ignore="MissingDefaultResource">#FFFAFAFA</color>
     <color name="grey100">#FFF5F5F5</color>
     <color name="grey200">#FFEEEEEE</color>
+    <color name="grey300" tools:ignore="MissingDefaultResource">#FFE0E0E0</color>
+    <color name="grey400" tools:ignore="MissingDefaultResource">#FFBDBDBD</color>
+    <color name="grey500" tools:ignore="MissingDefaultResource">#FF9E9E9E</color>
+    <color name="grey600" tools:ignore="MissingDefaultResource">#FF757575</color>
     <color name="grey700">#FF616161</color>
+    <color name="grey800" tools:ignore="MissingDefaultResource">#FF424242</color>
+    <color name="grey900" tools:ignore="MissingDefaultResource">#FF212121</color>
 
 </resources>
 

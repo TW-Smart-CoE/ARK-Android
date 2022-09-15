@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.ui.component.AppButtonDefault
 import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
 import com.thoughtworks.ark.ui.home.feeds.FeedUiState
 import com.thoughtworks.ark.ui.home.feeds.FeedViewModel
@@ -47,7 +47,8 @@ fun FeedScreenContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(Dimensions.standardPadding)
-                .height(Dimensions.dimension48)
+                .height(Dimensions.dimension48),
+            colors = AppButtonDefault.textButtonColors()
         ) {
             Text(
                 text = "GetFeedList",
@@ -59,7 +60,7 @@ fun FeedScreenContent(
         Text(
             text = uiState.dataText ?: "has null data",
             fontSize = 15.sp,
-            color = Color.Black,
+            color = Theme.colors.onBackground,
             modifier = Modifier.padding(Dimensions.standardPadding)
         )
     }

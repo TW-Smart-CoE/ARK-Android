@@ -9,22 +9,23 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
 
         <!-- background -->
         <item name="backgroundColor">@color/white</item>
-        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
 
         <!-- error -->
         <item name="colorError">@color/red_700</item>
-        <item name="colorOnError">@color/red_700</item>
+        <item name="colorOnError">@color/white</item>
 
         <!-- surface -->
         <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
 
         <!-- Status bar color. -->
         <item name="statusBarBackground">?attr/backgroundColor</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <!-- Customize your theme here. -->
         <item name="APPColor.BackgroundBlue">@color/light_blue_300</item>

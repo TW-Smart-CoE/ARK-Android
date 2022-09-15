@@ -17,14 +17,14 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.thoughtworks.ark.ui.component.AppButtonDefault
 import com.thoughtworks.ark.ui.theme.Dimensions
-import com.thoughtworks.ark.ui.theme.color.ExtendedColors
+import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.icon.AppIcon
 import com.thoughtworks.ark.ui.theme.icon.Icons
 import com.thoughtworks.ark.uisample.colorsystem.ComposeColorSystemActivity
@@ -45,7 +45,9 @@ fun SampleUIScreen(
             bottom = Dimensions.standardPadding))
         .asPaddingValues()
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Theme.colors.background),
         horizontalAlignment = Alignment.CenterHorizontally,
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(Dimensions.standardPadding)
@@ -102,10 +104,7 @@ private fun Item(
         onClick = {
             sendAction.invoke(NavigateActivityAction(destination))
         },
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = ExtendedColors.ButtonBackground.color(),
-            contentColor = ExtendedColors.ButtonContent.color()
-        )
+        colors = AppButtonDefault.textButtonColors()
     ) {
         Text(title, modifier = Modifier.align(Alignment.CenterVertically))
     }
