@@ -3,7 +3,7 @@ package com.thoughtworks.ark.ui.themes.colors
 import androidx.annotation.AttrRes
 import com.thoughtworks.ark.ui.R
 
-data class APPThemeAttrColors(
+data class AttrColors(
     // Material attributes
     @AttrRes val primary: Int = com.google.android.material.R.attr.colorPrimary,
     @AttrRes val primaryVariant: Int = com.google.android.material.R.attr.colorPrimaryVariant,

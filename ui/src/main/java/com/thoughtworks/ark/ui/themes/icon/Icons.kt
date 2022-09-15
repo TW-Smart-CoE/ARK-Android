@@ -1,29 +1,28 @@
 package com.thoughtworks.ark.ui.themes.icon
 
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.annotation.DrawableRes
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.thoughtworks.ark.ui.R
 
-val small = 12.dp
-val normal = 24.dp
-val big = 36.dp
+object Icons {
+    val ArrowBack = R.drawable.ic_arrow_back
+    val ArrowForward = R.drawable.ic_arrow_forward
+    val Close = R.drawable.ic_close
+    val Cancel = R.drawable.ic_cancel
+    val Delete = R.drawable.ic_delete
+    val Home = R.drawable.ic_home
+    val Menu = R.drawable.ic_menu
+    val More = R.drawable.ic_more
+    val Favorite = R.drawable.ic_favorite
+    val Search = R.drawable.ic_search
+    val Dashboard = R.drawable.ic_dashboard
+    val Notification = R.drawable.ic_notifications
+}
 
-@Composable
-fun Icons(
-    modifier: Modifier = Modifier,
-    icon: AppIcon,
-    size: Dp = normal,
-    tint: Color = Color.Transparent
-) {
-    Icon(
-        painter = painterResource(id = icon.resourceId),
-        contentDescription = "",
-        modifier = Modifier.size(size).then(modifier),
-        tint = tint
-    )
+/**
+ * A sealed class to make dealing with [ImageVector] and [DrawableRes] icons easier.
+ */
+sealed class Icon {
+    data class ImageVectorIcon(val imageVector: ImageVector) : Icon()
+    data class DrawableResourceIcon(@DrawableRes val id: Int) : Icon()
 }

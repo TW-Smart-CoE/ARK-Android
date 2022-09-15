@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.thoughtworks.ark.R
-import com.thoughtworks.ark.ui.themes.APPTheme
+import com.thoughtworks.ark.ui.themes.Theme
 
 class DevelopMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class DevelopMenuActivity : AppCompatActivity() {
         setupWindow()
 
         setContent {
-            APPTheme {
+            Theme {
                 DevelopMenuScreen()
             }
         }
@@ -45,12 +45,12 @@ class DevelopMenuActivity : AppCompatActivity() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = APPTheme.colors.background)
+                .background(color = Theme.colors.background)
         ) {
             Text(
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp),
                 text = stringResource(id = R.string.develop_menu_label),
-                color = APPTheme.colors.primary,
+                color = Theme.colors.primary,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold
             )

@@ -6,8 +6,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
@@ -17,8 +23,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import com.thoughtworks.ark.ui.themes.colors.APPExtendedColors
+import com.thoughtworks.ark.ui.themes.Dimensions
+import com.thoughtworks.ark.ui.themes.colors.ExtendedColors
 import com.thoughtworks.ark.ui.themes.icon.AppIcon
 import com.thoughtworks.ark.ui.themes.icon.Icons
 import com.thoughtworks.ark.uisample.colorsystem.ComposeColorSystemActivity
@@ -31,14 +37,26 @@ import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 fun SampleUIScreen(
     sendAction: (Action) -> Unit,
 ) {
+    val contentPadding = WindowInsets
+        .systemBars
+        .add(WindowInsets(left = Dimensions.standardPadding,
+            top = Dimensions.standardPadding,
+            right = Dimensions.standardPadding,
+            bottom = Dimensions.standardPadding))
+        .asPaddingValues()
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        contentPadding = contentPadding,
+        verticalArrangement = Arrangement.spacedBy(Dimensions.standardPadding)
     ) {
         item {
             ComposeColorSystem(sendAction)
+        }
+        item {
             XMLColorSystem(sendAction)
+        }
+        item {
             IconSamples()
         }
     }
@@ -46,42 +64,47 @@ fun SampleUIScreen(
 
 @Composable
 private fun ComposeColorSystem(sendAction: (Action) -> Unit) {
-    Spacer(modifier = Modifier.height(20.dp))
-    Item(sendAction, ComposeColorSystemActivity::class.java, "color system test in compose")
+    Item(modifier = Modifier.padding(top = Dimensions.standardSpacing),
+        sendAction = sendAction,
+        destination = ComposeColorSystemActivity::class.java,
+        title = "color system test in compose")
 }
 
 @Composable
 private fun XMLColorSystem(sendAction: (Action) -> Unit) {
-    Spacer(modifier = Modifier.height(20.dp))
-    Item(sendAction, XmlColorSystemActivity::class.java, "color system test in xml")
+    Item(modifier = Modifier.padding(top = Dimensions.standardSpacing),
+        sendAction = sendAction,
+        destination = XmlColorSystemActivity::class.java,
+        title = "color system test in xml")
 }
 
 @Composable
 private fun IconSamples() {
-    Spacer(modifier = Modifier.height(20.dp))
-    Row {
+    Row(modifier = Modifier.padding(top = Dimensions.standardSpacing)) {
         IconSample(Color.Green, Color.Black)
-        Spacer(modifier = Modifier.width(20.dp))
+        Spacer(modifier = Modifier.width(Dimensions.standardSpacing))
         IconSample(Color.Black, Color.White)
     }
 }
 
 @Composable
 private fun Item(
+    modifier: Modifier = Modifier,
     sendAction: (Action) -> Unit,
     destination: Class<out AppCompatActivity>,
     title: String,
 ) {
     Button(
-        modifier = Modifier
-            .width(300.dp)
-            .height(40.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(Dimensions.dimension40)
+            .padding(horizontal = Dimensions.standardPadding),
         onClick = {
             sendAction.invoke(NavigateActivityAction(destination))
         },
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = APPExtendedColors.ButtonBackground.colorValue(),
-            contentColor = APPExtendedColors.ButtonContent.colorValue()
+            backgroundColor = ExtendedColors.ButtonBackground.color(),
+            contentColor = ExtendedColors.ButtonContent.color()
         )
     ) {
         Text(title, modifier = Modifier.align(Alignment.CenterVertically))
@@ -92,63 +115,63 @@ private fun Item(
 private fun IconSample(tintColor: Color, backgroundColor: Color) {
     Column {
         Row {
-            Icons(
-                icon = AppIcon.ArrowBack,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.ArrowBack,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
             )
-            Icons(
-                icon = AppIcon.ArrowForward,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.ArrowForward,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
-            )
-        }
-        Row {
-            Icons(
-                icon = AppIcon.Home,
-                tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
-            )
-            Icons(
-                icon = AppIcon.Menu,
-                tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
             )
         }
         Row {
-            Icons(
-                icon = AppIcon.Close,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Home,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
             )
-            Icons(
-                icon = AppIcon.Cancel,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Menu,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
-            )
-        }
-        Row {
-            Icons(
-                icon = AppIcon.Delete,
-                tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
-            )
-            Icons(
-                icon = AppIcon.Search,
-                tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
             )
         }
         Row {
-            Icons(
-                icon = AppIcon.More,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Close,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
             )
-            Icons(
-                icon = AppIcon.Favorite,
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Cancel,
                 tint = tintColor,
-                modifier = Modifier.background(backgroundColor)
+            )
+        }
+        Row {
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Delete,
+                tint = tintColor,
+            )
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Search,
+                tint = tintColor,
+            )
+        }
+        Row {
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.More,
+                tint = tintColor,
+            )
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icons.Favorite,
+                tint = tintColor,
             )
         }
     }

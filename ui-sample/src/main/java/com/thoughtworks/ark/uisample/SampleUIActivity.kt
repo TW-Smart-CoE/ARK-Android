@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.thoughtworks.ark.ui.themes.APPTheme
-import com.thoughtworks.ark.ui.themes.colors.LocalAPPThemeColors
+import com.thoughtworks.ark.ui.themes.Theme
+import com.thoughtworks.ark.ui.themes.colors.LocalColors
 import com.thoughtworks.ark.uisample.state.Action
 import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 
@@ -15,9 +15,9 @@ class SampleUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            APPTheme {
+            Theme {
                 val systemUiController = rememberSystemUiController()
-                val statusBarColor = LocalAPPThemeColors.current.statusBarColor
+                val statusBarColor = LocalColors.current.statusBarColor
 
                 LaunchedEffect(statusBarColor) {
                     systemUiController.setStatusBarColor(statusBarColor)

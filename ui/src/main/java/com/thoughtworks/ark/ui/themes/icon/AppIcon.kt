@@ -1,17 +1,49 @@
 package com.thoughtworks.ark.ui.themes.icon
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import com.thoughtworks.ark.ui.R
 
-enum class AppIcon(@DrawableRes val resourceId: Int) {
-    ArrowBack(R.drawable.ic_arrow_back),
-    ArrowForward(R.drawable.ic_arrow_forward),
-    Close(R.drawable.ic_close),
-    Cancel(R.drawable.ic_cancel),
-    Delete(R.drawable.ic_delete),
-    Home(R.drawable.ic_home),
-    Menu(R.drawable.ic_menu),
-    More(R.drawable.ic_more),
-    Favorite(R.drawable.ic_favorite),
-    Search(R.drawable.ic_search),
+@Composable
+fun AppIcon(
+    modifier: Modifier = Modifier,
+    @DrawableRes icon: Int,
+    size: Dp = dimensionResource(id = R.dimen.icon_normal),
+    tint: Color = Color.Transparent,
+    contentDescription: String = "",
+) {
+    Icon(
+        painter = painterResource(id = icon),
+        contentDescription = contentDescription,
+        modifier = Modifier
+            .size(size)
+            .then(modifier),
+        tint = tint
+    )
+}
+
+@Composable
+fun AppIcon(
+    modifier: Modifier = Modifier,
+    imageVector: ImageVector,
+    size: Dp = dimensionResource(id = R.dimen.icon_normal),
+    tint: Color = Color.Transparent,
+    contentDescription: String = "",
+) {
+    Icon(
+        imageVector = imageVector,
+        contentDescription = contentDescription,
+        modifier = Modifier
+            .size(size)
+            .then(modifier),
+        tint = tint
+    )
 }

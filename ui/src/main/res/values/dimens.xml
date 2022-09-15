@@ -1,5 +1,6 @@
 <resources>
     <dimen name="dimension_1">1dp</dimen>
+    <dimen name="dimension_2">2dp</dimen>
     <dimen name="dimension_4">4dp</dimen>
     <dimen name="dimension_8">8dp</dimen>
     <dimen name="dimension_10">10dp</dimen>
@@ -13,4 +14,15 @@
     <dimen name="dimension_40">40dp</dimen>
     <dimen name="dimension_44">44dp</dimen>
     <dimen name="dimension_48">48dp</dimen>
+
+    <dimen name="standard_padding">@dimen/dimension_16</dimen>
+    <dimen name="half_padding">@dimen/dimension_8</dimen>
+    <dimen name="small_padding">@dimen/dimension_4</dimen>
+
+    <dimen name="divider">@dimen/dimension_1</dimen>
+    <dimen name="standard_spacing">@dimen/dimension_20</dimen>
+
+    <dimen name="icon_small">@dimen/dimension_24</dimen>
+    <dimen name="icon_medium">@dimen/dimension_32</dimen>
+    <dimen name="icon_normal">@dimen/dimension_48</dimen>
 </resources>

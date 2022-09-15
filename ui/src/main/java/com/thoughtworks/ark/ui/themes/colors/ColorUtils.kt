@@ -16,17 +16,17 @@ fun isNightMode(context: Context) =
 /**
  *  get the attr color from the theme
  */
-fun obtainThemeAttrColorToColor(
+fun obtainAttrColorToColor(
     context: Context,
     @StyleRes themeId: Int,
     @AttrRes attrResId: Int
-) = Color(obtainThemeAttrColorToColorInt(context, themeId, attrResId))
+) = Color(obtainAttrColorToColorInt(context, themeId, attrResId))
 
 
 /**
  *  get the attr color Int from the theme
  */
-fun obtainThemeAttrColorToColorInt(
+fun obtainAttrColorToColorInt(
     context: Context,
     @StyleRes themeId: Int,
     @AttrRes attrResId: Int
@@ -39,8 +39,8 @@ fun obtainThemeAttrColorToColorInt(
 /**
  *   get the attr color from the theme and transform to color state list
  */
-fun obtainThemeAttrColorToStateList(
+fun obtainAttrColorToStateList(
     context: Context,
     @StyleRes themeId: Int,
     @AttrRes attrResId: Int
-) = ColorStateList.valueOf(obtainThemeAttrColorToColorInt(context, themeId, attrResId))
+) = ColorStateList.valueOf(obtainAttrColorToColorInt(context, themeId, attrResId))
