@@ -6,9 +6,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
-import com.thoughtworks.ark.ui.themes.Theme
-import com.thoughtworks.ark.ui.themes.colors.ExtendedColors
-import com.thoughtworks.ark.ui.themes.colors.LocalColors
+import com.thoughtworks.ark.ui.theme.Theme
+import com.thoughtworks.ark.ui.theme.color.ExtendedColors
+import com.thoughtworks.ark.ui.theme.color.LocalColors
 import com.thoughtworks.ark.uisample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {

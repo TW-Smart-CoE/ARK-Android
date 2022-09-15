@@ -13,9 +13,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
-import com.thoughtworks.ark.ui.themes.Dimensions
-import com.thoughtworks.ark.ui.themes.Theme
-import com.thoughtworks.ark.ui.themes.colors.ExtendedColors
+import com.thoughtworks.ark.ui.theme.Dimensions
+import com.thoughtworks.ark.ui.theme.Theme
+import com.thoughtworks.ark.ui.theme.color.ExtendedColors
 import com.thoughtworks.ark.uisample.R
 
 @Composable

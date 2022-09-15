@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.themes
+package com.thoughtworks.ark.ui.theme
 
 import androidx.compose.ui.unit.dp
 

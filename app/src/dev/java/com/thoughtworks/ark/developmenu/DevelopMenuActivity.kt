@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.thoughtworks.ark.R
-import com.thoughtworks.ark.ui.themes.Theme
+import com.thoughtworks.ark.ui.theme.Theme
 
 class DevelopMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

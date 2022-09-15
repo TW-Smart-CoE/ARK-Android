@@ -18,8 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
 import com.thoughtworks.ark.ui.home.feeds.FeedUiState
 import com.thoughtworks.ark.ui.home.feeds.FeedViewModel
-import com.thoughtworks.ark.ui.themes.Dimensions
-import com.thoughtworks.ark.ui.themes.Theme
+import com.thoughtworks.ark.ui.theme.Dimensions
+import com.thoughtworks.ark.ui.theme.Theme
 
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = viewModel()) {

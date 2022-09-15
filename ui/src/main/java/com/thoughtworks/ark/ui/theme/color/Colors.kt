@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.themes.colors
+package com.thoughtworks.ark.ui.theme.color
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable

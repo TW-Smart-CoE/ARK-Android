@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.thoughtworks.ark.ui.themes.Theme
-import com.thoughtworks.ark.ui.themes.colors.LocalColors
+import com.thoughtworks.ark.ui.theme.Theme
+import com.thoughtworks.ark.ui.theme.color.LocalColors
 import com.thoughtworks.ark.uisample.state.Action
 import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 

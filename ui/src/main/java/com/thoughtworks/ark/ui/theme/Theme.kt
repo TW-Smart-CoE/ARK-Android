@@ -1,11 +1,11 @@
-package com.thoughtworks.ark.ui.themes
+package com.thoughtworks.ark.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import com.thoughtworks.ark.ui.themes.colors.AttrColors
-import com.thoughtworks.ark.ui.themes.colors.Colors
-import com.thoughtworks.ark.ui.themes.colors.LocalColors
-import com.thoughtworks.ark.ui.themes.colors.toColors
+import com.thoughtworks.ark.ui.theme.color.AttrColors
+import com.thoughtworks.ark.ui.theme.color.Colors
+import com.thoughtworks.ark.ui.theme.color.LocalColors
+import com.thoughtworks.ark.ui.theme.color.toColors
 
 @Composable
 fun Theme(content: @Composable () -> Unit) {

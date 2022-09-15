@@ -23,10 +23,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.thoughtworks.ark.ui.themes.Dimensions
-import com.thoughtworks.ark.ui.themes.colors.ExtendedColors
-import com.thoughtworks.ark.ui.themes.icon.AppIcon
-import com.thoughtworks.ark.ui.themes.icon.Icons
+import com.thoughtworks.ark.ui.theme.Dimensions
+import com.thoughtworks.ark.ui.theme.color.ExtendedColors
+import com.thoughtworks.ark.ui.theme.icon.AppIcon
+import com.thoughtworks.ark.ui.theme.icon.Icons
 import com.thoughtworks.ark.uisample.colorsystem.ComposeColorSystemActivity
 import com.thoughtworks.ark.uisample.colorsystem.XmlColorSystemActivity
 import com.thoughtworks.ark.uisample.state.Action

@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.themes.icon
+package com.thoughtworks.ark.ui.theme.icon
 
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.vector.ImageVector

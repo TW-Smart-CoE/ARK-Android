@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.themes.colors
+package com.thoughtworks.ark.ui.theme.color
 
 import android.content.Context
 import androidx.annotation.ColorRes
