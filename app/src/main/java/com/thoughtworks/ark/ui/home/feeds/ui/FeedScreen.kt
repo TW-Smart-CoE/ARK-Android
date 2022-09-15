@@ -46,8 +46,8 @@ fun FeedScreenContent(
             },
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(Dimensions.standardPadding)
                 .height(Dimensions.dimension48)
-                .padding(horizontal = Dimensions.standardPadding)
         ) {
             Text(
                 text = "GetFeedList",
