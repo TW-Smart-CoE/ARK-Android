@@ -24,6 +24,7 @@ retrofit = "2.9.0"
 retrofit_kotlinx_serialization_json = "0.8.0"
 okhttp_logging = "4.10.0"
 systemuicontroller = "0.17.0"
+accompanist = "0.24.8-beta"
 
 # test
 arch_test = "2.1.0"
@@ -51,6 +52,7 @@ constraintLayout = { module = "androidx.constraintlayout:constraintlayout", vers
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "core_ktx" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "systemuicontroller" }
+accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 
 # lifecycle
 lifecycle-liveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "arch_lifecycle" }

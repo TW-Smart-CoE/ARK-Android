@@ -11,13 +11,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import com.thoughtworks.ark.ui.R
+import com.thoughtworks.ark.ui.theme.Theme
 
 @Composable
 fun AppIcon(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int,
     size: Dp = dimensionResource(id = R.dimen.icon_normal),
-    tint: Color = Color.Transparent,
+    tint: Color = Theme.colors.primary,
     contentDescription: String = "",
 ) {
     Icon(
@@ -35,7 +36,7 @@ fun AppIcon(
     modifier: Modifier = Modifier,
     imageVector: ImageVector,
     size: Dp = dimensionResource(id = R.dimen.icon_normal),
-    tint: Color = Color.Transparent,
+    tint: Color = Theme.colors.primary,
     contentDescription: String = "",
 ) {
     Icon(

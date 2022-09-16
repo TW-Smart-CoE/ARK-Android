@@ -14,6 +14,8 @@ import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 class SampleUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+
         setContent {
             Theme {
                 val systemUiController = rememberSystemUiController()

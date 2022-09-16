@@ -24,6 +24,7 @@ dependencies {
     implementation(libs.bundles.android)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.compose)
+    implementation(libs.accompanist.flowlayout)
 
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.junit)

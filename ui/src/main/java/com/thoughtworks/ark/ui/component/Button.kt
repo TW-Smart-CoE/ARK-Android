@@ -233,7 +233,8 @@ private fun RowScope.AppButtonContent(
     trailingIcon: @Composable (() -> Unit)?,
 ) {
     leadingIcon?.run {
-        Box(Modifier.sizeIn(maxHeight = AppButtonDefault.ButtonIconSize)) {
+        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize,
+            maxHeight = AppButtonDefault.ButtonIconSize)) {
             leadingIcon()
         }
     }
@@ -247,15 +248,16 @@ private fun RowScope.AppButtonContent(
         text()
     }
     trailingIcon?.run {
-        Box(Modifier.sizeIn(maxHeight = AppButtonDefault.ButtonIconSize)) {
+        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize,
+            maxHeight = AppButtonDefault.ButtonIconSize)) {
             trailingIcon()
         }
     }
 }
 
 object AppButtonDefault {
-    private const val DisabledButtonBackgroundAlpha = 0.12f
-    private const val DisabledButtonContentAlpha = 0.38f
+    const val DisabledButtonBackgroundAlpha = 0.12f
+    const val DisabledButtonContentAlpha = 0.38f
     val SmallButtonHeight = Dimensions.dimension32
     private val ButtonHorizontalPadding = Dimensions.dimension24
     private val ButtonHorizontalIconPadding = Dimensions.dimension16
