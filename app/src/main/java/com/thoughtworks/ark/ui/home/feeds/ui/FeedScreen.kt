@@ -8,9 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
 import com.thoughtworks.ark.ui.home.feeds.FeedUiState
@@ -32,12 +34,21 @@ fun FeedScreenContent(
     uiState: FeedUiState,
     dispatchAction: (FeedUiAction) -> Unit,
 ) {
+    val logoThoughtworks =
+        """https://www.thoughtworks.com/etc.clientlibs/thoughtworks/
+            |clientlibs/clientlib-site/resources/images/thoughtworks-logo.svg
+        """.trimMargin()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {
+        AsyncImage(
+            model = logoThoughtworks,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            contentDescription = "Thoughtworks"
+        )
         AppFilledButton(
             onClick = { dispatchAction(FeedUiAction.FeedListAction) },
             text = { Text(text = "GetFeedList") }

@@ -25,6 +25,7 @@ retrofit_kotlinx_serialization_json = "0.8.0"
 okhttp_logging = "4.10.0"
 systemuicontroller = "0.17.0"
 accompanist = "0.24.8-beta"
+coil = "2.2.1"
 
 # test
 arch_test = "2.1.0"
@@ -87,6 +88,11 @@ okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.
 # detekt
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
+# Coil
+coil-kt = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-kt-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-kt-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+
 # test
 junit4 = { module = "junit:junit", version.ref = "junit" }
 kotlin-coroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx_coroutines" }
@@ -120,6 +126,7 @@ android = [
 navigation = ["navigation-compose", "navigation-fragmentKtx", "navigation-uiKtx"]
 retrofit = ["retrofit-core", "retrofit-kotlin-serialization", "okhttp-logging"]
 unitTest = ["junit4", "kotlin-coroutinesTest", "mockk", "mockk-agent", "truth"]
+coil = ["coil-kt", "coil-kt-compose", "coil-kt-svg"]
 
 [plugins]
 application = { id = "com.android.application", version.ref = "gradle" }
