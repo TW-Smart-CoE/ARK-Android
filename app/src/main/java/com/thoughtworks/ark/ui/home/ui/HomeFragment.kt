@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home
+package com.thoughtworks.ark.ui.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,12 +16,10 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        return ComposeView(requireContext()).apply {
-            setContent {
-                Theme {
-                    FeedScreen()
-                }
+    ): View = ComposeView(requireContext()).apply {
+        setContent {
+            Theme {
+                FeedScreen()
             }
         }
     }

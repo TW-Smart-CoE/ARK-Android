@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote
+package com.thoughtworks.ark.ui.home.feeds.data.repository.source
 
 import com.thoughtworks.ark.core.network.api.ApiService
 import com.thoughtworks.ark.core.network.client.ApiEndPoints
@@ -14,7 +14,7 @@ private interface RetrofitFeedApi {
     suspend fun getFeedList(): Response<FeedListEntity>
 }
 
-class RetrofitFeedApiDataSource @Inject constructor(apiEndPoints: ApiEndPoints) :
+class RemoteFeedApiDataSource @Inject constructor(apiEndPoints: ApiEndPoints) :
     ApiService(), FeedApiDataSource {
     private val apiService = apiEndPoints.createService(
         RetrofitFeedApi::class.java,

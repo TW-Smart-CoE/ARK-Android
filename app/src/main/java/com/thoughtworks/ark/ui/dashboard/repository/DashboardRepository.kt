@@ -1,5 +1,6 @@
-package com.thoughtworks.ark.ui.dashboard
+package com.thoughtworks.ark.ui.dashboard.repository
 
+import com.thoughtworks.ark.ui.dashboard.repository.source.DashboardDataSource
 import com.thoughtworks.ark.ui.dashboard.di.LocalDataSource
 import com.thoughtworks.ark.ui.dashboard.di.RemoteDataSource
 import kotlinx.coroutines.delay

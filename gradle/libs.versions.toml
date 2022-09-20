@@ -56,7 +56,6 @@ systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicont
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 
 # lifecycle
-lifecycle-liveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "arch_lifecycle" }
 lifecycle-runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "arch_lifecycle" }
 lifecycle-viewModelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "arch_lifecycle" }
 lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "arch_lifecycle_extension" }
@@ -65,7 +64,6 @@ lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", ver
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity_compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
-compose-runtimeLivedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
 compose-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "arch_lifecycle" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
@@ -112,7 +110,6 @@ compose = [
     "compose-activity",
     "compose-material",
     "compose-runtime",
-    "compose-runtimeLivedata",
     "compose-viewModel",
     "compose-ui",
     "compose-uiTooling",
@@ -121,7 +118,7 @@ compose = [
 kotlin = ["kotlin-stdlib", "kotlin-coroutines", "kotlin-serialization-json"]
 android = [
     "appcompat", "constraintLayout", "coreKtx", "material",
-    "lifecycle-liveDataKtx", "lifecycle-runtimeKtx", "lifecycle-viewModelKtx", "systemuicontroller"
+    "lifecycle-runtimeKtx", "lifecycle-viewModelKtx", "systemuicontroller"
 ]
 navigation = ["navigation-compose", "navigation-fragmentKtx", "navigation-uiKtx"]
 retrofit = ["retrofit-core", "retrofit-kotlin-serialization", "okhttp-logging"]

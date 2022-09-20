@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote
+package com.thoughtworks.ark.ui.home.feeds.data.repository.source
 
 import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity

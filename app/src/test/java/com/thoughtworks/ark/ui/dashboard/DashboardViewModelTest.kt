@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.thoughtworks.ark.MainCoroutineRule
 import com.thoughtworks.ark.captureValues
+import com.thoughtworks.ark.ui.dashboard.repository.DashboardRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,13 +1,18 @@
 package com.thoughtworks.ark.ui.notifications
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NotificationsViewModel : ViewModel() {
+data class NotificationsUiState(
+    val label: String = "",
+)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
-    }
-    val text: LiveData<String> = _text
+@HiltViewModel
+class NotificationsViewModel @Inject constructor() : ViewModel() {
+    var state by mutableStateOf(NotificationsUiState(label = "This is notifications Fragment"))
+        private set
 }

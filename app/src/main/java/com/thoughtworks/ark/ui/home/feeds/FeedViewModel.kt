@@ -8,15 +8,13 @@ import com.thoughtworks.ark.ui.home.feeds.data.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class FeedUiState(
-    val dataText: String? = "",
-    val testDataText: String? = ""
+    val dataText: String? = ""
 )
 
 sealed class FeedUiAction {
@@ -29,20 +27,19 @@ class FeedViewModel @Inject constructor(
     private val userRepo: FeedRepository
 ) : ViewModel() {
 
-    private val homeUiState = MutableStateFlow(FeedUiState())
-    val uiState = homeUiState
-        .map { it }
+    private val _uiState = MutableStateFlow(FeedUiState())
+    val uiState = _uiState
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
-            homeUiState.value
+            _uiState.value
         )
 
     private fun getFeedList() {
         viewModelScope.launch {
-            homeUiState.update { it.copy(dataText = LOADING) }
+            _uiState.update { it.copy(dataText = LOADING) }
             userRepo.getFeedList().collect { res ->
-                homeUiState.update {
+                _uiState.update {
                     val result = when (res) {
                         is Result.Loading -> LOADING
                         is Result.Success -> res.data?.data?.get(0).toString()

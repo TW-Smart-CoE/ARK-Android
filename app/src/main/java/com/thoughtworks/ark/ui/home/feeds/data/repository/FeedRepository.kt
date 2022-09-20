@@ -2,7 +2,7 @@ package com.thoughtworks.ark.ui.home.feeds.data.repository
 
 import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity
-import com.thoughtworks.ark.ui.home.feeds.data.repository.source.remote.FeedApiDataSource
+import com.thoughtworks.ark.ui.home.feeds.data.repository.source.FeedApiDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
