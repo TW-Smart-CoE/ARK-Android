@@ -1,6 +1,7 @@
 package com.thoughtworks.ark.core.network.api
 
 import com.thoughtworks.ark.core.network.entity.ApiException
+import com.thoughtworks.ark.core.network.entity.NetworkReachableException
 import com.thoughtworks.ark.core.network.entity.Result
 import kotlinx.coroutines.flow.flow
 import okhttp3.ResponseBody
@@ -15,15 +16,16 @@ open class ApiService {
                 if (response.isSuccessful) {
                     Result.Success(response.body())
                 } else {
-                    val errorBody = response.errorBody()
                     Result.Error(
                         parseResponseError(
                             response.code(),
                             response.message(),
-                            errorBody
+                            response.errorBody()
                         )
                     )
                 }
+            } catch (error: NetworkReachableException) {
+                Result.Error(error)
             } catch (throwable: Throwable) {
                 Result.Error(mapNetworkThrowable(throwable))
             }
