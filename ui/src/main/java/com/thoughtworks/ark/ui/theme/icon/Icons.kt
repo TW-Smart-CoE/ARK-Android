@@ -1,6 +1,9 @@
 package com.thoughtworks.ark.ui.theme.icon
 
 import androidx.annotation.DrawableRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.thoughtworks.ark.ui.R
 
@@ -17,6 +20,8 @@ object Icons {
     val Search = R.drawable.ic_search
     val Dashboard = R.drawable.ic_dashboard
     val Notification = R.drawable.ic_notifications
+    val Warning = Icons.Outlined.Warning
+    val Info = Icons.Outlined.Info
 }
 
 /**

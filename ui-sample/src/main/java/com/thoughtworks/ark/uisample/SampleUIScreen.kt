@@ -27,6 +27,7 @@ import com.thoughtworks.ark.ui.component.AppTextButton
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.icon.AppIcon
+import com.thoughtworks.ark.ui.theme.icon.Icon
 import com.thoughtworks.ark.ui.theme.icon.Icons
 import com.thoughtworks.ark.uisample.colorsystem.ComposeColorSystemActivity
 import com.thoughtworks.ark.uisample.colorsystem.XmlColorSystemActivity
@@ -116,21 +117,21 @@ private fun LazyListScope.sectionButtons() {
                 onClick = {},
                 text = { Text(text = "Enabled") },
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite, tint = Theme.colors.onPrimary)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite), tint = Theme.colors.onPrimary)
                 }
             )
             AppOutlinedButton(
                 onClick = {},
                 text = { Text(text = "Enabled") },
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
             )
             AppTextButton(
                 onClick = {},
                 text = { Text(text = "Enabled") },
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
             )
         }
@@ -144,7 +145,7 @@ private fun LazyListScope.sectionButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.onPrimary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -155,7 +156,7 @@ private fun LazyListScope.sectionButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.primary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -166,7 +167,7 @@ private fun LazyListScope.sectionButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.primary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -221,7 +222,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite, tint = Theme.colors.onPrimary)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite), tint = Theme.colors.onPrimary)
                 }
             )
             AppOutlinedButton(
@@ -229,7 +230,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
             )
             AppTextButton(
@@ -237,7 +238,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
-                    AppIcon(icon = Icons.Favorite)
+                    AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
             )
         }
@@ -252,7 +253,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.onPrimary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -264,7 +265,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.primary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -276,7 +277,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
-                        icon = Icons.Favorite,
+                        icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
                         tint = Theme.colors.primary.copy(alpha = AppButtonDefault.DisabledButtonContentAlpha)
                     )
                 }
@@ -318,60 +319,60 @@ private fun Icons(tintColor: Color, backgroundColor: Color) {
         Row {
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.ArrowBack,
+                icon = Icon.DrawableResourceIcon(id = Icons.ArrowBack),
                 tint = tintColor,
             )
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.ArrowForward,
-                tint = tintColor,
-            )
-        }
-        Row {
-            AppIcon(
-                modifier = Modifier.background(backgroundColor),
-                icon = Icons.Home,
-                tint = tintColor,
-            )
-            AppIcon(
-                modifier = Modifier.background(backgroundColor),
-                icon = Icons.Menu,
+                icon = Icon.DrawableResourceIcon(id = Icons.ArrowForward),
                 tint = tintColor,
             )
         }
         Row {
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.Close,
+                icon = Icon.DrawableResourceIcon(id = Icons.Home),
                 tint = tintColor,
             )
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.Cancel,
-                tint = tintColor,
-            )
-        }
-        Row {
-            AppIcon(
-                modifier = Modifier.background(backgroundColor),
-                icon = Icons.Delete,
-                tint = tintColor,
-            )
-            AppIcon(
-                modifier = Modifier.background(backgroundColor),
-                icon = Icons.Search,
+                icon = Icon.DrawableResourceIcon(id = Icons.Menu),
                 tint = tintColor,
             )
         }
         Row {
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.More,
+                icon = Icon.DrawableResourceIcon(id = Icons.Close),
                 tint = tintColor,
             )
             AppIcon(
                 modifier = Modifier.background(backgroundColor),
-                icon = Icons.Favorite,
+                icon = Icon.DrawableResourceIcon(id = Icons.Cancel),
+                tint = tintColor,
+            )
+        }
+        Row {
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icon.DrawableResourceIcon(id = Icons.Delete),
+                tint = tintColor,
+            )
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icon.DrawableResourceIcon(id = Icons.Search),
+                tint = tintColor,
+            )
+        }
+        Row {
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icon.ImageVectorIcon(imageVector = Icons.Warning),
+                tint = tintColor,
+            )
+            AppIcon(
+                modifier = Modifier.background(backgroundColor),
+                icon = Icon.ImageVectorIcon(imageVector = Icons.Info),
                 tint = tintColor,
             )
         }
