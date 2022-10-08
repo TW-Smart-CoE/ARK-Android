@@ -20,7 +20,7 @@
     <dimen name="small_padding">@dimen/dimension_4</dimen>
 
     <dimen name="divider">@dimen/dimension_1</dimen>
-    <dimen name="standard_spacing">@dimen/dimension_20</dimen>
+    <dimen name="standard_spacing">@dimen/dimension_24</dimen>
 
     <dimen name="icon_small">@dimen/dimension_24</dimen>
     <dimen name="icon_medium">@dimen/dimension_32</dimen>

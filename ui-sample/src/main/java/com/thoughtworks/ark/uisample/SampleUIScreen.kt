@@ -72,7 +72,7 @@ private fun LazyListScope.sectionColorSystem(sendAction: (Action) -> Unit) {
 private fun LazyListScope.sectionIcons() {
     item { SectionLabel("Icons samples") }
     item {
-        Row(modifier = Modifier.padding(top = Dimensions.standardSpacing)) {
+        Row {
             Icons(tintColor = Color.Green, backgroundColor = Color.Black)
             Spacer(modifier = Modifier.width(Dimensions.standardSpacing))
             Icons(tintColor = Color.Black, backgroundColor = Color.White)

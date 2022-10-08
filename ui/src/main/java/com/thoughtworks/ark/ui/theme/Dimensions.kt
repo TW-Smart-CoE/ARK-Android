@@ -23,7 +23,7 @@ object Dimensions {
     val smallPadding = dimension4
 
     val divider = dimension1
-    val standardSpacing = dimension20
+    val standardSpacing = dimension24
 
     val iconSmall = dimension24
     var iconMedium = dimension32
