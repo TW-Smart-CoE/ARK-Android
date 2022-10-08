@@ -14,6 +14,7 @@ import com.thoughtworks.ark.uisample.R
 class XmlColorSystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.xml_color_system)
 
         val themeColorTestCompose = findViewById<ComposeView>(R.id.compose_color_01)
@@ -31,7 +32,7 @@ class XmlColorSystemActivity : AppCompatActivity() {
     private fun ThemeColorTestContent() {
         Theme {
             Text(
-                text = stringResource(id = R.string.theme_color_test_for_compose),
+                text = stringResource(R.string.theme_color_test_for_compose),
                 color = LocalColors.current.primary
             )
         }

@@ -21,7 +21,6 @@ data class Colors(
     val onBackground: Color = Color.Unspecified,
     val onSurface: Color = Color.Unspecified,
     val onError: Color = Color.Unspecified,
-    val statusBarColor: Color = Color.Unspecified,
     val backgroundBlue: Color = Color.Unspecified,
     val backgroundGreen: Color = Color.Unspecified
 )
@@ -43,7 +42,6 @@ fun AttrColors.toColors() =
             onBackground = obtainAttrColorToColor(context, themeId, this.onBackground),
             onSurface = obtainAttrColorToColor(context, themeId, this.onSurface),
             onError = obtainAttrColorToColor(context, themeId, this.onError),
-            statusBarColor = obtainAttrColorToColor(context, themeId, this.statusBarColor),
             backgroundBlue = obtainAttrColorToColor(context, themeId, this.backgroundBlue),
             backgroundGreen = obtainAttrColorToColor(context, themeId, this.backgroundGreen)
         )

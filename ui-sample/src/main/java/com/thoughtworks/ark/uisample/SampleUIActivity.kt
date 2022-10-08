@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.LaunchedEffect
+import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.LocalColors
@@ -14,18 +14,14 @@ import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 class SampleUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         supportActionBar?.hide()
-
         setContent {
             Theme {
                 val systemUiController = rememberSystemUiController()
-                val statusBarColor = LocalColors.current.statusBarColor
-
-                LaunchedEffect(statusBarColor) {
-                    systemUiController.setStatusBarColor(statusBarColor)
-                    systemUiController.setNavigationBarColor(statusBarColor)
-                }
-
+                val colors = LocalColors.current
+                systemUiController.setStatusBarColor(colors.background)
+                systemUiController.setNavigationBarColor(colors.background)
                 SampleUIScreen {
                     handAction(it)
                 }

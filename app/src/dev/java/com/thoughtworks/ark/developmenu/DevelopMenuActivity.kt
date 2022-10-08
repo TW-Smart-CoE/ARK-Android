@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.thoughtworks.ark.R
+import com.thoughtworks.ark.core.extensions.isNightMode
 import com.thoughtworks.ark.ui.theme.Theme
 
 class DevelopMenuActivity : AppCompatActivity() {
@@ -37,7 +38,7 @@ class DevelopMenuActivity : AppCompatActivity() {
         window.statusBarColor = Color.Transparent.toArgb()
 
         val controller = WindowCompat.getInsetsController(window, window.decorView)
-        controller.isAppearanceLightStatusBars = true
+        controller.isAppearanceLightStatusBars = !isNightMode()
     }
 
     @Composable

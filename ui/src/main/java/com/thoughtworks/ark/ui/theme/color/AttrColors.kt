@@ -17,7 +17,6 @@ data class AttrColors(
     @AttrRes val onBackground: Int = com.google.android.material.R.attr.colorOnBackground,
     @AttrRes val onSurface: Int = com.google.android.material.R.attr.colorOnSurface,
     @AttrRes val onError: Int = com.google.android.material.R.attr.colorOnError,
-    @AttrRes val statusBarColor: Int = com.google.android.material.R.attr.statusBarBackground,
     // Customize attributes
     @AttrRes val backgroundBlue: Int = R.attr.APPColor_BackgroundBlue,
     @AttrRes val backgroundGreen: Int = R.attr.APPColor_BackgroundGreen

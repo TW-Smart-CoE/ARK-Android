@@ -1,5 +1,6 @@
 package com.thoughtworks.ark.uisample.colorsystem
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.compose.foundation.background
@@ -19,42 +20,40 @@ import com.thoughtworks.ark.ui.theme.color.ExtendedColors
 import com.thoughtworks.ark.uisample.R
 
 @Composable
-fun ColorSampleScreen() {
+fun ComposeColorSystemScreen() {
     Column(
         modifier = Modifier
+            .background(color = Theme.colors.background)
             .fillMaxSize()
-            .padding(all = Dimensions.standardPadding)
-            .background(color = Theme.colors.background),
+            .padding(all = Dimensions.standardPadding),
     ) {
         Text(
             text = stringResource(R.string.theme_color_test_for_compose),
             color = Theme.colors.primary
         )
-        val colors = Theme.colors
-        AndroidView(modifier = Modifier.padding(top = Dimensions.standardSpacing),
-            factory = { ctx ->
-                LayoutInflater.from(ctx).inflate(R.layout.xml_color_test, null)
-            }) {
-            (it as TextView).setTextColor(colors.primary.toArgb())
-        }
+        TextViewFromXml(
+            color = Theme.colors.primary.toArgb(),
+            text = stringResource(id = R.string.theme_color_test_for_xml)
+        )
         Text(
             modifier = Modifier.padding(top = Dimensions.standardSpacing),
             text = stringResource(R.string.extended_color_test_for_compose),
             color = ExtendedColors.ButtonBackground.color()
         )
-        val context = LocalContext.current
-        AndroidView(
-            modifier = Modifier.padding(top = Dimensions.standardSpacing),
-            factory = { ctx ->
-                LayoutInflater.from(ctx).inflate(
-                    R.layout.xml_color_test,
-                    null
-                )
-            }) {
-            (it as TextView).setText(R.string.extended_color_test_for_xml)
-            val textColor = ExtendedColors.ButtonBackground.colorInt(context)
-            println("Shuai =====" + ExtendedColors.ButtonBackground.hex(context))
-            it.setTextColor(textColor)
-        }
+        TextViewFromXml(
+            color = ExtendedColors.ButtonBackground.colorInt(LocalContext.current),
+            text = stringResource(id = R.string.extended_color_test_for_xml))
+    }
+}
+
+@SuppressLint("InflateParams")
+@Composable
+private fun TextViewFromXml(color: Int, text: String) {
+    AndroidView(
+        modifier = Modifier.padding(top = Dimensions.standardSpacing),
+        factory = { LayoutInflater.from(it).inflate(R.layout.xml_color_layout, null) as TextView }
+    ) {
+        it.text = text
+        it.setTextColor(color)
     }
 }

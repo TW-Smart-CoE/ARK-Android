@@ -8,9 +8,10 @@ import com.thoughtworks.ark.ui.theme.Theme
 class ComposeColorSystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContent {
             Theme {
-                ColorSampleScreen()
+                ComposeColorSystemScreen()
             }
         }
     }
