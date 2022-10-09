@@ -6,18 +6,18 @@ import com.thoughtworks.ark.ui.theme.color.AttrColors
 import com.thoughtworks.ark.ui.theme.color.Colors
 import com.thoughtworks.ark.ui.theme.color.LocalColors
 import com.thoughtworks.ark.ui.theme.color.toColors
-import com.thoughtworks.ark.ui.theme.typography.LocalTypography
+import com.thoughtworks.ark.ui.theme.typography.LocalTypographies
 import com.thoughtworks.ark.ui.theme.typography.Typographies
-import com.thoughtworks.ark.ui.theme.typography.generateTypographyFromAttributes
+import com.thoughtworks.ark.ui.theme.typography.generateTypographiesFromAttributes
 
 @Composable
 fun Theme(content: @Composable () -> Unit) {
     val colors = AttrColors().toColors()
-    val types = generateTypographyFromAttributes()
+    val types = generateTypographiesFromAttributes()
 
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalTypography provides types,
+        LocalTypographies provides types,
         content = content
     )
 }
@@ -28,6 +28,6 @@ object Theme {
         get() = LocalColors.current
     val types: Typographies
         @Composable
-        get() = LocalTypography.current
+        get() = LocalTypographies.current
 }
 

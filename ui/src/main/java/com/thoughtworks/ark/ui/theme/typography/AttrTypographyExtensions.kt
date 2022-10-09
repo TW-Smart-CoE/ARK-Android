@@ -2,6 +2,7 @@ package com.thoughtworks.ark.ui.theme.typography
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Typeface
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -24,7 +25,7 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes {
         )
     ).run {
         val textSizePx = getDimension(0, 0f)
-        val textSizeSp = getString(0)?.replace("sp", "")?.toFloat() ?: 0F
+        val textSizeSp = geSizeSp(0, 0f)
         val typefaceStyle = getInt(1, 0)
         val allCaps = getBoolean(2, false)
         val fontFamily = requireNotNull(getString(3))
@@ -47,12 +48,15 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes {
     ).apply {
         typedValue = typedValue.copy(
             lineSpacingExtraPx = getDimension(0, 0f),
-            lineSpacingExtraSp = getString(0)?.replace("sp", "")?.toFloat() ?: 0F
+            lineSpacingExtraSp = geSizeSp(0, 0f)
         )
         recycle()
     }
     return typedValue
 }
+
+private fun TypedArray.geSizeSp(index: Int, defaultValue: Float) =
+    getString(index)?.replace("sp", "")?.toFloat() ?: defaultValue
 
 
 internal fun AttrTypography.style(context: Context): TextStyle = with(attributes(context)) {

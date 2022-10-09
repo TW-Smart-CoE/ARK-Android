@@ -27,7 +27,7 @@ data class Typographies(
 )
 
 @Composable
-fun generateTypographyFromAttributes(): Typographies {
+fun generateTypographiesFromAttributes(): Typographies {
     val context = LocalContext.current
     return Typographies(
         h1 = AttrTypography.H1.style(context),
@@ -46,6 +46,6 @@ fun generateTypographyFromAttributes(): Typographies {
     )
 }
 
-val LocalTypography = staticCompositionLocalOf<Typographies> {
+val LocalTypographies = staticCompositionLocalOf<Typographies> {
     error("No ThemeTypography provided")
 }
