@@ -2,16 +2,12 @@ package com.thoughtworks.ark.ui.theme.color
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Configuration
 import android.view.ContextThemeWrapper
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import com.google.android.material.color.MaterialColors
-
-fun isNightMode(context: Context) =
-    context.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
 /**
  *  get the attr color from the theme
