@@ -9,7 +9,6 @@
     </style>
 
     <style name="Headline2">
-        <item name="fontFamily">@font/open_sans_light</item>
         <item name="android:fontFamily">@font/open_sans_light</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
@@ -18,7 +17,6 @@
     </style>
 
     <style name="Headline3">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
@@ -27,7 +25,6 @@
     </style>
 
     <style name="Headline4">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
@@ -36,7 +33,6 @@
     </style>
 
     <style name="Headline5">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">normal</item>
@@ -45,7 +41,6 @@
     </style>
 
     <style name="Headline6">
-        <item name="fontFamily">@font/open_sans_medium</item>
         <item name="android:fontFamily">@font/open_sans_medium</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">normal</item>
@@ -54,7 +49,6 @@
     </style>
 
     <style name="Subtitle01">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
@@ -63,7 +57,6 @@
     </style>
 
     <style name="Subtitle02">
-        <item name="fontFamily">@font/open_sans_medium</item>
         <item name="android:fontFamily">@font/open_sans_medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
@@ -72,7 +65,6 @@
     </style>
 
     <style name="Body01">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
@@ -81,7 +73,6 @@
     </style>
 
     <style name="Body02">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
@@ -90,7 +81,6 @@
     </style>
 
     <style name="Button">
-        <item name="fontFamily">@font/open_sans_medium</item>
         <item name="android:fontFamily">@font/open_sans_medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
@@ -99,7 +89,6 @@
     </style>
 
     <style name="Caption">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">normal</item>
@@ -108,7 +97,6 @@
     </style>
 
     <style name="Overline">
-        <item name="fontFamily">@font/open_sans_regular</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">normal</item>

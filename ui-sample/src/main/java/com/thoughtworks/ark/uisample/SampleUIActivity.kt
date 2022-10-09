@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.thoughtworks.ark.ui.theme.Theme
-import com.thoughtworks.ark.ui.theme.color.LocalColors
 import com.thoughtworks.ark.uisample.state.Action
 import com.thoughtworks.ark.uisample.state.NavigateActivityAction
 
@@ -19,9 +18,8 @@ class SampleUIActivity : AppCompatActivity() {
         setContent {
             Theme {
                 val systemUiController = rememberSystemUiController()
-                val colors = LocalColors.current
-                systemUiController.setStatusBarColor(colors.background)
-                systemUiController.setNavigationBarColor(colors.background)
+                systemUiController.setStatusBarColor(Theme.colors.background)
+                systemUiController.setNavigationBarColor(Theme.colors.background)
                 SampleUIScreen {
                     handAction(it)
                 }

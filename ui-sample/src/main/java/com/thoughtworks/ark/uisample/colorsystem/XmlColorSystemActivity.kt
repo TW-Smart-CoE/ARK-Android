@@ -8,7 +8,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.ExtendedColors
-import com.thoughtworks.ark.ui.theme.color.LocalColors
 import com.thoughtworks.ark.uisample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {
@@ -33,16 +32,20 @@ class XmlColorSystemActivity : AppCompatActivity() {
         Theme {
             Text(
                 text = stringResource(R.string.theme_color_test_for_compose),
-                color = LocalColors.current.primary
+                color = Theme.colors.primary,
+                style = Theme.typographies.body01
             )
         }
     }
 
     @Composable
     private fun SpecialColorTestContent() {
-        Text(
-            text = stringResource(R.string.extended_color_test_for_compose),
-            color = ExtendedColors.ButtonBackground.color()
-        )
+        Theme {
+            Text(
+                text = stringResource(R.string.extended_color_test_for_compose),
+                color = ExtendedColors.ButtonBackground.color(),
+                style = Theme.typographies.body01
+            )
+        }
     }
 }

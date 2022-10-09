@@ -13,11 +13,11 @@ import com.thoughtworks.ark.ui.theme.typography.generateTypographiesFromAttribut
 @Composable
 fun Theme(content: @Composable () -> Unit) {
     val colors = AttrColors().toColors()
-    val types = generateTypographiesFromAttributes()
+    val typographies = generateTypographiesFromAttributes()
 
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalTypographies provides types,
+        LocalTypographies provides typographies,
         content = content
     )
 }
@@ -26,7 +26,7 @@ object Theme {
     val colors: Colors
         @Composable
         get() = LocalColors.current
-    val types: Typographies
+    val typographies: Typographies
         @Composable
         get() = LocalTypographies.current
 }

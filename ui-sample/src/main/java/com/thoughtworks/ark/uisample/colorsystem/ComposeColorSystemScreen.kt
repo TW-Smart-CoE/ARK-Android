@@ -29,7 +29,8 @@ fun ComposeColorSystemScreen() {
     ) {
         Text(
             text = stringResource(R.string.theme_color_test_for_compose),
-            color = Theme.colors.primary
+            color = Theme.colors.primary,
+            style = Theme.typographies.body01
         )
         TextViewFromXml(
             color = Theme.colors.primary.toArgb(),
@@ -38,7 +39,8 @@ fun ComposeColorSystemScreen() {
         Text(
             modifier = Modifier.padding(top = Dimensions.standardSpacing),
             text = stringResource(R.string.extended_color_test_for_compose),
-            color = ExtendedColors.ButtonBackground.color()
+            color = ExtendedColors.ButtonBackground.color(),
+            style = Theme.typographies.body01
         )
         TextViewFromXml(
             color = ExtendedColors.ButtonBackground.colorInt(LocalContext.current),
@@ -55,5 +57,6 @@ private fun TextViewFromXml(color: Int, text: String) {
     ) {
         it.text = text
         it.setTextColor(color)
+        it.setTextAppearance(com.thoughtworks.ark.ui.R.style.Body01)
     }
 }

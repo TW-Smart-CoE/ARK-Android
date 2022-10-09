@@ -15,6 +15,7 @@
 
     <TextView
         android:id="@+id/xml_color_01"
+        style="@style/Body01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/standard_spacing"
@@ -33,6 +34,7 @@
 
     <TextView
         android:id="@+id/xml_color_02"
+        style="@style/Body01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/standard_spacing"

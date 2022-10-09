@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.res.ResourcesCompat
 
 @SuppressLint("ResourceType")
-fun AttrTypography.attributes(context: Context): AttrTypography.Attributes {
-    var typedValue = context.obtainStyledAttributes(
+fun AttrTypography.attributes(context: Context): AttrTypography.Attributes =
+    context.obtainStyledAttributes(
         styleRes,
         intArrayOf(
             android.R.attr.textSize,
@@ -24,11 +24,11 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes {
             android.R.attr.letterSpacing
         )
     ).run {
-        val textSizePx = getDimension(0, 0f)
-        val textSizeSp = geSizeSp(0, 0f)
-        val typefaceStyle = getInt(1, 0)
+        val textSizePx = getDimension(0, 14.sp.value)
+        val textSizeSp = geSizeSp(0, textSizePx)
+        val typefaceStyle = getInt(1, Typeface.NORMAL)
         val allCaps = getBoolean(2, false)
-        val fontFamily = requireNotNull(getString(3))
+        val fontFamily = getString(3) ?: FontFamily.Default.toString()
         val letterSpacingEm = getFloat(4, 0f)
 
         recycle()
@@ -41,19 +41,6 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes {
             letterSpacingEm
         )
     }
-
-    context.obtainStyledAttributes(
-        styleRes,
-        intArrayOf(android.R.attr.lineSpacingExtra)
-    ).apply {
-        typedValue = typedValue.copy(
-            lineSpacingExtraPx = getDimension(0, 0f),
-            lineSpacingExtraSp = geSizeSp(0, 0f)
-        )
-        recycle()
-    }
-    return typedValue
-}
 
 private fun TypedArray.geSizeSp(index: Int, defaultValue: Float) =
     getString(index)?.replace("sp", "")?.toFloat() ?: defaultValue
@@ -70,27 +57,23 @@ internal fun AttrTypography.style(context: Context): TextStyle = with(attributes
         fontStyle = fontStyle,
         letterSpacing = letterSpacingEm.em,
         fontFamily = createTypeface(context, this)?.let { FontFamily(it) },
-        lineHeight = lineSpacingExtraSp.sp
     )
 }
 
 private fun createTypeface(
     context: Context,
-    attributes: AttrTypography.Attributes
-): Typeface? {
-
-    return if (attributes.fontFamily.isFontFamilyPath()) {
-        val id = context.resources.getIdentifier(
-            attributes.fontFamily.getFontFamilyName(), "font", context.packageName
-        )
-        ResourcesCompat.getFont(context, id)
-    } else {
-        // system's font here
-        Typeface.create(attributes.fontFamily, attributes.typefaceStyle)
-    }
+    attributes: AttrTypography.Attributes,
+): Typeface? = if (attributes.fontFamily.isFontFamilyPath()) {
+    val id = context.resources.getIdentifier(
+        attributes.fontFamily.getFontFamilyName(), "font", context.packageName
+    )
+    ResourcesCompat.getFont(context, id)
+} else {
+    // system's font here
+    Typeface.create(attributes.fontFamily, attributes.typefaceStyle)
 }
 
-private fun String.isFontFamilyPath() = this.contains("res/font") && this.endsWith(".ttf")
+private fun String.isFontFamilyPath() = contains("res/font") && endsWith(".ttf")
 
 private fun String.getFontFamilyName(): String =
-    this.substringAfterLast("res/font/").substringBeforeLast(".ttf")
+    substringAfterLast("res/font/").substringBeforeLast(".ttf")
