@@ -10,7 +10,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.ui.component.AppFilledButton
@@ -55,7 +54,7 @@ fun FeedScreenContent(
         )
         Text(
             text = uiState.dataText ?: "has null data",
-            fontSize = 15.sp,
+            style = Theme.typography.body02,
             color = Theme.colors.onBackground,
             modifier = Modifier.padding(Dimensions.standardPadding)
         )
