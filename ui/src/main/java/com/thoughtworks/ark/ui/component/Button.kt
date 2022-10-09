@@ -12,7 +12,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Text
@@ -51,7 +50,7 @@ fun AppFilledButton(
         colors = colors,
         contentPadding = contentPadding,
         content = {
-            ProvideTextStyle(value = MaterialTheme.typography.button) {
+            ProvideTextStyle(value = Theme.typography.button) {
                 content()
             }
         }
@@ -118,7 +117,7 @@ fun AppOutlinedButton(
         colors = colors,
         contentPadding = contentPadding,
         content = {
-            ProvideTextStyle(value = MaterialTheme.typography.button) {
+            ProvideTextStyle(value = Theme.typography.button) {
                 content()
             }
         }
@@ -185,7 +184,7 @@ fun AppTextButton(
         colors = colors,
         contentPadding = contentPadding,
         content = {
-            ProvideTextStyle(value = MaterialTheme.typography.button) {
+            ProvideTextStyle(value = Theme.typography.button) {
                 content()
             }
         }

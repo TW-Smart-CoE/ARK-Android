@@ -68,14 +68,14 @@ private fun LazyListScope.sectionColorSystem(sendAction: (Action) -> Unit) {
                     sendAction.invoke(NavigateActivityAction(destination = ComposeColorSystemActivity::class.java))
                 }
             ) {
-                Text(text = "Compose color system", style = Theme.typographies.button)
+                Text(text = "Compose color system")
             }
             AppFilledButton(
                 onClick = {
                     sendAction.invoke(NavigateActivityAction(destination = XmlColorSystemActivity::class.java))
                 }
             ) {
-                Text(text = "XML color system", style = Theme.typographies.button)
+                Text(text = "XML color system")
             }
         }
     }
@@ -97,13 +97,13 @@ private fun LazyListScope.sectionButtons() {
     item {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(onClick = {}) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
             AppOutlinedButton(onClick = {}) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
             AppTextButton(onClick = {}) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
         }
     }
@@ -111,13 +111,13 @@ private fun LazyListScope.sectionButtons() {
     item {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(onClick = {}, enabled = false) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
             AppOutlinedButton(onClick = {}, enabled = false) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
             AppTextButton(onClick = {}, enabled = false) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
         }
     }
@@ -126,7 +126,7 @@ private fun LazyListScope.sectionButtons() {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 leadingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -136,14 +136,14 @@ private fun LazyListScope.sectionButtons() {
             )
             AppOutlinedButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 leadingIcon = {
                     AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
             )
             AppTextButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 leadingIcon = {
                     AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
                 }
@@ -156,7 +156,7 @@ private fun LazyListScope.sectionButtons() {
             AppFilledButton(
                 onClick = {},
                 enabled = false,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -167,7 +167,7 @@ private fun LazyListScope.sectionButtons() {
             AppOutlinedButton(
                 onClick = {},
                 enabled = false,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -178,7 +178,7 @@ private fun LazyListScope.sectionButtons() {
             AppTextButton(
                 onClick = {},
                 enabled = false,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -195,13 +195,13 @@ private fun LazyListScope.sectionSmallButtons() {
     item {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(onClick = {}, small = true) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
             AppOutlinedButton(onClick = {}, small = true) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
             AppTextButton(onClick = {}, small = true) {
-                Text(text = "Enabled", style = Theme.typographies.button)
+                Text(text = "Enabled")
             }
         }
     }
@@ -209,13 +209,13 @@ private fun LazyListScope.sectionSmallButtons() {
     item {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(onClick = {}, enabled = false, small = true) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
             AppOutlinedButton(onClick = {}, enabled = false, small = true) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
             AppTextButton(onClick = {}, enabled = false, small = true) {
-                Text(text = "Disabled", style = Theme.typographies.button)
+                Text(text = "Disabled")
             }
         }
     }
@@ -224,7 +224,7 @@ private fun LazyListScope.sectionSmallButtons() {
         FlowRow(mainAxisSpacing = Dimensions.halfPadding) {
             AppFilledButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
                     AppIcon(
@@ -235,7 +235,7 @@ private fun LazyListScope.sectionSmallButtons() {
             )
             AppOutlinedButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
                     AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
@@ -243,7 +243,7 @@ private fun LazyListScope.sectionSmallButtons() {
             )
             AppTextButton(
                 onClick = {},
-                text = { Text(text = "Enabled", style = Theme.typographies.button) },
+                text = { Text(text = "Enabled") },
                 small = true,
                 leadingIcon = {
                     AppIcon(icon = Icon.DrawableResourceIcon(id = Icons.Favorite))
@@ -258,7 +258,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 onClick = {},
                 enabled = false,
                 small = true,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -270,7 +270,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 onClick = {},
                 enabled = false,
                 small = true,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -282,7 +282,7 @@ private fun LazyListScope.sectionSmallButtons() {
                 onClick = {},
                 enabled = false,
                 small = true,
-                text = { Text(text = "Disabled", style = Theme.typographies.button) },
+                text = { Text(text = "Disabled") },
                 trailingIcon = {
                     AppIcon(
                         icon = Icon.DrawableResourceIcon(id = Icons.Favorite),
@@ -299,7 +299,7 @@ private fun SectionLabel(text: String) = Text(
     text = text,
     modifier = Modifier.padding(top = Dimensions.standardPadding),
     color = Theme.colors.onBackground,
-    style = Theme.typographies.h6
+    style = Theme.typography.h6
 )
 
 @Composable

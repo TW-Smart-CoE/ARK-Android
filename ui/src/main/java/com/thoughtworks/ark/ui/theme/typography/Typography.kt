@@ -7,10 +7,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 
 /**
- * ARK's typography system, modelled using Compose [TextStyle]s.
+ * App's typography system, modelled using Compose [TextStyle]s.
  */
 @Immutable
-data class Typographies(
+data class Typography(
     val h1: TextStyle,
     val h2: TextStyle,
     val h3: TextStyle,
@@ -27,9 +27,9 @@ data class Typographies(
 )
 
 @Composable
-fun generateTypographiesFromAttributes(): Typographies {
+fun generateTypographyFromAttributes(): Typography {
     val context = LocalContext.current
-    return Typographies(
+    return Typography(
         h1 = AttrTypography.H1.style(context),
         h2 = AttrTypography.H2.style(context),
         h3 = AttrTypography.H3.style(context),
@@ -46,6 +46,6 @@ fun generateTypographiesFromAttributes(): Typographies {
     )
 }
 
-val LocalTypographies = staticCompositionLocalOf<Typographies> {
+val LocalTypography = staticCompositionLocalOf<Typography> {
     error("No ThemeTypography provided")
 }

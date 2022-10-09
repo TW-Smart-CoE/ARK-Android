@@ -33,7 +33,7 @@ class XmlColorSystemActivity : AppCompatActivity() {
             Text(
                 text = stringResource(R.string.theme_color_test_for_compose),
                 color = Theme.colors.primary,
-                style = Theme.typographies.body01
+                style = Theme.typography.body01
             )
         }
     }
@@ -44,7 +44,7 @@ class XmlColorSystemActivity : AppCompatActivity() {
             Text(
                 text = stringResource(R.string.extended_color_test_for_compose),
                 color = ExtendedColors.ButtonBackground.color(),
-                style = Theme.typographies.body01
+                style = Theme.typography.body01
             )
         }
     }
