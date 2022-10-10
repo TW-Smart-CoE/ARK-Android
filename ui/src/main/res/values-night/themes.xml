@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- background -->
-        <item name="backgroundColor">@color/black50</item>
+        <item name="backgroundColor">@color/black_50</item>
         <item name="colorOnBackground">@color/white</item>
 
         <!-- error -->
@@ -19,7 +19,7 @@
         <item name="colorOnError">@color/black</item>
 
         <!-- surface -->
-        <item name="colorSurface">@color/black50</item>
+        <item name="colorSurface">@color/black_50</item>
         <item name="colorOnSurface">@color/white</item>
 
         <!-- Status bar color. -->

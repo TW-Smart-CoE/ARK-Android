@@ -15,6 +15,7 @@ sealed class ExtendedColors(
     object ButtonBackground : ExtendedColors(R.color.button_background)
     object ButtonContent : ExtendedColors(R.color.button_content)
     object ErrorOutLine : ExtendedColors(R.color.error_out_line)
+    object UnselectColor: ExtendedColors(R.color.unselect_color)
 
     @Composable
     fun color() =

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr format="reference|color" name="APPColor.BackgroundGreen"/>
-    <attr format="reference|color" name="APPColor.BackgroundBlue"/>
+    <attr name="APPColor.BackgroundGreen" format="reference|color" />
+    <attr name="APPColor.BackgroundBlue" format="reference|color" />
 
     <!-- Typography -->
     <attr name="APPTypography.H1" format="reference" />

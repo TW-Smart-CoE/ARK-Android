@@ -4,6 +4,7 @@
     <color name="button_background">@color/purple_500</color>
     <color name="button_content">@color/white</color>
     <color name="error_out_line">@color/red_700</color>
+    <color name="unselect_color">@color/grey_700</color>
 
 </resources>
 
