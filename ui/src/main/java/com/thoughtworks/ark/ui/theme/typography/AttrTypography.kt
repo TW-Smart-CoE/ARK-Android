@@ -24,8 +24,6 @@ enum class AttrTypography(@StyleRes val styleRes: Int) {
         val fontFamily: String,
         val allCaps: Boolean,
         val typefaceStyle: Int,
-        val letterSpacingEm: Float,
-        val lineSpacingExtraPx: Float? = null,
-        val lineSpacingExtraSp: Float = 0F
+        val letterSpacingEm: Float
     )
 }
