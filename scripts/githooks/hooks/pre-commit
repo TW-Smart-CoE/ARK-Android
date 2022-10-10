@@ -5,15 +5,16 @@ set -euo pipefail
 # avoid accidental commits from personal email addresses on public/company-owned Git repositories
 echo "=====commit pre-validate check start====="
 
-PWD=`pwd`
+PWD="$(pwd)"
+COMPANY="thoughtworks" # 修改成项目的公司名称
 EMAIL=$(git config user.email)
-if [[ $EMAIL == *"@thoughtworks.com"* ]]; then
+if [[ $EMAIL == *"@$COMPANY.com"* ]]; then
   echo "[INFO] Verified email: $EMAIL"
 else
   echo "[ERROR] Invalid email: $EMAIL => Please configure the company email and retry."
   echo "Steps:"
   echo "   cd $PWD"
-  echo '   git config user.email "<user>@thoughtworks.com"'
+  echo "   git config user.email \"<user>@$COMPANY.com\""
   echo ""
   exit 1;
 fi;
