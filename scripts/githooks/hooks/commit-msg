@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# git commit-msg hook passes through a path to a temporary file containing the git commit message
-echo "=====commit validation check start====="
-echo "=====commit validation check end====="

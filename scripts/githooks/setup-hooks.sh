@@ -13,7 +13,7 @@ create_hooks() {
 }
 
 hooks=(
-  commit-msg
+  pre-commit
   pre-push
 )
 

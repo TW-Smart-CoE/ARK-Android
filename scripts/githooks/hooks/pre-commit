@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# git pre-commit hook to pre-validate a user email before committing
+# avoid accidental commits from personal email addresses on public/company-owned Git repositories
+echo "=====commit pre-validate check start====="
+
+PWD=`pwd`
+EMAIL=$(git config user.email)
+if [[ $EMAIL == *"@thoughtworks.com"* ]]; then
+  echo "[INFO] Verified email: $EMAIL"
+else
+  echo "[ERROR] Invalid email: $EMAIL => Please configure the company email and retry."
+  echo "Steps:"
+  echo "   cd $PWD"
+  echo '   git config user.email "<user>@thoughtworks.com"'
+  echo ""
+  exit 1;
+fi;
+
+echo "=====commit pre-validate check end====="
