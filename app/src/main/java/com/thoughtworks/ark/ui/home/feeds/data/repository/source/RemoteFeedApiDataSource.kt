@@ -4,12 +4,12 @@ import com.thoughtworks.ark.core.network.api.ApiService
 import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.di.IoDispatcher
 import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import retrofit2.http.GET
+import javax.inject.Inject
 
 interface RetrofitFeedApi {
     @GET("/friend/json")
