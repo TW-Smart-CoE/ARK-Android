@@ -1,6 +1,7 @@
 package com.thoughtworks.ark.uisample.colorsystem
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -8,6 +9,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.ExtendedColors
+import com.thoughtworks.ark.ui.theme.icon.Icons
 import com.thoughtworks.ark.uisample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {
@@ -24,6 +26,10 @@ class XmlColorSystemActivity : AppCompatActivity() {
         val specialColorTestCompose = findViewById<ComposeView>(R.id.compose_color_02)
         specialColorTestCompose.setContent {
             SpecialColorTestContent()
+        }
+
+        findViewById<ImageView>(R.id.xml_image_view_02).apply {
+            setImageResource(Icons.Favorite)
         }
     }
 

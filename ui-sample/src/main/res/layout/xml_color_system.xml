@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
@@ -18,7 +19,7 @@
         style="@style/Body01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/standard_spacing"
+        android:layout_marginTop="@dimen/standard_spacing"
         android:text="@string/theme_color_test_for_xml"
         android:textColor="?attr/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,7 @@
         android:id="@+id/compose_color_02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/standard_spacing"
+        android:layout_marginTop="@dimen/standard_spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/xml_color_01" />
 
@@ -37,10 +38,35 @@
         style="@style/Body01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/standard_spacing"
+        android:layout_marginTop="@dimen/standard_spacing"
         android:text="@string/extended_color_test_for_xml"
         android:textColor="@color/button_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/compose_color_02" />
+
+    <ImageView
+        android:id="@+id/xml_image_view_01"
+        android:layout_width="@dimen/icon_normal"
+        android:layout_height="@dimen/icon_normal"
+        android:layout_marginTop="@dimen/standard_spacing"
+        android:background="?attr/backgroundColor"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_favorite"
+        android:tint="?attr/colorOnBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/xml_color_02"
+        tools:ignore="UseAppTint" />
+
+    <ImageView
+        android:id="@+id/xml_image_view_02"
+        android:layout_width="@dimen/icon_normal"
+        android:layout_height="@dimen/icon_normal"
+        android:layout_marginStart="@dimen/standard_spacing"
+        android:background="?attr/colorPrimary"
+        android:contentDescription="@null"
+        android:tint="?attr/colorOnPrimary"
+        app:layout_constraintStart_toEndOf="@id/xml_image_view_01"
+        app:layout_constraintTop_toTopOf="@id/xml_image_view_01"
+        tools:ignore="UseAppTint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
