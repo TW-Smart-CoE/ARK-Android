@@ -18,6 +18,7 @@ fun Theme(content: @Composable () -> Unit) {
     CompositionLocalProvider(
         LocalColors provides colors,
         LocalTypography provides typography,
+        LocalShapes provides Shapes(),
         content = content
     )
 }
@@ -29,5 +30,8 @@ object Theme {
     val typography: Typography
         @Composable
         get() = LocalTypography.current
+    val shapes: Shapes
+        @Composable
+        get() = LocalShapes.current
 }
 

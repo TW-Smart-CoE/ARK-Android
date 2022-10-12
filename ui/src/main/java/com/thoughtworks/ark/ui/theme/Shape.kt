@@ -1,10 +1,15 @@
 package com.thoughtworks.ark.ui.theme
 
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 
-val Shapes = Shapes(
-    small = RoundedCornerShape(Dimensions.dimension2),
-    medium = RoundedCornerShape(Dimensions.dimension4),
-    large = RoundedCornerShape(Dimensions.dimension8)
+@Immutable
+class Shapes(
+    val small: CornerBasedShape = RoundedCornerShape(Dimensions.dimension2),
+    val medium: CornerBasedShape = RoundedCornerShape(Dimensions.dimension4),
+    val large: CornerBasedShape = RoundedCornerShape(Dimensions.dimension8),
 )
+
+val LocalShapes = staticCompositionLocalOf<Shapes> { error("No ThemeShapes provided") }
