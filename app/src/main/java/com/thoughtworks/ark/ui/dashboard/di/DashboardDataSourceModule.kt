@@ -1,8 +1,8 @@
 package com.thoughtworks.ark.ui.dashboard.di
 
-import com.thoughtworks.ark.ui.dashboard.repository.source.DashboardDataSource
-import com.thoughtworks.ark.ui.dashboard.repository.source.LocalDashboardDataSource
-import com.thoughtworks.ark.ui.dashboard.repository.source.RemoteDashboardDataSource
+import com.thoughtworks.ark.ui.dashboard.data.repository.source.DashboardDataSource
+import com.thoughtworks.ark.ui.dashboard.data.repository.source.LocalDashboardDataSource
+import com.thoughtworks.ark.ui.dashboard.data.repository.source.RemoteDashboardDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

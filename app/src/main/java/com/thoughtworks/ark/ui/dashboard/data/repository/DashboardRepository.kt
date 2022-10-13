@@ -1,8 +1,8 @@
-package com.thoughtworks.ark.ui.dashboard.repository
+package com.thoughtworks.ark.ui.dashboard.data.repository
 
+import com.thoughtworks.ark.ui.dashboard.data.repository.source.DashboardDataSource
 import com.thoughtworks.ark.ui.dashboard.di.LocalDataSource
 import com.thoughtworks.ark.ui.dashboard.di.RemoteDataSource
-import com.thoughtworks.ark.ui.dashboard.repository.source.DashboardDataSource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

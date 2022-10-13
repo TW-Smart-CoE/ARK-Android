@@ -2,7 +2,7 @@ package com.thoughtworks.ark.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.ark.ui.dashboard.repository.DashboardRepository
+import com.thoughtworks.ark.ui.dashboard.data.repository.DashboardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

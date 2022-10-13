@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.dashboard.repository.source
+package com.thoughtworks.ark.ui.dashboard.data.repository.source
 
 interface DashboardDataSource {
     suspend fun getData(): String
