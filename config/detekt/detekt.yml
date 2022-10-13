@@ -648,6 +648,7 @@ style:
     acceptableLength: 4
     allowNonStandardGrouping: false
   UnnecessaryAbstractClass:
+    ignoreAnnotated: ['dagger.Module']
     active: true
   UnnecessaryAnnotationUseSiteTarget:
     active: false
