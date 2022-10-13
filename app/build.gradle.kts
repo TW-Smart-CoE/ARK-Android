@@ -37,9 +37,9 @@ dependencies {
 
     implementation(libs.bundles.coil)
 
-    testImplementation(libs.bundles.unitTest)
-    testImplementation(libs.coreTesting)
-    testImplementation(libs.composeUiTest)
+    testImplementation(libs.bundles.unit.test)
+    testImplementation(libs.core.testing)
+    testImplementation(libs.compose.ui.test)
 
     testImplementation(libs.hilt.android)
     kaptTest(libs.hilt.compiler)

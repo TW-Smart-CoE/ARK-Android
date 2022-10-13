@@ -26,11 +26,11 @@ fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
 private fun Project.configBase(): BaseExtension {
     return android.apply {
         val libs = getLibs()
-        setCompileSdkVersion(libs.getVersion("sdk_compile_version"))
+        setCompileSdkVersion(libs.getVersion("sdk-compile-version"))
 
         defaultConfig {
-            minSdk = libs.getVersion("sdk_min_version")
-            targetSdk = libs.getVersion("sdk_target_version")
+            minSdk = libs.getVersion("sdk-min-version")
+            targetSdk = libs.getVersion("sdk-target-version")
             vectorDrawables { useSupportLibrary = true }
         }
 

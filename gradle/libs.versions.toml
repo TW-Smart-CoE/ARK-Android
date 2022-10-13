@@ -1,34 +1,34 @@
 [versions]
 # android
-sdk_min_version = "26"
-sdk_target_version = "32"
-sdk_compile_version = "32"
+sdk-min-version = "26"
+sdk-target-version = "32"
+sdk-compile-version = "32"
 
 # library
 gradle = "7.2.2"
 kotlin = "1.7.0"
 detekt = "1.21.0"
-activity_compose = "1.5.1"
+activity-compose = "1.5.1"
 appcompat = "1.4.2"
-arch_lifecycle = "2.5.1"
-arch_lifecycle_extension = "2.2.0"
+arch-lifecycle = "2.5.1"
+arch-lifecycle-extension = "2.2.0"
 compose = "1.2.0"
-constraint_layout = "2.1.4"
-core_ktx = "1.8.0"
+constraint-layout = "2.1.4"
+core-ktx = "1.8.0"
 navigation = "2.5.1"
 hilt = "2.43.1"
-kotlinx_coroutines = "1.6.3"
-kotlinx_serialization_json = "1.3.3"
+kotlinx-coroutines = "1.6.3"
+kotlinx-serialization-json = "1.3.3"
 material = "1.6.1"
 retrofit = "2.9.0"
-retrofit_kotlinx_serialization_json = "0.8.0"
-okhttp_logging = "4.10.0"
+retrofit-kotlinx-serialization-json = "0.8.0"
+okhttp-logging = "4.10.0"
 systemuicontroller = "0.17.0"
 accompanist = "0.24.8-beta"
 coil = "2.2.1"
 
 # test
-arch_test = "2.1.0"
+arch-test = "2.1.0"
 junit = "4.13.2"
 mockk = "1.12.5"
 truth = "1.1.2"
@@ -39,39 +39,39 @@ espresso-core = "3.4.0"
 
 [libraries]
 # plugin
-androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
-kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 # kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx_coroutines" }
-kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization_json" }
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 
 # android
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraint_layout" }
-coreKtx = { module = "androidx.core:core-ktx", version.ref = "core_ktx" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraint-layout" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "systemuicontroller" }
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 
 # lifecycle
-lifecycle-runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "arch_lifecycle" }
-lifecycle-viewModelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "arch_lifecycle" }
-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "arch_lifecycle_extension" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "arch-lifecycle" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "arch-lifecycle" }
+lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "arch-lifecycle-extension" }
 
 # compose
-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity_compose" }
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
-compose-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "arch_lifecycle" }
+compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "arch-lifecycle" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 
 # navigation
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
-navigation-fragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 navigation-uiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 
 # hilt
@@ -80,8 +80,8 @@ hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.re
 
 # retrofit
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-retrofit-kotlin-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit_kotlinx_serialization_json" }
-okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp_logging" }
+retrofit-kotlin-serialization = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-serialization-json" }
+okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp-logging" }
 
 # detekt
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
@@ -93,15 +93,15 @@ coil-kt-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
 
 # test
 junit4 = { module = "junit:junit", version.ref = "junit" }
-kotlin-coroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx_coroutines" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-agent = { module = "io.mockk:mockk-agent-jvm", version.ref = "mockk" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 # android test
-coreTesting = { module = "androidx.arch.core:core-testing", version.ref = "arch_test" }
-composeUiTest = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
-hiltTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+core-testing = { module = "androidx.arch.core:core-testing", version.ref = "arch-test" }
+compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
 
@@ -110,19 +110,19 @@ compose = [
     "compose-activity",
     "compose-material",
     "compose-runtime",
-    "compose-viewModel",
+    "compose-viewmodel",
     "compose-ui",
-    "compose-uiTooling",
-    "compose-uiToolingPreview"
+    "compose-ui-tooling",
+    "compose-ui-tooling-preview"
 ]
 kotlin = ["kotlin-stdlib", "kotlin-coroutines", "kotlin-serialization-json"]
 android = [
-    "appcompat", "constraintLayout", "coreKtx", "material",
-    "lifecycle-runtimeKtx", "lifecycle-viewModelKtx", "systemuicontroller"
+    "appcompat", "constraintlayout", "core-ktx", "material",
+    "lifecycle-runtime-ktx", "lifecycle-viewmodel-ktx", "systemuicontroller"
 ]
-navigation = ["navigation-compose", "navigation-fragmentKtx", "navigation-uiKtx"]
+navigation = ["navigation-compose", "navigation-fragment-ktx", "navigation-uiKtx"]
 retrofit = ["retrofit-core", "retrofit-kotlin-serialization", "okhttp-logging"]
-unitTest = ["junit4", "kotlin-coroutinesTest", "mockk", "mockk-agent", "truth"]
+unit-test = ["junit4", "kotlin-coroutines-test", "mockk", "mockk-agent", "truth"]
 coil = ["coil-kt", "coil-kt-compose", "coil-kt-svg"]
 
 [plugins]

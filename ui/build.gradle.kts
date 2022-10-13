@@ -14,7 +14,7 @@ androidLibrary {
 }
 
 dependencies {
-    implementation(libs.coreKtx)
+    implementation(libs.core.ktx)
     implementation(libs.material)
     implementation(libs.bundles.compose)
     testImplementation(libs.junit4)
