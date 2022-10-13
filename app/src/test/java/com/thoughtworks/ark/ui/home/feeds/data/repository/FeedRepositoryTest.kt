@@ -28,7 +28,7 @@ class FeedRepositoryTest {
     }
 
     @Test
-    fun `should call data source when fetch feed list from repository`() = runTest {
+    fun shouldCallDataSourceWhenFetchFeedListFromRepository() = runTest {
         // when
         val result = feedRepository.getFeedList().first()
         // then

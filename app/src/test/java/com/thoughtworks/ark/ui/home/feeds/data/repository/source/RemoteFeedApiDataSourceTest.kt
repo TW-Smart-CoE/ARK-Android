@@ -31,7 +31,7 @@ class RemoteFeedApiDataSourceTest {
     }
 
     @Test
-    fun `should return success result when api method execute correctly`() = runTest {
+    fun shouldReturnSuccessResultWhenApiMethodExecuteCorrectly() = runTest {
         // given
         val feedList = FeedListEntity()
         coEvery { feedApi.getFeedList() } returns Response.success(feedList)
@@ -43,7 +43,7 @@ class RemoteFeedApiDataSourceTest {
     }
 
     @Test
-    fun `should return error result when api method throw an exception`() = runTest {
+    fun shouldReturnErrorResultWhenApiMethodThrowAnException() = runTest {
         // given
         val exception = IllegalStateException("error")
         coEvery { feedApi.getFeedList() } throws exception
