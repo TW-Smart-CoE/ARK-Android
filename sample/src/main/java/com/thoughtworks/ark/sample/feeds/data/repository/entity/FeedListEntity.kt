@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository.entity
+package com.thoughtworks.ark.sample.feeds.data.repository.entity
 
 import kotlinx.serialization.Serializable
 

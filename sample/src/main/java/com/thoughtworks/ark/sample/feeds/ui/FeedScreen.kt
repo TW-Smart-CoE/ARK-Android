@@ -1,19 +1,19 @@
-package com.thoughtworks.ark.ui.home.feeds.ui
+package com.thoughtworks.ark.sample.feeds.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.sample.feeds.FeedUiAction
+import com.thoughtworks.ark.sample.feeds.FeedUiState
+import com.thoughtworks.ark.sample.feeds.FeedViewModel
 import com.thoughtworks.ark.ui.component.AppFilledButton
-import com.thoughtworks.ark.ui.home.feeds.FeedUiAction
-import com.thoughtworks.ark.ui.home.feeds.FeedUiState
-import com.thoughtworks.ark.ui.home.feeds.FeedViewModel
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 
@@ -33,7 +33,7 @@ fun FeedScreenContent(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .wrapContentSize()
             .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {

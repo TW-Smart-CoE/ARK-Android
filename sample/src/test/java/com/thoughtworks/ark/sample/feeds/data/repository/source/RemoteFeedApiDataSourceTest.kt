@@ -1,10 +1,10 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository.source
+package com.thoughtworks.ark.sample.feeds.data.repository.source
 
 import com.google.common.truth.Truth.assertThat
-import com.thoughtworks.ark.MainCoroutineRule
 import com.thoughtworks.ark.core.network.entity.ApiException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity
+import com.thoughtworks.ark.sample.MainCoroutineRule
+import com.thoughtworks.ark.sample.feeds.data.repository.entity.FeedListEntity
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

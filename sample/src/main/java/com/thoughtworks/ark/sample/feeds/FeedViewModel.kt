@@ -1,10 +1,10 @@
-package com.thoughtworks.ark.ui.home.feeds
+package com.thoughtworks.ark.sample.feeds
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.network.entity.NetworkReachableException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.ui.home.feeds.data.repository.FeedRepository
+import com.thoughtworks.ark.sample.feeds.data.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

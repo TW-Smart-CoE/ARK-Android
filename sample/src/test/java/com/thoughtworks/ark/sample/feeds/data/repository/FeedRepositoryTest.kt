@@ -1,9 +1,9 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository
+package com.thoughtworks.ark.sample.feeds.data.repository
 
 import com.google.common.truth.Truth.assertThat
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity
-import com.thoughtworks.ark.ui.home.feeds.data.repository.source.FeedApiDataSource
+import com.thoughtworks.ark.sample.feeds.data.repository.entity.FeedListEntity
+import com.thoughtworks.ark.sample.feeds.data.repository.source.FeedApiDataSource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

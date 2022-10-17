@@ -1,9 +1,9 @@
-package com.thoughtworks.ark.ui.home.feeds.data.repository.source
+package com.thoughtworks.ark.sample.feeds.data.repository.source
 
 import com.thoughtworks.ark.core.network.api.ApiService
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.di.IoDispatcher
-import com.thoughtworks.ark.ui.home.feeds.data.repository.entity.FeedListEntity
+import com.thoughtworks.ark.sample.di.IoDispatcher
+import com.thoughtworks.ark.sample.feeds.data.repository.entity.FeedListEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

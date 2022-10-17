@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.thoughtworks.ark.ui.home.feeds.ui.FeedScreen
 import com.thoughtworks.ark.ui.theme.Theme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +18,7 @@ class HomeFragment : Fragment() {
     ): View = ComposeView(requireContext()).apply {
         setContent {
             Theme {
-                FeedScreen()
+                HomeScreen()
             }
         }
     }

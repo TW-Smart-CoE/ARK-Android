@@ -20,9 +20,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
+import com.thoughtworks.ark.sample.feeds.ui.FeedScreen
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +45,7 @@ fun MainScreen() {
             .background(color = Theme.colors.background)
             .padding(all = Dimensions.standardPadding)
     ) {
+        FeedScreen()
         Footer()
     }
 }
