@@ -2,6 +2,7 @@
 <resources>
     <string name="sample">ARK-sample</string>
     <string name="coroutines_label">Coroutines sample</string>
+    <string name="powered_by_label">Powered by</string>
 
     <string name="theme_color_test_for_compose">theme color test for compose</string>
     <string name="theme_color_test_for_xml">theme color test for xml</string>

@@ -16,8 +16,6 @@ androidApplication {
         applicationId = "com.thoughtworks.ark.sample"
         versionCode = 1
         versionName = "1.0.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     enableCompose()
@@ -44,5 +42,4 @@ dependencies {
     testImplementation(libs.hilt.android)
     kaptTest(libs.hilt.compiler)
     detektPlugins(libs.detekt.formatting)
-    androidTestImplementation(libs.espresso.core)
 }

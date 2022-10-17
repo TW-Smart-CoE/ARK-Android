@@ -1,17 +1,25 @@
 package com.thoughtworks.ark.sample.main.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 
@@ -28,21 +36,51 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MainScreen() {
-    val logoThoughtworks =
-        """https://www.thoughtworks.com/etc.clientlibs/thoughtworks/
-            |clientlibs/clientlib-site/resources/images/thoughtworks-logo.svg
-        """.trimMargin()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Theme.colors.background)
-            .padding(horizontal = Dimensions.standardPadding)
+            .padding(all = Dimensions.standardPadding)
     ) {
+        Footer()
+    }
+}
+
+@Composable
+private fun ColumnScope.Footer() {
+    val logoThoughtworks =
+        """https://www.thoughtworks.com/etc.clientlibs/thoughtworks/
+            |clientlibs/clientlib-site/resources/images/thoughtworks-logo.svg
+        """.trimMargin()
+    Row(modifier = Modifier.align(Alignment.End)) {
+        Text(
+            text = stringResource(id = R.string.powered_by_label),
+            modifier = Modifier
+                .align(Alignment.Bottom)
+                .padding(end = Dimensions.smallPadding),
+            style = Theme.typography.caption,
+            color = Theme.colors.onBackground
+        )
         AsyncImage(
             model = logoThoughtworks,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier.size(width = 153.dp, height = Dimensions.iconSmall),
             contentDescription = "Thoughtworks"
         )
-        Text(text = "Hello")
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+@Composable
+fun PreviewMain() {
+    Theme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Theme.colors.background)
+                .padding(all = Dimensions.standardPadding)
+        ) {
+            Footer()
+        }
     }
 }
