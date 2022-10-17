@@ -3,11 +3,7 @@ package com.thoughtworks.ark.ui.dashboard
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.thoughtworks.ark.MainCoroutineRule
-import com.thoughtworks.ark.ui.dashboard.data.repository.DashboardRepository
-import io.mockk.coEvery
-import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -21,17 +17,14 @@ class DashboardViewModelTest {
     val mainCoroutineRule = MainCoroutineRule()
 
     @Test
-    fun shouldLoadDataWhenDashboardViewModelCreated() = runTest {
+    fun shouldInitialDashboardWhenCreated() = runTest {
         // given
-        val repository = mockk<DashboardRepository>()
-        coEvery { repository.loadData() } returns flowOf("TestData")
-        val viewModel = DashboardViewModel(repository)
+        val viewModel = DashboardViewModel()
 
         // when
         val item = viewModel.uiState.value
 
         // then
-        assertThat(item).isNotNull()
-        assertThat(item.label).isEqualTo("TestData")
+        assertThat(item.label).isEqualTo("This is dashboard Fragment")
     }
 }

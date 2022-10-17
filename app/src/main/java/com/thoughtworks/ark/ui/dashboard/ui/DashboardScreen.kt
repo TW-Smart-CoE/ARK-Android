@@ -23,6 +23,10 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
             .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {
-        Text(text = uiState.label, color = Theme.colors.onBackground, style = Theme.typography.body02)
+        Text(
+            text = uiState.label,
+            color = Theme.colors.onBackground,
+            style = Theme.typography.body02
+        )
     }
 }
