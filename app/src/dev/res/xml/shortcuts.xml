@@ -1,7 +1,7 @@
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:shortcutDisabledMessage="@string/develop_menu_disable_hint"
         android:shortcutId="develop_menu"
         android:shortcutLongLabel="@string/develop_menu_label"
@@ -10,7 +10,19 @@
             android:action="android.intent.action.VIEW"
             android:targetClass="com.thoughtworks.ark.developmenu.DevelopMenuActivity"
             android:targetPackage="com.thoughtworks.ark.dev" />
-        <categories android:name="android.shortcut.conversation" />
-        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+        <categories android:name="android.shortcut.devmenu" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_design_system"
+        android:shortcutDisabledMessage="@string/design_system_disable_hint"
+        android:shortcutId="design_system"
+        android:shortcutLongLabel="@string/design_system_label"
+        android:shortcutShortLabel="@string/design_system_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.thoughtworks.ark.uisample.SampleUIActivity"
+            android:targetPackage="com.thoughtworks.ark.uisample.dev" />
+        <categories android:name="android.shortcut.devmenu" />
     </shortcut>
 </shortcuts>
