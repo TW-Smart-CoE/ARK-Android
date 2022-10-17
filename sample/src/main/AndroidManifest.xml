@@ -3,6 +3,7 @@
     package="com.thoughtworks.ark.sample">
 
     <application
+        android:name=".SampleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/sample"
@@ -22,11 +23,11 @@
             android:name="com.thoughtworks.ark.sample.designsystem.ui.DesignSystemActivity"
             android:exported="true" />
         <activity
-            android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity"
-            android:exported="true" />
+            android:name="com.thoughtworks.ark.sample.coroutines.ui.CoroutinesActivity"
+            android:label="@string/coroutines_label" />
+        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity" />
+        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

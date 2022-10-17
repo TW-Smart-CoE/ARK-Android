@@ -7,10 +7,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
+import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.ExtendedColors
 import com.thoughtworks.ark.ui.theme.icon.Icons
-import com.thoughtworks.ark.sample.R
 
 class XmlColorSystemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

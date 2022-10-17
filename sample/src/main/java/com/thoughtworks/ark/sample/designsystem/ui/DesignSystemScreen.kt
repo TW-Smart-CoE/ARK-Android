@@ -19,6 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.flowlayout.FlowRow
+import com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity
+import com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity
+import com.thoughtworks.ark.sample.state.Action
+import com.thoughtworks.ark.sample.state.NavigateActivityAction
 import com.thoughtworks.ark.ui.component.AppButtonDefault
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.component.AppOutlinedButton
@@ -28,11 +32,6 @@ import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.icon.AppIcon
 import com.thoughtworks.ark.ui.theme.icon.Icon
 import com.thoughtworks.ark.ui.theme.icon.Icons
-import com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity
-import com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity
-import com.thoughtworks.ark.sample.state.Action
-import com.thoughtworks.ark.sample.state.NavigateActivityAction
-
 
 @Composable
 fun DesignSystemScreen(
@@ -40,10 +39,14 @@ fun DesignSystemScreen(
 ) {
     val contentPadding = WindowInsets
         .systemBars
-        .add(WindowInsets(left = Dimensions.standardPadding,
-            top = Dimensions.standardPadding,
-            right = Dimensions.standardPadding,
-            bottom = Dimensions.standardPadding))
+        .add(
+            WindowInsets(
+                left = Dimensions.standardPadding,
+                top = Dimensions.standardPadding,
+                right = Dimensions.standardPadding,
+                bottom = Dimensions.standardPadding
+            )
+        )
         .asPaddingValues()
     LazyColumn(
         modifier = Modifier

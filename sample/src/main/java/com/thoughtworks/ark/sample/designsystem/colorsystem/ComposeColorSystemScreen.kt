@@ -14,10 +14,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
+import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.ExtendedColors
-import com.thoughtworks.ark.sample.R
 
 @Composable
 fun ComposeColorSystemScreen() {
@@ -44,7 +44,8 @@ fun ComposeColorSystemScreen() {
         )
         TextViewFromXml(
             color = ExtendedColors.ButtonBackground.colorInt(LocalContext.current),
-            text = stringResource(id = R.string.extended_color_test_for_xml))
+            text = stringResource(id = R.string.extended_color_test_for_xml)
+        )
     }
 }
 

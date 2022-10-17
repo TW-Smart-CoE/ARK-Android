@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample.main.ui
+package com.thoughtworks.ark.sample.coroutines.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -9,40 +9,40 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import coil.compose.AsyncImage
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.sample.coroutines.CoroutinesViewModel
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class CoroutinesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Theme {
-                MainScreen()
+                CoroutinesScreen()
             }
         }
     }
 }
 
 @Composable
-fun MainScreen() {
-    val logoThoughtworks =
-        """https://www.thoughtworks.com/etc.clientlibs/thoughtworks/
-            |clientlibs/clientlib-site/resources/images/thoughtworks-logo.svg
-        """.trimMargin()
+fun CoroutinesScreen(viewModel: CoroutinesViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {
-        AsyncImage(
-            model = logoThoughtworks,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            contentDescription = "Thoughtworks"
+        Text(
+            text = uiState.label,
+            color = Theme.colors.onBackground,
+            style = Theme.typography.body02
         )
-        Text(text = "Hello")
     }
 }
