@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample">ARK-sample</string>
+
+    <string name="theme_color_test_for_compose">theme color test for compose</string>
+    <string name="theme_color_test_for_xml">theme color test for xml</string>
+    <string name="extended_color_test_for_compose">extended color test for compose</string>
+    <string name="extended_color_test_for_xml">extended color test for xml</string>
+</resources>

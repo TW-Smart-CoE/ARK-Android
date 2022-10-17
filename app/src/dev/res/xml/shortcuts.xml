@@ -21,8 +21,8 @@
         android:shortcutShortLabel="@string/design_system_label">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.thoughtworks.ark.uisample.SampleUIActivity"
-            android:targetPackage="com.thoughtworks.ark.uisample.dev" />
+            android:targetClass="com.thoughtworks.ark.sample.designsystem.ui.DesignSystemActivity"
+            android:targetPackage="com.thoughtworks.ark.sample.dev" />
         <categories android:name="android.shortcut.devmenu" />
     </shortcut>
 </shortcuts>

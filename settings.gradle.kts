@@ -22,4 +22,4 @@ include(":ui")
 // Common Module/Utils/Extensions for cross feature
 include(":core")
 
-include(":ui-sample")
+include(":sample")
