@@ -5,8 +5,7 @@ project.afterEvaluate {
     def variants = (android.hasProperty('applicationVariants') ? android.'applicationVariants' : android.'libraryVariants')
     variants.all { variant ->
         def variantName = variant.name
-        def capVariantName = variantName.capitalize()
-        def testTaskName = "test${capVariantName}UnitTest"
+        def testTaskName = "test${variantName.capitalize()}UnitTest"
         tasks.create(name: "${variantName}Coverage", type: JacocoReport, dependsOn: testTaskName) {
 
             group = "Reporting"

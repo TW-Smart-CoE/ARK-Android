@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.detekt) apply false
 }
 
+apply(from = "config/jacoco/project.kts")
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)

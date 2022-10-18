@@ -13,8 +13,6 @@ def defaultFileFilter =  [
         // android
         '**/R.class',
         '**/R$*.class',
-        '**/R2.class',
-        '**/R2$*.class',
         '**/BuildConfig.*',
         '**/Manifest*.*',
         'android/**/*.*',
