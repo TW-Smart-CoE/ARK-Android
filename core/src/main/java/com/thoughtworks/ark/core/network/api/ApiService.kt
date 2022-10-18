@@ -8,6 +8,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 open class ApiService {
+    @Suppress("TooGenericExceptionCaught")
     suspend fun <T : Any> performRequest(apiCall: suspend () -> Response<T>) = flow {
         emit(Result.Loading)
         emit(

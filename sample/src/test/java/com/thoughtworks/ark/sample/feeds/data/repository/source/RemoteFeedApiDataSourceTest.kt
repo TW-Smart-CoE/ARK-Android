@@ -1,9 +1,9 @@
 package com.thoughtworks.ark.sample.feeds.data.repository.source
 
 import com.google.common.truth.Truth.assertThat
+import com.thoughtworks.android.core.testing.util.MainCoroutineRule
 import com.thoughtworks.ark.core.network.entity.ApiException
 import com.thoughtworks.ark.core.network.entity.Result
-import com.thoughtworks.ark.sample.MainCoroutineRule
 import com.thoughtworks.ark.sample.feeds.data.repository.entity.FeedListEntity
 import io.mockk.coEvery
 import io.mockk.mockk

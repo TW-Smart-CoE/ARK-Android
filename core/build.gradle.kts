@@ -4,6 +4,7 @@ import com.thoughtworks.ark.androidLibrary
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.detekt)
 }
 
 apply(from = "../config/jacoco/modules.kts")
@@ -19,6 +20,5 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewmodel.ktx)
-
-    testImplementation(libs.junit4)
+    detektPlugins(libs.detekt.formatting)
 }

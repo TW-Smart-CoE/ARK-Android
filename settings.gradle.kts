@@ -21,5 +21,6 @@ include(":app")
 include(":ui")
 // Common Module/Utils/Extensions for cross feature
 include(":core")
+include(":core-testing")
 
 include(":sample")

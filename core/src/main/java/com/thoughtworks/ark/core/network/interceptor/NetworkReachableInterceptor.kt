@@ -22,8 +22,8 @@ class NetworkReachableInterceptor(private val context: Context) : Interceptor {
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.run {
             return hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                    hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                    hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+                hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
         } ?: false
     }
 }

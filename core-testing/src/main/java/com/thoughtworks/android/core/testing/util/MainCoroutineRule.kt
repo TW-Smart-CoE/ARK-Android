@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample
+package com.thoughtworks.android.core.testing.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
