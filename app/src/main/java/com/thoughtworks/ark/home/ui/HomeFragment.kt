@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.ui
+package com.thoughtworks.ark.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

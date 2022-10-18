@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.notifications.ui
+package com.thoughtworks.ark.notifications.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -8,7 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.thoughtworks.ark.ui.notifications.NotificationsViewModel
+import com.thoughtworks.ark.notifications.NotificationsViewModel
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 

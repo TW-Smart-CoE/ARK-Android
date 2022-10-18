@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.dashboard
+package com.thoughtworks.ark.dashboard
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test

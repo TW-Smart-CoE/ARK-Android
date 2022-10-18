@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.dashboard.ui
+package com.thoughtworks.ark.notifications.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import com.thoughtworks.ark.ui.theme.Theme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class NotificationsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -18,7 +16,7 @@ class DashboardFragment : Fragment() {
     ): View = ComposeView(requireContext()).apply {
         setContent {
             Theme {
-                DashboardScreen()
+                NotificationsScreen()
             }
         }
     }

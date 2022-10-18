@@ -10,25 +10,33 @@ tasks.withType(Test) {
 }
 
 def defaultFileFilter =  [
+        // android
         '**/R.class',
         '**/R$*.class',
-        '**/BuildConfig.*',
-        '**/Manifest*.*',
-        '**/*Test*.*',
-        'android/**/*.*',
-        'androidx/**/*.*',
-        '**/*$ViewInjector*.*',
-        '**/*Dagger*.*',
-        '**/*MembersInjector*.*',
-        '**/*_Factory.*',
-        '**/*_Provide*Factory*.*',
-        '**/*_ViewBinding*.*',
-        '**/AutoValue_*.*',
         '**/R2.class',
         '**/R2$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        'android/**/*.*',
+        'androidx/**/*.*',
+        '**/*Test*.*',
+        // dagger + hilt
+        '**/Hilt_*.*',
+        '**/*_HiltModules*.*',
+        '**/*_Provide*Factory*.*',
+        '**/*_Factory*.*',
+        '**/*_GeneratedInjector.*',
+        'dagger/hilt/**/codegen/*.*',
+        'hilt_aggregated_deps/*.*',
+        '**/AutoValue_*.*',
         '**/*Directions$*',
         '**/*Directions.*',
-        '**/*Binding.*'
+        // custom
+        '**/ui/**',
+        '**/di/**',
+        '**/developmenu/**',
+        '**/AppApplication*.*',
+        '**/MainActivity*.*',
 ]
 
 
@@ -40,11 +48,3 @@ def moduleFilter = [
 defaultFileFilter.addAll(moduleFilter)
 
 project.ext.setProperty("jacocoFileFilter", defaultFileFilter)
-
-
-
-
-
-
-
-

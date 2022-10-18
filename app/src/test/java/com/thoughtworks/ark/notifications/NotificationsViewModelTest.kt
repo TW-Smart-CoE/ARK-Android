@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.notifications
+package com.thoughtworks.ark.notifications
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test

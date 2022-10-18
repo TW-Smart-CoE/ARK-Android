@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.ui.home.ui
+package com.thoughtworks.ark.dashboard.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -10,17 +10,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.thoughtworks.ark.ui.home.HomeViewModel
+import com.thoughtworks.ark.dashboard.DashboardViewModel
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
+fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Theme.colors.background)
+            .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {
         Text(
