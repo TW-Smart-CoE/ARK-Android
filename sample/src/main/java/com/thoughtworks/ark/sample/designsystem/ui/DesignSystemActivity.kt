@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.thoughtworks.ark.sample.state.Action
-import com.thoughtworks.ark.sample.state.NavigateActivityAction
+import com.thoughtworks.ark.sample.main.ui.state.Action
+import com.thoughtworks.ark.sample.main.ui.state.NavigateActivityAction
 import com.thoughtworks.ark.ui.theme.Theme
 
 class DesignSystemActivity : AppCompatActivity() {

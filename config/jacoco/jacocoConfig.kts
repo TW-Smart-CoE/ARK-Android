@@ -34,8 +34,10 @@ def defaultFileFilter =  [
         // custom
         '**/ui/**',
         '**/di/**',
+        '**/entity/**',
+        '**/model/**',
         '**/developmenu/**',
-        '**/AppApplication*.*',
+        '**/*Application*.*',
         '**/MainActivity*.*',
 ]
 

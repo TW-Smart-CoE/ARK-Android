@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample.state
+package com.thoughtworks.ark.sample.main.ui.state
 
 import androidx.appcompat.app.AppCompatActivity
 

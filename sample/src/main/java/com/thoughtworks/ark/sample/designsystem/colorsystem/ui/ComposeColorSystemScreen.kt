@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample.designsystem.colorsystem
+package com.thoughtworks.ark.sample.designsystem.colorsystem.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

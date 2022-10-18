@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample.designsystem.colorsystem
+package com.thoughtworks.ark.sample.designsystem.colorsystem.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent

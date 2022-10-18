@@ -19,10 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.flowlayout.FlowRow
-import com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity
-import com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity
-import com.thoughtworks.ark.sample.state.Action
-import com.thoughtworks.ark.sample.state.NavigateActivityAction
+import com.thoughtworks.ark.sample.designsystem.colorsystem.ui.ComposeColorSystemActivity
+import com.thoughtworks.ark.sample.designsystem.colorsystem.ui.XmlColorSystemActivity
+import com.thoughtworks.ark.sample.main.ui.state.Action
+import com.thoughtworks.ark.sample.main.ui.state.NavigateActivityAction
 import com.thoughtworks.ark.ui.component.AppButtonDefault
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.component.AppOutlinedButton

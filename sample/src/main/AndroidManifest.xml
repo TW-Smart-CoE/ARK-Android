@@ -25,8 +25,8 @@
         <activity
             android:name="com.thoughtworks.ark.sample.coroutines.ui.CoroutinesActivity"
             android:label="@string/coroutines_label" />
-        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ComposeColorSystemActivity" />
-        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.XmlColorSystemActivity" />
+        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.ComposeColorSystemActivity" />
+        <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.XmlColorSystemActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
