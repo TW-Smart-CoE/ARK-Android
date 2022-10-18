@@ -1,7 +1,7 @@
 package com.thoughtworks.ark.sample.coroutines
 
 import com.google.common.truth.Truth
-import com.thoughtworks.android.core.testing.util.MainCoroutineRule
+import com.thoughtworks.android.core.testing.util.MainDispatcherRule
 import com.thoughtworks.ark.sample.coroutines.data.repository.CoroutinesRepository
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -14,7 +14,7 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class CoroutinesViewModelTest {
     @get:Rule
-    val mainCoroutinesRule = MainCoroutineRule()
+    val mainDispatcherRules = MainDispatcherRule()
 
     @Test
     fun shouldLoadDataWhenCreated() = runTest {

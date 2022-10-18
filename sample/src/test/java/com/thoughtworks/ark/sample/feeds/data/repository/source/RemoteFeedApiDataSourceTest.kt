@@ -1,7 +1,7 @@
 package com.thoughtworks.ark.sample.feeds.data.repository.source
 
 import com.google.common.truth.Truth.assertThat
-import com.thoughtworks.android.core.testing.util.MainCoroutineRule
+import com.thoughtworks.android.core.testing.util.MainDispatcherRule
 import com.thoughtworks.ark.core.network.entity.ApiException
 import com.thoughtworks.ark.core.network.entity.Result
 import com.thoughtworks.ark.sample.feeds.data.repository.entity.FeedListEntity
@@ -19,7 +19,7 @@ import retrofit2.Response
 class RemoteFeedApiDataSourceTest {
 
     @get:Rule
-    val mainCoroutineRule = MainCoroutineRule()
+    val mainDispatcherRule = MainDispatcherRule()
 
     private val feedApi: RetrofitFeedApi = mockk()
     private lateinit var retrofitFeedApiDataSource: RemoteFeedApiDataSource
@@ -27,7 +27,7 @@ class RemoteFeedApiDataSourceTest {
     @Before
     fun setUp() {
         retrofitFeedApiDataSource =
-            RemoteFeedApiDataSource(feedApi, mainCoroutineRule.testDispatcher)
+            RemoteFeedApiDataSource(feedApi, mainDispatcherRule.testDispatcher)
     }
 
     @Test
