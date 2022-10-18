@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.sample.di
+package com.thoughtworks.ark.core.di
 
 import dagger.Module
 import dagger.Provides

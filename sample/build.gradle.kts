@@ -38,11 +38,5 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     testImplementation(project(":core-testing"))
-    testImplementation(libs.bundles.unit.test)
-    testImplementation(libs.core.testing)
-    testImplementation(libs.compose.ui.test)
-
-    testImplementation(libs.hilt.android)
-    kaptTest(libs.hilt.compiler)
     detektPlugins(libs.detekt.formatting)
 }

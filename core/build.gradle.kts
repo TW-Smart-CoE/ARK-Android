@@ -4,6 +4,8 @@ import com.thoughtworks.ark.androidLibrary
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.detekt)
 }
 
@@ -20,5 +22,8 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.lifecycle.extensions)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
     detektPlugins(libs.detekt.formatting)
 }

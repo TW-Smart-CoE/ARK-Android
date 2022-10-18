@@ -1,6 +1,7 @@
 package com.thoughtworks.ark.sample.di
 
 import android.content.Context
+import com.thoughtworks.ark.core.di.IoDispatcher
 import com.thoughtworks.ark.core.network.client.ApiEndPoints
 import com.thoughtworks.ark.sample.feeds.data.repository.source.FeedApiDataSource
 import com.thoughtworks.ark.sample.feeds.data.repository.source.RemoteFeedApiDataSource

@@ -37,11 +37,6 @@ dependencies {
 
     implementation(libs.bundles.coil)
 
-    testImplementation(libs.bundles.unit.test)
-    testImplementation(libs.core.testing)
-    testImplementation(libs.compose.ui.test)
-
-    testImplementation(libs.hilt.android)
-    kaptTest(libs.hilt.compiler)
+    testImplementation(project(":core-testing"))
     detektPlugins(libs.detekt.formatting)
 }

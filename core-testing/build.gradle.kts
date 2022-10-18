@@ -12,8 +12,6 @@ plugins {
 androidLibrary()
 
 dependencies {
-    implementation(project(":core"))
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
