@@ -102,9 +102,9 @@ class Logger private constructor() {
             return strategy.interceptors.any { it.intercept(tag, priority) }.not()
         }
 
-        override fun formatMessage(message: String, args: Array<out Any?>): String {
+        override fun formatMessage(message: String, vararg args: Any?): String {
             require(this::strategy.isInitialized) { "Logger is not setup" }
-            return strategy.dataFormatter.format(message, args)
+            return strategy.dataFormatter.format(message, *args)
         }
     }
 }

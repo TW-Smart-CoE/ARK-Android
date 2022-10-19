@@ -4,6 +4,7 @@ import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.decode.SvgDecoder
+import com.thoughtworks.ark.core.logging.Logger
 import dagger.hilt.android.HiltAndroidApp
 import kotlin.properties.Delegates
 
@@ -13,6 +14,7 @@ class AppApplication : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        Logger.setUp()
     }
 
     override fun newImageLoader() = ImageLoader.Builder(this)

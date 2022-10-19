@@ -148,7 +148,7 @@ abstract class Logging {
             msg = getStackTraceString(throwable)
         } else {
             if (args.isNotEmpty()) {
-                msg = formatMessage(msg, args)
+                msg = formatMessage(msg, *args)
             }
             if (throwable != null) {
                 msg += "\n" + getStackTraceString(throwable)
@@ -174,7 +174,7 @@ abstract class Logging {
     /**
      * For formatters
      */
-    protected abstract fun formatMessage(message: String, args: Array<out Any?>): String
+    protected abstract fun formatMessage(message: String, vararg args: Any?): String
 
     /**
      * For printers
