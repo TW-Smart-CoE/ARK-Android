@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.thoughtworks.ark.core.logging.Logger
 import com.thoughtworks.ark.sample.main.ui.state.Action
 import com.thoughtworks.ark.sample.main.ui.state.NavigateActivityAction
 import com.thoughtworks.ark.ui.theme.Theme
@@ -35,6 +36,7 @@ class DesignSystemActivity : AppCompatActivity() {
     }
 
     private fun handNavigateAction(action: NavigateActivityAction) {
+        Logger.d("Navigate to %s", action.destination.simpleName)
         startActivity(Intent(this, action.destination))
     }
 }
