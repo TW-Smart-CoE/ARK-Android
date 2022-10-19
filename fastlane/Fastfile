@@ -79,16 +79,20 @@ platform :android do
     # For security, we put this value to env.
     # You can find this value in ".env.default" file
     slack_url = ENV["SLACK_URL"]
-    slack(
-      slack_url: slack_url,
-      message: options[:message],
-      success: true,
-      payload: {
-        "Build Date" => Time.new.to_s,
-        "Built by" => "Jenkins",
-      },
-      default_payloads: [:git_branch, :git_author]
-    )
+    if slack_url.nil? || slack_url.empty?
+      puts "[Warning] No slack url setup"
+    else
+      slack(
+        slack_url: slack_url,
+        message: options[:message],
+        success: true,
+        payload: {
+          "Build Date" => Time.new.to_s,
+          "Built by" => "Jenkins",
+        },
+        default_payloads: [:git_branch, :git_author]
+      )
+    end
   end
 
   before_all do |lane|
