@@ -47,7 +47,7 @@ abstract class Printer(private val decorations: List<Decoration>) {
 
         fun spiltToLines(message: String): List<String> {
             val rawLines = message.split('\n')
-            if (rawLines.all { it.length < MAX_LOG_LENGTH}) {
+            if (rawLines.all { it.length < MAX_LOG_LENGTH }) {
                 return rawLines
             }
 

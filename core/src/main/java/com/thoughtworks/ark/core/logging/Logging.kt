@@ -4,14 +4,9 @@ import android.util.Log
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.regex.Pattern
-import kotlin.math.min
 
+@Suppress("TooManyFunctions", "ThrowingExceptionsWithoutMessageOrCause")
 abstract class Logging {
-    companion object {
-        private const val MAX_TAG_LENGTH = 23
-        private val ANONYMOUS_CLASS = Pattern.compile("(\\$\\d+)+$")
-    }
-
     protected open val globalTag: String? = null
     protected val userTag = ThreadLocal<String>()
     private val tag: String?
@@ -148,7 +143,7 @@ abstract class Logging {
         var msg = message
         if (msg.isNullOrEmpty()) {
             if (throwable == null) {
-                return  // Swallow message if it's null and there's no throwable.
+                return // Swallow message if it's null and there's no throwable.
             }
             msg = getStackTraceString(throwable)
         } else {
@@ -164,7 +159,7 @@ abstract class Logging {
     }
 
     private fun getStackTraceString(throwable: Throwable): String {
-        val sw = StringWriter(256)
+        val sw = StringWriter(MAX_STACK_TRACK_SIZE)
         val pw = PrintWriter(sw, false)
         throwable.printStackTrace(pw)
         pw.flush()
@@ -190,4 +185,10 @@ abstract class Logging {
      * @param message Formatted log message.
      */
     protected abstract fun printLog(priority: Int, tag: String?, message: String)
+
+    companion object {
+        private const val MAX_TAG_LENGTH = 23
+        private const val MAX_STACK_TRACK_SIZE = 256
+        private val ANONYMOUS_CLASS = Pattern.compile("(\\$\\d+)+$")
+    }
 }

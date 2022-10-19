@@ -56,7 +56,7 @@ class Logger private constructor() {
         }
     }
 
-    companion object Default: Logging() {
+    companion object Default : Logging() {
         private val logcatStrategy = Strategy(
             interceptors = listOf(LogLevelInterceptor(0)),
             printers = listOf(AndroidPrinter())

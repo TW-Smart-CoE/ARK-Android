@@ -5,5 +5,5 @@ interface Formatter {
     /**
      * Format the [message] with [args]
      */
-    fun format(message: String, args: Array<out Any?>): String
+    fun format(message: String, vararg args: Any?): String
 }

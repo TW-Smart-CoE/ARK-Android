@@ -3,7 +3,7 @@ package com.thoughtworks.ark.core.logging.printer
 import android.util.Log
 import com.thoughtworks.ark.core.logging.printer.decoration.Decoration
 
-class AndroidPrinter(decorations: List<Decoration> = emptyList()): Printer(decorations) {
+class AndroidPrinter(decorations: List<Decoration> = emptyList()) : Printer(decorations) {
 
     override fun printLog(priority: Int, tag: String?, message: String) {
         if (priority == Log.ASSERT) {

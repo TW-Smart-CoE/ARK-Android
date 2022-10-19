@@ -1,9 +1,9 @@
 package com.thoughtworks.ark.core.logging.printer.decoration
 
-class BorderDecoration: Decoration {
+class BorderDecoration : Decoration {
 
     private val header = "╔═════════════════════════════════"
-    private val start =  "║ "
+    private val start = "║ "
     private val footer = "╚═════════════════════════════════"
 
     override fun header() = header
