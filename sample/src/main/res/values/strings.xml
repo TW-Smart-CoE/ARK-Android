@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sample">ARK-sample</string>
+    <string name="app_name">ARK-Android-sample</string>
     <string name="coroutines_label">Coroutines sample</string>
     <string name="powered_by_label">Powered by</string>
 
