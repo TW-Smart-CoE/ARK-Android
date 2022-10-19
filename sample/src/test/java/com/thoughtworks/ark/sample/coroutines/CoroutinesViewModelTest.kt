@@ -1,7 +1,7 @@
 package com.thoughtworks.ark.sample.coroutines
 
 import com.google.common.truth.Truth
-import com.thoughtworks.android.core.testing.util.MainDispatcherRule
+import com.thoughtworks.ark.core.testing.util.MainDispatcherRule
 import com.thoughtworks.ark.sample.coroutines.data.repository.CoroutinesRepository
 import io.mockk.coEvery
 import io.mockk.mockk
