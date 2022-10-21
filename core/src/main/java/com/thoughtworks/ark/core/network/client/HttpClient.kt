@@ -1,6 +1,7 @@
 package com.thoughtworks.ark.core.network.client
 
 import android.content.Context
+import com.thoughtworks.ark.core.logging.Logger
 import com.thoughtworks.ark.core.network.interceptor.NetworkReachableInterceptor
 import com.thoughtworks.ark.core.utils.isDevEnvironment
 import okhttp3.OkHttpClient
@@ -26,7 +27,7 @@ open class HttpClient(private val context: Context) {
 
     private fun addLoggingInterceptor(builder: OkHttpClient.Builder) {
         builder.takeIf { isDevEnvironment() }?.addInterceptor(
-            HttpLoggingInterceptor().apply {
+            HttpLoggingInterceptor(logger = ArkHttpLogger()).apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
         )
@@ -34,6 +35,12 @@ open class HttpClient(private val context: Context) {
 
     private fun addInterceptors(builder: OkHttpClient.Builder) {
         builder.addInterceptor(NetworkReachableInterceptor(context))
+    }
+
+    private class ArkHttpLogger : HttpLoggingInterceptor.Logger {
+        override fun log(message: String) {
+            Logger.d(message)
+        }
     }
 
     companion object {

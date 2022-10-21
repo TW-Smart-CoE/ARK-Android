@@ -1,5 +1,6 @@
 package com.thoughtworks.ark.core.logging
 
+import android.util.Log
 import com.thoughtworks.ark.core.logging.formatter.DefaultFormatter
 import com.thoughtworks.ark.core.logging.formatter.Formatter
 import com.thoughtworks.ark.core.logging.formatter.SecurityFormatter
@@ -58,7 +59,7 @@ class Logger private constructor() {
 
     companion object Default : Logging() {
         private val logcatStrategy = Strategy(
-            interceptors = listOf(LogLevelInterceptor(0)),
+            interceptors = listOf(LogLevelInterceptor(if (isDevEnvironment()) Log.VERBOSE else Log.WARN)),
             printers = listOf(AndroidPrinter())
         )
 
