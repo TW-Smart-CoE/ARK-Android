@@ -27,7 +27,7 @@ open class HttpClient(private val context: Context) {
 
     private fun addLoggingInterceptor(builder: OkHttpClient.Builder) {
         builder.takeIf { isDevEnvironment() }?.addInterceptor(
-            HttpLoggingInterceptor(logger = ArkHttpLogger()).apply {
+            HttpLoggingInterceptor(logger = AppHttpLogger()).apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
         )
@@ -37,7 +37,7 @@ open class HttpClient(private val context: Context) {
         builder.addInterceptor(NetworkReachableInterceptor(context))
     }
 
-    private class ArkHttpLogger : HttpLoggingInterceptor.Logger {
+    private class AppHttpLogger : HttpLoggingInterceptor.Logger {
         override fun log(message: String) {
             Logger.d(message)
         }
