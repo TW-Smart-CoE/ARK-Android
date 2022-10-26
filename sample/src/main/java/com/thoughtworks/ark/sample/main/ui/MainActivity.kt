@@ -1,6 +1,5 @@
 package com.thoughtworks.ark.sample.main.ui
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,11 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.sample.feeds.ui.FeedScreen
+import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,8 +72,7 @@ private fun ColumnScope.Footer() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+@PreviewsDarkLight
 @Composable
 fun PreviewMain() {
     Theme {

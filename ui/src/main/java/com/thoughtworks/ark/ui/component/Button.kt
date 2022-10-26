@@ -1,6 +1,5 @@
 package com.thoughtworks.ark.ui.component
 
-import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,9 +18,9 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
 import com.thoughtworks.ark.ui.theme.color.ExtendedColors
@@ -346,8 +345,7 @@ object AppButtonDefault {
     )
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+@PreviewsDarkLight
 @Composable
 fun PreviewTextButton() {
     Theme {
@@ -357,8 +355,7 @@ fun PreviewTextButton() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+@PreviewsDarkLight
 @Composable
 fun PreviewFilledButton() {
     Theme {
@@ -368,8 +365,7 @@ fun PreviewFilledButton() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+@PreviewsDarkLight
 @Composable
 fun PreviewOutlinedButton() {
     Theme {
