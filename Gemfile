@@ -4,5 +4,5 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "fastlane", "~> 2.209.1"
+gem "fastlane", "~> 2.210.1"
 gem "dotenv", "~> 2.8"
