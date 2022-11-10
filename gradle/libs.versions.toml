@@ -1,8 +1,8 @@
 [versions]
 # android
 sdk-min-version = "26"
-sdk-target-version = "32"
-sdk-compile-version = "32"
+sdk-target-version = "33"
+sdk-compile-version = "33"
 
 # library
 gradle = "7.2.2"
