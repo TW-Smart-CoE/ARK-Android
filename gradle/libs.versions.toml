@@ -24,7 +24,7 @@ retrofit = "2.9.0"
 retrofit-kotlinx-serialization-json = "0.8.0"
 okhttp-logging = "4.10.0"
 systemuicontroller = "0.17.0"
-accompanist = "0.24.8-beta"
+accompanist = "0.27.0"
 coil = "2.2.2"
 
 # test
