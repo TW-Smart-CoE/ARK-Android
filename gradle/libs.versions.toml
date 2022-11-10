@@ -34,7 +34,7 @@ truth = "1.1.3"
 
 # android test
 androidx-junit = "1.1.4"
-espresso-core = "3.4.0"
+espresso-core = "3.5.0"
 
 [libraries]
 # plugin
