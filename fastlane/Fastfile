@@ -37,6 +37,9 @@ platform :android do
   desc "Build an app for staging env"
   lane :build_staging do
     gradle(task: "assembleStagingRelease")
+    release_to_test_channel({
+      :apks => lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS]
+    })
     notification_options = {
       :message => "Finished #{lane_context[SharedValues::LANE_NAME]} on #{Time.new.to_s}"
     }
@@ -63,8 +66,8 @@ platform :android do
   end
 
   desc "Deploy on Fir.im"
-  lane :deploy_internal do
-    apks = lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS]
+  private_lane :release_to_test_channel do |options|
+    apks = options[:apks]
     if apks != nil && !apks.empty?
       apks.each do |apk|
         fir_cli api_token: ENV["FIR_TOKEN"], specify_file_path: apk
