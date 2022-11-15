@@ -65,8 +65,12 @@ platform :android do
   desc "Deploy on Fir.im"
   lane :deploy_internal do
     apks = lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS]
-    apks.each do |apk|
-      fir_cli api_token: ENV["FIR_TOKEN"], specify_file_path: apk
+    if apks != nil && !apks.empty?
+      apks.each do |apk|
+        fir_cli api_token: ENV["FIR_TOKEN"], specify_file_path: apk
+      end
+    else
+      puts "no available apks"
     end
   end
 
