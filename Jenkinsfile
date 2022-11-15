@@ -87,7 +87,7 @@ pipeline {
             when { expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' } }
             steps {
                 script {
-                    sh 'echo deploy'
+                    sh 'bundle exec fastlane deploy_internal'
                 }
             }
         }
