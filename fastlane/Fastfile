@@ -62,6 +62,14 @@ platform :android do
     gradle(task: "devDebugCoverage")
   end
 
+  desc "Deploy on Fir.im"
+  lane :deploy_internal do
+    apks = lane_context[SharedValues::GRADLE_ALL_APK_OUTPUT_PATHS]
+    apks.each do |apk|
+      fir_cli api_token: ENV["FIR_TOKEN"], specify_file_path: apk
+    end
+  end
+
   desc "Notify message to user"
   private_lane :notify_message do |options|
     if is_ci
