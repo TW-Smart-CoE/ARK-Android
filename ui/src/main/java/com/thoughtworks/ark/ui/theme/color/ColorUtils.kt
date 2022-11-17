@@ -18,7 +18,6 @@ fun obtainAttrColorToColor(
     @AttrRes attrResId: Int
 ) = Color(obtainAttrColorToColorInt(context, themeId, attrResId))
 
-
 /**
  *  get the attr color Int from the theme
  */
@@ -30,7 +29,6 @@ fun obtainAttrColorToColorInt(
     ContextThemeWrapper(context, themeId),
     attrResId, Color.White.toArgb()
 )
-
 
 /**
  *   get the attr color from the theme and transform to color state list

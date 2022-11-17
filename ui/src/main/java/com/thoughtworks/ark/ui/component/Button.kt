@@ -231,8 +231,7 @@ private fun RowScope.AppButtonContent(
     trailingIcon: @Composable (() -> Unit)?,
 ) {
     leadingIcon?.run {
-        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize,
-            maxHeight = AppButtonDefault.ButtonIconSize)) {
+        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize, maxHeight = AppButtonDefault.ButtonIconSize)) {
             leadingIcon()
         }
     }
@@ -246,8 +245,7 @@ private fun RowScope.AppButtonContent(
         text()
     }
     trailingIcon?.run {
-        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize,
-            maxHeight = AppButtonDefault.ButtonIconSize)) {
+        Box(Modifier.sizeIn(maxWidth = AppButtonDefault.ButtonIconSize, maxHeight = AppButtonDefault.ButtonIconSize)) {
             trailingIcon()
         }
     }

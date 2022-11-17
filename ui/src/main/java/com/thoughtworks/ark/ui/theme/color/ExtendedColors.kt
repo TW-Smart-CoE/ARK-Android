@@ -15,7 +15,7 @@ sealed class ExtendedColors(
     object ButtonBackground : ExtendedColors(R.color.button_background)
     object ButtonContent : ExtendedColors(R.color.button_content)
     object ErrorOutLine : ExtendedColors(R.color.error_out_line)
-    object UnselectColor: ExtendedColors(R.color.unselect_color)
+    object UnselectColor : ExtendedColors(R.color.unselect_color)
 
     @Composable
     fun color() =
@@ -35,7 +35,6 @@ sealed class ExtendedColors(
 
     fun colorInt(context: Context) =
         context.getColor(colorRes)
-
 
     fun hex(context: Context) =
         String.format(HEX_FORMAT, Color.White.toArgb() and colorInt(context))

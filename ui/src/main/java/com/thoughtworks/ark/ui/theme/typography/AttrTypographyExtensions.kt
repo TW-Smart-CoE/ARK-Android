@@ -12,6 +12,12 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.core.content.res.ResourcesCompat
 
+private const val TypographyIndexTextSize = 0
+private const val TypographyIndexTypeface = 1
+private const val TypographyIndexAllCaps = 2
+private const val TypographyIndexFontFamily = 3
+private const val TypographyIndexSpacingEm = 4
+
 @SuppressLint("ResourceType")
 fun AttrTypography.attributes(context: Context): AttrTypography.Attributes =
     context.obtainStyledAttributes(
@@ -24,12 +30,12 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes =
             android.R.attr.letterSpacing
         )
     ).run {
-        val textSizePx = getDimension(0, 14.sp.value)
-        val textSizeSp = geSizeSp(0, textSizePx)
-        val typefaceStyle = getInt(1, Typeface.NORMAL)
-        val allCaps = getBoolean(2, false)
-        val fontFamily = getString(3) ?: FontFamily.Default.toString()
-        val letterSpacingEm = getFloat(4, 0f)
+        val textSizePx = getDimension(TypographyIndexTextSize, 14.sp.value)
+        val textSizeSp = geSizeSp(TypographyIndexTextSize, textSizePx)
+        val typefaceStyle = getInt(TypographyIndexTypeface, Typeface.NORMAL)
+        val allCaps = getBoolean(TypographyIndexAllCaps, false)
+        val fontFamily = getString(TypographyIndexFontFamily) ?: FontFamily.Default.toString()
+        val letterSpacingEm = getFloat(TypographyIndexSpacingEm, 0f)
 
         recycle()
         AttrTypography.Attributes(
@@ -44,7 +50,6 @@ fun AttrTypography.attributes(context: Context): AttrTypography.Attributes =
 
 private fun TypedArray.geSizeSp(index: Int, defaultValue: Float) =
     getString(index)?.replace("sp", "")?.toFloat() ?: defaultValue
-
 
 internal fun AttrTypography.style(context: Context): TextStyle = with(attributes(context)) {
     val fontWeight =
