@@ -7,7 +7,7 @@ sdk-compile-version = "33"
 # library
 gradle = "7.3.1"
 kotlin = "1.7.10"
-detekt = "1.21.0"
+detekt = "1.22.0"
 activity-compose = "1.6.1"
 appcompat = "1.5.1"
 arch-lifecycle = "2.5.1"
