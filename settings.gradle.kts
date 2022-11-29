@@ -27,5 +27,4 @@ include(":core-permission")
 include(":sound")
 
 include(":sample")
-
-
+include(":core-storage")

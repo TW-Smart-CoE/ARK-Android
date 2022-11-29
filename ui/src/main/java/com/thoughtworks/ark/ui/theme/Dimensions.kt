@@ -17,7 +17,9 @@ object Dimensions {
     val dimension40 = 40.dp
     val dimension44 = 44.dp
     val dimension48 = 48.dp
+    val dimension72 = 72.dp
     val dimension96 = 96.dp
+    val dimension128 = 128.dp
 
     val standardPadding = dimension16
     val halfPadding = dimension8

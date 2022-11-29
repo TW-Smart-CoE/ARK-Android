@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
+import com.thoughtworks.ark.sample.storage.StorageActivity
 import com.thoughtworks.ark.sample.feeds.ui.FeedActivity
 import com.thoughtworks.ark.sample.permission.ui.PermissionActivity
 import com.thoughtworks.ark.sample.sound.ui.SoundActivity
@@ -75,6 +76,13 @@ fun MainScreen() {
                 context.startActivity(Intent(context, SoundActivity::class.java))
             },
             text = { Text(text = "Sound Demo") }
+        )
+
+        AppFilledButton(
+            onClick = {
+                context.startActivity(Intent(context, StorageActivity::class.java))
+            },
+            text = { Text(text = "Storage Demo") }
         )
 
         Footer()
