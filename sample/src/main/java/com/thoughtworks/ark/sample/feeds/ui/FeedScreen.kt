@@ -2,8 +2,8 @@ package com.thoughtworks.ark.sample.feeds.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -33,7 +33,7 @@ fun FeedScreenContent(
 ) {
     Column(
         modifier = Modifier
-            .wrapContentSize()
+            .fillMaxSize()
             .background(color = Theme.colors.background)
             .padding(horizontal = Dimensions.standardPadding)
     ) {

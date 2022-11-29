@@ -53,6 +53,7 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
+accompanist-permission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 
 # lifecycle
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "arch-lifecycle" }
