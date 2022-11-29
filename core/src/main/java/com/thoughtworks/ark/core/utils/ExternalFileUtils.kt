@@ -291,14 +291,6 @@ class ExternalFileUtils {
             return null
         }
 
-        fun readSDCardFile(path: String, fileName: String): String {
-            val file = File(path, fileName)
-            if (file.isDirectory) {
-                return ""
-            }
-            return file.readText()
-        }
-
         // 获取SD卡公有目录的路径
         fun getSDCardPublicDir(type: String?): String {
             return Environment.getExternalStoragePublicDirectory(type).toString()
