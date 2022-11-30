@@ -46,16 +46,16 @@ class FileManager(val context: Context) {
         return childDir.list()?.map { it } ?: emptyList()
     }
 
-    fun readFile(fileName: String): String {
+    fun readFile(fileName: String): String? {
         val file = File(filesPath, fileName)
         if (file.isDirectory) {
-            return "Warning! This is a dic."
+            return null
         }
         return try {
             file.readText()
         } catch (e: Exception) {
             Log.e(TAG, e.toString())
-            return "Error!"
+            return null
         }
     }
 
