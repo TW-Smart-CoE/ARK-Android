@@ -12,7 +12,9 @@ class FileManager(val context: Context) {
     private var filesPath: String = ""
     private var savesPath: String = ""
 
-    private val tag = "FileManager"
+    companion object {
+        private const val TAG = "FileManager"
+    }
 
     init {
         val documentFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
@@ -31,46 +33,39 @@ class FileManager(val context: Context) {
         }
     }
 
-    fun listSDCardFiles(): List<String> {
+    fun listFilesDic(): List<String> {
         val fileList = File(filesPath).list()
-        Log.i(tag, "listSDCardFiles:$fileList")
         return fileList?.map { it } ?: emptyList()
     }
 
-    fun listSDCardFileChildPath(path: String): List<String> {
+    fun listFilesDicChildPath(path: String): List<String> {
         val childDir = File("$filesPath/$path")
         if (!childDir.isDirectory || !childDir.exists()) {
-            Log.i(tag, "child path is not a directory:${childDir.path}")
             return arrayListOf()
-        }
-        val childList = childDir.list()
-        Log.i(tag, "childPath:${childDir.path}  phase child list size: ${childList?.size}")
-        childList?.forEach {
-            Log.i(tag, "childPath:${childDir.path}  phase child list: $it")
         }
         return childDir.list()?.map { it } ?: emptyList()
     }
 
-    fun readSDCardFile(fileName: String): String {
+    fun readFile(fileName: String): String {
         val file = File(filesPath, fileName)
-        Log.i(tag, "json file name : $filesPath, name: $fileName")
         if (file.isDirectory) {
-            return ""
+            return "Warning! This is a dic."
         }
-        val content = file.readText()
-        Log.i(tag, "json file name : $filesPath, name: $fileName content: $content")
-        return content
+        return try {
+            file.readText()
+        } catch (e: Exception) {
+            Log.e(TAG, e.toString())
+            return "Error!"
+        }
     }
 
-    fun outPutFile(fileName: String, fileContent: String) {
+    fun writeFile(fileName: String, fileContent: String) {
         try {
-            val file = File(savesPath, fileName)
-            Log.i(tag, "outPutFile : $savesPath, name: $fileName")
+            val file = File(filesPath, fileName)
             file.writeText(fileContent)
         } catch (e: IOException) {
-            Log.e(tag, "outPutFile exception ${e.stackTrace}")
+            Log.e(TAG, e.toString())
         }
     }
-
 
 }
