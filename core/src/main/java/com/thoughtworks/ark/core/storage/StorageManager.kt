@@ -7,7 +7,8 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-class FileManager(val context: Context) {
+// todo object
+class StorageManager(val context: Context) {
 
     private var filesPath: String = ""
     private var savesPath: String = ""
@@ -33,12 +34,12 @@ class FileManager(val context: Context) {
         }
     }
 
-    fun listFilesDic(): List<String> {
+    fun listFilesDir(): List<String> {
         val fileList = File(filesPath).list()
         return fileList?.map { it } ?: emptyList()
     }
 
-    fun listFilesDicChildPath(path: String): List<String> {
+    fun listFilesDirChildPath(path: String): List<String> {
         val childDir = File("$filesPath/$path")
         if (!childDir.isDirectory || !childDir.exists()) {
             return arrayListOf()
