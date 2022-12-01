@@ -9,15 +9,21 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
+apply(from = "../config/jacoco/modules.kts")
+
 androidLibrary()
 
 dependencies {
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.bundles.kotlin)
+    api(libs.retrofit.core)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.lifecycle.extensions)
+    implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    api(libs.bundles.unit.test)
-    api(libs.core.testing)
-    api(libs.compose.ui.test)
-    api(libs.hilt.testing)
     detektPlugins(libs.detekt.formatting)
 }
