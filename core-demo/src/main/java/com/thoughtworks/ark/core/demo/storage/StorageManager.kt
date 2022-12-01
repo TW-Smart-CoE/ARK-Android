@@ -30,6 +30,10 @@ object StorageManager {
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
+    fun checkFileExist(resPath: String, imageFileName: String): Boolean {
+        return File(resPath, imageFileName).exists()
+    }
+
 
 }
 
