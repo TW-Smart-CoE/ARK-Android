@@ -2,8 +2,10 @@ package com.thoughtworks.ark.core.demo.storage
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import org.json.JSONObject
 import java.io.File
+import java.io.IOException
 
 object StorageManager {
 
@@ -33,6 +35,16 @@ object StorageManager {
     fun checkFileExist(resPath: String, imageFileName: String): Boolean {
         return File(resPath, imageFileName).exists()
     }
+
+    fun writeFile(resPath: String, fileName: String, fileContent: String) {
+        try {
+            val file = File(resPath, fileName)
+            file.writeText(fileContent)
+        } catch (e: IOException) {
+            Log.e(TAG, "outPutFile exception ${e.stackTrace}")
+        }
+    }
+
 
 
 }
