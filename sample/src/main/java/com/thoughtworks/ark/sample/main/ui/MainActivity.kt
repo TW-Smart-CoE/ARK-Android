@@ -56,11 +56,7 @@ fun MainScreen() {
             modifier = Modifier.fillMaxWidth(),
             onClick = { context.startActivity(Intent(context, FeedDemoActivity::class.java)) },
             text = {
-                Text(
-                    text = "Feed Screen Demo",
-                    style = Theme.typography.body02,
-                    color = Theme.colors.onBackground,
-                )
+                Text(text = "Feed Screen Demo")
             }
         )
 
@@ -68,11 +64,7 @@ fun MainScreen() {
             modifier = Modifier.fillMaxWidth(),
             onClick = { context.startActivity(Intent(context, PermissionSampleActivity::class.java)) },
             text = {
-                Text(
-                    text = "Permission Demo",
-                    style = Theme.typography.body02,
-                    color = Theme.colors.onBackground,
-                )
+                Text(text = "Permission Demo")
             }
         )
 

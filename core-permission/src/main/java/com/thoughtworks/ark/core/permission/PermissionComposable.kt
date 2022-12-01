@@ -165,7 +165,7 @@ private fun DefaultAlwaysDeniedContent(launcher: PermissionAlwaysDeniedHandler) 
             AppFilledButton(
                 onClick = { launcher.openSystemSettingPage() },
                 text = {
-                    CommonText(text = stringResource(R.string.default_always_denied_dialog_confirm))
+                    Text(text = stringResource(R.string.default_always_denied_dialog_confirm))
                 }
             )
         },
@@ -173,7 +173,7 @@ private fun DefaultAlwaysDeniedContent(launcher: PermissionAlwaysDeniedHandler) 
             AppFilledButton(
                 onClick = { launcher.resetAlwaysDeniedState() },
                 text = {
-                    CommonText(text = stringResource(R.string.default_always_denied_dialog_cancel))
+                    Text(text = stringResource(R.string.default_always_denied_dialog_cancel))
                 }
             )
         },

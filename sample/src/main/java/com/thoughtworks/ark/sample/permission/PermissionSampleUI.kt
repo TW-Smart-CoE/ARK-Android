@@ -87,7 +87,7 @@ private fun MenuScreen(screenState: MutableState<ScreenState>) {
             modifier = Modifier.fillMaxWidth(),
             onClick = { screenState.value = ScreenState.SinglePermissionState },
             text = {
-                CommonText(text = "Request Single Permission")
+                Text(text = "Request Single Permission")
             }
         )
 
@@ -95,7 +95,7 @@ private fun MenuScreen(screenState: MutableState<ScreenState>) {
             modifier = Modifier.fillMaxWidth(),
             onClick = { screenState.value = ScreenState.SinglePermissionWithDialogState },
             text = {
-                CommonText(text = "Request Single Permission With Dialog")
+                Text(text = "Request Single Permission With Dialog")
             }
         )
 
@@ -103,7 +103,7 @@ private fun MenuScreen(screenState: MutableState<ScreenState>) {
             modifier = Modifier.fillMaxWidth(),
             onClick = { screenState.value = ScreenState.MultiplePermissionsState },
             text = {
-                CommonText(text = "Request Multiple Permissions")
+                Text(text = "Request Multiple Permissions")
             }
         )
     }
@@ -183,7 +183,7 @@ private fun PermissionPlaceHolder(permissionHandler: PermissionHandler) {
                 .align(Alignment.Center),
             onClick = { showDialog = true },
             text = {
-                CommonText(text = "Click to request location permission")
+                Text(text = "Click to request location permission")
             }
         )
     }
@@ -219,21 +219,21 @@ private fun PermissionPlaceHolder(permissionHandler: PermissionHandler) {
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         AppFilledButton(
-                            modifier = Modifier.width(110.dp),
+                            modifier = Modifier.width(130.dp),
                             onClick = { showDialog = false },
                             text = {
-                                CommonText(text = stringResource(R.string.request_permission_dialog_cancel_button))
+                                Text(text = stringResource(R.string.request_permission_dialog_cancel_button))
                             }
                         )
 
                         AppFilledButton(
-                            modifier = Modifier.width(110.dp),
+                            modifier = Modifier.width(130.dp),
                             onClick = {
                                 showDialog = false
                                 permissionHandler.requestPermission()
                             },
                             text = {
-                                CommonText(text = stringResource(R.string.request_permission_dialog_confirm_button))
+                                Text(text = stringResource(R.string.request_permission_dialog_confirm_button))
                             }
                         )
                     }
