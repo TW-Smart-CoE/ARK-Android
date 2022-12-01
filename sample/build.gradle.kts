@@ -26,16 +26,15 @@ androidApplication {
 dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
-
+    implementation(project(":core-demo"))
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.compose)
     implementation(libs.accompanist.flowlayout)
     implementation(libs.bundles.coil)
-
     implementation(libs.hilt.android)
-    implementation(project(":core-demo"))
+
     kapt(libs.hilt.compiler)
 
     testImplementation(project(":core-testing"))
