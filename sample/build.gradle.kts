@@ -35,6 +35,7 @@ dependencies {
     implementation(libs.bundles.coil)
 
     implementation(libs.hilt.android)
+    implementation(project(":core-demo"))
     kapt(libs.hilt.compiler)
 
     testImplementation(project(":core-testing"))
