@@ -21,8 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
-import com.thoughtworks.ark.sample.feeds.FeedDemoActivity
-import com.thoughtworks.ark.sample.permission.PermissionSampleActivity
+import com.thoughtworks.ark.sample.feeds.ui.FeedActivity
+import com.thoughtworks.ark.sample.permission.ui.PermissionActivity
 import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.theme.Dimensions
@@ -54,7 +54,7 @@ fun MainScreen() {
 
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { context.startActivity(Intent(context, FeedDemoActivity::class.java)) },
+            onClick = { context.startActivity(Intent(context, FeedActivity::class.java)) },
             text = {
                 Text(text = "Feed Screen Demo")
             }
@@ -62,7 +62,7 @@ fun MainScreen() {
 
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { context.startActivity(Intent(context, PermissionSampleActivity::class.java)) },
+            onClick = { context.startActivity(Intent(context, PermissionActivity::class.java)) },
             text = {
                 Text(text = "Permission Demo")
             }

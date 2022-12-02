@@ -37,7 +37,7 @@
         <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.ComposeColorSystemActivity" />
         <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.XmlColorSystemActivity" />
 
-        <activity android:name=".feeds.FeedDemoActivity" />
-        <activity android:name=".permission.PermissionSampleActivity" />
+        <activity android:name=".feeds.ui.FeedActivity" />
+        <activity android:name=".permission.ui.PermissionActivity" />
     </application>
 </manifest>
