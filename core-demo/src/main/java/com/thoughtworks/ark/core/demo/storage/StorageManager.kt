@@ -13,6 +13,49 @@ object StorageManager {
 
     const val TAG = "FileManager"
 
+    val isSDCardMounted: Boolean
+        get() =
+            (Environment.getExternalStorageState() ==
+                    Environment.MEDIA_MOUNTED)
+
+    val sDCardBaseDir: String?
+        get() = if (isSDCardMounted) {
+            Environment.getExternalStorageDirectory().absolutePath
+        } else null
+
+    val sDCardSize: Long
+        get() {
+            if (isSDCardMounted) {
+                val statFs = StatFs(sDCardBaseDir)
+                val count = statFs.blockCountLong
+                val size = statFs.blockSizeLong
+                return count * size / 1024 / 1024
+            }
+            return 0
+        }
+
+    val sDCardFreeSize: Long
+        get() {
+            if (isSDCardMounted) {
+                val statFs = StatFs(sDCardBaseDir)
+                val count = statFs.freeBlocksLong
+                val size = statFs.blockSizeLong
+                return count * size / 1024 / 1024
+            }
+            return 0
+        }
+
+    val sDCardAvailableSize: Long
+        get() {
+            if (isSDCardMounted) {
+                val statFs = StatFs(sDCardBaseDir)
+                val count = statFs.availableBlocksLong
+                val size = statFs.blockSizeLong
+                return count * size / 1024 / 1024
+            }
+            return 0
+        }
+
     fun loadFile(resPath: String, fileName: String): File? {
         val file = File(resPath, fileName)
         if (!file.exists()) {
@@ -59,49 +102,6 @@ object StorageManager {
         }
         return false
     }
-
-    val isSDCardMounted: Boolean
-        get() =
-            (Environment.getExternalStorageState() ==
-                    Environment.MEDIA_MOUNTED)
-
-    val sDCardBaseDir: String?
-        get() = if (isSDCardMounted) {
-            Environment.getExternalStorageDirectory().absolutePath
-        } else null
-
-    val sDCardSize: Long
-        get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
-                val count = statFs.blockCountLong
-                val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
-            }
-            return 0
-        }
-
-    val sDCardFreeSize: Long
-        get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
-                val count = statFs.freeBlocksLong
-                val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
-            }
-            return 0
-        }
-
-    val sDCardAvailableSize: Long
-        get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
-                val count = statFs.availableBlocksLong
-                val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
-            }
-            return 0
-        }
 
 }
 
