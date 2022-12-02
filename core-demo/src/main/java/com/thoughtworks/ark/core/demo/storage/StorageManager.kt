@@ -8,11 +8,28 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-// todo object
-object StorageManager {
+class StorageManager private constructor(path: String) {
 
-    const val TAG = "FileManager"
-    
+    private var path: String? = externalBaseDir
+
+    companion object {
+        const val TAG = "FileManager"
+
+        @Volatile
+        private var instance: StorageManager? = null
+
+        fun get(path: String): StorageManager {
+            if (instance == null) {
+                synchronized(StorageManager::class) {
+                    if (instance == null) {
+                        instance = StorageManager(path)
+                    }
+                }
+            }
+            return instance!!
+        }
+    }
+
     val isExternalMounted: Boolean
         get() =
             Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
