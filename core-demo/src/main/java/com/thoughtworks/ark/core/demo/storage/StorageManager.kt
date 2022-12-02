@@ -12,21 +12,20 @@ import java.io.IOException
 object StorageManager {
 
     const val TAG = "FileManager"
-
-    val isSDCardMounted: Boolean
+    
+    val isExternalMounted: Boolean
         get() =
-            (Environment.getExternalStorageState() ==
-                    Environment.MEDIA_MOUNTED)
+            Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
 
-    val sDCardBaseDir: String?
-        get() = if (isSDCardMounted) {
+    val externalBaseDir: String?
+        get() = if (isExternalMounted) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
 
-    val sDCardSize: Long
+    val externalSize: Long
         get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
+            if (isExternalMounted) {
+                val statFs = StatFs(externalBaseDir)
                 val count = statFs.blockCountLong
                 val size = statFs.blockSizeLong
                 return count * size / MBSize / MBSize
@@ -34,10 +33,10 @@ object StorageManager {
             return ZERO
         }
 
-    val sDCardFreeSize: Long
+    val externalFreeSize: Long
         get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
+            if (isExternalMounted) {
+                val statFs = StatFs(externalBaseDir)
                 val count = statFs.freeBlocksLong
                 val size = statFs.blockSizeLong
                 return count * size / MBSize / MBSize
@@ -45,10 +44,10 @@ object StorageManager {
             return ZERO
         }
 
-    val sDCardAvailableSize: Long
+    val externalAvailableSize: Long
         get() {
-            if (isSDCardMounted) {
-                val statFs = StatFs(sDCardBaseDir)
+            if (isExternalMounted) {
+                val statFs = StatFs(externalBaseDir)
                 val count = statFs.availableBlocksLong
                 val size = statFs.blockSizeLong
                 return count * size / MBSize / MBSize
