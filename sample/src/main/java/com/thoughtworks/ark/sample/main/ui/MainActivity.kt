@@ -23,6 +23,7 @@ import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.sample.feeds.ui.FeedActivity
 import com.thoughtworks.ark.sample.permission.ui.PermissionActivity
+import com.thoughtworks.ark.sample.sound.SoundActivity
 import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.theme.Dimensions
@@ -66,6 +67,13 @@ fun MainScreen() {
             text = {
                 Text(text = "Permission Demo")
             }
+        )
+
+        AppFilledButton(
+            onClick = {
+                context.startActivity(Intent(context, SoundActivity::class.java))
+            },
+            text = { Text(text = "Feedback Demo") }
         )
 
         Footer()

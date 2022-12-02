@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
     implementation(project(":core-permission"))
+    implementation(project(":sound"))
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
