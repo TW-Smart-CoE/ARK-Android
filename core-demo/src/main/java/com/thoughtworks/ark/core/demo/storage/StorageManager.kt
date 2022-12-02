@@ -29,9 +29,9 @@ object StorageManager {
                 val statFs = StatFs(sDCardBaseDir)
                 val count = statFs.blockCountLong
                 val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
+                return count * size / MBSize / MBSize
             }
-            return 0
+            return ZERO
         }
 
     val sDCardFreeSize: Long
@@ -40,9 +40,9 @@ object StorageManager {
                 val statFs = StatFs(sDCardBaseDir)
                 val count = statFs.freeBlocksLong
                 val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
+                return count * size / MBSize / MBSize
             }
-            return 0
+            return ZERO
         }
 
     val sDCardAvailableSize: Long
@@ -51,9 +51,9 @@ object StorageManager {
                 val statFs = StatFs(sDCardBaseDir)
                 val count = statFs.availableBlocksLong
                 val size = statFs.blockSizeLong
-                return count * size / 1024 / 1024
+                return count * size / MBSize / MBSize
             }
-            return 0
+            return ZERO
         }
 
     fun loadFile(resPath: String, fileName: String): File? {
@@ -86,7 +86,7 @@ object StorageManager {
             val file = File(resPath, fileName)
             file.writeText(fileContent)
         } catch (e: IOException) {
-            Log.e(TAG, "outPutFile exception ${e.stackTrace}")
+            Log.e(TAG, "$OUT_PUT_FILE_EXCEPTION ${e.stackTrace}")
         }
     }
 
@@ -105,3 +105,6 @@ object StorageManager {
 
 }
 
+private const val MBSize = 1024
+private const val OUT_PUT_FILE_EXCEPTION = "outPutFile exception"
+private const val ZERO = 0L
