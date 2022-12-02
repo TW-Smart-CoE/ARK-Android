@@ -5,10 +5,10 @@ import android.graphics.BitmapFactory
 import android.os.Environment
 import android.os.StatFs
 import android.util.Log
-import org.json.JSONObject
 import java.io.File
 import java.io.IOException
 
+// todo object
 object StorageManager {
 
     const val TAG = "FileManager"
@@ -28,20 +28,9 @@ object StorageManager {
                 val statFs = StatFs(externalBaseDir)
                 val count = statFs.blockCountLong
                 val size = statFs.blockSizeLong
-                return count * size / MBSize / MBSize
+                return formatValue(count * size)
             }
-            return ZERO
-        }
-
-    val externalFreeSize: Long
-        get() {
-            if (isExternalMounted) {
-                val statFs = StatFs(externalBaseDir)
-                val count = statFs.freeBlocksLong
-                val size = statFs.blockSizeLong
-                return count * size / MBSize / MBSize
-            }
-            return ZERO
+            return VALUE_MIN
         }
 
     val externalAvailableSize: Long
@@ -50,60 +39,67 @@ object StorageManager {
                 val statFs = StatFs(externalBaseDir)
                 val count = statFs.availableBlocksLong
                 val size = statFs.blockSizeLong
-                return count * size / MBSize / MBSize
+                return formatValue(count * size)
             }
-            return ZERO
+            return VALUE_MIN
         }
-
-    fun loadFile(resPath: String, fileName: String): File? {
-        val file = File(resPath, fileName)
+    
+    // todo 通过判断/ 追加多级目录
+    fun loadFile(path: String, fileName: String): File? {
+        val file = File(path, fileName)
         if (!file.exists()) {
             return null
         }
         return file
     }
 
-    fun loadJson(resPath: String, fileName: String, jsonKey: String): String? {
-        val jsonContent = loadFile(resPath, fileName)?.readText()
-        return jsonContent?.let { JSONObject(it).getJSONObject(jsonKey).toString() }
+    fun loadFileContent(path: String, fileName: String): String? {
+        return loadFile(path, fileName)?.readText()
     }
 
-    fun loadResImage(resPath: String, imageFileName: String): Bitmap? {
-        val file = File(resPath, imageFileName)
+    fun loadResImage(path: String, imageFileName: String): Bitmap? {
+        val file = File(path, imageFileName)
         if (!file.exists()) {
             return null
         }
+        // Not yet unbearably large question
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    fun checkFileExist(resPath: String, imageFileName: String): Boolean {
-        return File(resPath, imageFileName).exists()
+    fun checkFileExist(path: String, imageFileName: String): Boolean {
+        return File(path, imageFileName).exists()
     }
 
-    fun writeFile(resPath: String, fileName: String, fileContent: String) {
+    fun writeTextToFile(path: String, fileName: String, fileContent: String) {
         try {
-            val file = File(resPath, fileName)
+            val file = File(path, fileName)
             file.writeText(fileContent)
         } catch (e: IOException) {
-            Log.e(TAG, "$OUT_PUT_FILE_EXCEPTION ${e.stackTrace}")
+            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION ${e.stackTrace}")
         }
     }
 
-    fun removeFile(resPath: String, fileName: String): Boolean {
-        val file = File(resPath, fileName)
+    fun removeFile(path: String, fileName: String): Boolean {
+        val file = File(path, fileName)
         if (file.exists()) {
             return try {
                 file.delete()
                 true
             } catch (e: Exception) {
+                Log.e(TAG, "$REMOVE_FILE_EXCEPTION ${e.stackTrace}")
                 false
             }
         }
         return false
     }
 
+    private fun formatValue(value: Long): Long {
+        return value / MBSize / MBSize
+    }
+
 }
 
 private const val MBSize = 1024
-private const val OUT_PUT_FILE_EXCEPTION = "outPutFile exception"
-private const val ZERO = 0L
+private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
+private const val REMOVE_FILE_EXCEPTION = "remove file exception"
+private const val VALUE_MIN = 0L
