@@ -103,12 +103,20 @@ class StorageManager private constructor(path: String) {
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    fun checkFileExist(imageFileName: String): Boolean {
-        return File(_path, imageFileName).exists()
+    fun checkFileExist(fileName: String): Boolean {
+        return File(_path, fileName).exists()
     }
 
-    fun checkFileExist(path: String, imageFileName: String): Boolean {
-        return File(path, imageFileName).exists()
+    fun checkFileExist(path: String, fileName: String): Boolean {
+        return File(path, fileName).exists()
+    }
+
+    fun createFile(fileName: String): Boolean {
+        return File(_path, fileName).createNewFile()
+    }
+
+    fun createFile(path: String, fileName: String): Boolean {
+        return File(path, fileName).createNewFile()
     }
 
     fun writeTextToFile(fileName: String, fileContent: String) {
