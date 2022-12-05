@@ -8,9 +8,8 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-class StorageManager private constructor(path: String) {
+class StorageManager private constructor(private var _path: String) {
 
-    private var _path: String? = externalBaseDir
 
     companion object {
         const val TAG = "FileManager"
@@ -68,7 +67,7 @@ class StorageManager private constructor(path: String) {
         }
         return file
     }
-    
+
     fun loadFile(path: String, fileName: String): File? {
         val file = File(path, fileName)
         if (!file.exists()) {
