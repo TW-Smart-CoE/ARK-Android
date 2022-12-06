@@ -1,5 +1,6 @@
 package com.thoughtworks.ark.sample.storage
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.demo.storage.StorageManager
@@ -23,6 +24,7 @@ class StorageViewModel @Inject constructor() : ViewModel() {
 
     private val defaultPath = "/storage/emulated/0/Documents/"
     private val defaultFileName = "default.json"
+    private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
     private val storageManager = StorageManager.get(defaultPath)
 
@@ -38,6 +40,14 @@ class StorageViewModel @Inject constructor() : ViewModel() {
 
     fun writeFile() {
         storageManager.writeTextToFile(defaultFileName, defaultWriteContent)
+    }
+
+    fun removeFile() {
+        storageManager.removeFile(defaultFileName)
+    }
+
+    fun loadImage(): Bitmap? {
+        return storageManager.loadResImage(defaultImageName)
     }
 
 }

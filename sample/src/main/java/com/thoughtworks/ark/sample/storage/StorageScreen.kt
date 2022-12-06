@@ -1,5 +1,6 @@
 package com.thoughtworks.ark.sample.storage
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -72,17 +73,17 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
 
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { },
+            onClick = { viewModel.removeFile() },
             text = {
-                Text(text = "demo 3")
+                Text(text = "remove default")
             }
         )
 
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { },
+            onClick = { viewModel.loadImage() },
             text = {
-                Text(text = "demo 4")
+                Text(text = "load image")
             }
         )
 
@@ -94,6 +95,7 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
         ) {
             MyText(state.fileIsFlag)
         }
+
     }
 
 }
