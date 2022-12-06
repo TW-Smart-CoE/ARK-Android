@@ -29,6 +29,7 @@ dependencies {
     implementation(project(":core-storage"))
     implementation(project(":core-permission"))
     implementation(project(":sound"))
+    implementation(project(":video"))
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
