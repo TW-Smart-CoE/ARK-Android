@@ -26,6 +26,7 @@ androidApplication {
 dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
+    implementation(project(":core-permission"))
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)

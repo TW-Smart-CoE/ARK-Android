@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_always_denied_dialog_confirm">OK</string>
+    <string name="default_always_denied_dialog_cancel">Cancel</string>
+    <string name="default_always_denied_dialog_title">Permission required</string>
+    <string name="default_always_denied_dialog_content">You have forcefully denied some of the required permissions for this action. Please open settings, go to permissions and allow them.</string>
+</resources>
