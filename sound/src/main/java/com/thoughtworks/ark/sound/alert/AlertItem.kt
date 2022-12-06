@@ -1,10 +1,26 @@
 package com.thoughtworks.ark.sound.alert
 
-import com.thoughtworks.ark.sound.SoundItem
 import java.io.File
 
-data class AlertItem(
-    val soundRes: Int = 0,
-    val soundAsset: String = "",
-    val soundFile: File? = null,
-) : SoundItem
+class AlertItem private constructor(
+    val alertRes: Int = 0,
+    val alertAsset: String = "",
+    val alertFile: File? = null,
+) {
+    companion object {
+        fun fromRes(resId: Int): AlertItem {
+            require(resId > 0) { "Invalid resId!" }
+            return AlertItem(alertRes = resId)
+        }
+
+        fun fromAsset(assetPath: String): AlertItem {
+            require(assetPath.isNotEmpty()) { "Invalid assetPath!" }
+            return AlertItem(alertAsset = assetPath)
+        }
+
+        fun fromFile(file: File): AlertItem {
+            require(file.exists() && file.isFile) { "Invalid file!" }
+            return AlertItem(alertFile = file)
+        }
+    }
+}

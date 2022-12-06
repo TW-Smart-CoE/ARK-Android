@@ -39,6 +39,6 @@
 
         <activity android:name=".feeds.ui.FeedActivity" />
         <activity android:name=".permission.ui.PermissionActivity" />
-        <activity android:name=".sound.SoundActivity" />
+        <activity android:name=".sound.ui.SoundActivity" />
     </application>
 </manifest>
