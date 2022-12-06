@@ -45,28 +45,29 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
             .background(color = Theme.colors.background)
             .padding(all = Dimensions.standardPadding)
     ) {
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.updateStorageState() },
-            text = {
-                Text(text = "demo 1")
-            }
-        )
-
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { },
-            text = {
-                Text(text = "demo 2")
-            }
-        )
 
         val checkValue = remember { mutableStateOf("") }
         MyTextField(
             checkValue = checkValue.value,
             onSave = {
-                 checkValue.value = it
+                checkValue.value = it
             },
+        )
+
+        AppFilledButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { viewModel.checkFileExist() },
+            text = {
+                Text(text = "check default path and name")
+            }
+        )
+
+        AppFilledButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { viewModel.writeFile() },
+            text = {
+                Text(text = "write default")
+            }
         )
 
         AppFilledButton(
@@ -129,7 +130,7 @@ private fun MyTextField(
 }
 
 @Composable
-private fun MyText(fileIsFlag: Boolean) {
+private fun MyText(fileIsFlag: Boolean?) {
     Text(
         buildAnnotatedString {
             withStyle(
@@ -162,7 +163,9 @@ private fun MyText(fileIsFlag: Boolean) {
                         fontSize = 30.sp
                     )
                 ) {
-                    append(fileIsFlag.toString())
+                    if (fileIsFlag != null) {
+                        append(fileIsFlag.toString())
+                    }
                 }
             }
         }
