@@ -96,6 +96,14 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
             MyText(state.fileIsFlag)
         }
 
+        state.imageBitmap?.let {
+            Image(
+                bitmap = it,
+                contentDescription = null,
+                modifier = Modifier.padding(horizontal = Dimensions.dimension128)
+            )
+        }
+
     }
 
 }
@@ -112,7 +120,7 @@ private fun MyTextField(
         value = textValue.value,
         onValueChange = { textValue.value = it },
         placeholder = {
-            Text("请输入内容")
+            Text("input your file name")
         },
         trailingIcon = {
             Icon(

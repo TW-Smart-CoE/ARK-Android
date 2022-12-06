@@ -1,6 +1,7 @@
 package com.thoughtworks.ark.sample.storage
 
-import android.graphics.Bitmap
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.ark.core.demo.storage.StorageManager
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 data class StorageState(
     val fileIsFlag: Boolean? = null,
+    val imageBitmap: ImageBitmap? = null,
 )
 
 @HiltViewModel
@@ -46,8 +48,14 @@ class StorageViewModel @Inject constructor() : ViewModel() {
         storageManager.removeFile(defaultFileName)
     }
 
-    fun loadImage(): Bitmap? {
-        return storageManager.loadResImage(defaultImageName)
+    fun loadImage() {
+        viewModelScope.launch {
+            _storageState.update {
+                it.copy(
+                    imageBitmap = storageManager.loadResImage(defaultImageName)?.asImageBitmap()
+                )
+            }
+        }
     }
 
 }
