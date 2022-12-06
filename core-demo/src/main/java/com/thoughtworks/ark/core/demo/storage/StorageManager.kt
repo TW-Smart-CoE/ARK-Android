@@ -119,20 +119,26 @@ class StorageManager private constructor(private var _path: String) {
     }
 
     fun writeTextToFile(fileName: String, fileContent: String) {
+        if (!checkFileExist(fileName)) {
+            createFile(fileName)
+        }
         try {
             val file = File(_path, fileName)
             file.writeText(fileContent)
         } catch (e: IOException) {
-            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION ${e.stackTrace}")
+            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
         }
     }
 
     fun writeTextToFile(path: String, fileName: String, fileContent: String) {
+        if (!checkFileExist(path, fileName)) {
+            createFile(path, fileName)
+        }
         try {
             val file = File(path, fileName)
             file.writeText(fileContent)
         } catch (e: IOException) {
-            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION ${e.stackTrace}")
+            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
         }
     }
 
