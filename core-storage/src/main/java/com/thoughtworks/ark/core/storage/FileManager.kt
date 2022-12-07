@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Environment
 import android.os.StatFs
-import android.util.Log
+import com.thoughtworks.ark.core.logging.Logger
 import java.io.File
 import java.io.IOException
 
@@ -94,7 +94,7 @@ class FileManager (private var path: String) : StorageInterface {
             val file = File(path, filename)
             file.writeText(content)
         } catch (e: IOException) {
-            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
+            Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
         }
     }
 
@@ -104,8 +104,7 @@ class FileManager (private var path: String) : StorageInterface {
             return try {
                 file.delete()
             } catch (e: Exception) {
-                // todo logger
-                Log.e(TAG, "$REMOVE_FILE_EXCEPTION ${e.stackTrace}")
+                Logger.e("$REMOVE_FILE_EXCEPTION $e")
                 false
             }
         }

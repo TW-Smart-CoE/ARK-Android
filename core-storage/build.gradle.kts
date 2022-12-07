@@ -14,6 +14,7 @@ apply(from = "../config/jacoco/modules.kts")
 androidLibrary()
 
 dependencies {
+    implementation(project(":core"))
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
