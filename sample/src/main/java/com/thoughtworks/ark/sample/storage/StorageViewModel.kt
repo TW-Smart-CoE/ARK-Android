@@ -69,7 +69,7 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     }
 
     fun dispatchAction(action: StorageUiAction) {
-        when(action) {
+        when (action) {
             StorageUiAction.CheckAction -> checkFileExist()
             StorageUiAction.WriteFileAction -> writeFile()
             StorageUiAction.RemoveFileAction -> removeFile()
