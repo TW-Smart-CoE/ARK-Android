@@ -13,18 +13,18 @@ sealed interface StorageInterface {
 
     val externalAvailableSize: Long
 
-    fun loadFile(fileName: String): File?
+    fun loadFile(filename: String): File?
 
-    fun loadFileContent(fileName: String): String?
+    fun loadFileContent(filename: String): String?
 
-    fun loadImage(fileName: String): Bitmap?
+    fun loadImage(filename: String): Bitmap?
 
-    fun exists(fileName: String): Boolean
+    fun exists(filename: String): Boolean
 
-    fun createFile(fileName: String): Boolean
+    fun createFile(filename: String): Boolean
 
-    fun writeTextToFile(fileName: String, content: String)
+    fun writeTextToFile(filename: String, content: String)
 
-    fun removeFile(fileName: String): Boolean
+    fun removeFile(filename: String): Boolean
 
 }

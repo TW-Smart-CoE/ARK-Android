@@ -65,12 +65,12 @@ class FileManager private constructor(private var path: String) : StorageInterfa
         return file
     }
 
-    override fun loadFileContent(fileName: String): String? {
-        return loadFile(fileName)?.readText()
+    override fun loadFileContent(filename: String): String? {
+        return loadFile(filename)?.readText()
     }
 
-    override fun loadImage(fileName: String): Bitmap? {
-        val file = File(path, fileName)
+    override fun loadImage(filename: String): Bitmap? {
+        val file = File(path, filename)
         if (!file.exists()) {
             return null
         }
@@ -78,28 +78,28 @@ class FileManager private constructor(private var path: String) : StorageInterfa
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    override fun exists(fileName: String): Boolean {
-        return File(path, fileName).exists()
+    override fun exists(filename: String): Boolean {
+        return File(path, filename).exists()
     }
 
-    override fun createFile(fileName: String): Boolean {
-        return File(path, fileName).createNewFile()
+    override fun createFile(filename: String): Boolean {
+        return File(path, filename).createNewFile()
     }
 
-    override fun writeTextToFile(fileName: String, content: String) {
-        if (!exists(fileName)) {
-            createFile(fileName)
+    override fun writeTextToFile(filename: String, content: String) {
+        if (!exists(filename)) {
+            createFile(filename)
         }
         try {
-            val file = File(path, fileName)
+            val file = File(path, filename)
             file.writeText(content)
         } catch (e: IOException) {
             Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
         }
     }
 
-    override fun removeFile(fileName: String): Boolean {
-        val file = File(path, fileName)
+    override fun removeFile(filename: String): Boolean {
+        val file = File(path, filename)
         if (file.exists()) {
             return try {
                 file.delete()
