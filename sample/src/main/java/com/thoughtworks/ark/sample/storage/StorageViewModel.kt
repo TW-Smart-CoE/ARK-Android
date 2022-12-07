@@ -17,6 +17,13 @@ data class StorageState(
     val imageBitmap: ImageBitmap? = null,
 )
 
+sealed class StorageUiAction {
+    object CheckAction : StorageUiAction()
+    object WriteFileAction : StorageUiAction()
+    object RemoveFileAction : StorageUiAction()
+    object LoadImageAction : StorageUiAction()
+}
+
 @HiltViewModel
 class StorageViewModel @Inject constructor() : ViewModel() {
 
@@ -30,7 +37,7 @@ class StorageViewModel @Inject constructor() : ViewModel() {
     private val defaultWriteContent = "demo content"
     private val storageManager = StorageManager.get(defaultPath)
 
-    fun checkFileExist() {
+    private fun checkFileExist() {
         viewModelScope.launch {
             _storageState.update {
                 it.copy(
@@ -40,21 +47,31 @@ class StorageViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun writeFile() {
+    private fun writeFile() {
         storageManager.writeTextToFile(defaultFileName, defaultWriteContent)
     }
 
-    fun removeFile() {
+    private fun removeFile() {
         storageManager.removeFile(defaultFileName)
     }
 
-    fun loadImage() {
+    private fun loadImage() {
         viewModelScope.launch {
             _storageState.update {
                 it.copy(
                     imageBitmap = storageManager.loadResImage(defaultImageName)?.asImageBitmap()
                 )
             }
+        }
+    }
+
+    fun dispatchAction(action: StorageUiAction) {
+        when(action) {
+            StorageUiAction.CheckAction -> checkFileExist()
+            StorageUiAction.WriteFileAction -> writeFile()
+            StorageUiAction.RemoveFileAction -> removeFile()
+            StorageUiAction.LoadImageAction -> loadImage()
+
         }
     }
 

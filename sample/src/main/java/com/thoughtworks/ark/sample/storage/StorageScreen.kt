@@ -28,6 +28,7 @@ import com.thoughtworks.ark.ui.theme.Theme
 fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
 
     val state = viewModel.storageState.collectAsState().value
+    val dispatchAction = viewModel::dispatchAction
 
     Column(
         modifier = Modifier
@@ -36,47 +37,11 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
             .padding(all = Dimensions.standardPadding)
     ) {
 
-
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.checkFileExist() },
-            text = {
-                Text(text = "check default path and name")
-            }
-        )
-
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.writeFile() },
-            text = {
-                Text(text = "write default")
-            }
-        )
-
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.removeFile() },
-            text = {
-                Text(text = "remove default")
-            }
-        )
-
-        AppFilledButton(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = { viewModel.loadImage() },
-            text = {
-                Text(text = "load image")
-            }
-        )
-
-        Row(
-            modifier = Modifier.padding(
-                vertical = Dimensions.dimension128,
-                horizontal = Dimensions.dimension128
-            ),
-        ) {
-            MyText(state.fileIsFlag)
-        }
+        CheckButton(dispatchAction)
+        WriteButton(dispatchAction)
+        RemoveButton(dispatchAction)
+        LoadImage(dispatchAction)
+        MyText(state.fileIsFlag)
 
         state.imageBitmap?.let {
             Image(
@@ -91,44 +56,103 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
 }
 
 @Composable
+private fun LoadImage(
+    dispatchAction: (StorageUiAction) -> Unit,
+) {
+    AppFilledButton(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { dispatchAction(StorageUiAction.LoadImageAction) },
+        text = {
+            Text(text = "load image")
+        }
+    )
+}
+
+@Composable
+private fun RemoveButton(
+    dispatchAction: (StorageUiAction) -> Unit,
+) {
+    AppFilledButton(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { dispatchAction(StorageUiAction.RemoveFileAction) },
+        text = {
+            Text(text = "remove default")
+        }
+    )
+}
+
+@Composable
+private fun WriteButton(
+    dispatchAction: (StorageUiAction) -> Unit,
+) {
+    AppFilledButton(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { dispatchAction(StorageUiAction.WriteFileAction) },
+        text = {
+            Text(text = "write default")
+        }
+    )
+}
+
+@Composable
+private fun CheckButton(
+    dispatchAction: (StorageUiAction) -> Unit,
+) {
+    AppFilledButton(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { dispatchAction(StorageUiAction.CheckAction) },
+        text = {
+            Text(text = "check default path and name")
+        }
+    )
+}
+
+@Composable
 private fun MyText(fileIsFlag: Boolean?) {
-    Text(
-        buildAnnotatedString {
-            withStyle(
-                style = ParagraphStyle(
-                    lineHeight = 30.sp,
-                    textAlign = TextAlign.Center
-                )
-            ) {
+    Row(
+        modifier = Modifier.padding(
+            vertical = Dimensions.dimension128,
+            horizontal = Dimensions.dimension128
+        ),
+    ) {
+        Text(
+            buildAnnotatedString {
                 withStyle(
-                    style = SpanStyle(
-                        color = Color.Blue,
-                        fontWeight = FontWeight.Bold
+                    style = ParagraphStyle(
+                        lineHeight = 30.sp,
+                        textAlign = TextAlign.Center
                     )
                 ) {
-                    append("check result\n")
-                }
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.Blue,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                ) {
-                    append("is\n")
-                }
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.Red,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp
-                    )
-                ) {
-                    if (fileIsFlag != null) {
-                        append(fileIsFlag.toString())
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Blue,
+                            fontWeight = FontWeight.Bold
+                        )
+                    ) {
+                        append("check result\n")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Blue,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        )
+                    ) {
+                        append("is\n")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Red,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 30.sp
+                        )
+                    ) {
+                        if (fileIsFlag != null) {
+                            append(fileIsFlag.toString())
+                        }
                     }
                 }
             }
-        }
-    )
+        )
+    }
 }
