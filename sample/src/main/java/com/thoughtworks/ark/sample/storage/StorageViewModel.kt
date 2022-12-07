@@ -33,7 +33,7 @@ class StorageViewModel @Inject constructor() : ViewModel() {
 
     // todo
     private val defaultPath = "/storage/emulated/0/Documents/"
-    private val defaultFileName = "default.json"
+    private val defaultFilename = "default.json"
     private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
     private val fileManager = FileManager.get(defaultPath)
@@ -42,18 +42,18 @@ class StorageViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             _storageState.update {
                 it.copy(
-                    fileIsFlag = fileManager.exists(defaultFileName)
+                    fileIsFlag = fileManager.exists(defaultFilename)
                 )
             }
         }
     }
 
     private fun writeFile() {
-        fileManager.writeTextToFile(defaultFileName, defaultWriteContent)
+        fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
     }
 
     private fun removeFile() {
-        fileManager.removeFile(defaultFileName)
+        fileManager.removeFile(defaultFilename)
     }
 
     private fun loadImage() {

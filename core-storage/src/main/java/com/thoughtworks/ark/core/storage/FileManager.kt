@@ -57,8 +57,8 @@ class FileManager private constructor(private var path: String) : StorageInterfa
             return VALUE_MIN
         }
 
-    override fun loadFile(fileName: String): File? {
-        val file = File(path, fileName)
+    override fun loadFile(filename: String): File? {
+        val file = File(path, filename)
         if (!file.exists()) {
             return null
         }
