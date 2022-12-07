@@ -57,7 +57,6 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
     ) {
         sectionButtons(dispatchAction, state)
     }
-
 }
 
 private fun LazyListScope.sectionButtons(
@@ -91,7 +90,7 @@ private fun LoadImage(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.LoadImageAction) },
         text = {
-            Text(text = LOAD_IMAGE)
+            Text(text = IMAGE)
         }
     )
 }
@@ -188,4 +187,4 @@ private fun MyText(fileIsFlag: Boolean?) {
 private const val CHECK = "check default"
 private const val WRITE = "write default"
 private const val REMOVE = "remove default"
-private const val LOAD_IMAGE = "load image"
+private const val IMAGE = "load image"

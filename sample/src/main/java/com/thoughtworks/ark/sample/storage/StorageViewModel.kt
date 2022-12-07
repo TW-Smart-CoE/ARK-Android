@@ -74,8 +74,6 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
             StorageUiAction.WriteFileAction -> writeFile()
             StorageUiAction.RemoveFileAction -> removeFile()
             StorageUiAction.LoadImageAction -> loadImage()
-
         }
     }
-
 }

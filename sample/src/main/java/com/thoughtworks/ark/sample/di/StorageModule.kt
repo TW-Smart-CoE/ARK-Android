@@ -16,5 +16,4 @@ object StorageModule {
     @Singleton
     fun providerFileManager(): StorageInterface =
         FileManager()
-
 }
