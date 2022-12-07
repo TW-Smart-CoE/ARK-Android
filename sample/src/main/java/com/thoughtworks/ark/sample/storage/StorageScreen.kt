@@ -2,11 +2,17 @@ package com.thoughtworks.ark.sample.storage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -30,17 +36,41 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
     val state = viewModel.storageState.collectAsState().value
     val dispatchAction = viewModel::dispatchAction
 
-    Column(
+    val contentPadding = WindowInsets
+        .systemBars
+        .add(
+            WindowInsets(
+                left = Dimensions.standardPadding,
+                top = Dimensions.standardPadding,
+                right = Dimensions.standardPadding,
+                bottom = Dimensions.standardPadding
+            )
+        )
+        .asPaddingValues()
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Theme.colors.background)
-            .padding(all = Dimensions.standardPadding)
+            .background(color = Theme.colors.background),
+        contentPadding = contentPadding,
+        verticalArrangement = Arrangement.spacedBy(Dimensions.standardPadding)
     ) {
+        sectionButtons(dispatchAction, state)
+    }
 
+}
+
+private fun LazyListScope.sectionButtons(
+    dispatchAction: (StorageUiAction) -> Unit,
+    state: StorageState,
+) {
+    item {
         CheckButton(dispatchAction)
         WriteButton(dispatchAction)
         RemoveButton(dispatchAction)
         LoadImage(dispatchAction)
+    }
+    item {
         MyText(state.fileIsFlag)
 
         state.imageBitmap?.let {
@@ -50,9 +80,7 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
                 modifier = Modifier.padding(horizontal = Dimensions.dimension128)
             )
         }
-
     }
-
 }
 
 @Composable
