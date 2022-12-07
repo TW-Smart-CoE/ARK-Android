@@ -63,7 +63,7 @@ private fun LoadImage(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.LoadImageAction) },
         text = {
-            Text(text = "load image")
+            Text(text = LOAD_IMAGE)
         }
     )
 }
@@ -76,7 +76,7 @@ private fun RemoveButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.RemoveFileAction) },
         text = {
-            Text(text = "remove default")
+            Text(text = REMOVE)
         }
     )
 }
@@ -89,7 +89,7 @@ private fun WriteButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.WriteFileAction) },
         text = {
-            Text(text = "write default")
+            Text(text = WRITE)
         }
     )
 }
@@ -102,7 +102,7 @@ private fun CheckButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.CheckAction) },
         text = {
-            Text(text = "check default path and name")
+            Text(text = CHECK)
         }
     )
 }
@@ -156,3 +156,8 @@ private fun MyText(fileIsFlag: Boolean?) {
         )
     }
 }
+
+private const val CHECK = "check default"
+private const val WRITE = "write default"
+private const val REMOVE = "remove default"
+private const val LOAD_IMAGE = "load image"
