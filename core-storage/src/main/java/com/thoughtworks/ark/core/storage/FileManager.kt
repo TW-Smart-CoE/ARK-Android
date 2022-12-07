@@ -8,7 +8,9 @@ import com.thoughtworks.ark.core.logging.Logger
 import java.io.File
 import java.io.IOException
 
-class FileManager (private var path: String) : StorageInterface {
+class FileManager : StorageInterface {
+
+    var path: String = ""
 
     companion object {
         const val TAG = "FileManager"

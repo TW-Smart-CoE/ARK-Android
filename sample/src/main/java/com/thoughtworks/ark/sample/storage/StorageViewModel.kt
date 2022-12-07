@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.ark.core.storage.FileManager
+import com.thoughtworks.ark.core.storage.StorageInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,7 +25,7 @@ sealed class StorageUiAction {
 }
 
 @HiltViewModel
-class StorageViewModel @Inject constructor() : ViewModel() {
+class StorageViewModel @Inject constructor(private val fileManager: StorageInterface) : ViewModel() {
 
     private val _storageState = MutableStateFlow(StorageState())
     val storageState: StateFlow<StorageState>
@@ -36,7 +36,7 @@ class StorageViewModel @Inject constructor() : ViewModel() {
     private val defaultFilename = "default.json"
     private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
-    private val fileManager = FileManager(defaultPath)
+
 
     private fun checkFileExist() {
         viewModelScope.launch {

@@ -3,7 +3,7 @@ package com.thoughtworks.ark.core.storage
 import android.graphics.Bitmap
 import java.io.File
 
-sealed interface StorageInterface {
+interface StorageInterface {
 
     val isExternalMounted: Boolean
 

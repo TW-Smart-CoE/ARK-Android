@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.thoughtworks.ark.ui.theme.Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StorageActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<StorageViewModel>()
