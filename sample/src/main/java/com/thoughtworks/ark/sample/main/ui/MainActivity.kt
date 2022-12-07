@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.ark.sample.R
+import com.thoughtworks.ark.sample.designsystem.ui.DesignSystemActivity
 import com.thoughtworks.ark.sample.feeds.ui.FeedScreen
 import com.thoughtworks.ark.sample.storage.StorageActivity
 import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
@@ -56,6 +57,13 @@ fun MainScreen() {
                 context.startActivity(Intent(context, StorageActivity::class.java))
             },
             text = { Text(text = "Storage Demo") }
+        )
+
+        AppFilledButton(
+            onClick = {
+                context.startActivity(Intent(context, DesignSystemActivity::class.java))
+            },
+            text = { Text(text = "Design Demo") }
         )
 
         Footer()

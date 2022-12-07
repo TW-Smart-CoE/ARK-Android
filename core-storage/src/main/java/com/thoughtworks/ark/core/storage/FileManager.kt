@@ -8,7 +8,7 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-class FileManager private constructor(private var path: String) : StorageInterface {
+class FileManager (private var path: String) : StorageInterface {
 
     companion object {
         const val TAG = "FileManager"

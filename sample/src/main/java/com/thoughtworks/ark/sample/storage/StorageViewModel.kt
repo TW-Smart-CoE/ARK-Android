@@ -36,7 +36,7 @@ class StorageViewModel @Inject constructor() : ViewModel() {
     private val defaultFilename = "default.json"
     private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
-    private val fileManager = FileManager.get(defaultPath)
+    private val fileManager = FileManager(defaultPath)
 
     private fun checkFileExist() {
         viewModelScope.launch {
