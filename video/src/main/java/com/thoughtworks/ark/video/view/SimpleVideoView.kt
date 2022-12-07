@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.thoughtworks.ark.video.view
 
 import android.content.Context
