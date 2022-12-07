@@ -2,24 +2,14 @@ package com.thoughtworks.ark.sample.storage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.ParagraphStyle
@@ -28,7 +18,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.thoughtworks.ark.ui.component.AppFilledButton
@@ -47,13 +36,6 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
             .padding(all = Dimensions.standardPadding)
     ) {
 
-        val checkValue = remember { mutableStateOf("") }
-        MyTextField(
-            checkValue = checkValue.value,
-            onSave = {
-                checkValue.value = it
-            },
-        )
 
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
@@ -106,37 +88,6 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
 
     }
 
-}
-
-@Composable
-private fun MyTextField(
-    checkValue: String,
-    onSave: (comment: String) -> Unit,
-) {
-
-    val textValue = remember(checkValue) { mutableStateOf(checkValue) }
-
-    TextField(
-        value = textValue.value,
-        onValueChange = { textValue.value = it },
-        placeholder = {
-            Text("input your file name")
-        },
-        trailingIcon = {
-            Icon(
-                Icons.Default.Clear,
-                contentDescription = "clear text",
-                modifier = Modifier
-                    .clickable {
-                        textValue.value = ""
-                    }
-            )
-        }
-    )
-    Spacer(modifier = Modifier.width(20.dp))
-    Button(onClick = { onSave.invoke(textValue.value) }) {
-        Text(text = "check")
-    }
 }
 
 @Composable

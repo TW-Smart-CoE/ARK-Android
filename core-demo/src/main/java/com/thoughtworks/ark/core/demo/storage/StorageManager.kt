@@ -10,7 +10,6 @@ import java.io.IOException
 
 class StorageManager private constructor(private var _path: String) {
 
-
     companion object {
         const val TAG = "FileManager"
 
@@ -68,20 +67,8 @@ class StorageManager private constructor(private var _path: String) {
         return file
     }
 
-    fun loadFile(path: String, fileName: String): File? {
-        val file = File(path, fileName)
-        if (!file.exists()) {
-            return null
-        }
-        return file
-    }
-
     fun loadFileContent(fileName: String): String? {
         return loadFile(fileName)?.readText()
-    }
-
-    fun loadFileContent(path: String, fileName: String): String? {
-        return loadFile(path, fileName)?.readText()
     }
 
     fun loadResImage(imageFileName: String): Bitmap? {
@@ -93,29 +80,12 @@ class StorageManager private constructor(private var _path: String) {
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    fun loadResImage(path: String, imageFileName: String): Bitmap? {
-        val file = File(path, imageFileName)
-        if (!file.exists()) {
-            return null
-        }
-        // Not yet unbearably large question
-        return BitmapFactory.decodeFile(file.absolutePath)
-    }
-
     fun checkFileExist(fileName: String): Boolean {
         return File(_path, fileName).exists()
     }
 
-    fun checkFileExist(path: String, fileName: String): Boolean {
-        return File(path, fileName).exists()
-    }
-
     fun createFile(fileName: String): Boolean {
         return File(_path, fileName).createNewFile()
-    }
-
-    fun createFile(path: String, fileName: String): Boolean {
-        return File(path, fileName).createNewFile()
     }
 
     fun writeTextToFile(fileName: String, fileContent: String) {
@@ -130,34 +100,8 @@ class StorageManager private constructor(private var _path: String) {
         }
     }
 
-    fun writeTextToFile(path: String, fileName: String, fileContent: String) {
-        if (!checkFileExist(path, fileName)) {
-            createFile(path, fileName)
-        }
-        try {
-            val file = File(path, fileName)
-            file.writeText(fileContent)
-        } catch (e: IOException) {
-            Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
-        }
-    }
-
     fun removeFile(fileName: String): Boolean {
         val file = File(_path, fileName)
-        if (file.exists()) {
-            return try {
-                file.delete()
-                true
-            } catch (e: Exception) {
-                Log.e(TAG, "$REMOVE_FILE_EXCEPTION ${e.stackTrace}")
-                false
-            }
-        }
-        return false
-    }
-
-    fun removeFile(path: String, fileName: String): Boolean {
-        val file = File(path, fileName)
         if (file.exists()) {
             return try {
                 file.delete()
