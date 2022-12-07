@@ -12,24 +12,26 @@ class MediaPlayerImpl(private val context: Context) : MediaPlayer {
         when {
             mediaItem.mediaRes != 0 -> {
                 context.resources.openRawResourceFd(mediaItem.mediaRes).use {
-                    androidMediaPlayer.setDataSource(context.resources.openRawResourceFd(mediaItem.mediaRes))
-                    androidMediaPlayer.prepare()
-                    androidMediaPlayer.start()
+                    androidMediaPlayer.setDataSource(it)
+                    prepareAndStart()
                 }
             }
             mediaItem.mediaAsset.isNotEmpty() -> {
                 context.assets.openFd(mediaItem.mediaAsset).use {
                     androidMediaPlayer.setDataSource(it)
-                    androidMediaPlayer.prepare()
-                    androidMediaPlayer.start()
+                    prepareAndStart()
                 }
             }
             mediaItem.mediaFile != null -> {
                 androidMediaPlayer.setDataSource(mediaItem.mediaFile.path)
-                androidMediaPlayer.prepare()
-                androidMediaPlayer.start()
+                prepareAndStart()
             }
         }
+    }
+
+    private fun prepareAndStart() {
+        androidMediaPlayer.prepare()
+        androidMediaPlayer.start()
     }
 
     override fun pause() {
