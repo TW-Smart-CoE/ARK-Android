@@ -28,5 +28,4 @@ interface StorageInterface {
     fun writeTextToFile(filename: String, content: String)
 
     fun removeFile(filename: String): Boolean
-
 }

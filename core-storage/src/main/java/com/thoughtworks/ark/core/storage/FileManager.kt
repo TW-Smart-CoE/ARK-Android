@@ -10,13 +10,6 @@ import java.io.IOException
 
 class FileManager : StorageInterface {
 
-    companion object {
-        private const val MBSize = 1024
-        private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
-        private const val REMOVE_FILE_EXCEPTION = "remove file exception"
-        private const val VALUE_MIN = 0L
-    }
-
     override var path: String? = externalBaseDir
 
     // It is only works less than target sdk 29
@@ -104,7 +97,7 @@ class FileManager : StorageInterface {
         if (file.exists()) {
             return try {
                 file.delete()
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 Logger.e("$REMOVE_FILE_EXCEPTION $e")
                 false
             }
@@ -114,4 +107,10 @@ class FileManager : StorageInterface {
 
     private fun formatValue(value: Long) = value / MBSize / MBSize
 
+    companion object {
+        private const val MBSize = 1024
+        private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
+        private const val REMOVE_FILE_EXCEPTION = "remove file exception"
+        private const val VALUE_MIN = 0L
+    }
 }
