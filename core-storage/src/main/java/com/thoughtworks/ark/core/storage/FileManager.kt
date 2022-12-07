@@ -8,7 +8,7 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-class FileManager private constructor(private var path: String) {
+class FileManager private constructor(private var path: String) : StorageInterface {
 
     companion object {
         const val TAG = "FileManager"
@@ -16,29 +16,15 @@ class FileManager private constructor(private var path: String) {
         private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
         private const val REMOVE_FILE_EXCEPTION = "remove file exception"
         private const val VALUE_MIN = 0L
-
-        @Volatile
-        private var instance: FileManager? = null
-
-        fun get(path: String): FileManager {
-            if (instance == null) {
-                synchronized(FileManager::class) {
-                    if (instance == null) {
-                        instance = FileManager(path)
-                    }
-                }
-            }
-            return instance!!
-        }
     }
 
     // It is only works less than target sdk 29
-    val isExternalMounted: Boolean
+    override val isExternalMounted: Boolean
         get() =
             Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
 
     // It is only works less than target sdk 29
-    val externalBaseDir: String?
+    override val externalBaseDir: String?
         get() = if (isExternalMounted) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
@@ -46,7 +32,7 @@ class FileManager private constructor(private var path: String) {
     /**
      * value's unit is MB
      */
-    val externalSize: Long
+    override val externalSize: Long
         get() {
             if (isExternalMounted) {
                 val statFs = StatFs(externalBaseDir)
@@ -60,7 +46,7 @@ class FileManager private constructor(private var path: String) {
     /**
      * value's unit is MB
      */
-    val externalAvailableSize: Long
+    override val externalAvailableSize: Long
         get() {
             if (isExternalMounted) {
                 val statFs = StatFs(externalBaseDir)
@@ -71,7 +57,7 @@ class FileManager private constructor(private var path: String) {
             return VALUE_MIN
         }
 
-    fun loadFile(fileName: String): File? {
+    override fun loadFile(fileName: String): File? {
         val file = File(path, fileName)
         if (!file.exists()) {
             return null
@@ -79,11 +65,11 @@ class FileManager private constructor(private var path: String) {
         return file
     }
 
-    fun loadFileContent(fileName: String): String? {
+    override fun loadFileContent(fileName: String): String? {
         return loadFile(fileName)?.readText()
     }
 
-    fun loadImage(fileName: String): Bitmap? {
+    override fun loadImage(fileName: String): Bitmap? {
         val file = File(path, fileName)
         if (!file.exists()) {
             return null
@@ -92,15 +78,15 @@ class FileManager private constructor(private var path: String) {
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    fun exists(fileName: String): Boolean {
+    override fun exists(fileName: String): Boolean {
         return File(path, fileName).exists()
     }
 
-    fun createFile(fileName: String): Boolean {
+    override fun createFile(fileName: String): Boolean {
         return File(path, fileName).createNewFile()
     }
 
-    fun writeTextToFile(fileName: String, content: String) {
+    override fun writeTextToFile(fileName: String, content: String) {
         if (!exists(fileName)) {
             createFile(fileName)
         }
@@ -112,7 +98,7 @@ class FileManager private constructor(private var path: String) {
         }
     }
 
-    fun removeFile(fileName: String): Boolean {
+    override fun removeFile(fileName: String): Boolean {
         val file = File(path, fileName)
         if (file.exists()) {
             return try {
