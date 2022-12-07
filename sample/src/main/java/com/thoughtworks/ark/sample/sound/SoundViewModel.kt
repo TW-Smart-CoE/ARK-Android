@@ -1,18 +1,21 @@
 package com.thoughtworks.ark.sample.sound
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.thoughtworks.ark.sound.alert.AlertItem
-import com.thoughtworks.ark.sound.alert.AlertPlayerImpl
+import com.thoughtworks.ark.sound.alert.AlertPlayer
 import com.thoughtworks.ark.sound.media.MediaItem
-import com.thoughtworks.ark.sound.media.MediaPlayerImpl
+import com.thoughtworks.ark.sound.media.MediaPlayer
 import com.thoughtworks.ark.sound.tts.TTSItem
-import com.thoughtworks.ark.sound.tts.TTSSpeakerImpl
+import com.thoughtworks.ark.sound.tts.TTSSpeaker
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SoundViewModel(application: Application) : AndroidViewModel(application) {
-    private val alertPlayer by lazy { AlertPlayerImpl(application) }
-    private val mediaPlayer by lazy { MediaPlayerImpl(application) }
-    private val ttsSpeaker by lazy { TTSSpeakerImpl(application) }
+@HiltViewModel
+class SoundViewModel @Inject constructor(
+    private val alertPlayer: AlertPlayer,
+    private val mediaPlayer: MediaPlayer,
+    private val ttsSpeaker: TTSSpeaker
+) : ViewModel() {
 
     fun playAlert(alertItem: AlertItem) {
         alertPlayer.play(alertItem)
@@ -24,5 +27,12 @@ class SoundViewModel(application: Application) : AndroidViewModel(application) {
 
     fun playTts(ttsItem: TTSItem) {
         ttsSpeaker.play(ttsItem)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        alertPlayer.release()
+        mediaPlayer.release()
+        ttsSpeaker.release()
     }
 }
