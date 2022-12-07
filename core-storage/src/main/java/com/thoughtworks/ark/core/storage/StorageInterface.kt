@@ -5,6 +5,8 @@ import java.io.File
 
 interface StorageInterface {
 
+    var path: String?
+
     val isExternalMounted: Boolean
 
     val externalBaseDir: String?

@@ -10,15 +10,14 @@ import java.io.IOException
 
 class FileManager : StorageInterface {
 
-    var path: String = ""
-
     companion object {
-        const val TAG = "FileManager"
         private const val MBSize = 1024
         private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
         private const val REMOVE_FILE_EXCEPTION = "remove file exception"
         private const val VALUE_MIN = 0L
     }
+
+    override var path: String? = externalBaseDir
 
     // It is only works less than target sdk 29
     override val isExternalMounted: Boolean

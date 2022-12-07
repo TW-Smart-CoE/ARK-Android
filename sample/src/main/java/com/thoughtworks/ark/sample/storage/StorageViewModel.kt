@@ -31,12 +31,14 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     val storageState: StateFlow<StorageState>
         get() = _storageState
 
-    // todo
-    private val defaultPath = "/storage/emulated/0/Documents/"
+    private val defaultPath = "/Documents"
     private val defaultFilename = "default.json"
     private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
 
+    init {
+        fileManager.path += defaultPath
+    }
 
     private fun checkFileExist() {
         viewModelScope.launch {
