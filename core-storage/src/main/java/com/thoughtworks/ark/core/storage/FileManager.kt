@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.core.demo.storage
+package com.thoughtworks.ark.core.storage
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,19 +8,23 @@ import android.util.Log
 import java.io.File
 import java.io.IOException
 
-class StorageManager private constructor(private var _path: String) {
+class FileManager private constructor(private var path: String) {
 
     companion object {
         const val TAG = "FileManager"
+        private const val MBSize = 1024
+        private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
+        private const val REMOVE_FILE_EXCEPTION = "remove file exception"
+        private const val VALUE_MIN = 0L
 
         @Volatile
-        private var instance: StorageManager? = null
+        private var instance: FileManager? = null
 
-        fun get(path: String): StorageManager {
+        fun get(path: String): FileManager {
             if (instance == null) {
-                synchronized(StorageManager::class) {
+                synchronized(FileManager::class) {
                     if (instance == null) {
-                        instance = StorageManager(path)
+                        instance = FileManager(path)
                     }
                 }
             }
@@ -28,15 +32,20 @@ class StorageManager private constructor(private var _path: String) {
         }
     }
 
+    // It is only works less than target sdk 29
     val isExternalMounted: Boolean
         get() =
             Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
 
+    // It is only works less than target sdk 29
     val externalBaseDir: String?
         get() = if (isExternalMounted) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
 
+    /**
+     * value's unit is MB
+     */
     val externalSize: Long
         get() {
             if (isExternalMounted) {
@@ -48,6 +57,9 @@ class StorageManager private constructor(private var _path: String) {
             return VALUE_MIN
         }
 
+    /**
+     * value's unit is MB
+     */
     val externalAvailableSize: Long
         get() {
             if (isExternalMounted) {
@@ -60,7 +72,7 @@ class StorageManager private constructor(private var _path: String) {
         }
 
     fun loadFile(fileName: String): File? {
-        val file = File(_path, fileName)
+        val file = File(path, fileName)
         if (!file.exists()) {
             return null
         }
@@ -71,8 +83,8 @@ class StorageManager private constructor(private var _path: String) {
         return loadFile(fileName)?.readText()
     }
 
-    fun loadResImage(imageFileName: String): Bitmap? {
-        val file = File(_path, imageFileName)
+    fun loadImage(fileName: String): Bitmap? {
+        val file = File(path, fileName)
         if (!file.exists()) {
             return null
         }
@@ -80,33 +92,33 @@ class StorageManager private constructor(private var _path: String) {
         return BitmapFactory.decodeFile(file.absolutePath)
     }
 
-    fun checkFileExist(fileName: String): Boolean {
-        return File(_path, fileName).exists()
+    fun exists(fileName: String): Boolean {
+        return File(path, fileName).exists()
     }
 
     fun createFile(fileName: String): Boolean {
-        return File(_path, fileName).createNewFile()
+        return File(path, fileName).createNewFile()
     }
 
-    fun writeTextToFile(fileName: String, fileContent: String) {
-        if (!checkFileExist(fileName)) {
+    fun writeTextToFile(fileName: String, content: String) {
+        if (!exists(fileName)) {
             createFile(fileName)
         }
         try {
-            val file = File(_path, fileName)
-            file.writeText(fileContent)
+            val file = File(path, fileName)
+            file.writeText(content)
         } catch (e: IOException) {
             Log.e(TAG, "$WRITE_TEXT_FILE_EXCEPTION : $e")
         }
     }
 
     fun removeFile(fileName: String): Boolean {
-        val file = File(_path, fileName)
+        val file = File(path, fileName)
         if (file.exists()) {
             return try {
                 file.delete()
-                true
             } catch (e: Exception) {
+                // todo logger
                 Log.e(TAG, "$REMOVE_FILE_EXCEPTION ${e.stackTrace}")
                 false
             }
@@ -114,13 +126,6 @@ class StorageManager private constructor(private var _path: String) {
         return false
     }
 
-    private fun formatValue(value: Long): Long {
-        return value / MBSize / MBSize
-    }
+    private fun formatValue(value: Long) = value / MBSize / MBSize
 
 }
-
-private const val MBSize = 1024
-private const val WRITE_TEXT_FILE_EXCEPTION = "write text to file exception"
-private const val REMOVE_FILE_EXCEPTION = "remove file exception"
-private const val VALUE_MIN = 0L

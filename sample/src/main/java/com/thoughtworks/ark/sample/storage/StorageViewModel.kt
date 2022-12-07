@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.ark.core.demo.storage.StorageManager
+import com.thoughtworks.ark.core.storage.FileManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,35 +31,36 @@ class StorageViewModel @Inject constructor() : ViewModel() {
     val storageState: StateFlow<StorageState>
         get() = _storageState
 
+    // todo
     private val defaultPath = "/storage/emulated/0/Documents/"
     private val defaultFileName = "default.json"
     private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
-    private val storageManager = StorageManager.get(defaultPath)
+    private val fileManager = FileManager.get(defaultPath)
 
     private fun checkFileExist() {
         viewModelScope.launch {
             _storageState.update {
                 it.copy(
-                    fileIsFlag = storageManager.checkFileExist(defaultFileName)
+                    fileIsFlag = fileManager.exists(defaultFileName)
                 )
             }
         }
     }
 
     private fun writeFile() {
-        storageManager.writeTextToFile(defaultFileName, defaultWriteContent)
+        fileManager.writeTextToFile(defaultFileName, defaultWriteContent)
     }
 
     private fun removeFile() {
-        storageManager.removeFile(defaultFileName)
+        fileManager.removeFile(defaultFileName)
     }
 
     private fun loadImage() {
         viewModelScope.launch {
             _storageState.update {
                 it.copy(
-                    imageBitmap = storageManager.loadResImage(defaultImageName)?.asImageBitmap()
+                    imageBitmap = fileManager.loadImage(defaultImageName)?.asImageBitmap()
                 )
             }
         }

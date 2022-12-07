@@ -24,4 +24,4 @@ include(":core")
 include(":core-testing")
 
 include(":sample")
-include(":core-demo")
+include(":core-storage")

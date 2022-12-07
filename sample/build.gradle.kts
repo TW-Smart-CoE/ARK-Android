@@ -26,7 +26,7 @@ androidApplication {
 dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
-    implementation(project(":core-demo"))
+    implementation(project(":core-storage"))
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
     implementation(libs.bundles.navigation)
