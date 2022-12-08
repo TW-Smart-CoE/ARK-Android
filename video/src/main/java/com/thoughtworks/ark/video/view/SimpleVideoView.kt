@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.thoughtworks.ark.video.R
 import com.thoughtworks.ark.video.VideoItem
+import com.thoughtworks.ark.video.player.ExoPlayerImpl
 import com.thoughtworks.ark.video.utils.isSameVideo
 
 class SimpleVideoView @JvmOverloads constructor(
@@ -18,7 +19,7 @@ class SimpleVideoView @JvmOverloads constructor(
     createVideoOverlay: (Context, VideoPlayerController) -> View? = { _, _ -> null }
 ) : FrameLayout(context, attrs) {
     private val playView: StyledPlayerView
-    private val videoPlayerController = VideoPlayerController(context)
+    private val videoPlayerController = VideoPlayerController(ExoPlayerImpl(context))
 
     private var videoOverlayView: View? = null
     private var oldVideoItem: VideoItem? = null
@@ -26,7 +27,12 @@ class SimpleVideoView @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_simple_video_view, this, true)
         playView = findViewById(R.id.player_view)
-        playView.player = videoPlayerController.getPlayer()
+
+        val videoPlayer = videoPlayerController.getPlayer()
+        if (videoPlayer is ExoPlayerImpl) {
+            playView.player = videoPlayer.getExoPlayer()
+        }
+
         enableDefaultLoading(true)
 
         val videoOverlayView = createVideoOverlay(context, videoPlayerController)

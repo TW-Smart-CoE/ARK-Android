@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.thoughtworks.ark.video.R
 import com.thoughtworks.ark.video.VideoItem
+import com.thoughtworks.ark.video.player.ExoPlayerImpl
+import com.thoughtworks.ark.video.player.VideoPlayState
+import com.thoughtworks.ark.video.player.VideoPlayerListener
 
 class RecyclerVideoView @JvmOverloads constructor(
     context: Context,
@@ -26,14 +28,14 @@ class RecyclerVideoView @JvmOverloads constructor(
 
     private var firstReadyFlag = true
 
-    private val listener = object : Player.Listener {
-        override fun onPlaybackStateChanged(playbackState: Int) {
-            if (playbackState == Player.STATE_READY) {
+    private val listener = object : VideoPlayerListener {
+        override fun onPlayStateChanged(state: Int) {
+            if (state == VideoPlayState.STATE_READY) {
                 if (firstReadyFlag) {
                     onPlayStart()
                     firstReadyFlag = false
                 }
-            } else if (playbackState == Player.STATE_ENDED) {
+            } else if (state == VideoPlayState.STATE_ENDED) {
                 onPlayEnd()
             }
         }
@@ -47,10 +49,13 @@ class RecyclerVideoView @JvmOverloads constructor(
 
     fun setUp(createVideoOverlay: (Context, VideoPlayerController) -> View?) {
         firstReadyFlag = true
-        videoPlayerController = VideoPlayerController(context)
+        videoPlayerController = VideoPlayerController(ExoPlayerImpl(context))
         videoPlayerController.addListener(listener)
 
-        playView.player = videoPlayerController.getPlayer()
+        val videoPlayer = videoPlayerController.getPlayer()
+        if (videoPlayer is ExoPlayerImpl) {
+            playView.player = videoPlayer.getExoPlayer()
+        }
 
         if (videoOverlayView == null) {
             val videoOverlayView = createVideoOverlay(context, videoPlayerController)
