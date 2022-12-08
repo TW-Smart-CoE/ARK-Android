@@ -15,8 +15,8 @@ androidLibrary {
 }
 
 dependencies {
-    api(libs.exoplayer)
-    api(libs.kotlin.coroutines)
+    implementation(libs.exoplayer)
+    implementation(libs.kotlin.coroutines)
     implementation(libs.core.ktx)
     implementation(libs.bundles.compose)
 

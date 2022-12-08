@@ -14,11 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Player.Listener
 import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.video.SimpleVideoView
 import com.thoughtworks.ark.video.VideoItem
+import com.thoughtworks.ark.video.player.VideoPlayState
+import com.thoughtworks.ark.video.player.VideoPlayerListener
 import com.thoughtworks.ark.video.view.VideoPlayerController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -57,26 +57,25 @@ private class CustomVideoControlView @JvmOverloads constructor(
     private lateinit var videoPlayerController: VideoPlayerController
 
     private val coroutineScope = MainScope()
-    private var job: Job? = null
+    private var hideControlJob: Job? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_video_control_layout, this, true)
         loading = findViewById(R.id.loading)
         btnPlay = findViewById(R.id.btn_play)
+        setupButtonClick()
     }
 
     fun setupPlayer(videoPlayerController: VideoPlayerController) {
         this.videoPlayerController = videoPlayerController
 
-        videoPlayerController.addListener(object : Listener {
+        videoPlayerController.addListener(object : VideoPlayerListener {
             override fun onIsLoadingChanged(isLoading: Boolean) {
                 loading.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
 
-            override fun onEvents(player: Player, events: Player.Events) {
-                if (events.containsAny(Player.EVENT_PLAYBACK_STATE_CHANGED, Player.EVENT_PLAY_WHEN_READY_CHANGED)) {
-                    updatePlayPauseButton()
-                }
+            override fun onPlayStateChanged(state: Int) {
+                updatePlayPauseButton(state)
             }
         })
 
@@ -89,8 +88,8 @@ private class CustomVideoControlView @JvmOverloads constructor(
     }
 
     private fun autoHideControl() {
-        job?.cancel()
-        job = coroutineScope.launch {
+        hideControlJob?.cancel()
+        hideControlJob = coroutineScope.launch {
             delay(DISMISS_TIME)
             hideControl()
         }
@@ -106,16 +105,14 @@ private class CustomVideoControlView @JvmOverloads constructor(
         loading.visibility = View.GONE
     }
 
-    private fun updatePlayPauseButton() {
-        if (videoPlayerController.canPause()) {
-            btnPlay.setImageResource(R.drawable.ic_pause)
-            btnPlay.setOnClickListener {
+    private fun setupButtonClick() {
+        btnPlay.setOnClickListener {
+            if (videoPlayerController.isPlaying()) {
+                btnPlay.setImageResource(R.drawable.ic_play)
                 videoPlayerController.pause()
-                job?.cancel()
-            }
-        } else {
-            btnPlay.setImageResource(R.drawable.ic_play)
-            btnPlay.setOnClickListener {
+                hideControlJob?.cancel()
+            } else {
+                btnPlay.setImageResource(R.drawable.ic_pause)
                 if (videoPlayerController.isPlayEnd()) {
                     videoPlayerController.replay()
                 } else {
@@ -123,11 +120,14 @@ private class CustomVideoControlView @JvmOverloads constructor(
                 }
                 autoHideControl()
             }
+        }
+    }
 
-            if (videoPlayerController.isPlayEnd()) {
-                job?.cancel()
-                btnPlay.visibility = View.VISIBLE
-            }
+    private fun updatePlayPauseButton(state: Int) {
+        if (state == VideoPlayState.STATE_ENDED) {
+            hideControlJob?.cancel()
+            btnPlay.setImageResource(R.drawable.ic_play)
+            btnPlay.visibility = View.VISIBLE
         }
     }
 

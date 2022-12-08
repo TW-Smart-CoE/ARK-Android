@@ -3,6 +3,10 @@ package com.thoughtworks.ark.sample.video
 import com.google.common.truth.Truth.assertThat
 import com.thoughtworks.ark.core.testing.util.MainDispatcherRule
 import com.thoughtworks.ark.sample.video.ui.VideoScreenState
+import com.thoughtworks.ark.video.VideoItem
+import io.mockk.every
+import io.mockk.mockkObject
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -11,6 +15,12 @@ class VideoViewModelTest {
     val mainDispatcherRules = MainDispatcherRule()
 
     private val viewModel = VideoViewModel()
+
+    @Before
+    fun setUp() {
+        mockkObject(VideoItem.Companion)
+        every { VideoItem.Companion.fromAsset(any()) } answers { VideoItem.fromUrl("test") }
+    }
 
     @Test
     fun shouldBeSimpleVideoPlayStateWhenCalledOpenSimpleVideoPlayScreen() {

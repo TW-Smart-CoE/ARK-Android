@@ -2,85 +2,63 @@
 
 package com.thoughtworks.ark.video.view
 
-import android.content.Context
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Player.Listener
 import com.thoughtworks.ark.video.VideoItem
-import com.thoughtworks.ark.video.utils.toMediaItem
+import com.thoughtworks.ark.video.player.VideoPlayState
+import com.thoughtworks.ark.video.player.VideoPlayer
+import com.thoughtworks.ark.video.player.VideoPlayerListener
+import com.thoughtworks.ark.video.utils.toVideoDataSource
 
-class VideoPlayerController(context: Context) {
-    private val exoPlayer = createExoplayer(context)
+class VideoPlayerController(private val videoPlayer: VideoPlayer) {
 
-    private fun createExoplayer(context: Context): ExoPlayer {
-        return ExoPlayer.Builder(context).build()
+    fun getPlayer(): VideoPlayer {
+        return videoPlayer
     }
 
-    fun getPlayer(): Player {
-        return exoPlayer
+    fun addListener(videoPlayerListener: VideoPlayerListener) {
+        videoPlayer.addListener(videoPlayerListener)
     }
 
-    fun addListener(listener: Listener) {
-        exoPlayer.addListener(listener)
-    }
-
-    fun removeListener(listener: Listener) {
-        exoPlayer.removeListener(listener)
+    fun removeListener(videoPlayerListener: VideoPlayerListener) {
+        videoPlayer.removeListener(videoPlayerListener)
     }
 
     fun isPlaying(): Boolean {
-        return exoPlayer.isPlaying
+        return videoPlayer.isPlaying()
     }
 
     fun isPlayEnd(): Boolean {
-        return exoPlayer.playbackState == Player.STATE_ENDED
-    }
-
-    fun canPause(): Boolean {
-        return exoPlayer.playbackState != Player.STATE_ENDED &&
-            exoPlayer.playbackState != Player.STATE_IDLE &&
-            exoPlayer.playWhenReady
+        return videoPlayer.getPlayState() == VideoPlayState.STATE_ENDED
     }
 
     fun play(videoItem: VideoItem) {
-        startPlay(videoItem)
+        videoPlayer.play(videoItem.toVideoDataSource())
     }
 
     fun replay() {
-        exoPlayer.seekTo(0)
-        exoPlayer.play()
+        videoPlayer.replay()
     }
 
     fun pause() {
-        exoPlayer.pause()
+        videoPlayer.pause()
     }
 
     fun resume() {
-        exoPlayer.play()
+        videoPlayer.resume()
     }
 
     fun stop() {
-        exoPlayer.stop()
+        videoPlayer.stop()
     }
 
     fun volumeOff() {
-        exoPlayer.volume = 0f
+        videoPlayer.volumeOff()
     }
 
     fun volumeOn() {
-        exoPlayer.volume = 1f
+        videoPlayer.volumeOn()
     }
 
     fun release() {
-        exoPlayer.release()
-    }
-
-    private fun startPlay(videoItem: VideoItem) {
-        val mediaItem = videoItem.toMediaItem()
-        mediaItem?.let {
-            exoPlayer.playWhenReady = true
-            exoPlayer.setMediaItem(mediaItem)
-            exoPlayer.prepare()
-        }
+        videoPlayer.release()
     }
 }

@@ -1,12 +1,11 @@
 package com.thoughtworks.ark.video
 
+import android.net.Uri
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import java.io.File
 
 class VideoItem private constructor(
-    val videoFile: File? = null,
-    val videoAsset: String = "",
-    val videoUrl: String = "",
+    val videoUri: String,
     val resizeMode: VideoResizeMode = VideoResizeMode.FIT,
     val enableDefaultControl: Boolean = true,
     val enableDefaultLoading: Boolean = true
@@ -18,8 +17,9 @@ class VideoItem private constructor(
             enableDefaultControl: Boolean = true,
             enableDefaultLoading: Boolean = true
         ): VideoItem {
+            require(url.isNotEmpty()) { "Invalid url!" }
             return VideoItem(
-                videoUrl = url,
+                videoUri = url,
                 resizeMode = resizeMode,
                 enableDefaultControl = enableDefaultControl,
                 enableDefaultLoading = enableDefaultLoading
@@ -32,8 +32,9 @@ class VideoItem private constructor(
             enableDefaultControl: Boolean = true,
             enableDefaultLoading: Boolean = true
         ): VideoItem {
+            require(assetPath.isNotEmpty()) { "Invalid assetPath!" }
             return VideoItem(
-                videoAsset = assetPath,
+                videoUri = Uri.parse("asset:///$assetPath").toString(),
                 resizeMode = resizeMode,
                 enableDefaultControl = enableDefaultControl,
                 enableDefaultLoading = enableDefaultLoading
@@ -46,8 +47,9 @@ class VideoItem private constructor(
             enableDefaultControl: Boolean = true,
             enableDefaultLoading: Boolean = true
         ): VideoItem {
+            require(videoFile.exists() && videoFile.isFile) { "Invalid videoFile!" }
             return VideoItem(
-                videoFile = videoFile,
+                videoUri = Uri.fromFile(videoFile).toString(),
                 resizeMode = resizeMode,
                 enableDefaultControl = enableDefaultControl,
                 enableDefaultLoading = enableDefaultLoading
