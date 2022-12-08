@@ -24,5 +24,8 @@ include(":core")
 include(":core-testing")
 include(":core-permission")
 
+include(":sound")
+
 include(":sample")
+
 
