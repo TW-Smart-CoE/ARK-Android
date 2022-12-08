@@ -2,6 +2,7 @@ package com.thoughtworks.ark.core.storage
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Environment
 import android.os.StatFs
 import com.thoughtworks.ark.core.logging.Logger
@@ -12,14 +13,13 @@ class FileManager : StorageInterface {
 
     override var path: String? = externalBaseDir
 
-    // It is only works less than target sdk 29
     override val isExternalMounted: Boolean
-        get() =
+        get() = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
+        } else false
 
-    // It is only works less than target sdk 29
     override val externalBaseDir: String?
-        get() = if (isExternalMounted) {
+        get() = if (isExternalMounted && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
 
@@ -32,7 +32,7 @@ class FileManager : StorageInterface {
                 val statFs = StatFs(externalBaseDir)
                 val count = statFs.blockCountLong
                 val size = statFs.blockSizeLong
-                return formatValue(count * size)
+                return formatBytesValueToMB(count * size)
             }
             return VALUE_MIN
         }
@@ -46,7 +46,7 @@ class FileManager : StorageInterface {
                 val statFs = StatFs(externalBaseDir)
                 val count = statFs.availableBlocksLong
                 val size = statFs.blockSizeLong
-                return formatValue(count * size)
+                return formatBytesValueToMB(count * size)
             }
             return VALUE_MIN
         }
@@ -77,6 +77,9 @@ class FileManager : StorageInterface {
     }
 
     override fun createFile(filename: String): Boolean {
+        if (!path?.let { File(it).exists() }!!) {
+            path?.let { File(it).mkdir() }
+        }
         return File(path, filename).createNewFile()
     }
 
@@ -105,7 +108,7 @@ class FileManager : StorageInterface {
         return false
     }
 
-    private fun formatValue(value: Long) = value / MBSize / MBSize
+    private fun formatBytesValueToMB(value: Long) = value / MBSize / MBSize
 
     companion object {
         private const val MBSize = 1024
