@@ -1,8 +1,6 @@
 package com.thoughtworks.ark.video.utils
 
-import android.content.Context
 import android.net.Uri
-import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.thoughtworks.ark.video.VideoItem
 
@@ -29,8 +27,4 @@ fun VideoItem?.isSameVideo(other: VideoItem): Boolean {
     return videoFile?.equals(other.videoFile) == true ||
         (videoAsset.isNotEmpty() && videoAsset == other.videoAsset) ||
         (videoUrl.isNotEmpty() && videoUrl == other.videoUrl)
-}
-
-fun createExoplayer(context: Context): ExoPlayer {
-    return ExoPlayer.Builder(context).build()
 }
