@@ -14,12 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.Player.Listener
 import com.thoughtworks.ark.sample.R
 import com.thoughtworks.ark.video.SimpleVideoView
 import com.thoughtworks.ark.video.VideoItem
+import com.thoughtworks.ark.video.view.VideoPlayerController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -54,7 +54,7 @@ private class CustomVideoControlView @JvmOverloads constructor(
     private var loading: ProgressBar
     private var btnPlay: ImageView
 
-    private lateinit var player: ExoPlayer
+    private lateinit var videoPlayerController: VideoPlayerController
 
     private val coroutineScope = MainScope()
     private var job: Job? = null
@@ -65,10 +65,10 @@ private class CustomVideoControlView @JvmOverloads constructor(
         btnPlay = findViewById(R.id.btn_play)
     }
 
-    fun setupPlayer(exoPlayer: ExoPlayer) {
-        this.player = exoPlayer
+    fun setupPlayer(videoPlayerController: VideoPlayerController) {
+        this.videoPlayerController = videoPlayerController
 
-        exoPlayer.addListener(object : Listener {
+        videoPlayerController.addListener(object : Listener {
             override fun onIsLoadingChanged(isLoading: Boolean) {
                 loading.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
@@ -81,7 +81,7 @@ private class CustomVideoControlView @JvmOverloads constructor(
         })
 
         setOnClickListener {
-            if (player.isPlaying) {
+            if (videoPlayerController.isPlaying()) {
                 showControl()
                 autoHideControl()
             }
@@ -107,36 +107,28 @@ private class CustomVideoControlView @JvmOverloads constructor(
     }
 
     private fun updatePlayPauseButton() {
-        if (shouldShowPauseButton()) {
+        if (videoPlayerController.canPause()) {
             btnPlay.setImageResource(R.drawable.ic_pause)
             btnPlay.setOnClickListener {
-                player.pause()
+                videoPlayerController.pause()
                 job?.cancel()
             }
         } else {
             btnPlay.setImageResource(R.drawable.ic_play)
             btnPlay.setOnClickListener {
-                val state = player.playbackState
-                if (state == Player.STATE_IDLE) {
-                    player.prepare()
-                } else if (state == Player.STATE_ENDED) {
-                    player.seekTo(0)
+                if (videoPlayerController.isPlayEnd()) {
+                    videoPlayerController.replay()
+                } else {
+                    videoPlayerController.resume()
                 }
-                player.play()
                 autoHideControl()
             }
 
-            if (player.playbackState == Player.STATE_ENDED) {
+            if (videoPlayerController.isPlayEnd()) {
                 job?.cancel()
                 btnPlay.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun shouldShowPauseButton(): Boolean {
-        return player.playbackState != Player.STATE_ENDED &&
-            player.playbackState != Player.STATE_IDLE &&
-            player.playWhenReady
     }
 
     override fun onDetachedFromWindow() {

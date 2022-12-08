@@ -1,5 +1,3 @@
-@file:Suppress("TooManyFunctions")
-
 package com.thoughtworks.ark.video.view
 
 import android.content.Context
@@ -9,22 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
-import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.thoughtworks.ark.video.R
 import com.thoughtworks.ark.video.VideoItem
-import com.thoughtworks.ark.video.utils.createExoplayer
-import com.thoughtworks.ark.video.utils.toMediaItem
 
 class RecyclerVideoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
-    private val videoOverlayViewId = View.generateViewId()
-
     private val playView: StyledPlayerView
-    private lateinit var exoPlayer: ExoPlayer
+    private var videoOverlayView: View? = null
+
+    private lateinit var videoPlayerController: VideoPlayerController
 
     private var onPlayStart: () -> Unit = {}
     private var onPlayEnd: () -> Unit = {}
@@ -50,52 +45,33 @@ class RecyclerVideoView @JvmOverloads constructor(
         enableDefaultLoading(true)
     }
 
-    fun setUp(createVideoOverlay: (Context, ExoPlayer) -> View?) {
+    fun setUp(createVideoOverlay: (Context, VideoPlayerController) -> View?) {
         firstReadyFlag = true
-        exoPlayer = createExoplayer(context)
-        exoPlayer.addListener(listener)
-        playView.player = exoPlayer
+        videoPlayerController = VideoPlayerController(context)
+        videoPlayerController.addListener(listener)
 
-        if (findViewById<View>(videoOverlayViewId) == null) {
-            val videoOverlayView = createVideoOverlay(context, exoPlayer)
+        playView.player = videoPlayerController.getPlayer()
+
+        if (videoOverlayView == null) {
+            val videoOverlayView = createVideoOverlay(context, videoPlayerController)
             videoOverlayView?.let {
-                it.id = videoOverlayViewId
                 addView(it, ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT))
+                this.videoOverlayView = it
             }
         }
     }
 
     fun getVideoOverlayView(): View? {
-        return findViewById(videoOverlayViewId)
+        return videoOverlayView
     }
 
-    fun getVideoPlayer(): ExoPlayer {
-        return exoPlayer
+    fun getVideoPlayController(): VideoPlayerController {
+        return videoPlayerController
     }
 
-    fun volumeOff() {
-        exoPlayer.volume = 0f
-    }
-
-    fun volumeOn() {
-        exoPlayer.volume = 1f
-    }
-
-    fun pause() {
-        exoPlayer.pause()
-    }
-
-    fun resume() {
-        exoPlayer.play()
-    }
-
-    fun stop() {
-        exoPlayer.stop()
-    }
-
-    fun release() {
-        exoPlayer.removeListener(listener)
-        exoPlayer.release()
+    fun clear() {
+        videoPlayerController.removeListener(listener)
+        videoPlayerController.release()
         if (parent != null) {
             (parent as ViewGroup).removeView(this)
         }
@@ -109,12 +85,7 @@ class RecyclerVideoView @JvmOverloads constructor(
         enableDefaultLoading(videoItem.enableDefaultLoading)
         setResizeMode(videoItem.resizeMode.mode)
 
-        exoPlayer.startPlay(videoItem)
-    }
-
-    fun replay() {
-        exoPlayer.seekTo(0)
-        exoPlayer.play()
+        videoPlayerController.play(videoItem)
     }
 
     fun updateAlpha(newAlpha: Float) {
@@ -134,15 +105,6 @@ class RecyclerVideoView @JvmOverloads constructor(
             playView.setShowBuffering(StyledPlayerView.SHOW_BUFFERING_ALWAYS)
         } else {
             playView.setShowBuffering(StyledPlayerView.SHOW_BUFFERING_NEVER)
-        }
-    }
-
-    private fun ExoPlayer.startPlay(videoItem: VideoItem) {
-        val mediaItem = videoItem.toMediaItem()
-        if (mediaItem != null) {
-            playWhenReady = true
-            setMediaItem(mediaItem)
-            prepare()
         }
     }
 }

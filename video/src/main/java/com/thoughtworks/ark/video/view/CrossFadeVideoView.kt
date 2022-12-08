@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import androidx.core.view.forEach
-import com.google.android.exoplayer2.ExoPlayer
 import com.thoughtworks.ark.video.VideoItem
 import com.thoughtworks.ark.video.utils.crossFadeAnimation
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.onEach
 class CrossFadeVideoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    private val createVideoOverlay: (Context, ExoPlayer) -> View? = { _, _ -> null }
+    private val createVideoOverlay: (Context, VideoPlayerController) -> View? = { _, _ -> null }
 ) : FrameLayout(context, attrs) {
     private val mainScope = MainScope()
 
@@ -37,20 +37,16 @@ class CrossFadeVideoView @JvmOverloads constructor(
         }
     }
 
+    fun getCurrentVideoView(): RecyclerVideoView? {
+        return currentVideoView
+    }
+
     fun getVideoOverlayView(): View? {
         return currentVideoView?.getVideoOverlayView()
     }
 
-    fun getVideoPlayer(): ExoPlayer? {
-        return currentVideoView?.getVideoPlayer()
-    }
-
-    fun setResizeMode(resizeMode: Int) {
-        currentVideoView?.setResizeMode(resizeMode)
-    }
-
-    fun enableDefaultControl(enable: Boolean) {
-        currentVideoView?.enableDefaultControl(enable)
+    fun getVideoPlayController(): VideoPlayerController? {
+        return currentVideoView?.getVideoPlayController()
     }
 
     private fun clearAllVideoView() {
@@ -64,7 +60,7 @@ class CrossFadeVideoView @JvmOverloads constructor(
             },
             onComplete = {
                 oldVideoViewList.forEach {
-                    it.release()
+                    it.clear()
                     recyclerVideoViewPool.add(it)
                 }
             }
@@ -77,7 +73,7 @@ class CrossFadeVideoView @JvmOverloads constructor(
         val oldVideoViewList = mutableListOf<RecyclerVideoView>()
         forEach {
             if (it is RecyclerVideoView) {
-                it.volumeOff()
+                it.getVideoPlayController().volumeOff()
                 oldVideoViewList.add(it)
             }
         }
@@ -103,7 +99,7 @@ class CrossFadeVideoView @JvmOverloads constructor(
                     },
                     onComplete = {
                         oldVideoViewList.forEach {
-                            it.release()
+                            it.clear()
                             recyclerVideoViewPool.add(it)
                         }
                     }
@@ -141,7 +137,7 @@ class CrossFadeVideoView @JvmOverloads constructor(
     fun resume() {
         forEach {
             if (it is RecyclerVideoView) {
-                it.resume()
+                it.getVideoPlayController().resume()
             }
         }
     }
@@ -149,7 +145,7 @@ class CrossFadeVideoView @JvmOverloads constructor(
     fun pause() {
         forEach {
             if (it is RecyclerVideoView) {
-                it.pause()
+                it.getVideoPlayController().pause()
             }
         }
     }
@@ -157,13 +153,23 @@ class CrossFadeVideoView @JvmOverloads constructor(
     fun stop() {
         forEach {
             if (it is RecyclerVideoView) {
-                it.stop()
+                it.getVideoPlayController().stop()
             }
         }
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        clear()
         recyclerVideoViewPool.clear()
+        mainScope.cancel()
+    }
+
+    private fun clear() {
+        forEach {
+            if (it is RecyclerVideoView) {
+                it.clear()
+            }
+        }
     }
 }

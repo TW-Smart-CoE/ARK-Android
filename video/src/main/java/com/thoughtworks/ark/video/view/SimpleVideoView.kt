@@ -1,5 +1,3 @@
-@file:Suppress("TooManyFunctions")
-
 package com.thoughtworks.ark.video.view
 
 import android.content.Context
@@ -9,53 +7,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
-import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.thoughtworks.ark.video.R
 import com.thoughtworks.ark.video.VideoItem
-import com.thoughtworks.ark.video.utils.createExoplayer
 import com.thoughtworks.ark.video.utils.isSameVideo
-import com.thoughtworks.ark.video.utils.toMediaItem
 
 class SimpleVideoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    createVideoOverlay: (Context, ExoPlayer) -> View? = { _, _ -> null }
+    createVideoOverlay: (Context, VideoPlayerController) -> View? = { _, _ -> null }
 ) : FrameLayout(context, attrs) {
     private val playView: StyledPlayerView
-    private var exoPlayer: ExoPlayer
+    private val videoPlayerController = VideoPlayerController(context)
 
-    private val videoOverlayViewId = View.generateViewId()
+    private var videoOverlayView: View? = null
     private var oldVideoItem: VideoItem? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_simple_video_view, this, true)
-        exoPlayer = createExoplayer(context)
         playView = findViewById(R.id.player_view)
-        playView.player = exoPlayer
+        playView.player = videoPlayerController.getPlayer()
         enableDefaultLoading(true)
 
-        val videoOverlayView = createVideoOverlay(context, exoPlayer)
+        val videoOverlayView = createVideoOverlay(context, videoPlayerController)
         videoOverlayView?.let {
-            it.id = videoOverlayViewId
             addView(it, ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT))
+            this.videoOverlayView = it
         }
     }
 
     fun getVideoOverlayView(): View? {
-        return findViewById(videoOverlayViewId)
+        return videoOverlayView
     }
 
-    fun getVideoPlayer(): ExoPlayer {
-        return exoPlayer
-    }
-
-    fun volumeOff() {
-        exoPlayer.volume = 0f
-    }
-
-    fun volumeOn() {
-        exoPlayer.volume = 1f
+    fun getVideoPlayController(): VideoPlayerController {
+        return videoPlayerController
     }
 
     fun play(videoItem: VideoItem) {
@@ -64,30 +50,9 @@ class SimpleVideoView @JvmOverloads constructor(
         setResizeMode(videoItem.resizeMode.mode)
 
         if (!oldVideoItem.isSameVideo(videoItem)) {
-            exoPlayer.startPlay(videoItem)
+            videoPlayerController.play(videoItem)
             oldVideoItem = videoItem
         }
-    }
-
-    fun replay() {
-        exoPlayer.seekTo(0)
-        exoPlayer.play()
-    }
-
-    fun pause() {
-        exoPlayer.pause()
-    }
-
-    fun resume() {
-        exoPlayer.play()
-    }
-
-    fun stop() {
-        exoPlayer.stop()
-    }
-
-    fun release() {
-        exoPlayer.release()
     }
 
     fun setResizeMode(resizeMode: Int) {
@@ -103,15 +68,6 @@ class SimpleVideoView @JvmOverloads constructor(
             playView.setShowBuffering(StyledPlayerView.SHOW_BUFFERING_ALWAYS)
         } else {
             playView.setShowBuffering(StyledPlayerView.SHOW_BUFFERING_NEVER)
-        }
-    }
-
-    private fun ExoPlayer.startPlay(videoItem: VideoItem) {
-        val mediaItem = videoItem.toMediaItem()
-        if (mediaItem != null) {
-            playWhenReady = true
-            setMediaItem(mediaItem)
-            prepare()
         }
     }
 }
