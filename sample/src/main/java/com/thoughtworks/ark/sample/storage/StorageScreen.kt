@@ -67,7 +67,6 @@ private fun LazyListScope.sectionButtons(
         CheckButton(dispatchAction)
         WriteButton(dispatchAction)
         RemoveButton(dispatchAction)
-        LoadImage(dispatchAction)
     }
     item {
         MyText(state.fileIsFlag)
@@ -80,19 +79,6 @@ private fun LazyListScope.sectionButtons(
             )
         }
     }
-}
-
-@Composable
-private fun LoadImage(
-    dispatchAction: (StorageUiAction) -> Unit,
-) {
-    AppFilledButton(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = { dispatchAction(StorageUiAction.LoadImageAction) },
-        text = {
-            Text(text = IMAGE)
-        }
-    )
 }
 
 @Composable
@@ -187,4 +173,3 @@ private fun MyText(fileIsFlag: Boolean?) {
 private const val CHECK = "check default"
 private const val WRITE = "write default"
 private const val REMOVE = "remove default"
-private const val IMAGE = "load image"
