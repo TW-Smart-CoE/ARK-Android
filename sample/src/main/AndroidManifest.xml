@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".SampleApplication"
@@ -17,6 +19,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
@@ -37,10 +40,12 @@
             android:label="@string/coroutines_label" />
         <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.ComposeColorSystemActivity" />
         <activity android:name="com.thoughtworks.ark.sample.designsystem.colorsystem.ui.XmlColorSystemActivity" />
+        <activity android:name="com.thoughtworks.ark.sample.storage.StorageActivity" />
 
         <activity android:name=".feeds.ui.FeedActivity" />
         <activity android:name=".permission.ui.PermissionActivity" />
         <activity android:name=".sound.ui.SoundActivity" />
         <activity android:name=".video.ui.VideoActivity" />
     </application>
+
 </manifest>

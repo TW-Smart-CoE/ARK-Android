@@ -28,5 +28,4 @@ include(":sound")
 include(":video")
 
 include(":sample")
-
-
+include(":core-storage")

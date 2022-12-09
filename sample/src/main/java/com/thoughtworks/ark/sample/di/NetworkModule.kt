@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
+// todo di and name
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

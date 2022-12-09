@@ -26,6 +26,7 @@ androidApplication {
 dependencies {
     implementation(project(":ui"))
     implementation(project(":core"))
+    implementation(project(":core-storage"))
     implementation(project(":core-permission"))
     implementation(project(":sound"))
     implementation(project(":video"))
@@ -36,7 +37,6 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.accompanist.flowlayout)
     implementation(libs.bundles.coil)
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
