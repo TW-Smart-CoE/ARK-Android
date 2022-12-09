@@ -25,6 +25,7 @@ retrofit-kotlinx-serialization-json = "0.8.0"
 okhttp-logging = "4.10.0"
 accompanist = "0.28.0"
 coil = "2.2.2"
+exoplayer = "2.18.1"
 
 # test
 arch-test = "2.1.0"
@@ -90,6 +91,9 @@ detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", 
 coil-kt = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-kt-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil-kt-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+
+# video
+exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
 
 # test
 junit4 = { module = "junit:junit", version.ref = "junit" }
