@@ -31,4 +31,9 @@
         <item name="APPColor.BackgroundGreen">@color/light_green_200</item>
 
     </style>
+
+    <style name="Theme.App.NoActionBar" parent="Theme.App">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

@@ -3,6 +3,8 @@
     package="com.thoughtworks.ark.webview">
 
     <application>
-        <activity android:name=".WebViewActivity" />
+        <activity
+            android:name=".WebViewActivity"
+            android:theme="@style/Theme.App.NoActionBar" />
     </application>
 </manifest>

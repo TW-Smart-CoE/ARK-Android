@@ -30,7 +30,7 @@ import com.thoughtworks.ark.ui.annotation.PreviewsDarkLight
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
-import com.thoughtworks.ark.webview.WebViewActivity
+import com.thoughtworks.ark.webview.WebViewActivity.Companion.openWebViewFromUrl
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -99,7 +99,7 @@ fun MainScreen() {
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                context.startActivity(Intent(context, WebViewActivity::class.java))
+                context.openWebViewFromUrl("https://www.baidu.com", enableHeader = false)
             },
             text = { Text(text = "WebView Demo") }
         )
