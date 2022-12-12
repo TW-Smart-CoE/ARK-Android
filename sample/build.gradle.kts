@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":core-permission"))
     implementation(project(":sound"))
     implementation(project(":video"))
+    implementation(project(":webview"))
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
