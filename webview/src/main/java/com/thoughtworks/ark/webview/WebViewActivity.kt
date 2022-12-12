@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -17,16 +16,22 @@ import androidx.appcompat.app.AppCompatActivity
 class WebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
-    private lateinit var title: View
+    private lateinit var titleView: WebViewTitleBar
 
-    private val webViewItem by lazy { intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("") }
+    private val webViewItem by lazy {
+        intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         webView = findViewById(R.id.web_view)
+        titleView = findViewById(R.id.custom_header)
         progressBar = findViewById(R.id.progress_bar)
-        title = findViewById(R.id.title)
+
+        // todo
+        setBackOnClickListener { webView.goBack() }
+        setCloseOnClickListener { finish() }
 
         setupWebView()
         setupUI()
@@ -39,7 +44,7 @@ class WebViewActivity : AppCompatActivity() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (!goBack()) {
-                    close()
+                    finish()
                 }
             }
         }
@@ -63,7 +68,8 @@ class WebViewActivity : AppCompatActivity() {
 
         webView.isVerticalScrollBarEnabled = false
         webView.webViewClient = WebViewClientImpl {
-            handleOverrideUrl(it)
+            // todo
+            false
         }
         webView.webChromeClient = WebChromeClientImpl(
             updateTitle = {
@@ -83,7 +89,7 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        title.visibility = if (webViewItem.enableHeader) VISIBLE else GONE
+        titleView.visibility = if (webViewItem.enableHeader) VISIBLE else GONE
         progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
 
         setTitle(webViewItem.title)
@@ -95,8 +101,16 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
-    private fun setTitle(title: String) {
-        // todo
+    fun setTitle(title: String) {
+        titleView.setTittle(title)
+    }
+
+    fun setBackOnClickListener(backListener: () -> Unit) {
+        titleView.setBackOnClickListener { backListener() }
+    }
+
+    fun setCloseOnClickListener(closeListener: () -> Unit) {
+        titleView.setCloseOnClickListener { closeListener() }
     }
 
     private fun goBack(): Boolean {
@@ -106,15 +120,6 @@ class WebViewActivity : AppCompatActivity() {
         } else {
             false
         }
-    }
-
-    private fun handleOverrideUrl(url: String): Boolean {
-        // todo
-        return false
-    }
-
-    private fun close() {
-        finish()
     }
 
     override fun onDestroy() {
@@ -144,7 +149,8 @@ class WebViewActivity : AppCompatActivity() {
             enableHeader: Boolean = true,
             enableProgressBar: Boolean = true
         ) {
-            val webViewItem = WebViewItem.fromAsset(assetPath, title, enableHeader, enableProgressBar)
+            val webViewItem =
+                WebViewItem.fromAsset(assetPath, title, enableHeader, enableProgressBar)
             val intent = Intent(this, WebViewActivity::class.java)
             intent.putExtra(KEY_WEB_DATA, webViewItem)
             startActivity(intent)
