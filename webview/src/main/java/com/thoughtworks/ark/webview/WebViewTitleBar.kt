@@ -3,8 +3,8 @@ package com.thoughtworks.ark.webview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 
 class WebViewTitleBar @JvmOverloads constructor(
@@ -14,8 +14,8 @@ class WebViewTitleBar @JvmOverloads constructor(
     private var onBackClick: () -> Unit = {}
     private var onCloseClick: () -> Unit = {}
 
-    private val btnBack: Button
-    private val btnClose: Button
+    private val btnBack: ImageView
+    private val btnClose: ImageView
     private val tvTitle: TextView
 
     init {

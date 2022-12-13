@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/button_background">
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="?attr/colorPrimary">
 
-    <Button
+    <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="@string/back"
-        android:textColor="@android:color/white" />
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimension_16"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="?attr/colorOnPrimary" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:text="@string/close"
-        android:textColor="@android:color/white" />
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimension_16"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_close"
+        app:tint="?attr/colorOnPrimary" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="?android:attr/actionBarSize"
+        android:layout_marginEnd="?android:attr/actionBarSize"
         android:text="@string/title"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:gravity="center"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="18sp" />
 </FrameLayout>
