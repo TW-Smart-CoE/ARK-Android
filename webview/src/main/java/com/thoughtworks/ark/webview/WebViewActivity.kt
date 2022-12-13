@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
+import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.webkit.WebSettings
@@ -52,8 +53,7 @@ class WebViewActivity : AppCompatActivity() {
             }
         }
         titleBar.setOnCloseClickListener { finish() }
-
-        setTitle(webViewItem.title)
+        titleBar.setTittle(webViewItem.title)
     }
 
     private fun setupWebView() {
@@ -72,7 +72,11 @@ class WebViewActivity : AppCompatActivity() {
         }
 
         webView.isVerticalScrollBarEnabled = false
-        webView.webViewClient = WebViewClientImpl()
+        webView.webViewClient = WebViewClientImpl(
+            updateTitle = {
+                setTitle(it)
+            }
+        )
         webView.webChromeClient = WebChromeClientImpl(
             updateTitle = {
                 setTitle(it)
@@ -80,7 +84,7 @@ class WebViewActivity : AppCompatActivity() {
             updateProgress = { progress, completed ->
                 if (webViewItem.enableProgressBar) {
                     if (completed) {
-                        progressBar.visibility = GONE
+                        progressBar.visibility = INVISIBLE
                     } else {
                         progressBar.visibility = VISIBLE
                     }
@@ -108,7 +112,9 @@ class WebViewActivity : AppCompatActivity() {
     }
 
     private fun setTitle(title: String) {
-        titleBar.setTittle(title)
+        if (webViewItem.title.isEmpty()) {
+            titleBar.setTittle(title)
+        }
     }
 
     private fun goBack(): Boolean {
