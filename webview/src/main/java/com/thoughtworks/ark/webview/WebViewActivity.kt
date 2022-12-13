@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 class WebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
-    private lateinit var titleView: WebViewTitleBar
+    private lateinit var titleBar: WebViewTitleBar
 
     private val webViewItem by lazy {
         intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
@@ -24,31 +24,36 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
-        webView = findViewById(R.id.web_view)
-        titleView = findViewById(R.id.custom_header)
-        progressBar = findViewById(R.id.progress_bar)
+        if (webViewItem.url.isEmpty()) {
+            finish()
+            return
+        }
 
-        // todo
-        setBackOnClickListener { webView.goBack() }
-        setCloseOnClickListener { finish() }
-
-        setupWebView()
         setupUI()
+        setupWebView()
+
         loadUrl()
 
         handleBackPressed()
     }
 
-    private fun handleBackPressed() {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (!goBack()) {
-                    finish()
-                }
+    private fun setupUI() {
+        setContentView(R.layout.activity_web_view)
+        webView = findViewById(R.id.web_view)
+        titleBar = findViewById(R.id.title_bar)
+        progressBar = findViewById(R.id.progress_bar)
+
+        titleBar.visibility = if (webViewItem.enableTitleBar) VISIBLE else GONE
+        progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
+
+        titleBar.setOnBackClickListener {
+            if (!goBack()) {
+                finish()
             }
         }
-        onBackPressedDispatcher.addCallback(this, callback)
+        titleBar.setOnCloseClickListener { finish() }
+
+        setTitle(webViewItem.title)
     }
 
     private fun setupWebView() {
@@ -67,10 +72,7 @@ class WebViewActivity : AppCompatActivity() {
         }
 
         webView.isVerticalScrollBarEnabled = false
-        webView.webViewClient = WebViewClientImpl {
-            // todo
-            false
-        }
+        webView.webViewClient = WebViewClientImpl()
         webView.webChromeClient = WebChromeClientImpl(
             updateTitle = {
                 setTitle(it)
@@ -88,11 +90,15 @@ class WebViewActivity : AppCompatActivity() {
         )
     }
 
-    private fun setupUI() {
-        titleView.visibility = if (webViewItem.enableHeader) VISIBLE else GONE
-        progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
-
-        setTitle(webViewItem.title)
+    private fun handleBackPressed() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (!goBack()) {
+                    finish()
+                }
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun loadUrl() {
@@ -101,16 +107,8 @@ class WebViewActivity : AppCompatActivity() {
         }
     }
 
-    fun setTitle(title: String) {
-        titleView.setTittle(title)
-    }
-
-    fun setBackOnClickListener(backListener: () -> Unit) {
-        titleView.setBackOnClickListener { backListener() }
-    }
-
-    fun setCloseOnClickListener(closeListener: () -> Unit) {
-        titleView.setCloseOnClickListener { closeListener() }
+    private fun setTitle(title: String) {
+        titleBar.setTittle(title)
     }
 
     private fun goBack(): Boolean {
@@ -134,10 +132,10 @@ class WebViewActivity : AppCompatActivity() {
         fun Context.openWebViewFromUrl(
             url: String,
             title: String = "",
-            enableHeader: Boolean = true,
+            enableTitleBar: Boolean = true,
             enableProgressBar: Boolean = true
         ) {
-            val webViewItem = WebViewItem.fromUrl(url, title, enableHeader, enableProgressBar)
+            val webViewItem = WebViewItem.fromUrl(url, title, enableTitleBar, enableProgressBar)
             val intent = Intent(this, WebViewActivity::class.java)
             intent.putExtra(KEY_WEB_DATA, webViewItem)
             startActivity(intent)
@@ -146,11 +144,11 @@ class WebViewActivity : AppCompatActivity() {
         fun Context.openWebViewFromAsset(
             assetPath: String,
             title: String = "",
-            enableHeader: Boolean = true,
+            enableTitleBar: Boolean = true,
             enableProgressBar: Boolean = true
         ) {
             val webViewItem =
-                WebViewItem.fromAsset(assetPath, title, enableHeader, enableProgressBar)
+                WebViewItem.fromAsset(assetPath, title, enableTitleBar, enableProgressBar)
             val intent = Intent(this, WebViewActivity::class.java)
             intent.putExtra(KEY_WEB_DATA, webViewItem)
             startActivity(intent)

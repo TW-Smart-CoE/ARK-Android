@@ -12,9 +12,4 @@ class WebViewClientImpl(
         val url = request.url.toString()
         return shouldOverrideUrl(url)
     }
-
-    override fun onPageFinished(view: WebView, url: String) {
-        println(url)
-        super.onPageFinished(view, url)
-    }
 }

@@ -7,26 +7,26 @@ import kotlinx.parcelize.Parcelize
 class WebViewItem private constructor(
     val url: String,
     val title: String = "",
-    val enableHeader: Boolean = true,
+    val enableTitleBar: Boolean = true,
     val enableProgressBar: Boolean = true
 ) : Parcelable {
     companion object {
         fun fromUrl(
             url: String,
             title: String = "",
-            enableHeader: Boolean = true,
+            enableTitleBar: Boolean = true,
             enableProgressBar: Boolean = true
         ): WebViewItem {
-            return WebViewItem(url, title, enableHeader, enableProgressBar)
+            return WebViewItem(url, title, enableTitleBar, enableProgressBar)
         }
 
         fun fromAsset(
             assetPath: String,
             title: String = "",
-            enableHeader: Boolean = true,
+            enableTitleBar: Boolean = true,
             enableProgressBar: Boolean = true
         ): WebViewItem {
-            return WebViewItem("file:///android_asset/$assetPath", title, enableHeader, enableProgressBar)
+            return WebViewItem("file:///android_asset/$assetPath", title, enableTitleBar, enableProgressBar)
         }
     }
 }

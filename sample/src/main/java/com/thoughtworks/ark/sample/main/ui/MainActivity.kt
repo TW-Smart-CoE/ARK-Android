@@ -99,7 +99,7 @@ fun MainScreen() {
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
-                context.openWebViewFromUrl("https://www.baidu.com", enableHeader = true)
+                context.openWebViewFromUrl("https://www.baidu.com", enableTitleBar = true)
             },
             text = { Text(text = "WebView Demo") }
         )
