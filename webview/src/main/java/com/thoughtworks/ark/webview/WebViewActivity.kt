@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -18,6 +19,7 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private lateinit var progressBar: ProgressBar
     private lateinit var titleBar: WebViewTitleBar
+    private lateinit var errorView: View
 
     private val webViewItem by lazy {
         intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
@@ -43,9 +45,14 @@ class WebViewActivity : AppCompatActivity() {
         webView = findViewById(R.id.web_view)
         titleBar = findViewById(R.id.title_bar)
         progressBar = findViewById(R.id.progress_bar)
+        errorView = findViewById(R.id.error_view)
 
         titleBar.visibility = if (webViewItem.enableTitleBar) VISIBLE else GONE
         progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
+
+        errorView.setOnClickListener {
+            webView.reload()
+        }
 
         titleBar.setOnBackClickListener {
             if (!goBack()) {
@@ -75,6 +82,9 @@ class WebViewActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClientImpl(
             updateTitle = {
                 setTitle(it)
+            },
+            updateErrorState = {
+                errorView.visibility = if (it) VISIBLE else GONE
             }
         )
         webView.webChromeClient = WebChromeClientImpl(

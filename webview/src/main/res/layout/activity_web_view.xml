@@ -19,6 +19,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <LinearLayout
+            android:id="@+id/error_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/backgroundColor"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/web_view_404"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimension_8"
+                android:text="@string/web_view_page_not_found"
+                android:textColor="?attr/colorOnBackground" />
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"

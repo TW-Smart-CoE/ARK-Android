@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">title</string>
-    <string name="back">back</string>
-    <string name="title">title</string>
-    <string name="close">close</string>
+    <string name="web_view_404">404</string>
+    <string name="web_view_page_not_found">Page Not Found</string>
 </resources>
