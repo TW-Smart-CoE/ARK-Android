@@ -24,25 +24,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/backgroundColor"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/dimension_96"
+                android:layout_height="@dimen/dimension_96"
+                android:layout_gravity="center"
+                android:layout_marginTop="200dp"
+                android:src="@drawable/ic_page_not_found" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/web_view_404"
-                android:textColor="?attr/colorOnBackground"
+                android:textColor="@color/page_not_found"
                 android:textSize="40sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dimension_8"
                 android:text="@string/web_view_page_not_found"
-                android:textColor="?attr/colorOnBackground" />
+                android:textColor="@color/page_not_found" />
+
         </LinearLayout>
 
         <ProgressBar
