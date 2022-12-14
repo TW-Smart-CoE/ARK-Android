@@ -18,7 +18,7 @@ class SimpleVideoView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     createVideoOverlay: (Context, VideoPlayerController) -> View? = { _, _ -> null }
 ) : FrameLayout(context, attrs) {
-    private val playView: StyledPlayerView
+    private val playView: ThemedStyledPlayerView
     private val videoPlayerController = VideoPlayerController(ExoPlayerImpl(context))
 
     private var videoOverlayView: View? = null
@@ -75,5 +75,10 @@ class SimpleVideoView @JvmOverloads constructor(
         } else {
             playView.setShowBuffering(StyledPlayerView.SHOW_BUFFERING_NEVER)
         }
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        videoPlayerController.release()
     }
 }
