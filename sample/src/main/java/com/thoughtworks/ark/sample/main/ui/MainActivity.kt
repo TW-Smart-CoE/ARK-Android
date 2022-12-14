@@ -94,6 +94,7 @@ fun MainScreen() {
             },
             text = { Text(text = "Storage Demo") }
         )
+
         Footer()
     }
 }
