@@ -19,7 +19,7 @@ class FileManager : StorageInterface {
         } else false
 
     override val externalBaseDir: String?
-        get() = if (isExternalMounted && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        get() = if (isExternalMounted) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
 
@@ -85,10 +85,10 @@ class FileManager : StorageInterface {
 
     override fun writeTextToFile(filename: String, content: String) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            if (!exists(filename)) {
-                createFile(filename)
-            }
             try {
+                if (!exists(filename)) {
+                    createFile(filename)
+                }
                 val file = File(path, filename)
                 file.writeText(content)
             } catch (e: IOException) {

@@ -1,5 +1,7 @@
 package com.thoughtworks.ark.sample.storage
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
@@ -19,7 +21,7 @@ data class StorageState(
 
 sealed class StorageUiAction {
     object CheckAction : StorageUiAction()
-    object WriteFileAction : StorageUiAction()
+    data class WriteFileAction(val context: Context) : StorageUiAction()
     object RemoveFileAction : StorageUiAction()
     object LoadImageAction : StorageUiAction()
 }
@@ -37,7 +39,9 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     private val defaultWriteContent = "demo content"
 
     init {
-        fileManager.path += defaultPath
+        if (fileManager.path != null) {
+            fileManager.path += defaultPath
+        }
     }
 
     private fun checkFileExist() {
@@ -50,8 +54,12 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         }
     }
 
-    private fun writeFile() {
-        fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
+    private fun writeFile(context: Context) {
+        if (fileManager.path == null) {
+            showError(context)
+        } else {
+            fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
+        }
     }
 
     private fun removeFile() {
@@ -68,12 +76,25 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         }
     }
 
+    private fun showError(context: Context) {
+        Toast.makeText(
+            context,
+            ERROR,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     fun dispatchAction(action: StorageUiAction) {
         when (action) {
-            StorageUiAction.CheckAction -> checkFileExist()
-            StorageUiAction.WriteFileAction -> writeFile()
-            StorageUiAction.RemoveFileAction -> removeFile()
-            StorageUiAction.LoadImageAction -> loadImage()
+            is StorageUiAction.CheckAction -> checkFileExist()
+            is StorageUiAction.WriteFileAction -> writeFile(action.context)
+            is StorageUiAction.RemoveFileAction -> removeFile()
+            is StorageUiAction.LoadImageAction -> loadImage()
         }
     }
+
+    companion object {
+        private const val ERROR = "Sorry, please reduced version to 29 and below"
+    }
+
 }
