@@ -18,7 +18,7 @@ class RecyclerVideoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
-    private val playView: StyledPlayerView
+    private val playView: ThemedStyledPlayerView
     private var videoOverlayView: View? = null
 
     private lateinit var videoPlayerController: VideoPlayerController
