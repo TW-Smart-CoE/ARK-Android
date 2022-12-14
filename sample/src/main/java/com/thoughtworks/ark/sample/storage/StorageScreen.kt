@@ -1,5 +1,6 @@
 package com.thoughtworks.ark.sample.storage
 
+import android.Manifest
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.core.permission.SinglePermission
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
@@ -100,13 +102,17 @@ private fun WriteButton(
     dispatchAction: (StorageUiAction) -> Unit,
 ) {
     val context = LocalContext.current
-    AppFilledButton(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = { dispatchAction(StorageUiAction.WriteFileAction(context)) },
-        text = {
-            Text(text = WRITE)
-        }
-    )
+    SinglePermission(
+        permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    ) {
+        AppFilledButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { dispatchAction(StorageUiAction.WriteFileAction(context)) },
+            text = {
+                Text(text = WRITE)
+            }
+        )
+    }
 }
 
 @Composable

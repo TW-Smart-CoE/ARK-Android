@@ -1,11 +1,11 @@
 package com.thoughtworks.ark.sample.storage
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thoughtworks.ark.core.extensions.showToast
 import com.thoughtworks.ark.core.storage.StorageInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +27,8 @@ sealed class StorageUiAction {
 }
 
 @HiltViewModel
-class StorageViewModel @Inject constructor(private val fileManager: StorageInterface) : ViewModel() {
+class StorageViewModel @Inject constructor(private val fileManager: StorageInterface) :
+    ViewModel() {
 
     private val _storageState = MutableStateFlow(StorageState())
     val storageState: StateFlow<StorageState>
@@ -39,9 +40,7 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     private val defaultWriteContent = "demo content"
 
     init {
-        if (fileManager.path != null) {
-            fileManager.path += defaultPath
-        }
+        fileManager.path?.let { fileManager.path += defaultPath }
     }
 
     private fun checkFileExist() {
@@ -55,8 +54,8 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     }
 
     private fun writeFile(context: Context) {
-        if (fileManager.path == null) {
-            showError(context)
+        if (fileManager.path.isNullOrBlank()) {
+            context.showToast(ERROR)
         } else {
             fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
         }
@@ -76,14 +75,6 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         }
     }
 
-    private fun showError(context: Context) {
-        Toast.makeText(
-            context,
-            ERROR,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
     fun dispatchAction(action: StorageUiAction) {
         when (action) {
             is StorageUiAction.CheckAction -> checkFileExist()
@@ -96,5 +87,4 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     companion object {
         private const val ERROR = "Sorry, please reduced version to 29 and below"
     }
-
 }
