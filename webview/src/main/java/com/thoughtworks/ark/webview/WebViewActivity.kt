@@ -51,13 +51,11 @@ class WebViewActivity : AppCompatActivity() {
         progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
 
         errorView.setOnClickListener {
-            webView.reload()
+            backOrFinish()
         }
 
         titleBar.setOnBackClickListener {
-            if (!goBack()) {
-                finish()
-            }
+            backOrFinish()
         }
         titleBar.setOnCloseClickListener { finish() }
         titleBar.setTittle(webViewItem.title)
@@ -107,12 +105,16 @@ class WebViewActivity : AppCompatActivity() {
     private fun handleBackPressed() {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (!goBack()) {
-                    finish()
-                }
+                backOrFinish()
             }
         }
         onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    private fun backOrFinish() {
+        if (!goBack()) {
+            finish()
+        }
     }
 
     private fun loadUrl() {

@@ -39,15 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/web_view_404"
-                android:textColor="@color/page_not_found"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/web_view_page_not_found"
+                android:text="@string/web_view_error_hint"
                 android:textColor="@color/page_not_found" />
 
         </LinearLayout>
