@@ -87,7 +87,6 @@ fun MainScreen() {
             }
         )
 
-
         AppFilledButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
@@ -95,7 +94,6 @@ fun MainScreen() {
             },
             text = { Text(text = "Storage Demo") }
         )
-        
         Footer()
     }
 }

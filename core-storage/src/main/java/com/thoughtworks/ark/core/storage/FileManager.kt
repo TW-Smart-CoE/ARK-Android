@@ -84,14 +84,16 @@ class FileManager : StorageInterface {
     }
 
     override fun writeTextToFile(filename: String, content: String) {
-        if (!exists(filename)) {
-            createFile(filename)
-        }
-        try {
-            val file = File(path, filename)
-            file.writeText(content)
-        } catch (e: IOException) {
-            Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            if (!exists(filename)) {
+                createFile(filename)
+            }
+            try {
+                val file = File(path, filename)
+                file.writeText(content)
+            } catch (e: IOException) {
+                Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
+            }
         }
     }
 
