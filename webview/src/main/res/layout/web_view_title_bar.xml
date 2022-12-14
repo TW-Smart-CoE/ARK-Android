@@ -7,7 +7,7 @@
     android:background="?attr/colorPrimary">
 
     <ImageView
-        android:id="@+id/btn_back"
+        android:id="@+id/back"
         android:layout_width="?android:attr/actionBarSize"
         android:layout_height="match_parent"
         android:padding="@dimen/dimension_16"
@@ -15,7 +15,7 @@
         app:tint="?android:attr/textColorPrimary" />
 
     <ImageView
-        android:id="@+id/btn_close"
+        android:id="@+id/close"
         android:layout_width="?android:attr/actionBarSize"
         android:layout_height="match_parent"
         android:layout_gravity="end"

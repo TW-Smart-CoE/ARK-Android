@@ -14,19 +14,19 @@ class WebViewTitleBar @JvmOverloads constructor(
     private var onBackClick: () -> Unit = {}
     private var onCloseClick: () -> Unit = {}
 
-    private val btnBack: ImageView
-    private val btnClose: ImageView
-    private val tvTitle: TextView
+    private val back: ImageView
+    private val close: ImageView
+    private val title: TextView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.web_view_title_bar, this)
 
-        btnBack = findViewById(R.id.btn_back)
-        btnClose = findViewById(R.id.btn_close)
-        tvTitle = findViewById(R.id.title)
+        back = findViewById(R.id.back)
+        close = findViewById(R.id.close)
+        title = findViewById(R.id.title)
 
-        btnBack.setOnClickListener { onBackClick() }
-        btnClose.setOnClickListener { onCloseClick() }
+        back.setOnClickListener { onBackClick() }
+        close.setOnClickListener { onCloseClick() }
     }
 
     fun setOnBackClickListener(clickListener: () -> Unit) {
@@ -38,6 +38,6 @@ class WebViewTitleBar @JvmOverloads constructor(
     }
 
     fun setTittle(title: String?) {
-        tvTitle.text = title
+        this.title.text = title
     }
 }
