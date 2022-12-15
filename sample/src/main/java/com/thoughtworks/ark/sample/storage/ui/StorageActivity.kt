@@ -1,9 +1,10 @@
-package com.thoughtworks.ark.sample.storage
+package com.thoughtworks.ark.sample.storage.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.thoughtworks.ark.sample.storage.StorageViewModel
 import com.thoughtworks.ark.ui.theme.Theme
 import dagger.hilt.android.AndroidEntryPoint
 

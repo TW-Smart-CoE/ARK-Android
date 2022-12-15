@@ -77,10 +77,14 @@ class FileManager : StorageInterface {
     }
 
     override fun createFile(filename: String): Boolean {
-        if (!path?.let { File(it).exists() }!!) {
-            path?.let { File(it).mkdir() }
+        return if (path.isNullOrBlank()) {
+            false
+        } else {
+            path?.let {
+                File(it).mkdirs()
+            }
+            File(path, filename).createNewFile()
         }
-        return File(path, filename).createNewFile()
     }
 
     override fun writeTextToFile(filename: String, content: String) {

@@ -1,11 +1,7 @@
 package com.thoughtworks.ark.sample.storage
 
-import android.content.Context
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.ark.core.extensions.showToast
 import com.thoughtworks.ark.core.storage.StorageInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,16 +10,21 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+sealed class StorageUseState {
+    object Loading : StorageUseState()
+    object Success : StorageUseState()
+    object Error : StorageUseState()
+}
+
 data class StorageState(
     val fileIsFlag: Boolean? = null,
-    val imageBitmap: ImageBitmap? = null,
+    val storageUseState: StorageUseState = StorageUseState.Loading
 )
 
 sealed class StorageUiAction {
     object CheckAction : StorageUiAction()
-    data class WriteFileAction(val context: Context) : StorageUiAction()
+    object WriteFileAction : StorageUiAction()
     object RemoveFileAction : StorageUiAction()
-    object LoadImageAction : StorageUiAction()
 }
 
 @HiltViewModel
@@ -36,7 +37,6 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
 
     private val defaultPath = "/Documents"
     private val defaultFilename = "default.json"
-    private val defaultImageName = "default.png"
     private val defaultWriteContent = "demo content"
 
     init {
@@ -46,45 +46,62 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
     private fun checkFileExist() {
         viewModelScope.launch {
             _storageState.update {
+                val result = if (fileManager.path.isNullOrBlank()) {
+                    StorageUseState.Error
+                } else {
+                    StorageUseState.Success
+                }
                 it.copy(
-                    fileIsFlag = fileManager.exists(defaultFilename)
+                    fileIsFlag = fileManager.exists(defaultFilename),
+                    storageUseState = result
                 )
             }
         }
     }
 
-    private fun writeFile(context: Context) {
-        if (fileManager.path.isNullOrBlank()) {
-            context.showToast(ERROR)
-        } else {
-            fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
+    private fun writeFile() {
+        viewModelScope.launch {
+            _storageState.update {
+                val result = if (fileManager.path.isNullOrBlank()) {
+                    StorageUseState.Error
+                } else {
+                    fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
+                    StorageUseState.Success
+                }
+                it.copy(
+                    storageUseState = result
+                )
+            }
         }
     }
 
     private fun removeFile() {
-        fileManager.removeFile(defaultFilename)
-    }
-
-    private fun loadImage() {
         viewModelScope.launch {
             _storageState.update {
+                val result = if (fileManager.path.isNullOrBlank()) {
+                    StorageUseState.Error
+                } else {
+                    fileManager.removeFile(defaultFilename)
+                    StorageUseState.Success
+                }
                 it.copy(
-                    imageBitmap = fileManager.loadImage(defaultImageName)?.asImageBitmap()
+                    storageUseState = result
                 )
             }
+        }
+    }
+
+    fun clearStorageUiResult() {
+        _storageState.update {
+            it.copy(storageUseState = StorageUseState.Loading)
         }
     }
 
     fun dispatchAction(action: StorageUiAction) {
         when (action) {
             is StorageUiAction.CheckAction -> checkFileExist()
-            is StorageUiAction.WriteFileAction -> writeFile(action.context)
+            is StorageUiAction.WriteFileAction -> writeFile()
             is StorageUiAction.RemoveFileAction -> removeFile()
-            is StorageUiAction.LoadImageAction -> loadImage()
         }
-    }
-
-    companion object {
-        private const val ERROR = "Sorry, please reduced version to 29 and below"
     }
 }
