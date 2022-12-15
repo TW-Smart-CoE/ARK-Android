@@ -22,6 +22,8 @@ object Icons {
     val Notification = R.drawable.ic_notifications
     val Warning = Icons.Outlined.Warning
     val Info = Icons.Outlined.Info
+    val ArrowDropDown = R.drawable.ic_arrow_drop_down_24
+    val ArrowDropUp = R.drawable.ic_arrow_drop_up_24
 }
 
 /**
