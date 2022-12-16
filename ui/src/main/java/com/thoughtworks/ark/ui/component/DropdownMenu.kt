@@ -36,28 +36,67 @@ fun <T> AppDropDownMenu(
 
 @Composable
 fun <T> AppDropDownMenuButton(
+    modifier: Modifier = Modifier,
     items: List<T>,
     onItemClick: (item: T) -> Unit,
-    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     dismissOnItemClick: Boolean = true,
-    title: String
-) {
+    title: String,
+    buttonStyle: ButtonStyle = ButtonStyle.OutlinedButton,
+
+    ) {
     var expanded by remember { mutableStateOf(false) }
-    Box(modifier = modifier) {
-        AppOutlinedButton(
-            enabled = enabled,
-            onClick = { expanded = true },
-            text = { Text(text = title) },
-            trailingIcon = {
-                AppIcon(
-                    icon =
-                    if (expanded)
-                        Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
-                    else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+    Box(
+        modifier = Modifier
+            .then(modifier)
+    ) {
+        when (buttonStyle) {
+            ButtonStyle.TextButton -> {
+                AppTextButton(
+                    enabled = enabled,
+                    onClick = { expanded = true },
+                    text = { Text(text = title) },
+                    trailingIcon = {
+                        AppIcon(
+                            icon =
+                            if (expanded) Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
+                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                        )
+                    }
                 )
             }
-        )
+            ButtonStyle.FilledButton -> {
+                AppFilledButton(
+                    enabled = enabled,
+                    onClick = { expanded = true },
+                    text = { Text(text = title) },
+                    trailingIcon = {
+                        AppIcon(
+                            icon =
+                            if (expanded)
+                                Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
+                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                        )
+                    }
+                )
+            }
+            else -> {
+                AppOutlinedButton(
+                    enabled = enabled,
+                    onClick = { expanded = true },
+                    text = { Text(text = title) },
+                    trailingIcon = {
+                        AppIcon(
+                            icon =
+                            if (expanded)
+                                Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
+                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                        )
+                    }
+                )
+            }
+        }
+
         AppDropDownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
@@ -66,4 +105,8 @@ fun <T> AppDropDownMenuButton(
             dismissOnItemClick = dismissOnItemClick
         )
     }
+}
+
+enum class ButtonStyle {
+    FilledButton, OutlinedButton, TextButton
 }

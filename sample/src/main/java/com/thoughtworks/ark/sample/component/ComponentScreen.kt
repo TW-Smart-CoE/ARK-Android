@@ -1,43 +1,122 @@
 package com.thoughtworks.ark.sample.component
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import com.thoughtworks.ark.sample.R
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.thoughtworks.ark.ui.component.AppDropDownMenuButton
+import com.thoughtworks.ark.ui.component.ButtonStyle
 
 @Composable
 fun ComponentScreen() {
-    Column(
-        modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        val items = listOf(
-            stringResource(id = R.string.menu_action_share),
-            stringResource(id = R.string.menu_action_report),
-            stringResource(id = R.string.menu_action_share)
-        )
-        AppDropDownMenuButton(
-            items = items,
-            onItemClick = {
-                when (it) {
-                    SHARE -> {}
-                    REPORT -> {}
-                    ABOUT -> {}
-                }
-            },
-            title = "Menu"
-        )
+    var squareColorForOutlinedButton by remember { mutableStateOf(Color.Red) }
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            val items = listOf(YELLOW, RED, BLUE)
+            AppDropDownMenuButton(
+                items = items,
+                onItemClick = {
+                    when (it) {
+                        YELLOW -> {
+                            squareColorForOutlinedButton = Color.Yellow
+                        }
+                        RED -> {
+                            squareColorForOutlinedButton = Color.Red
+                        }
+                        BLUE -> {
+                            squareColorForOutlinedButton = Color.Blue
+                        }
+                    }
+                },
+                title = "Menu"
+            )
+            Spacer(modifier = Modifier.width(20.dp))
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .background(squareColorForOutlinedButton)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        var squareColorForFilledButton by remember { mutableStateOf(Color.Red) }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            val items = listOf(YELLOW, RED, BLUE)
+            AppDropDownMenuButton(
+                items = items,
+                onItemClick = {
+                    when (it) {
+                        YELLOW -> {
+                            squareColorForFilledButton = Color.Yellow
+                        }
+                        RED -> {
+                            squareColorForFilledButton = Color.Red
+                        }
+                        BLUE -> {
+                            squareColorForFilledButton = Color.Blue
+                        }
+                    }
+                },
+                title = "Menu",
+                buttonStyle = ButtonStyle.FilledButton
+            )
+            Spacer(modifier = Modifier.width(20.dp))
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .background(squareColorForFilledButton)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        var squareColorForTextButton by remember { mutableStateOf(Color.Red) }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            val items = listOf(YELLOW, RED, BLUE)
+            AppDropDownMenuButton(
+                items = items,
+                onItemClick = {
+                    when (it) {
+                        YELLOW -> {
+                            squareColorForTextButton = Color.Yellow
+                        }
+                        RED -> {
+                            squareColorForTextButton = Color.Red
+                        }
+                        BLUE -> {
+                            squareColorForTextButton = Color.Blue
+                        }
+                    }
+                },
+                title = "Menu",
+                buttonStyle = ButtonStyle.TextButton
+            )
+            Spacer(modifier = Modifier.width(20.dp))
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .background(squareColorForTextButton)
+            )
+        }
     }
+
+}
+
+enum class ColorItems {
+    YELLOW, RED, BLUE
 }
 
 
-
-
-
-private const val SHARE = "分享"
-private const val REPORT = "举报"
-private const val ABOUT = "关于"
+private const val YELLOW = "yellow"
+private const val RED = "red"
+private const val BLUE = "blue"
 

@@ -13,7 +13,7 @@
     <string name="extended_color_test_for_xml">extended color test for xml</string>
 
     <string name="request_permission_dialog_content">Hi, Please allow APP to access your location. When location permission is enabled, you can see what\'s new around you.</string>
-    <string name="menu_action_share">分享</string>
-    <string name="menu_action_report">举报</string>
-    <string name="menu_action_about">关注</string>
+    <string name="menu_action_yellow">yellow</string>
+    <string name="menu_action_red">red</string>
+    <string name="menu_action_blue">blue</string>
 </resources>
