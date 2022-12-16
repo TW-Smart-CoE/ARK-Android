@@ -80,24 +80,22 @@ class FileManager : StorageInterface {
         return if (path.isNullOrBlank()) {
             false
         } else {
-            path?.let {
-                File(it).mkdirs()
-            }
+            path?.let { File(it).mkdirs() }
             File(path, filename).createNewFile()
         }
     }
 
-    override fun writeTextToFile(filename: String, content: String) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            try {
-                if (!exists(filename)) {
-                    createFile(filename)
-                }
-                val file = File(path, filename)
-                file.writeText(content)
-            } catch (e: IOException) {
-                Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
+    override fun writeTextToFile(filename: String, content: String): Boolean {
+        return try {
+            if (!exists(filename)) {
+                createFile(filename)
             }
+            val file = File(path, filename)
+            file.writeText(content)
+            true
+        } catch (e: IOException) {
+            Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
+            false
         }
     }
 

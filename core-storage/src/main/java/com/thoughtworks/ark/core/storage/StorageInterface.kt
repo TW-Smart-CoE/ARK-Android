@@ -25,7 +25,7 @@ interface StorageInterface {
 
     fun createFile(filename: String): Boolean
 
-    fun writeTextToFile(filename: String, content: String)
+    fun writeTextToFile(filename: String, content: String): Boolean
 
     fun removeFile(filename: String): Boolean
 }

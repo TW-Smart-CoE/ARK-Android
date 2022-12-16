@@ -11,14 +11,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 sealed class StorageUseState {
-    object Loading : StorageUseState()
+    object None : StorageUseState()
     object Success : StorageUseState()
-    object Error : StorageUseState()
+    object VersionError : StorageUseState()
+    object SystemError : StorageUseState()
 }
 
 data class StorageState(
     val fileIsFlag: Boolean? = null,
-    val storageUseState: StorageUseState = StorageUseState.Loading
+    val storageUseState: StorageUseState = StorageUseState.None
 )
 
 sealed class StorageUiAction {
@@ -47,7 +48,7 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         viewModelScope.launch {
             _storageState.update {
                 val result = if (fileManager.path.isNullOrBlank()) {
-                    StorageUseState.Error
+                    StorageUseState.VersionError
                 } else {
                     StorageUseState.Success
                 }
@@ -63,10 +64,11 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         viewModelScope.launch {
             _storageState.update {
                 val result = if (fileManager.path.isNullOrBlank()) {
-                    StorageUseState.Error
-                } else {
-                    fileManager.writeTextToFile(defaultFilename, defaultWriteContent)
+                    StorageUseState.VersionError
+                } else if (fileManager.writeTextToFile(defaultFilename, defaultWriteContent)) {
                     StorageUseState.Success
+                } else {
+                    StorageUseState.SystemError
                 }
                 it.copy(
                     storageUseState = result
@@ -79,10 +81,11 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
         viewModelScope.launch {
             _storageState.update {
                 val result = if (fileManager.path.isNullOrBlank()) {
-                    StorageUseState.Error
-                } else {
-                    fileManager.removeFile(defaultFilename)
+                    StorageUseState.VersionError
+                } else if (fileManager.removeFile(defaultFilename)) {
                     StorageUseState.Success
+                } else {
+                    StorageUseState.SystemError
                 }
                 it.copy(
                     storageUseState = result
@@ -93,7 +96,7 @@ class StorageViewModel @Inject constructor(private val fileManager: StorageInter
 
     fun clearStorageUiResult() {
         _storageState.update {
-            it.copy(storageUseState = StorageUseState.Loading)
+            it.copy(storageUseState = StorageUseState.None)
         }
     }
 

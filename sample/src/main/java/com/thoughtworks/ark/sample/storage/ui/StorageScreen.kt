@@ -45,14 +45,19 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
     val state = viewModel.storageState.collectAsState().value
     val dispatchAction = viewModel::dispatchAction
     val context = LocalContext.current
-    val error = stringResource(R.string.android_version_storage_error)
+    val versionError = stringResource(R.string.android_version_storage_error)
+    val systemError = stringResource(R.string.android_system_write_remove_error)
 
     state.storageUseState.let { result ->
         when (result) {
-            StorageUseState.Loading -> {}
+            StorageUseState.None -> {}
             StorageUseState.Success -> {}
-            StorageUseState.Error -> {
-                context.showToast(error)
+            StorageUseState.VersionError -> {
+                context.showToast(versionError)
+            }
+
+            StorageUseState.SystemError -> {
+                context.showToast(systemError)
             }
         }
         viewModel.clearStorageUiResult()
