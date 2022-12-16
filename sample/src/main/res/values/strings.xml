@@ -13,4 +13,11 @@
     <string name="extended_color_test_for_xml">extended color test for xml</string>
 
     <string name="request_permission_dialog_content">Hi, Please allow APP to access your location. When location permission is enabled, you can see what\'s new around you.</string>
+
+    <string name="android_version_storage_error">Sorry, please reduced version to 29 and below.</string>
+    <string name="android_system_write_remove_error">Sorry, get write or remove error.</string>
+    <string name="check_default">check default</string>
+    <string name="write_default">write default</string>
+    <string name="remove_default">remove default</string>
+
 </resources>

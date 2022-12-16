@@ -1,6 +1,6 @@
-package com.thoughtworks.ark.sample.storage
+package com.thoughtworks.ark.sample.storage.ui
 
-import androidx.compose.foundation.Image
+import android.Manifest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -18,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -26,6 +28,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.thoughtworks.ark.core.extensions.showToast
+import com.thoughtworks.ark.core.permission.SinglePermission
+import com.thoughtworks.ark.sample.R
+import com.thoughtworks.ark.sample.storage.StorageState
+import com.thoughtworks.ark.sample.storage.StorageUiAction
+import com.thoughtworks.ark.sample.storage.StorageUseState
+import com.thoughtworks.ark.sample.storage.StorageViewModel
 import com.thoughtworks.ark.ui.component.AppFilledButton
 import com.thoughtworks.ark.ui.theme.Dimensions
 import com.thoughtworks.ark.ui.theme.Theme
@@ -35,18 +44,33 @@ fun StorageScreen(viewModel: StorageViewModel = viewModel()) {
 
     val state = viewModel.storageState.collectAsState().value
     val dispatchAction = viewModel::dispatchAction
+    val context = LocalContext.current
+    val versionError = stringResource(R.string.android_version_storage_error)
+    val systemError = stringResource(R.string.android_system_write_remove_error)
 
-    val contentPadding = WindowInsets
-        .systemBars
-        .add(
-            WindowInsets(
-                left = Dimensions.standardPadding,
-                top = Dimensions.standardPadding,
-                right = Dimensions.standardPadding,
-                bottom = Dimensions.standardPadding
-            )
+    state.storageUseState.let { result ->
+        when (result) {
+            StorageUseState.None -> {}
+            StorageUseState.Success -> {}
+            StorageUseState.VersionError -> {
+                context.showToast(versionError)
+            }
+
+            StorageUseState.SystemError -> {
+                context.showToast(systemError)
+            }
+        }
+        viewModel.clearStorageUiResult()
+    }
+
+    val contentPadding = WindowInsets.systemBars.add(
+        WindowInsets(
+            left = Dimensions.standardPadding,
+            top = Dimensions.standardPadding,
+            right = Dimensions.standardPadding,
+            bottom = Dimensions.standardPadding
         )
-        .asPaddingValues()
+    ).asPaddingValues()
 
     LazyColumn(
         modifier = Modifier
@@ -70,14 +94,6 @@ private fun LazyListScope.sectionButtons(
     }
     item {
         MyText(state.fileIsFlag)
-
-        state.imageBitmap?.let {
-            Image(
-                bitmap = it,
-                contentDescription = null,
-                modifier = Modifier.padding(horizontal = Dimensions.dimension128)
-            )
-        }
     }
 }
 
@@ -89,7 +105,7 @@ private fun RemoveButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.RemoveFileAction) },
         text = {
-            Text(text = REMOVE)
+            Text(text = stringResource(R.string.remove_default))
         }
     )
 }
@@ -98,13 +114,17 @@ private fun RemoveButton(
 private fun WriteButton(
     dispatchAction: (StorageUiAction) -> Unit,
 ) {
-    AppFilledButton(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = { dispatchAction(StorageUiAction.WriteFileAction) },
-        text = {
-            Text(text = WRITE)
-        }
-    )
+    SinglePermission(
+        permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    ) {
+        AppFilledButton(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { dispatchAction(StorageUiAction.WriteFileAction) },
+            text = {
+                Text(text = stringResource(R.string.write_default))
+            }
+        )
+    }
 }
 
 @Composable
@@ -115,7 +135,7 @@ private fun CheckButton(
         modifier = Modifier.fillMaxWidth(),
         onClick = { dispatchAction(StorageUiAction.CheckAction) },
         text = {
-            Text(text = CHECK)
+            Text(text = stringResource(R.string.check_default))
         }
     )
 }
@@ -124,40 +144,33 @@ private fun CheckButton(
 private fun MyText(fileIsFlag: Boolean?) {
     Row(
         modifier = Modifier.padding(
-            vertical = Dimensions.dimension128,
-            horizontal = Dimensions.dimension128
+            vertical = Dimensions.dimension128, horizontal = Dimensions.dimension128
         ),
     ) {
         Text(
             buildAnnotatedString {
                 withStyle(
                     style = ParagraphStyle(
-                        lineHeight = 30.sp,
-                        textAlign = TextAlign.Center
+                        lineHeight = 30.sp, textAlign = TextAlign.Center
                     )
                 ) {
                     withStyle(
                         style = SpanStyle(
-                            color = Color.Blue,
-                            fontWeight = FontWeight.Bold
+                            color = Color.Blue, fontWeight = FontWeight.Bold
                         )
                     ) {
                         append("check result\n")
                     }
                     withStyle(
                         style = SpanStyle(
-                            color = Color.Blue,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp
+                            color = Color.Blue, fontWeight = FontWeight.Bold, fontSize = 20.sp
                         )
                     ) {
                         append("is\n")
                     }
                     withStyle(
                         style = SpanStyle(
-                            color = Color.Red,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp
+                            color = Color.Red, fontWeight = FontWeight.Bold, fontSize = 30.sp
                         )
                     ) {
                         if (fileIsFlag != null) {
@@ -169,7 +182,3 @@ private fun MyText(fileIsFlag: Boolean?) {
         )
     }
 }
-
-private const val CHECK = "check default"
-private const val WRITE = "write default"
-private const val REMOVE = "remove default"

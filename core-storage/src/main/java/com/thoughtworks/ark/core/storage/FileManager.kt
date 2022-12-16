@@ -19,7 +19,7 @@ class FileManager : StorageInterface {
         } else false
 
     override val externalBaseDir: String?
-        get() = if (isExternalMounted && Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        get() = if (isExternalMounted) {
             Environment.getExternalStorageDirectory().absolutePath
         } else null
 
@@ -77,21 +77,25 @@ class FileManager : StorageInterface {
     }
 
     override fun createFile(filename: String): Boolean {
-        if (!path?.let { File(it).exists() }!!) {
-            path?.let { File(it).mkdir() }
+        return if (path.isNullOrBlank()) {
+            false
+        } else {
+            path?.let { File(it).mkdirs() }
+            File(path, filename).createNewFile()
         }
-        return File(path, filename).createNewFile()
     }
 
-    override fun writeTextToFile(filename: String, content: String) {
-        if (!exists(filename)) {
-            createFile(filename)
-        }
-        try {
+    override fun writeTextToFile(filename: String, content: String): Boolean {
+        return try {
+            if (!exists(filename)) {
+                createFile(filename)
+            }
             val file = File(path, filename)
             file.writeText(content)
+            true
         } catch (e: IOException) {
             Logger.e("$WRITE_TEXT_FILE_EXCEPTION $e")
+            false
         }
     }
 
