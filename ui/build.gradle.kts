@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.material)
     implementation(libs.bundles.compose)
+    implementation("androidx.compose.material3:material3:1.1.0-alpha03") // todo
     testImplementation(libs.junit4)
 
     detektPlugins(libs.detekt.formatting)

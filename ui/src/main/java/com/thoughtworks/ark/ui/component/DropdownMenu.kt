@@ -4,12 +4,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.thoughtworks.ark.ui.theme.icon.AppIcon
 import com.thoughtworks.ark.ui.theme.icon.Icon
 import com.thoughtworks.ark.ui.theme.icon.Icons
-
 
 @Composable
 fun <T> AppDropDownMenu(
@@ -43,8 +46,7 @@ fun <T> AppDropDownMenuButton(
     dismissOnItemClick: Boolean = true,
     title: String,
     buttonStyle: ButtonStyle = ButtonStyle.OutlinedButton,
-
-    ) {
+) {
     var expanded by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
@@ -59,12 +61,16 @@ fun <T> AppDropDownMenuButton(
                     trailingIcon = {
                         AppIcon(
                             icon =
-                            if (expanded) Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
-                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                            if (expanded) {
+                                Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
+                            } else {
+                                Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                            }
                         )
                     }
                 )
             }
+
             ButtonStyle.FilledButton -> {
                 AppFilledButton(
                     enabled = enabled,
@@ -73,13 +79,16 @@ fun <T> AppDropDownMenuButton(
                     trailingIcon = {
                         AppIcon(
                             icon =
-                            if (expanded)
+                            if (expanded) {
                                 Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
-                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                            } else {
+                                Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                            }
                         )
                     }
                 )
             }
+
             else -> {
                 AppOutlinedButton(
                     enabled = enabled,
@@ -88,9 +97,9 @@ fun <T> AppDropDownMenuButton(
                     trailingIcon = {
                         AppIcon(
                             icon =
-                            if (expanded)
+                            if (expanded) {
                                 Icon.DrawableResourceIcon(id = Icons.ArrowDropUp)
-                            else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
+                            } else Icon.DrawableResourceIcon(id = Icons.ArrowDropDown)
                         )
                     }
                 )

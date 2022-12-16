@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
     implementation(libs.bundles.coil)
     implementation(libs.hilt.android)
+    implementation("androidx.compose.material:material-icons-extended:1.4.0-alpha03") // todo
     kapt(libs.hilt.compiler)
 
     testImplementation(project(":core-testing"))
