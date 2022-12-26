@@ -14,12 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.thoughtworks.ark.media.video.SimpleVideoView
+import com.thoughtworks.ark.media.video.VideoItem
+import com.thoughtworks.ark.media.video.player.VideoPlayState
+import com.thoughtworks.ark.media.video.player.VideoPlayerListener
+import com.thoughtworks.ark.media.video.view.VideoPlayerController
 import com.thoughtworks.ark.sample.R
-import com.thoughtworks.ark.video.SimpleVideoView
-import com.thoughtworks.ark.video.VideoItem
-import com.thoughtworks.ark.video.player.VideoPlayState
-import com.thoughtworks.ark.video.player.VideoPlayerListener
-import com.thoughtworks.ark.video.view.VideoPlayerController
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel

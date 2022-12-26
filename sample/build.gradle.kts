@@ -28,8 +28,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":core-storage"))
     implementation(project(":core-permission"))
-    implementation(project(":sound"))
-    implementation(project(":video"))
+    implementation(project(":core-media"))
     implementation(project(":webview"))
 
     implementation(libs.bundles.kotlin)

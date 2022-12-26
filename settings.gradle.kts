@@ -23,10 +23,7 @@ include(":ui")
 include(":core")
 include(":core-testing")
 include(":core-permission")
-
-include(":sound")
-include(":video")
-
-include(":sample")
+include(":core-media")
 include(":core-storage")
+include(":sample")
 include(":webview")

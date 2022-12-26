@@ -3,10 +3,10 @@ package com.thoughtworks.ark.sample.video
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thoughtworks.ark.media.video.VideoItem
 import com.thoughtworks.ark.sample.video.ui.VideoScreenState
 import com.thoughtworks.ark.sample.video.ui.VideoScreenState.CrossFadeVideoPlay
 import com.thoughtworks.ark.sample.video.ui.VideoScreenState.CustomControlVideoPlay
-import com.thoughtworks.ark.video.VideoItem
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

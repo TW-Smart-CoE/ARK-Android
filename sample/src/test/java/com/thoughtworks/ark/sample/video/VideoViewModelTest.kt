@@ -2,8 +2,8 @@ package com.thoughtworks.ark.sample.video
 
 import com.google.common.truth.Truth.assertThat
 import com.thoughtworks.ark.core.testing.util.MainDispatcherRule
+import com.thoughtworks.ark.media.video.VideoItem
 import com.thoughtworks.ark.sample.video.ui.VideoScreenState
-import com.thoughtworks.ark.video.VideoItem
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.Before
