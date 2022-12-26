@@ -3,9 +3,13 @@ package com.thoughtworks.ark
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
+import com.thoughtworks.ark.Config.APP_HOST_KEY
+import com.thoughtworks.ark.Config.APP_HOST_VALUE
+import com.thoughtworks.ark.Config.APP_SCHEME_KEY
+import com.thoughtworks.ark.Config.APP_SCHEME_VALUE
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
-import java.util.Locale.ROOT
+import java.util.Locale.*
 
 enum class FlavorDimension {
     ContentType
@@ -14,11 +18,11 @@ enum class FlavorDimension {
 enum class Flavor(
     val dimension: FlavorDimension = FlavorDimension.ContentType,
     val disableDebug: Boolean = false,
-    val applicationIdSuffix: String = ""
+    val suffix: String = ""
 ) {
-    Dev(applicationIdSuffix = ".dev"),
-    Uat(disableDebug = true, applicationIdSuffix = ".uat"),
-    Staging(disableDebug = true, applicationIdSuffix = ".staging"),
+    Dev(suffix = "dev"),
+    Uat(disableDebug = true, suffix = "uat"),
+    Staging(disableDebug = true, suffix = "staging"),
     Prod(disableDebug = true)
 }
 
@@ -27,11 +31,20 @@ fun Project.configFlavorsLibrary() {
         flavorDimensions(FlavorDimension.ContentType.name)
 
         productFlavors {
+            val addConstantToFlavorLambda = createAddFlavorConstantLambda()
+
             Flavor.values().forEach {
                 val flavorName = it.name.toLowerCase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
                     proguardFile("$projectDir/proguard-rules.pro")
+
+                    addConstantToFlavorLambda(
+                        this,
+                        APP_SCHEME_KEY,
+                        if (it.suffix.isNotEmpty()) "$APP_SCHEME_VALUE-${it.suffix}" else APP_SCHEME_VALUE
+                    )
+                    addConstantToFlavorLambda(this, APP_HOST_KEY, APP_HOST_VALUE)
                 }
             }
         }
@@ -44,12 +57,21 @@ fun Project.configFlavorsApplication() {
         flavorDimensions(FlavorDimension.ContentType.name)
 
         productFlavors {
+            val addConstantToFlavorLambda = createAddFlavorConstantLambda()
+
             Flavor.values().forEach {
                 val flavorName = it.name.toLowerCase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
-                    applicationIdSuffix = it.applicationIdSuffix
+                    applicationIdSuffix = if (it.suffix.isNotEmpty()) ".${it.suffix}" else ""
                     proguardFile("$projectDir/proguard-rules.pro")
+
+                    addConstantToFlavorLambda(
+                        this,
+                        APP_SCHEME_KEY,
+                        if (it.suffix.isNotEmpty()) "$APP_SCHEME_VALUE-${it.suffix}" else APP_SCHEME_VALUE
+                    )
+                    addConstantToFlavorLambda(this, APP_HOST_KEY, APP_HOST_VALUE)
                 }
             }
         }

@@ -4,6 +4,7 @@
     package="com.thoughtworks.ark">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -19,11 +20,28 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".deeplink.ui.DeeplinkActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="${APP_HOST}"
+                    android:scheme="${APP_SCHEME}" />
             </intent-filter>
         </activity>
     </application>

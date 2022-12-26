@@ -33,7 +33,6 @@ dependencies {
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
-    implementation(libs.bundles.navigation)
     implementation(libs.bundles.compose)
     implementation(libs.accompanist.flowlayout)
     implementation(libs.bundles.coil)

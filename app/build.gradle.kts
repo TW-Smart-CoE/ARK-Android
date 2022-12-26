@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.router)
 }
 
 apply(from = "../config/jacoco/modules.kts")
@@ -29,11 +30,13 @@ dependencies {
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
-    implementation(libs.bundles.navigation)
     implementation(libs.bundles.compose)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.router)
+    kapt(libs.router.compiler)
 
     implementation(libs.bundles.coil)
 
