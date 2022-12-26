@@ -29,3 +29,4 @@ include(":video")
 
 include(":sample")
 include(":core-storage")
+include(":webview")

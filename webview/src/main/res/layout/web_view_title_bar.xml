@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="?attr/colorPrimary">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimension_16"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="?android:attr/textColorPrimary" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:padding="@dimen/dimension_16"
+        android:src="@drawable/ic_close"
+        app:tint="?android:attr/textColorPrimary" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="?android:attr/actionBarSize"
+        android:layout_marginEnd="?android:attr/actionBarSize"
+        android:ellipsize="end"
+        android:gravity="center_vertical|start"
+        android:maxLines="1"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="title" />
+</FrameLayout>
