@@ -1,11 +1,11 @@
 package com.thoughtworks.ark.sample.sound
 
-import com.thoughtworks.ark.sound.alert.AlertItem
-import com.thoughtworks.ark.sound.alert.AlertPlayer
-import com.thoughtworks.ark.sound.media.MediaItem
-import com.thoughtworks.ark.sound.media.MediaPlayer
-import com.thoughtworks.ark.sound.tts.TTSItem
-import com.thoughtworks.ark.sound.tts.TTSSpeaker
+import com.thoughtworks.ark.media.sound.alert.AlertItem
+import com.thoughtworks.ark.media.sound.alert.AlertPlayer
+import com.thoughtworks.ark.media.sound.media.MediaItem
+import com.thoughtworks.ark.media.sound.media.MediaPlayer
+import com.thoughtworks.ark.media.sound.tts.TTSItem
+import com.thoughtworks.ark.media.sound.tts.TTSSpeaker
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

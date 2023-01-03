@@ -1,12 +1,12 @@
 package com.thoughtworks.ark.sample.sound
 
 import androidx.lifecycle.ViewModel
-import com.thoughtworks.ark.sound.alert.AlertItem
-import com.thoughtworks.ark.sound.alert.AlertPlayer
-import com.thoughtworks.ark.sound.media.MediaItem
-import com.thoughtworks.ark.sound.media.MediaPlayer
-import com.thoughtworks.ark.sound.tts.TTSItem
-import com.thoughtworks.ark.sound.tts.TTSSpeaker
+import com.thoughtworks.ark.media.sound.alert.AlertItem
+import com.thoughtworks.ark.media.sound.alert.AlertPlayer
+import com.thoughtworks.ark.media.sound.media.MediaItem
+import com.thoughtworks.ark.media.sound.media.MediaPlayer
+import com.thoughtworks.ark.media.sound.tts.TTSItem
+import com.thoughtworks.ark.media.sound.tts.TTSSpeaker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

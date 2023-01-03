@@ -1,12 +1,12 @@
 package com.thoughtworks.ark.sample.di
 
 import android.content.Context
-import com.thoughtworks.ark.sound.alert.AlertPlayer
-import com.thoughtworks.ark.sound.alert.AlertPlayerImpl
-import com.thoughtworks.ark.sound.media.MediaPlayer
-import com.thoughtworks.ark.sound.media.MediaPlayerImpl
-import com.thoughtworks.ark.sound.tts.TTSSpeaker
-import com.thoughtworks.ark.sound.tts.TTSSpeakerImpl
+import com.thoughtworks.ark.media.sound.alert.AlertPlayer
+import com.thoughtworks.ark.media.sound.alert.AlertPlayerImpl
+import com.thoughtworks.ark.media.sound.media.MediaPlayer
+import com.thoughtworks.ark.media.sound.media.MediaPlayerImpl
+import com.thoughtworks.ark.media.sound.tts.TTSSpeaker
+import com.thoughtworks.ark.media.sound.tts.TTSSpeakerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

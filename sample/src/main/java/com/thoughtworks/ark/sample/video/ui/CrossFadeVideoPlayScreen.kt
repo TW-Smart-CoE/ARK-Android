@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.thoughtworks.ark.video.CrossFadeVideoView
-import com.thoughtworks.ark.video.VideoItem
+import com.thoughtworks.ark.media.video.CrossFadeVideoView
+import com.thoughtworks.ark.media.video.VideoItem
 
 @Composable
 fun CrossFadeVideoPlayScreen(videoItem: VideoItem) {
