@@ -9,13 +9,9 @@ import com.thoughtworks.ark.router.SchemeRequest
 
 class DeeplinkSchemeInterceptor : RouterInterceptor {
     override suspend fun shouldIntercept(request: SchemeRequest): Boolean {
-        if (request.scheme == Schemes.HOME ||
+        return request.scheme == Schemes.HOME ||
             request.scheme == Schemes.DASHBOARD ||
             request.scheme == Schemes.NOTIFICATIONS
-        ) {
-            return true
-        }
-        return false
     }
 
     override suspend fun intercept(request: SchemeRequest): SchemeRequest {

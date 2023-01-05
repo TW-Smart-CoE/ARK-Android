@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.thoughtworks.ark.Schemes
+import com.thoughtworks.ark.deeplink.DeeplinkManager
 import com.thoughtworks.ark.deeplink.DeeplinkSchemeInterceptor
 import com.thoughtworks.ark.router.Router
 
@@ -22,9 +22,9 @@ class DeeplinkActivity : AppCompatActivity() {
     }
 
     private fun parseScheme(intent: Intent?) {
-        val uri = (intent?.data?.toString() ?: "").toUri()
-        val destScheme = uri.getQueryParameter(KEY_DEST)
-        if (!destScheme.isNullOrEmpty()) {
+        val originScheme = intent?.dataString ?: ""
+        val destScheme = DeeplinkManager.parseDestScheme(originScheme)
+        if (destScheme.isNotEmpty()) {
             Router.scheme(destScheme)
                 .addInterceptor(DeeplinkSchemeInterceptor())
                 .route(
@@ -37,9 +37,5 @@ class DeeplinkActivity : AppCompatActivity() {
             Router.scheme(Schemes.MAIN).route(this)
         }
         finish()
-    }
-
-    companion object {
-        const val KEY_DEST = "dest"
     }
 }

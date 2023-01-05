@@ -19,9 +19,17 @@ androidApplication {
         applicationId = "com.thoughtworks.ark"
         versionCode = 1
         versionName = "1.0.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     enableCompose()
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -41,5 +49,14 @@ dependencies {
     implementation(libs.bundles.coil)
 
     testImplementation(project(":core-testing"))
+    testImplementation(libs.junit4)
+
+    androidTestImplementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.truth)
+
     detektPlugins(libs.detekt.formatting)
 }
