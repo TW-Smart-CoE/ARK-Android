@@ -46,7 +46,7 @@ function build_regex() {
 # Print an error message explaining the structure of the commit message
 function print_error() {
     echo -e "Invalid Commit Message"
-    echo -e "If you could please read https://www.conventionalcommits.org/ and update your commit message according to the rules"
+    echo -e "Refer the https://www.conventionalcommits.org/ to update your commits to match the rules"
     echo -e "------------------------"
     echo -e "Valid types: ${TYPES[@]}"
     echo -e "Max length: $MAX_LENGTH"
