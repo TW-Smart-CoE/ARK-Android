@@ -9,7 +9,7 @@ import com.thoughtworks.ark.Config.APP_SCHEME_KEY
 import com.thoughtworks.ark.Config.APP_SCHEME_VALUE
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
-import java.util.Locale.*
+import java.util.Locale.ROOT
 
 enum class FlavorDimension {
     ContentType

@@ -1,6 +1,5 @@
 package com.thoughtworks.ark.deeplink.ui
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +14,6 @@ class DeeplinkActivity : AppCompatActivity() {
         parseScheme(intent)
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         parseScheme(intent)

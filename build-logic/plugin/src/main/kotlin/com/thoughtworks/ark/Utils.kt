@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.thoughtworks.ark
 
 import com.android.build.gradle.BaseExtension
@@ -17,7 +19,6 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.util.*
-
 
 fun Project.getApp(): BaseAppModuleExtension {
     return extensions.getByType()

@@ -1,6 +1,5 @@
 package com.thoughtworks.ark
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -49,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         navView.selectedItemId = selectedItemId
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val newSelectedItemId = intent.getIntExtra(KEY_SELECTED_ITEM_ID, R.id.navigation_home)
