@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Conventional Commits provides a set of rules for creating a clear, standardized commit history
+# https://www.conventionalcommits.org/
+
+# Configuration
+
+# If revert is set to true, the commit message can optionally be prefixed with "revert:"
+REVERT=true
+# all of the allowed types
+TYPES=(
+"build"
+"chore"
+"ci"
+"docs"
+"feat"
+"fix"
+"perf"
+"refactor"
+"style"
+"test"
+)
+# Set the maximum and minimum length limits for messages immediately after the colon
+MIN_LENGTH=1
+MAX_LENGTH=100
+
+# Build a regular expression regex based on the configuration above
+function build_regex() {
+  regexp=""
+
+  if $REVERT; then
+      regexp="${regexp}^([Rr]evert|[Mm]erge):? )?.*$|^("
+  fi
+
+  for type in "${TYPES[@]}"
+  do
+    regexp="${regexp}$type|"
+  done
+
+  regexp="${regexp%|})(\(.+\))?(\!)?: "
+
+  regexp="${regexp}.{$MIN_LENGTH,$MAX_LENGTH}$"
+}
+
+# Print an error message explaining the structure of the commit message
+function print_error() {
+    echo -e "Invalid Commit Message"
+    echo -e "Refer the https://www.conventionalcommits.org/ to update your commits to match the rules"
+    echo -e "------------------------"
+    echo -e "Valid types: ${TYPES[@]}"
+    echo -e "Max length: $MAX_LENGTH"
+    echo -e "Min length: $MIN_LENGTH"
+    echo -e "Actual commit message:$COMMIT_MESSAGES"
+    echo -e "Actual length: $(echo $COMMIT_MESSAGES | wc -c)\n"
+}
+
+COMMIT_MESSAGES=`head -n1 $1`
+
+build_regex
+
+if [ ! -n "$COMMIT_MESSAGES" ]; then
+  echo -e "No commit"
+elif [[ ! $COMMIT_MESSAGES =~ $regexp ]]; then
+  # commit message is invalid - block commit
+  print_error
+  exit 1
+fi
+
+echo "===== validate commit messages pass ====="
