@@ -26,7 +26,7 @@ okhttp-logging = "4.10.0"
 accompanist = "0.28.0"
 coil = "2.2.2"
 exoplayer = "2.18.2"
-fragment = "1.5.4"
+fragment = "1.5.5"
 
 # test
 arch-test = "2.1.0"
