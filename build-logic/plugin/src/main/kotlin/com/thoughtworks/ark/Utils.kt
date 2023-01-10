@@ -1,8 +1,13 @@
+@file:Suppress("TooManyFunctions")
+
 package com.thoughtworks.ark
 
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.android.build.gradle.internal.dsl.BuildType
+import com.android.build.gradle.internal.dsl.DefaultConfig
+import com.android.build.gradle.internal.dsl.ProductFlavor
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.VersionCatalog
@@ -13,7 +18,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-
+import java.util.*
 
 fun Project.getApp(): BaseAppModuleExtension {
     return extensions.getByType()
@@ -43,6 +48,15 @@ fun VersionCatalog.getPlugin(name: String): String {
     return (findPlugin(name).get() as Provider<PluginDependency>).get().pluginId
 }
 
+fun String.getFlavor(): Flavor {
+    return when (this) {
+        Flavor.Dev.name.toLowerCase(Locale.getDefault()) -> Flavor.Dev
+        Flavor.Uat.name.toLowerCase(Locale.getDefault()) -> Flavor.Uat
+        Flavor.Staging.name.toLowerCase(Locale.getDefault()) -> Flavor.Staging
+        else -> Flavor.Prod
+    }
+}
+
 internal val Project.android: BaseExtension
     get() = extensions.findByName("android") as? BaseExtension
         ?: error("Project '$name' is not an Android module")
@@ -57,4 +71,25 @@ internal fun DependencyHandler.implementation(dependencyNotation: Any): Dependen
 @Suppress("UNCHECKED_CAST")
 internal fun <T> Any.applyAs(block: T.() -> Unit) {
     (this as T).block()
+}
+
+internal fun createAddFlavorConstantLambda(): (ProductFlavor, String, String) -> Unit {
+    return { productFlavor, constantName, constantValue ->
+        productFlavor.manifestPlaceholders[constantName] = constantValue
+        productFlavor.buildConfigField("String", constantName, "\"${constantValue}\"")
+    }
+}
+
+internal fun createAddBuildTypeConstantLambda(): (BuildType, String, String) -> Unit {
+    return { buildType, constantName, constantValue ->
+        buildType.manifestPlaceholders[constantName] = constantValue
+        buildType.buildConfigField("String", constantName, "\"${constantValue}\"")
+    }
+}
+
+internal fun DefaultConfig.createAddDefaultConstantLambda(): (String, String) -> Unit {
+    return { constantName, constantValue ->
+        manifestPlaceholders[constantName] = constantValue
+        buildConfigField("String", constantName, "\"${constantValue}\"")
+    }
 }

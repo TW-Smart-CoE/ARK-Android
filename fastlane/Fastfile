@@ -57,6 +57,7 @@ platform :android do
 
   desc "Runs all the static check"
   lane :check do
+    gradle(task: ":build-logic:plugin:detekt")
     gradle(task: "detekt")
   end
 

@@ -1,5 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.detekt)
 }
 
 group = "com.thoughtworks.ark.buildlogic"
@@ -12,6 +14,8 @@ java {
 dependencies {
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
+
+    detektPlugins(libs.detekt.formatting)
 }
 
 gradlePlugin {
