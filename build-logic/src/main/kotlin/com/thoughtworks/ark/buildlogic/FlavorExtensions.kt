@@ -1,12 +1,12 @@
-package com.thoughtworks.ark
+package com.thoughtworks.ark.buildlogic
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.thoughtworks.ark.Config.APP_HOST_KEY
-import com.thoughtworks.ark.Config.APP_HOST_VALUE
-import com.thoughtworks.ark.Config.APP_SCHEME_KEY
-import com.thoughtworks.ark.Config.APP_SCHEME_VALUE
+import com.thoughtworks.ark.buildlogic.AppConfig.APP_HOST_KEY
+import com.thoughtworks.ark.buildlogic.AppConfig.APP_HOST_VALUE
+import com.thoughtworks.ark.buildlogic.AppConfig.APP_SCHEME_KEY
+import com.thoughtworks.ark.buildlogic.AppConfig.APP_SCHEME_VALUE
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 import java.util.Locale.ROOT

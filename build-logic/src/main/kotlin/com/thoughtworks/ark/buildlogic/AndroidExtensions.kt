@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package com.thoughtworks.ark
+package com.thoughtworks.ark.buildlogic
 
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension

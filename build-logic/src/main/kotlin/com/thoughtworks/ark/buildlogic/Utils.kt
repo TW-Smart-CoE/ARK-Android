@@ -1,6 +1,6 @@
-@file:Suppress("TooManyFunctions")
+@file:Suppress("TooManyFunctions", "UnstableApiUsage")
 
-package com.thoughtworks.ark
+package com.thoughtworks.ark.buildlogic
 
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
@@ -18,7 +18,8 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import java.util.*
+import java.util.Locale
+import java.util.Properties
 
 fun Project.getApp(): BaseAppModuleExtension {
     return extensions.getByType()
@@ -26,6 +27,12 @@ fun Project.getApp(): BaseAppModuleExtension {
 
 fun Project.getLibrary(): LibraryExtension {
     return extensions.getByType()
+}
+
+fun Project.loadProperties(fileName: String): Properties {
+    return Properties().apply {
+        load(rootProject.file(fileName).reader())
+    }
 }
 
 fun Project.getLibs(): VersionCatalog {

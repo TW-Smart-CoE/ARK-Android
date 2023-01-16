@@ -1,10 +1,9 @@
-@Suppress("DSL_SCOPE_VIOLATION")
+@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
+
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.detekt)
 }
-
-group = "com.thoughtworks.ark.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

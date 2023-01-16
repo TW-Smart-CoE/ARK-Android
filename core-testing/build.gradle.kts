@@ -1,4 +1,4 @@
-import com.thoughtworks.ark.androidLibrary
+import com.thoughtworks.ark.buildlogic.androidLibrary
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
