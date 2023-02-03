@@ -42,6 +42,8 @@ dependencyResolutionManagement {
 rootProject.name = "ARK-Android"
 // Main App Module
 include(":app")
+include(":sample")
+
 // UI Module for cross feature UI components
 include(":ui")
 // Common Module/Utils/Extensions for cross feature
@@ -50,5 +52,5 @@ include(":core-testing")
 include(":core-permission")
 include(":core-media")
 include(":core-storage")
-include(":sample")
 include(":webview")
+include(":foundation")
