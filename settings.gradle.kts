@@ -34,7 +34,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from("io.github.ssseasonnn:VersionCatalog:0.0.2")
+            from("io.github.ssseasonnn:VersionCatalog:0.0.3")
         }
     }
 }
