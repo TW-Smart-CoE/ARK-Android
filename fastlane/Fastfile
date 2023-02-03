@@ -57,13 +57,34 @@ platform :android do
 
   desc "Runs all the static check"
   lane :check do
-    gradle(task: ":build-logic:plugin:detekt")
+    gradle(task: ":build-logic:detekt")
     gradle(task: "detekt")
   end
 
   desc "Runs all the unit tests"
   lane :unit_test do
     gradle(task: "devDebugCoverage")
+  end
+
+  desc "Publish single env libs to maven"
+  lane :publish_with_env do |options|
+    buildEnv = options[:buildEnv]
+    publishVersion = options[:publishVersion]
+    gradle(
+      task: ":publish",
+      properties: {
+          "buildEnv" => buildEnv,
+          "publishVersion" => publishVersion
+      }
+    )
+  end
+
+  desc "Publish all env libs to maven"
+  lane :publish do |options|
+    publish_with_env(buildEnv: "dev", publishVersion: options[:publishVersion])
+    publish_with_env(buildEnv: "uat", publishVersion: options[:publishVersion])
+    publish_with_env(buildEnv: "staging", publishVersion: options[:publishVersion])
+    publish_with_env(buildEnv: "prod", publishVersion: options[:publishVersion])
   end
 
   desc "Deploy on Fir.im"

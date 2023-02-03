@@ -8,7 +8,10 @@ pipeline {
     }
     parameters {
         string(name: 'APP_BUILD_FOLDER', defaultValue: 'app/build', description: 'Application build output folder')
-        choice(name: 'APP_BUILD_ENV', choices: ['dev', 'uat', 'staging'], description: 'Pipeline build env: dev/uat/staging, default is dev')
+        choice(name: 'APP_BUILD_ENV', choices: ['dev', 'uat', 'staging', 'prod'], description: 'Pipeline build env: dev/uat/staging/prod, default is dev')
+        booleanParam(name: 'ENABLE_PUBLISH', defaultValue: true, description: 'Enable publish to maven')
+        string(name: 'PUBLISH_VERSION', defaultValue: '1.0.0', description: 'Set publish version')
+        booleanParam(name: 'IS_SNAPSHOT', defaultValue: true, description: 'Set whether snapshot')
     }
     options {
         // Stop the build early in case of compile or test failures
@@ -39,12 +42,7 @@ pipeline {
         stage('Build Uat') {
             when { expression { params.APP_BUILD_ENV == 'uat'} }
             steps {
-                // Copy release keystore to workspace
-                withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
-                    sh 'rm -rf config/keystore'
-                    sh 'mkdir -p config/keystore'
-                    sh 'cp $keystore config/keystore/'
-                }
+                initKeyStore()
                 script {
                     sh 'bundle exec fastlane build_uat'
                 }
@@ -53,14 +51,18 @@ pipeline {
         stage('Build Staging') {
             when { expression { params.APP_BUILD_ENV == 'staging'} }
             steps {
-                // Copy release keystore to workspace
-                withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
-                    sh 'rm -rf config/keystore'
-                    sh 'mkdir -p config/keystore'
-                    sh 'cp $keystore config/keystore/'
-                }
+                initKeyStore()
                 script {
                     sh 'bundle exec fastlane build_staging'
+                }
+            }
+        }
+        stage('Build Prod') {
+            when { expression { params.APP_BUILD_ENV == 'prod'} }
+            steps {
+                script {
+                    initKeyStore()
+                    sh 'bundle exec fastlane build_prod'
                 }
             }
         }
@@ -83,25 +85,19 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            when { expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' } }
-            steps {
-                script {
-                    sh 'echo deploy'
+        stage('Publish') {
+            when {
+                allOf {
+                    expression { params.ENABLE_PUBLISH == true }
                 }
             }
-        }
-        stage('Production') {
-            when { branch pattern: "release(-v.+)?", comparator: "REGEXP"}
             steps {
                 script {
-                    // Copy release keystore to workspace
-                    withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
-                        sh 'rm -rf config/keystore'
-                        sh 'mkdir -p config/keystore'
-                        sh 'cp $keystore config/keystore/'
+                    def version = params.PUBLISH_VERSION
+                    if (params.IS_SNAPSHOT == true) {
+                        version += "-SNAPSHOT"
                     }
-                    sh 'bundle exec fastlane build_prod'
+                    sh "bundle exec fastlane publish_with_env buildEnv:${params.APP_BUILD_ENV} publishVersion:${version}"
                 }
             }
         }
@@ -123,3 +119,11 @@ pipeline {
     }
 }
 
+// Copy release keystore to workspace
+def initKeyStore() {
+    withCredentials([file(credentialsId: 'keystore-release', variable: 'keystore')]) {
+        sh 'rm -rf config/keystore'
+        sh 'mkdir -p config/keystore'
+        sh 'cp $keystore config/keystore/'
+    }
+}
