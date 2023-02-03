@@ -71,7 +71,7 @@ platform :android do
     buildEnv = options[:buildEnv]
     publishVersion = options[:publishVersion]
     gradle(
-      task: ":publish",
+      task: "publish",
       properties: {
           "buildEnv" => buildEnv,
           "publishVersion" => publishVersion
