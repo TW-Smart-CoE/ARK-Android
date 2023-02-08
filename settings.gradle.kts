@@ -16,9 +16,10 @@ pluginManagement {
     }
 
     fun initBuildLogic(buildLogicPath: String) {
-        fun execCmd(cmd: String): String {
+        fun execCmd(workPath: String, cmd: String): String {
             val stdout = java.io.ByteArrayOutputStream()
             exec {
+                workingDir = file(workPath)
                 commandLine(cmd.split(" "))
                 standardOutput = stdout
             }
@@ -28,13 +29,20 @@ pluginManagement {
         if (!file(buildLogicPath).exists()) {
             println("Init build logic...")
             //clone build logic to BuildLogic dir
-            val result = execCmd("git clone -b main https://github.com/TW-Smart-CoE/BuildLogic.git $buildLogicPath")
-            print(result)
+            val result = execCmd(
+                ".",
+                "git clone -b main https://github.com/TW-Smart-CoE/BuildLogic.git $buildLogicPath"
+            )
+            if (result.isNotEmpty()) {
+                println(result)
+            }
             println("Build logic init success")
         } else {
             println("Update build logic...")
-            val result = execCmd("cd $buildLogicPath git pull origin/main")
-            print(result)
+            val result = execCmd(buildLogicPath, "git pull")
+            if (result.isNotEmpty()) {
+                println(result)
+            }
             println("Update build logic success")
         }
     }
@@ -59,13 +67,18 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
         mavenLocal()
-        maven {
-            url = uri(readConfig("MAVEN_REPO"))
-            isAllowInsecureProtocol = true
-            credentials {
-                username = readConfig("MAVEN_USER")
-                password = readConfig(("MAVEN_PWD"))
+
+        if (readConfig("MAVEN_REPO").isNotEmpty()) {
+            maven {
+                url = uri(readConfig("MAVEN_REPO"))
+                isAllowInsecureProtocol = true
+                credentials {
+                    username = readConfig("MAVEN_USER")
+                    password = readConfig(("MAVEN_PWD"))
+                }
             }
+        } else {
+            System.err.println("Please config your private Maven repo!")
         }
     }
 
