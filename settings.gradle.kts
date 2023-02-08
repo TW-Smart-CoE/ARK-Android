@@ -1,40 +1,48 @@
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
-import java.io.ByteArrayOutputStream
-
-fun initBuildLogic() {
-    fun execCmd(cmd: String): String {
-        val stdout = ByteArrayOutputStream()
-        exec {
-            commandLine(cmd.split(" "))
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
-
-    if (!file("BuildLogic").exists()) {
-        println("Init build logic...")
-        //clone build logic to BuildLogic dir
-        val result = execCmd("git clone -b main https://github.com/TW-Smart-CoE/BuildLogic.git BuildLogic")
-        print(result)
-        println("Build logic init success")
-    } else {
-        println("Update build logic...")
-        val result = execCmd("cd BuildLogic git pull origin/main")
-        print(result)
-        println("Update build logic success")
-    }
-}
-
-initBuildLogic()
-
 fun readConfig(name: String): String {
     return settings.extensions.extraProperties.properties[name] as String?
         ?: System.getenv(name) ?: ""
 }
 
 pluginManagement {
-    includeBuild("BuildLogic")
+    fun createBuildLogicPath(): String {
+        //If it is build by Jenkins, use the project directory to keep BuildLogic
+        return if (System.getenv("BUILD_ID").isNullOrEmpty()) {
+            "../BuildLogic"
+        } else {
+            "BuildLogic"
+        }
+    }
+
+    fun initBuildLogic(buildLogicPath: String) {
+        fun execCmd(cmd: String): String {
+            val stdout = java.io.ByteArrayOutputStream()
+            exec {
+                commandLine(cmd.split(" "))
+                standardOutput = stdout
+            }
+            return stdout.toString().trim()
+        }
+
+        if (!file(buildLogicPath).exists()) {
+            println("Init build logic...")
+            //clone build logic to BuildLogic dir
+            val result = execCmd("git clone -b main https://github.com/TW-Smart-CoE/BuildLogic.git $buildLogicPath")
+            print(result)
+            println("Build logic init success")
+        } else {
+            println("Update build logic...")
+            val result = execCmd("cd $buildLogicPath git pull origin/main")
+            print(result)
+            println("Update build logic success")
+        }
+    }
+
+    val buildLogicPath = createBuildLogicPath()
+    initBuildLogic(buildLogicPath)
+    includeBuild(buildLogicPath)
+
     repositories {
         gradlePluginPortal()
         google()
@@ -43,6 +51,7 @@ pluginManagement {
         mavenLocal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
