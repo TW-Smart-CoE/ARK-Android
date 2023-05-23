@@ -29,7 +29,7 @@ exoplayer = "2.18.7"
 fragment = "1.5.7"
 
 # test
-arch-test = "2.1.0"
+arch-test = "2.2.0"
 junit = "4.13.2"
 mockk = "1.13.5"
 truth = "1.1.3"
