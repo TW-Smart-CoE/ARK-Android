@@ -9,8 +9,8 @@ project.afterEvaluate {
             description = "Generate overall Jacoco coverage report for the $variant build."
 
             reports {
-                html.enabled(true)
-                xml.enabled(true)
+                html.required = true
+                xml.required = true
             }
 
             def excludes = project.ext.jacocoFileFilter

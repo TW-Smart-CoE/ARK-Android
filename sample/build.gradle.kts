@@ -14,6 +14,8 @@ plugins {
 apply(from = "../config/jacoco/modules.kts")
 
 androidApplication {
+    namespace = "com.thoughtworks.ark.sample"
+
     defaultConfig {
         applicationId = "com.thoughtworks.ark.sample"
         versionCode = 1

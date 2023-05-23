@@ -10,7 +10,7 @@ plugins {
 
 apply(from = "../config/jacoco/modules.kts")
 
-androidLibrary {
+androidLibrary(namespace = "com.thoughtworks.ark.core.permission") {
     enableCompose()
 }
 

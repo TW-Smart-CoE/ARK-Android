@@ -17,15 +17,16 @@ fun Project.androidApplication(block: BaseAppModuleExtension.() -> Unit = {}) {
     }
 }
 
-fun Project.androidLibrary(block: LibraryExtension.() -> Unit = {}) {
+fun Project.androidLibrary(namespace: String? = null, block: LibraryExtension.() -> Unit = {}) {
     configFlavorsLibrary()
-    configBase().applyAs<LibraryExtension> {
+    configBase(namespace).applyAs<LibraryExtension> {
         block()
     }
 }
 
-private fun Project.configBase(): BaseExtension {
+private fun Project.configBase(namespace: String? = null): BaseExtension {
     return android.apply {
+        this.namespace = namespace
         val libs = getLibs()
         setCompileSdkVersion(libs.getVersion("sdk-compile-version"))
 
@@ -36,12 +37,12 @@ private fun Project.configBase(): BaseExtension {
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
 
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
 
         packagingOptions {
