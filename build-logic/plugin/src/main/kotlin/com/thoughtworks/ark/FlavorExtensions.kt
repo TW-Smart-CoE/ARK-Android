@@ -34,7 +34,7 @@ fun Project.configFlavorsLibrary() {
             val addConstantToFlavorLambda = createAddFlavorConstantLambda()
 
             Flavor.values().forEach {
-                val flavorName = it.name.toLowerCase(ROOT)
+                val flavorName = it.name.lowercase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
                     proguardFile("$projectDir/proguard-rules.pro")
@@ -60,7 +60,7 @@ fun Project.configFlavorsApplication() {
             val addConstantToFlavorLambda = createAddFlavorConstantLambda()
 
             Flavor.values().forEach {
-                val flavorName = it.name.toLowerCase(ROOT)
+                val flavorName = it.name.lowercase(ROOT)
                 create(flavorName) {
                     dimension = it.dimension.name
                     applicationIdSuffix = if (it.suffix.isNotEmpty()) ".${it.suffix}" else ""
@@ -83,7 +83,7 @@ private fun Project.filterFlavors() {
     findComponentExtension().beforeVariants { variant ->
         val disabled = Flavor.values()
             .filter { it.disableDebug }
-            .map { it.name.toLowerCase(ROOT) }
+            .map { it.name.lowercase(ROOT) }
         if (disabled.contains(variant.flavorName) && variant.buildType == "debug") {
             variant.enable = false
         }

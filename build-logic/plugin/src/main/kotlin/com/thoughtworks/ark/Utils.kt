@@ -18,7 +18,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.use.PluginDependency
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import java.util.*
+import java.util.Locale.ROOT
 
 fun Project.getApp(): BaseAppModuleExtension {
     return extensions.getByType()
@@ -50,9 +50,9 @@ fun VersionCatalog.getPlugin(name: String): String {
 
 fun String.getFlavor(): Flavor {
     return when (this) {
-        Flavor.Dev.name.toLowerCase(Locale.getDefault()) -> Flavor.Dev
-        Flavor.Uat.name.toLowerCase(Locale.getDefault()) -> Flavor.Uat
-        Flavor.Staging.name.toLowerCase(Locale.getDefault()) -> Flavor.Staging
+        Flavor.Dev.name.lowercase(ROOT) -> Flavor.Dev
+        Flavor.Uat.name.lowercase(ROOT) -> Flavor.Uat
+        Flavor.Staging.name.lowercase(ROOT) -> Flavor.Staging
         else -> Flavor.Prod
     }
 }
