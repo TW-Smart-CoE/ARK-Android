@@ -24,7 +24,7 @@ retrofit = "2.9.0"
 retrofit-kotlinx-serialization-json = "0.8.0"
 okhttp-logging = "4.10.0"
 accompanist = "0.30.1"
-coil = "2.3.0"
+coil = "2.4.0"
 exoplayer = "2.18.7"
 fragment = "1.5.7"
 
