@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.thoughtworks.ark.webview.WebViewTitleBar
+    <com.thoughtworks.ark.core.webview.WebViewTitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

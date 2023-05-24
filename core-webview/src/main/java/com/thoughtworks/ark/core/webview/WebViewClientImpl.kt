@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.webview
+package com.thoughtworks.ark.core.webview
 
 import android.graphics.Bitmap
 import android.webkit.WebResourceError

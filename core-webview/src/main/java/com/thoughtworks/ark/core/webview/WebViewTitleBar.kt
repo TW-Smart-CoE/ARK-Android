@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.webview
+package com.thoughtworks.ark.core.webview
 
 import android.content.Context
 import android.util.AttributeSet

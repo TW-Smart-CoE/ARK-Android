@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.webview
+package com.thoughtworks.ark.core.webview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,9 +6,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -26,7 +23,9 @@ class WebViewActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     private val webViewItem by lazy {
         if (DeviceUtils.isMeetAPILevel(Build.VERSION_CODES.TIRAMISU)) {
-            intent.getParcelableExtra(KEY_WEB_DATA, WebViewItem::class.java) ?: WebViewItem.fromUrl("")
+            intent.getParcelableExtra(KEY_WEB_DATA, WebViewItem::class.java) ?: WebViewItem.fromUrl(
+                ""
+            )
         } else {
             intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
         }
@@ -54,8 +53,8 @@ class WebViewActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progress_bar)
         errorView = findViewById(R.id.error_view)
 
-        titleBar.visibility = if (webViewItem.enableTitleBar) VISIBLE else GONE
-        progressBar.visibility = if (webViewItem.enableProgressBar) VISIBLE else GONE
+        titleBar.visibility = if (webViewItem.enableTitleBar) View.VISIBLE else View.GONE
+        progressBar.visibility = if (webViewItem.enableProgressBar) View.VISIBLE else View.GONE
 
         errorView.setOnClickListener {
             backOrFinish()
@@ -89,7 +88,7 @@ class WebViewActivity : AppCompatActivity() {
                 setTitle(it)
             },
             updateErrorState = {
-                errorView.visibility = if (it) VISIBLE else GONE
+                errorView.visibility = if (it) View.VISIBLE else View.GONE
             }
         )
         webView.webChromeClient = WebChromeClientImpl(
@@ -99,9 +98,9 @@ class WebViewActivity : AppCompatActivity() {
             updateProgress = { progress, completed ->
                 if (webViewItem.enableProgressBar) {
                     if (completed) {
-                        progressBar.visibility = INVISIBLE
+                        progressBar.visibility = View.INVISIBLE
                     } else {
-                        progressBar.visibility = VISIBLE
+                        progressBar.visibility = View.VISIBLE
                     }
                 }
                 progressBar.progress = progress

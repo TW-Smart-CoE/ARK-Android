@@ -31,7 +31,7 @@ dependencies {
     implementation(project(":core-storage"))
     implementation(project(":core-permission"))
     implementation(project(":core-media"))
-    implementation(project(":webview"))
+    implementation(project(":core-webview"))
 
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)

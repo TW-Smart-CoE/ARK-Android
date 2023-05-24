@@ -1,4 +1,4 @@
-package com.thoughtworks.ark.webview
+package com.thoughtworks.ark.core.webview
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -26,7 +26,12 @@ class WebViewItem private constructor(
             enableTitleBar: Boolean = true,
             enableProgressBar: Boolean = true
         ): WebViewItem {
-            return WebViewItem("file:///android_asset/$assetPath", title, enableTitleBar, enableProgressBar)
+            return WebViewItem(
+                "file:///android_asset/$assetPath",
+                title,
+                enableTitleBar,
+                enableProgressBar
+            )
         }
     }
 }
