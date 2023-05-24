@@ -19,4 +19,6 @@ object DeviceUtils {
         Build.PRODUCT.contains("vbox86p") ||
         Build.PRODUCT.contains("emulator") ||
         Build.PRODUCT.contains("simulator")
+
+    fun isMeetAPILevel(level: Int) = Build.VERSION.SDK_INT >= level
 }

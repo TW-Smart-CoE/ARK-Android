@@ -15,6 +15,7 @@ import android.webkit.WebView
 import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.thoughtworks.ark.core.utils.DeviceUtils
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
@@ -24,10 +25,10 @@ class WebViewActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private val webViewItem by lazy {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
-        } else {
+        if (DeviceUtils.isMeetAPILevel(Build.VERSION_CODES.TIRAMISU)) {
             intent.getParcelableExtra(KEY_WEB_DATA, WebViewItem::class.java) ?: WebViewItem.fromUrl("")
+        } else {
+            intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
         }
     }
 

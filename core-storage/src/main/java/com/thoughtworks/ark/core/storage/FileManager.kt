@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Environment
 import android.os.StatFs
 import com.thoughtworks.ark.core.logging.Logger
+import com.thoughtworks.ark.core.utils.DeviceUtils
 import java.io.File
 import java.io.IOException
 
@@ -14,9 +15,10 @@ class FileManager : StorageInterface {
     override var path: String? = externalBaseDir
 
     override val isExternalMounted: Boolean
-        get() = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
-        } else false
+        get() = when {
+            DeviceUtils.isMeetAPILevel(Build.VERSION_CODES.R) -> false
+            else -> Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
+        }
 
     override val externalBaseDir: String?
         get() = if (isExternalMounted) {

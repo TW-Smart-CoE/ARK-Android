@@ -14,6 +14,7 @@ androidLibrary()
 
 dependencies {
     implementation(project(":ui"))
+    implementation(project(":core"))
     implementation(libs.appcompat)
     implementation(libs.kotlin.coroutines)
     implementation(libs.core.ktx)
