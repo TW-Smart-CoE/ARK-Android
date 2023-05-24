@@ -3,6 +3,7 @@ package com.thoughtworks.ark.webview
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
@@ -21,8 +22,13 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var titleBar: WebViewTitleBar
     private lateinit var errorView: View
 
+    @Suppress("DEPRECATION")
     private val webViewItem by lazy {
-        intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(KEY_WEB_DATA) ?: WebViewItem.fromUrl("")
+        } else {
+            intent.getParcelableExtra(KEY_WEB_DATA, WebViewItem::class.java) ?: WebViewItem.fromUrl("")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
