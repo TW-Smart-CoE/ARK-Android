@@ -1,5 +1,5 @@
-import com.thoughtworks.ark.androidApplication
-import com.thoughtworks.ark.enableCompose
+import com.thoughtworks.ark.buildlogic.androidApplication
+import com.thoughtworks.ark.buildlogic.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -16,7 +16,6 @@ apply(from = "../config/jacoco/modules.kts")
 
 androidApplication {
     namespace = "com.thoughtworks.ark"
-
     defaultConfig {
         applicationId = "com.thoughtworks.ark"
         versionCode = 1
@@ -26,12 +25,6 @@ androidApplication {
     }
 
     enableCompose()
-
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
 }
 
 dependencies {
@@ -41,6 +34,7 @@ dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.ui.tool)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

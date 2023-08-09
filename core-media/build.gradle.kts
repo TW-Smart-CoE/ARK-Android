@@ -1,5 +1,5 @@
-import com.thoughtworks.ark.androidLibrary
-import com.thoughtworks.ark.enableCompose
+import com.thoughtworks.ark.buildlogic.androidLibrary
+import com.thoughtworks.ark.buildlogic.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -10,7 +10,8 @@ plugins {
 
 apply(from = "../config/jacoco/modules.kts")
 
-androidLibrary(namespace = "com.thoughtworks.ark.core.media") {
+androidLibrary {
+    namespace = "com.thoughtworks.ark.sound"
     enableCompose()
 }
 
@@ -19,6 +20,7 @@ dependencies {
     implementation(libs.kotlin.coroutines)
     implementation(libs.core.ktx)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.ui.tool)
 
     testImplementation(libs.junit4)
 

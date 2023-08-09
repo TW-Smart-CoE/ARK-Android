@@ -11,17 +11,20 @@ plugins {
 apply(from = "../config/jacoco/modules.kts")
 
 androidLibrary {
-    namespace = "com.thoughtworks.ark.webview"
+    namespace = "com.thoughtworks.ark.foundation"
 }
 
 dependencies {
-    implementation(project(":ui"))
-    implementation(project(":core"))
-    implementation(libs.appcompat)
-    implementation(libs.kotlin.coroutines)
-    implementation(libs.core.ktx)
+    api(project(":ui"))
+    api(project(":core"))
+    api(project(":core-permission"))
+    api(project(":core-media"))
+    api(project(":core-storage"))
+    api(project(":core-webview"))
 
-    testImplementation(libs.junit4)
+    api(libs.appcompat)
+    api(libs.kotlin.coroutines)
+    api(libs.core.ktx)
 
     detektPlugins(libs.detekt.formatting)
 }

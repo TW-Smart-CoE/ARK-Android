@@ -1,4 +1,4 @@
-import com.thoughtworks.ark.androidLibrary
+import com.thoughtworks.ark.buildlogic.androidLibrary
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -11,7 +11,9 @@ plugins {
 
 apply(from = "../config/jacoco/modules.kts")
 
-androidLibrary()
+androidLibrary{
+    namespace = "com.thoughtworks.ark.core"
+}
 
 dependencies {
     implementation(libs.core.ktx)

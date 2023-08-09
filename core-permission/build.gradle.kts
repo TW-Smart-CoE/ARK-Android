@@ -1,5 +1,5 @@
-import com.thoughtworks.ark.androidLibrary
-import com.thoughtworks.ark.enableCompose
+import com.thoughtworks.ark.buildlogic.androidLibrary
+import com.thoughtworks.ark.buildlogic.enableCompose
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -10,7 +10,8 @@ plugins {
 
 apply(from = "../config/jacoco/modules.kts")
 
-androidLibrary(namespace = "com.thoughtworks.ark.core.permission") {
+androidLibrary {
+    namespace = "com.thoughtworks.ark.core.permission"
     enableCompose()
 }
 
@@ -21,6 +22,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.material)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.ui.tool)
     implementation(libs.accompanist.permission)
     testImplementation(libs.junit4)
 

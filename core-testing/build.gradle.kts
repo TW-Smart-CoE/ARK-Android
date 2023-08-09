@@ -1,4 +1,4 @@
-import com.thoughtworks.ark.androidLibrary
+import com.thoughtworks.ark.buildlogic.androidLibrary
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -9,7 +9,9 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-androidLibrary()
+androidLibrary {
+    namespace = "com.thoughtworks.ark.core.testing"
+}
 
 dependencies {
     implementation(libs.hilt.android)
