@@ -20,7 +20,7 @@ dependencies {
     api(project(":core-permission"))
     api(project(":core-media"))
     api(project(":core-storage"))
-    api(project(":webview"))
+    api(project(":core-webview"))
 
     api(libs.appcompat)
     api(libs.kotlin.coroutines)
