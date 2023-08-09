@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.thoughtworks.ark.webview.R
 
 class WebViewTitleBar @JvmOverloads constructor(
     context: Context,

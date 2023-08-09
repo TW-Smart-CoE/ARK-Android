@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.thoughtworks.ark.core.utils.DeviceUtils
+import com.thoughtworks.ark.webview.R
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
