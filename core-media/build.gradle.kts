@@ -11,6 +11,7 @@ plugins {
 apply(from = "../config/jacoco/modules.kts")
 
 androidLibrary {
+    namespace = "com.thoughtworks.ark.sound"
     enableCompose()
 }
 
@@ -19,6 +20,7 @@ dependencies {
     implementation(libs.kotlin.coroutines)
     implementation(libs.core.ktx)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.ui.tool)
 
     testImplementation(libs.junit4)
 

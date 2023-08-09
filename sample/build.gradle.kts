@@ -14,6 +14,7 @@ plugins {
 apply(from = "../config/jacoco/modules.kts")
 
 androidApplication {
+    namespace = "com.thoughtworks.ark.sample"
     defaultConfig {
         applicationId = "com.thoughtworks.ark.sample"
         versionCode = 1
@@ -34,6 +35,7 @@ dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.android)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.compose.ui.tool)
     implementation(libs.accompanist.flowlayout)
     implementation(libs.bundles.coil)
     implementation(libs.hilt.android)

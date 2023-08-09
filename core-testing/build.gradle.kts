@@ -9,7 +9,9 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-androidLibrary()
+androidLibrary {
+    namespace = "com.thoughtworks.ark.core.testing"
+}
 
 dependencies {
     implementation(libs.hilt.android)
