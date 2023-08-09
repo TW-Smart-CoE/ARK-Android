@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.thoughtworks.ark.core.media.R
 import com.thoughtworks.ark.media.video.VideoItem
 import com.thoughtworks.ark.media.video.player.ExoPlayerImpl
 import com.thoughtworks.ark.media.video.utils.isSameVideo
-import com.thoughtworks.ark.sound.R
 
 class SimpleVideoView @JvmOverloads constructor(
     context: Context,
